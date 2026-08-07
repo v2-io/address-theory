@@ -6,6 +6,7 @@
 |---|---|
 | [`theory-and-lexicon.md`](theory-and-lexicon.md) | The foundational model and precise working vocabulary, built up from first principles — for us, iterated live |
 | [`hypothetical-sketch.md`](hypothetical-sketch.md) | The concrete hypothetical (the `@<…>` reference-act IR, `$DOCUMENT`, LUSS, the type-algebra connection) — wet clay, nothing cemented |
+| [`ra-feature-matrix.md`](ra-feature-matrix.md) | The five-column instrument: theory features → usecase → syntax-free RA parts → SQL+alg-types → udon spelling; dependency left→right |
 | [`INFLUX/`](INFLUX/) | Drop-box + set-aside material (incl. the archived first outline pass) — consultable, not authoritative |
 
 **The source map** (read at the primary before building on any of it; none of it lives here):
