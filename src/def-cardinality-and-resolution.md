@@ -42,7 +42,7 @@ Definitional for the cardinality vocabulary and the engine/perspective split; th
 
 The double bound is the theory's most operationally consequential piece: it converts the classic silent failure modes (wrong count, stale model, hallucinated layout) into graduated dialogue at the act site, and its accumulated records are a free calibration corpus. The engine/perspective split is what later lets "filesystem-aware" vs "logical-only" be two policies over one tree rather than two address languages — the load-bearing move the reference-act IR builds on (Part II).
 
-Feeds the lexicon: [[term/expected-cardinality]], [[term/operational-bound]], [[term/epistemic-bound]], [[term/resolution-engine]], [[term/perspective]].
+Terms defined here: [[term/expected-cardinality]], [[term/operational-bound]], [[term/epistemic-bound]], [[term/resolution-engine]], [[term/perspective]].
 
 ## Working Notes
 

@@ -45,7 +45,7 @@ Definitional throughout; the addressing consequences are derived from the defini
 
 The entity/value-object split and the promise table compose: a stored reference to an entity via TRUE IDENTITY survives everything but community collapse; via WORKING PATH it survives nothing but the current context. Fetch-verification pins ( [[def-cardinality-and-resolution]]) are value-object descriptors riding on entity references — the composition that converts silent staleness into loud divergence.
 
-Feeds the lexicon: [[term/entity]], [[term/value-object]], [[term/true-identity]], [[term/canonical-location]], [[term/preferred-location]], [[term/working-path]].
+Terms defined here: [[term/entity]], [[term/value-object]], [[term/true-identity]], [[term/canonical-location]], [[term/preferred-location]], [[term/working-path]].
 
 ## Working Notes
 

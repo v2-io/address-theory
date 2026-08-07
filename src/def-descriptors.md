@@ -31,4 +31,4 @@ Definitional; the vocabulary this corpus builds on. The designator/description c
 
 The failure modes are the design drivers. Everything downstream — over-determination as verification ( [[disc-fetch-and-overdetermination]]), typed resolution outcomes, expected cardinality ( [[def-cardinality-and-resolution]]) — exists because these two connection kinds break in these specific ways. A design that treats a wikilink (a description by stem-match wearing a designator's clothes) as a designator inherits silent re-satisfaction it never priced; the survey rows in [[obs-address-components]] catalog the wild forms.
 
-Feeds the lexicon: [[term/reference-act]], [[term/descriptor]], [[term/referent]], [[term/designator]], [[term/description]], [[term/naming-community]].
+Terms defined here: [[term/reference-act]], [[term/descriptor]], [[term/referent]], [[term/designator]], [[term/description]], [[term/naming-community]].

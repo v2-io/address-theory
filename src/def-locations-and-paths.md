@@ -32,4 +32,4 @@ Definitional, with one marked formulation (the reduction — held lightly by des
 
 It is very easy to conflate IDENTITY, LOCATION, and PATH — especially because they genuinely overlap in the universal-location case, where a fully-specified location *is* a path from anywhere and often *carries* the identity as its last component. The vocabulary here exists so that the overlap is a stated condition rather than an ambient blur. There may be a *CANONICAL LOCATION* among the many; what "canonical" promises is deliberately deferred to [[def-entities-values-promises]], where it is unpacked into four distinct promises. Why sequences appear in addresses at all — and why some are reorderable while others are not — is [[claim-sequence-causes]].
 
-Feeds the lexicon: [[term/identity-component]], [[term/location]], [[term/containment-coordinate]], [[term/path]], [[term/universal-location]], [[term/intermediate-location]], [[term/progressive-routing]].
+Terms defined here: [[term/identity-component]], [[term/location]], [[term/containment-coordinate]], [[term/path]], [[term/universal-location]], [[term/intermediate-location]], [[term/progressive-routing]].

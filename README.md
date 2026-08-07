@@ -4,10 +4,12 @@
 
 | Here | Role |
 |---|---|
-| [`theory-and-lexicon.md`](theory-and-lexicon.md) | The foundational model and precise working vocabulary, built up from first principles — for us, iterated live |
-| [`hypothetical-sketch.md`](hypothetical-sketch.md) | The concrete hypothetical (the `@<…>` reference-act IR, `$DOCUMENT`, LUSS, the type-algebra connection) — wet clay, nothing cemented |
+| [`OUTLINE.md`](OUTLINE.md) | **The front door** — canon view over `src/`; Part I is the foundational theory, Parts II–III are provisional homes; conventions + register in its preface |
+| [`src/`](src/) | The segments (the former theory-and-lexicon, split and drafted; one atom per file) |
+| [`terms/`](terms/) | The embedded lexicon — one entry per term, fed by the definition segments |
+| [`hypothetical-sketch.md`](hypothetical-sketch.md) | The concrete hypothetical (the `@<…>` reference-act IR, `$DOCUMENT`, LUSS, the type-algebra connection) — wet clay, nothing cemented; Part II rows are its homes-in-waiting |
 | [`ra-feature-matrix.md`](ra-feature-matrix.md) | The five-column instrument: theory features → usecase → syntax-free RA parts → SQL+alg-types → udon spelling; dependency left→right |
-| [`INFLUX/`](INFLUX/) | Drop-box + set-aside material (incl. the archived first outline pass) — consultable, not authoritative |
+| [`INFLUX/`](INFLUX/) | Drop-box + set-aside material — consultable, not authoritative; `.integrated/` holds dispatched sources |
 
 **The source map** (read at the primary before building on any of it; none of it lives here):
 
