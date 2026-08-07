@@ -4,7 +4,7 @@
 
 | Here | Role |
 |---|---|
-| [`problem-statement.md`](problem-statement.md) | The foundational model, built up with precision from first principles — for us, iterated live |
+| [`theory-and-lexicon.md`](theory-and-lexicon.md) | The foundational model and precise working vocabulary, built up from first principles — for us, iterated live |
 | [`hypothetical-sketch.md`](hypothetical-sketch.md) | The concrete hypothetical (the `@<…>` reference-act IR, `$DOCUMENT`, LUSS, the type-algebra connection) — wet clay, nothing cemented |
 | [`INFLUX/`](INFLUX/) | Drop-box + set-aside material (incl. the archived first outline pass) — consultable, not authoritative |
 
