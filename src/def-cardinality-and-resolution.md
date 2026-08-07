@@ -29,14 +29,16 @@ Same descriptors, same world, four different meanings of the same result — the
 
 *[Formulation (engine-obligations)]* What every engine owes the actor, regardless of perspective (these follow from the Fetch Assumption's seams — [[disc-fetch-and-overdetermination]] — not from taste):
 
-- **Typed outcomes even on failure** — found-one / found-many (with the candidates) / found-none / found-but-stale — because each routes to a different repair, and collapsing them teaches the actor nothing.
+- **Typed outcomes even on failure** — found-one / found-many (with the candidates) / found-none / found-but-stale / found-but-weakly / found-none-so-far — because each routes to a different repair, and collapsing them teaches the actor nothing.
 - **The requested descriptors preserved beside the result** — some consumers need what was asked, some need what was found; discarding either destroys information the act carried.
 - **Never a silent best-guess.** Where narrowing is insufficient, degrade visibly: auto only when unique, choices when plural, queued when unattended.
 - **Fetch-verification when the act carried it** — a verification descriptor (hash, expected property, epistemic bound) is checked, and divergence surfaces before consequences.
+- **Weak resolution is disclosed.** When resolution succeeded via a *weaker* descriptor than the strongest one the act carried (the strong one dangled, the fallback matched), the outcome is **found-but-weakly**, never a clean hit — otherwise over-determination quietly re-creates the silent near-miss it exists to kill. The same fail-safe philosophy as `$partial-key` at recognition time, applied at resolution time.
+- **Zero only from a completed perspective.** An engine answers "empty set" only from a perspective it can attest is complete; against a still-filling perspective the outcome is the distinct **found-none-so-far**. A premature zero is not an answer to the question that was asked, and — since misses are the teaching channel — it actively mis-teaches.
 
 ## Epistemic Status
 
-Definitional for the cardinality vocabulary and the engine/perspective split; the obligations list is a *formulation* — a chosen contract, argued from the fetch seams rather than derived. Candidate fifth and sixth obligations are on record from the formalisms survey (found-but-weakly as a typed outcome; zero-answers only from attestably-complete perspectives) — held in Working Notes pending adoption, not silently folded in.
+Definitional for the cardinality vocabulary and the engine/perspective split; the obligations list is a *formulation* — a chosen contract, argued from the fetch seams rather than derived. Obligations five and six were adopted deliberately (DECISIONS D6, D7 — ratified), with mixed provenance worth keeping distinct: found-but-weakly rests on this corpus's own `$partial-key` doctrine plus a **[verified]** external anchor (Phelps–Wilensky's measured re-anchoring-with-confidence); completed-perspective rests on the Fetch Assumption's own logic, with the Kahn-premise connection (formalisms survey §3) as corroborating dress at **[recall]** tier — the warrant is ours, the dress is theirs.
 
 ## Discussion
 
@@ -46,4 +48,4 @@ Terms defined here: [[term/expected-cardinality]], [[term/operational-bound]], [
 
 ## Working Notes
 
-- Survey-sourced candidates for the obligations list (formalisms survey §8, §3 + finding 5, `[recall]`/`[verified]` register as marked there): **found-but-weakly** (resolution succeeded via a weaker descriptor than the strongest carried — say so; `$partial-key` is the same doctrine at recognition time) and **zero only from a completed perspective** (an empty-set answer from a still-filling store is a non-blocking read — return found-none-so-far as a distinct outcome). Adopt deliberately, not by drift.
+- Open on the sixth obligation: what "attest is complete" means per perspective kind (a store with a declared membrane can attest; a glob over a live directory arguably cannot) — the attestation mechanics belong with the LUSS/engine design, not here.

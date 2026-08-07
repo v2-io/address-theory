@@ -9,6 +9,7 @@
 | [`terms/`](terms/) | The embedded lexicon — one entry per term, fed by the definition segments |
 | [`hypothetical-sketch.md`](hypothetical-sketch.md) | The concrete hypothetical (the `@<…>` reference-act IR, `$DOCUMENT`, LUSS, the type-algebra connection) — wet clay, nothing cemented; Part II rows are its homes-in-waiting |
 | [`ra-feature-matrix.md`](ra-feature-matrix.md) | The five-column instrument: theory features → usecase → syntax-free RA parts → SQL+alg-types → udon spelling; dependency left→right |
+| [`DECISIONS.md`](DECISIONS.md) | Thin present-truth ledger of ratified calls (`decided-by`-marked) · [`CHANGELOG.md`](CHANGELOG.md) is the history layer |
 | [`INFLUX/`](INFLUX/) | Drop-box + set-aside material — consultable, not authoritative; `.integrated/` holds dispatched sources |
 
 **The source map** (read at the primary before building on any of it; none of it lives here):

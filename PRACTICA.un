@@ -1,0 +1,36 @@
+; PRACTICA — paths/ strategic navigator (thin; areas only)
+; Vanilla udon, transitional (.un). Session-boundary state lives here.
+; NOTE — tracking-dialect collision, flagged not resolved: the udon repo's
+; convention is co-located TODO-*.md lanes; this file follows the
+; verisectorium kit convention instead. Whether paths/ tracking joins the
+; host's lane system or keeps the kit's PRACTICA shape is an open
+; adjudication for the steward + the udon coord. (Feedback datum for the
+; kit: host-convention vs kit-convention is a real launch question the
+; questionnaire should ask.)
+
+|practica[udon-paths] :updated <2026-08-07>
+
+|area[ra-drafting] :priority primary :state ready
+  :why The nine form-*-ra rows are the leverage; spellings blocked on them by design
+  :next Per-aspect RA drafting (delegable; fork-cluster pattern); watch the
+        left-to-right stage law (sop/ORIENT.md)
+
+|area[steward-review] :priority primary :state waiting
+  :why Part I split + structure not yet steward-verified row by row
+  :next Joseph + udon coord review the founding diff whole; then commit
+
+|area[recall-verification] :priority secondary :state ready
+  :why Part IV rows lean on survey [recall] items unverified by its own banner
+  :next The survey's own closing list names exactly what to verify
+
+|area[terms-alignment] :priority secondary :state ready
+  :why Entries are paraphrases; the byte-identity discipline is specified, unsatisfied
+  :next After steward review of definitions: tag canonical one-liners, sync entries
+
+|area[matrix-generator] :priority parked :state named
+  :why The matrix is ruled a generated view; generation doesn't exist yet
+  :next Instrument candidate (M0/M1); row-number cites drop when it lands
+
+|area[algebra-adversarial-pass] :priority secondary :state ready
+  :why claim-type-algebra-correspondence self-flagged: zero adversarial passes
+  :next The single highest-value verification available (founding-coord notes)
