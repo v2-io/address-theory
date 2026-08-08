@@ -10,21 +10,21 @@ digraph euler {
   node [fontname="Helvetica", shape=box, style=rounded];
   subgraph "cluster_descriptor" {
     label="descriptor"; fontname="Helvetica"; style=rounded;
-    "descriptor" [label="descriptor", shape=plaintext, fontsize=9];
+    "descriptor" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
     "description" [label="description", tooltip="A predicate the world satisfies; picks out whatever currently satisfies it — plurality is a feature."];
     subgraph "cluster_designator" {
       label="designator"; fontname="Helvetica"; style=rounded;
-      "designator" [label="designator", shape=plaintext, fontsize=9];
+      "designator" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
       "containment-coordinate" [label="containment\ncoordinate", tooltip="One nesting-container designator inside a location chain."];
       "identity-component" [label="identity\ncomponent", tooltip="A designator for the target itself, as opposed to its containers."];
     }
     subgraph "cluster_location" {
       label="location"; fontname="Helvetica"; style=rounded;
-      "location" [label="location", shape=plaintext, fontsize=9];
+      "location" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
       "intermediate-location" [label="intermediate\nlocation", tooltip="A step along a path that is itself a location, owning the routing of its next hop."];
       subgraph "cluster_universal-location" {
         label="universal-location"; fontname="Helvetica"; style=rounded;
-        "universal-location" [label="universal\nlocation", shape=plaintext, fontsize=9];
+        "universal-location" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
         "canonical-location" [label="canonical\nlocation", tooltip="The promise 'this will keep resolving' — breaking it is a breach, not an event."];
         "preferred-location" [label="preferred\nlocation", tooltip="The promise 'this resolves today, and it's the one we'd rather you use' — supersedable without breach."];
       }
@@ -38,7 +38,7 @@ digraph euler {
   "over-determination" [label="over\ndetermination", tooltip="Descriptors past the minimum are verification and redundant routes, not redundancy."];
   subgraph "cluster_path" {
     label="path"; fontname="Helvetica"; style=rounded;
-    "path" [label="path", shape=plaintext, fontsize=9];
+    "path" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
     "working-path" [label="working\npath", tooltip="No promise at all: whatever route works from here, now; expected to expire with its context."];
   }
   "perspective" [label="perspective", tooltip="What an engine resolves relative to: an origin, a scope, a moment, a policy about what counts as the world."];
@@ -49,9 +49,7 @@ digraph euler {
   "sequence-cause" [label="sequence\ncause", tooltip="Why order appears in an address at all: three causes, per-segment, and exactly what an engine may optimize."];
   "true-identity" [label="true\nidentity", tooltip="The promise 'this names IT' — held by the minting community, independent of routability."];
   "value-object" [label="value\nobject", tooltip="A thing that IS its description; cannot dangle, rename, or change."];
-  "identity-component" -> "location" [dir=none, style=dashed, label="∩ ≠ ∅", fontsize=9, constraint=false];
-  "entity" -> "value-object" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false];
-  "canonical-location" -> "true-identity" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false];
-  "preferred-location" -> "true-identity" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false];
-  "true-identity" -> "working-path" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false];
+  "identity-component" -> "location" [dir=none, style=dashed, label="∩ ≠ ∅", fontsize=9, constraint=false, decorate=true, lhead="cluster_location"];
+  "entity" -> "value-object" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false, decorate=true];
+  "__disjoint_legend" [shape=note, fontsize=9, label="disjoint (cross-cluster):\lcanonical-location ∩ true-identity = ∅\lpreferred-location ∩ true-identity = ∅\ltrue-identity ∩ working-path = ∅\l"];
 }
