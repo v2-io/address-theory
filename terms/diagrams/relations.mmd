@@ -35,7 +35,7 @@ flowchart LR
   designator -.->|⊂| descriptor
   identity_component -.->|⊂| designator
   intermediate_location -.->|⊂| location
-  location -.->|⊂| descriptor
+  location -.->|⊂| description
   preferred_location -.->|⊂| universal_path
   universal_path -.->|⊂| path
   working_path -.->|⊂| path
@@ -57,7 +57,7 @@ flowchart LR
   expected_cardinality -->|has ?| epistemic_bound
   intermediate_location -->|step-of +| path
   intermediate_location -->|performs| progressive_routing
-  location -->|composed-of +| containment_coordinate
+  location -->|names-via +| containment_coordinate
   naming_community -->|maintains *| designator
   operational_bound -->|part-of| expected_cardinality
   origin -->|part-of 1| path

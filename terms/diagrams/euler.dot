@@ -12,17 +12,20 @@ digraph euler {
   subgraph "cluster_descriptor" {
     label="descriptor"; fontname="Helvetica"; style=rounded;
     "descriptor" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
-    "description" [label="description", tooltip="A predicate the world satisfies; picks out whatever currently satisfies it — plurality is a feature."];
+    subgraph "cluster_description" {
+      label="description"; fontname="Helvetica"; style=rounded;
+      "description" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
+      subgraph "cluster_location" {
+        label="location"; fontname="Helvetica"; style=rounded;
+        "location" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
+        "intermediate-location" [label="intermediate\nlocation", tooltip="A step along a path that is itself a location, owning the routing of its next hop."];
+      }
+    }
     subgraph "cluster_designator" {
       label="designator"; fontname="Helvetica"; style=rounded;
       "designator" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
       "containment-coordinate" [label="containment\ncoordinate", tooltip="One nesting-container designator inside a location chain."];
       "identity-component" [label="identity\ncomponent", tooltip="A designator for the target itself, as opposed to its containers."];
-    }
-    subgraph "cluster_location" {
-      label="location"; fontname="Helvetica"; style=rounded;
-      "location" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
-      "intermediate-location" [label="intermediate\nlocation", tooltip="A step along a path that is itself a location, owning the routing of its next hop."];
     }
   }
   "destination" [label="destination", tooltip="The location a path routes to — exactly one per path."];
@@ -48,7 +51,6 @@ digraph euler {
   "sequence-cause" [label="sequence\ncause", tooltip="Why order appears in an address at all: three causes, per-segment, and exactly what an engine may optimize."];
   "true-identity" [label="true\nidentity", tooltip="The promise 'this names IT' — held by the minting community, independent of routability."];
   "value-object" [label="value\nobject", tooltip="A thing that IS its description; cannot dangle, rename, or change."];
-  "identity-component" -> "location" [dir=none, style=dashed, label="∩ ≠ ∅", fontsize=9, constraint=false, decorate=true, lhead="cluster_location"];
   "canonical-location" -> "preferred-location" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false, decorate=true];
   "entity" -> "value-object" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false, decorate=true];
   "canonical-location" -> "true-identity" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false, decorate=true];

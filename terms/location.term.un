@@ -1,10 +1,14 @@
-; generated-format instantiation 2026-08-08
+; generated-format instantiation 2026-08-08; re-carved per D12 same day —
+; location = a containment predicate over a designated container, so it is a
+; DESCRIPTION (the contained-in claim), while the coordinate (the container's
+; name) is a designator. The old peer-of-designator/description position was
+; the partition-breaker.
 |term[location]
   :status settled
   :subject-field addressing
   :layer framing-vocabulary
-  :gloss A containment-coordinate descriptor family; powerful because containers can route.
-  :see-also [@containment-coordinate @path]
+  :gloss A containment predicate over a designated container — the owned description: the container's community can enumerate and route it.
+  :see-also [@containment-coordinate @path @origin]
   |designation location
     :status preferred
     :channel prose
@@ -12,13 +16,16 @@
     :defined-by @def-locations-and-paths
     :anchor identity-vs-location
     :projection paraphrase
-    Location components are descriptors of a particular, powerful family — containment coordinates, each one a designator for a container, arranged so that the containers nest.
+    A location is a containment predicate over a designated container: the coordinate names the container (a designator); the contained-in claim it makes is a description, distinguished from free predicates by subset-composability, delegable resolution, and partial policing.
   |formal
-    :notation <latex:loc = \langle c_1 \supset c_2 \supset ... \supset c_n \rangle>
-    :reading A chain of nested container designators; the held-lightly reduction reads it as an identity embedded in a resolvable containment hierarchy.
-  |set-rel :kind subset-of :to @descriptor
-  |set-rel :kind overlaps :to @identity-component
-  |rel :kind composed-of :to @containment-coordinate :card +
+    :notation <latex:loc_c(x) := x \sqsubseteq c, \; c \; designated>
+    :reading The predicate is over containment in a NAMED container; chains of these compose by subset.
+  |set-rel :kind subset-of :to @description
+  |rel :kind names-via :to @containment-coordinate :card +
+  |invariant
+    Distinguished from free descriptions by: subset-composability (location chains conjoin by nesting); delegable resolution (the owned description — the container's community can enumerate and route); partial policing.
   |confused
     :with @path
     A location describes where a thing sits; a path is steps between locations — they interchange safely only in the universal-path case (D11).
+  |note :audience maintainer
+    "Standing alone, a location is a scope" — mint of scope proposed, NOT ratified (D12 session); do not cite scope as a term yet.

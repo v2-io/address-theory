@@ -24,5 +24,7 @@
   |confused
     :with @description
     If the connection is re-computed from the world's current properties at each use, it is a description — even when it looks like a name (a policed wikilink stem IS a designator; an unpoliced one degrades).
+  |invariant
+    Kind is per-act (descriptor's D12 theorem): this same string may be part of a description in an enclosing act.
   |failure-if-misused
     Treating an unmaintained string-match as a designator imports silent retargeting nobody priced.

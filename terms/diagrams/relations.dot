@@ -16,7 +16,7 @@ digraph relations {
   "expected-cardinality" [tooltip="Part of the act's type: how many referents the actor means to pick out; gives a miss its meaning."];
   "identity-component" [tooltip="A designator for the target itself, as opposed to its containers."];
   "intermediate-location" [tooltip="A step along a path that is itself a location, owning the routing of its next hop."];
-  "location" [tooltip="A containment-coordinate descriptor family; powerful because containers can route."];
+  "location" [tooltip="A containment predicate over a designated container — the owned description: the container's community can enumerate and route it."];
   "naming-community" [tooltip="Whoever maintains a designator's binding: a family, a filesystem, a registry, a store."];
   "operational-bound" [tooltip="How many the act will touch; divergence is failure."];
   "origin" [tooltip="The location a path routes from — exactly one per path; its manner is one of explicit | implicit | universal."];
@@ -48,7 +48,7 @@ digraph relations {
   "expected-cardinality" -> "epistemic-bound" [label="has (?)", fontsize=9];
   "intermediate-location" -> "path" [label="step-of (+)", fontsize=9];
   "intermediate-location" -> "progressive-routing" [label="performs", fontsize=9];
-  "location" -> "containment-coordinate" [label="composed-of (+)", fontsize=9];
+  "location" -> "containment-coordinate" [label="names-via (+)", fontsize=9];
   "naming-community" -> "designator" [label="maintains (*)", fontsize=9];
   "operational-bound" -> "expected-cardinality" [label="part-of", fontsize=9];
   "origin" -> "path" [label="part-of (1)", fontsize=9];
@@ -72,7 +72,7 @@ digraph relations {
   "designator" -> "descriptor" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "identity-component" -> "designator" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "intermediate-location" -> "location" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
-  "location" -> "descriptor" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
+  "location" -> "description" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "preferred-location" -> "universal-path" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "universal-path" -> "path" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "working-path" -> "path" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];

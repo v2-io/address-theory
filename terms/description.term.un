@@ -18,5 +18,7 @@
     :reading The referent set is a function of the evaluation moment; zero, one, or many.
   |set-rel :kind subset-of :to @descriptor
   |set-rel :kind disjoint-from :to @designator
+  |invariant
+    Kind is per-act (descriptor's D12 theorem); the location family is the OWNED description — its container's community can enumerate and route it, which free predicates cannot claim.
   |note :audience maintainer
     Steward skepticism recorded (def-descriptors WN): "silent re-satisfaction" as this kind's failure mode may be state-based cruft an event-sourced foundation dissolves; adjudication deferred to the Temporal chapter.

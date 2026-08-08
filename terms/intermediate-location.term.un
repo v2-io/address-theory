@@ -12,6 +12,9 @@
     :anchor path
     :projection paraphrase
     Intermediate steps of a path may themselves be intermediate locations; each is in charge of routing from there — only that item is expected to know how to route to the next.
+  |formal
+    :notation <latex:il(l, p) := l \in steps(p) \land l \ne dst(p)>
+    :reading Constitutive: an intermediate location is a non-terminal step of a path that is itself a location.
   |set-rel :kind subset-of :to @location
   ; Constitutive, not incidental: to BE an intermediate location is to be a
   ; non-terminal step of a path that is itself a location.
