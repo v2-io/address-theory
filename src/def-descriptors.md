@@ -6,6 +6,7 @@ status: axiomatic
 max: axiomatic
 state: [drafted]
 depends: [intro-postal-model]
+terms-relevant: [expected-cardinality]
 ---
 
 # Definition: Reference Acts and Descriptors
@@ -29,7 +30,7 @@ Definitional; the vocabulary this corpus builds on. The designator/description c
 
 ## Discussion
 
-The failure modes are the design drivers. Everything downstream — over-determination as verification ( [[disc-fetch-and-overdetermination]]), typed resolution outcomes, expected cardinality ( [[def-cardinality-and-resolution]]) — exists because these two connection kinds break in these specific ways. A design must classify by the binding, not the spelling: a wikilink stem in a vault that polices stem-uniqueness is a *natural-key designator* — the community maintains the binding, and a second same-stem mint is a **collision** (loud, detectable at mint time — which is what makes forks visible instead of silently coexisting). The same spelling over a corpus nobody polices degrades into a description (a predicate over a drifting population) — the degenerate case, not the nature of the form. Descriptor kind is determined by whether anyone keeps the binding. The survey rows in [[obs-address-components]] catalog the wild forms.
+The failure modes are the design drivers. Everything downstream — over-determination as verification ( [[disc-fetch-and-overdetermination]]), typed resolution outcomes, [[term/expected-cardinality|expected cardinality]] ( [[def-cardinality-and-resolution]]) — exists because these two connection kinds break in these specific ways. A design must classify by the binding, not the spelling: a wikilink stem in a vault that polices stem-uniqueness is a *natural-key designator* — the community maintains the binding, and a second same-stem mint is a **collision** (loud, detectable at mint time — which is what makes forks visible instead of silently coexisting). The same spelling over a corpus nobody polices degrades into a description (a predicate over a drifting population) — the degenerate case, not the nature of the form. Descriptor kind is determined by whether anyone keeps the binding. The survey rows in [[obs-address-components]] catalog the wild forms.
 
 ## Working Notes
 

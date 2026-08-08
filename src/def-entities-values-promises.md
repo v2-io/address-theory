@@ -6,6 +6,7 @@ status: axiomatic
 max: axiomatic
 state: [drafted]
 depends: [def-descriptors, def-locations-and-paths]
+terms-required: [designator, naming-community]
 ---
 
 # Definition: Entities, Value Objects, and the Four Promises
@@ -14,9 +15,9 @@ An entity's identity is independent of its description; a value object is its de
 
 ## Formal Expression
 
-*[Definition (entity; value-object)]* Borrowing the standard vocabulary, defined precisely for our purposes:
+*[Definition (entity-value-object)]* Borrowing the standard vocabulary, defined precisely for our purposes:
 
-- An **ENTITY** is a thing whose identity is independent of its current description. It persists through change — the document after the edit is *the same document*; Joseph at 8 and Joseph now are the same Joseph. Because nothing in its content can testify to its identity, an entity's identity must be **minted and maintained by convention** — a designator plus a naming community that keeps the binding. Entities are what designators are *for*.
+- An **ENTITY** is a thing whose identity is independent of its current description. It persists through change — the document after the edit is *the same document*; Joseph at 8 and Joseph now are the same Joseph. Because nothing in its content can testify to its identity, an entity's identity must be **minted and maintained by convention** — a [[term/designator|designator]] plus a [[term/naming-community|naming community]] that keeps the binding. Entities are what designators are *for*.
 - A **VALUE OBJECT** is a thing that *is* its description. The number 47, the string "hello", the exact bytes of a file at a moment. Two value objects with the same content are not similar — they are the same, and "which one" is a meaningless question. A value object cannot dangle, cannot be renamed, and cannot change (a "changed" value object is a different value object).
 
 *[Derived (addressing-consequences)]* Consequences that fall out rather than being designed:

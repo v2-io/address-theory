@@ -6,6 +6,7 @@ status: empirical
 max: empirical
 state: [drafted]
 depends: [def-descriptors, def-locations-and-paths]
+terms-required: [universal-path, designator]
 ---
 
 # Observation: Address Components in the Wild
@@ -19,7 +20,7 @@ A brief survey of the location, identity, and description components that real s
 **Common Location Components (Digital).** Often positional (Street → City → State, Postal Code, Country):
 
 - Server: either name (for DNS) or address (IP) with implicit or explicit port — itself a location-vs-named-identity decision.
-- Location — note the URI/URN/URL possible conflation of path, destination, and identity; per [[def-locations-and-paths]] that is the "Universal…" in the names presupposing a UNIVERSAL PATH (re-carved [[DECISIONS#d11-universal-path|D11 universal-path]] — universality is the path's property, not the location's), the condition under which they interchange safely:
+- Location — note the URI/URN/URL possible conflation of path, destination, and identity; per [[def-locations-and-paths]] that is the "Universal…" in the names presupposing a [[term/universal-path|UNIVERSAL PATH]] (re-carved [[DECISIONS#d11-universal-path|D11 universal-path]] — universality is the path's property, not the location's), the condition under which they interchange safely:
   - Namespace⁺: hierarchy of namespaces (NID + NSS in typical URNs).
   - Path⁺: hierarchy of (logical) containers — sometimes mapping directly to filesystem directories.
 
@@ -34,7 +35,7 @@ A brief survey of the location, identity, and description components that real s
 **Common Description Components** (the third mode, usually unlabeled in the wild):
 
 - Predicate filters: SQL `WHERE`, CSS selector classes/pseudo-classes, XPath predicates `[...]`, attribute/trait filters.
-- Patterns over names: globs; and stem-matching over a corpus *nobody polices* — the degenerate case where a would-be natural-key designator behaves as a predicate over a drifting population ( [[def-descriptors]]; [[def-cardinality-and-resolution]]'s unstated bounds).
+- Patterns over names: globs; and stem-matching over a corpus *nobody polices* — the degenerate case where a would-be natural-key [[term/designator|designator]] behaves as a predicate over a drifting population ( [[def-descriptors]]; [[def-cardinality-and-resolution]]'s unstated bounds).
 - Content addresses: the limiting case where the description is complete and compressed to fixed size (hash) — see [[def-entities-values-promises]].
 
 **Deliberately absent for our purposes** (sometimes part of a URL): Scheme, Authentication, Filetype (the `.xyz` suffix as data/document-type shorthand). Absent from *this survey's* scope, not adjudicated out of the model — the O13 perspective decomposition treats scheme/host as perspective rungs and suffix as expected-return-type, and those homes are Part II's business.

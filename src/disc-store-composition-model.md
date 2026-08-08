@@ -6,6 +6,8 @@ status: discussion-grade
 max: axiomatic
 state: [drafted]
 depends: [def-descriptors, def-locations-and-paths, def-cardinality-and-resolution, def-entities-values-promises]
+terms-required: [resolution-engine, perspective, designator, naming-community]
+terms-relevant: [over-determination]
 ---
 
 # Discussion: The Store, Tentatively Defined
@@ -16,7 +18,7 @@ A store is not a place; it is a named composition of seats over interchangeable 
 
 *Everything here is held lightly — a first vocabulary pass in the spirit of the one that became Part I, drafted by the coord from first-hand study of the estate's shipped prior art (rowan) and offered for steward correction. Terms are CANDIDATES; none has a `terms/` entry yet.*
 
-*[Candidate (store)]* A **STORE** is a named, ordered composition of **SEATS**. Always a composition — a single file, a single directory, a single database is the one-seat degenerate case, not a different kind of thing. The name is a designator minted in a **store registry** (a naming community with mint-time collision policing, per [[def-descriptors]] and [[DECISIONS#d8-wikilink-designators|D8 wikilink-designators]]); consumers reference stores by name, never by construction.
+*[Candidate (store)]* A **STORE** is a named, ordered composition of **SEATS**. Always a composition — a single file, a single directory, a single database is the one-seat degenerate case, not a different kind of thing. The name is a [[term/designator|designator]] minted in a **store registry** (a [[term/naming-community|naming community]] with mint-time collision policing, per [[def-descriptors]] and [[DECISIONS#d8-wikilink-designators|D8 wikilink-designators]]); consumers reference stores by name, never by construction.
 
 *[Candidate (seat; mechanism; the seat/mechanism axis)]* A **SEAT** is a claim in the store's routing structure: *(role, direction, mechanism-designator, params, resolver)*. A **MECHANISM** is whatever actually moves bytes — a directory of files, a database, an append-only log, a remote service — identified by designator and shared across every seat that names it. Seat-identity and mechanism-identity are **different axes**: two seats (a read seat and a write seat) may share one mechanism; one role may split across mechanisms. Conflating the two axes is a recurring source of paradox — an argument about "one store or two" usually dissolves into one seat-fact and one mechanism-fact that were never in tension.
 
@@ -26,9 +28,9 @@ A store is not a place; it is a named composition of seats over interchangeable 
 
 *[Candidate (the bind moment)]* A composition is **built free and bound checked**: constructing one never fails, and its obligations (e.g. *some seat must carry the write-primary behavior*) are enforced only at the moment it is **bound to a consumer** — and they are checked *behaviorally*, never nominally. Recognition-total, judgment-layered, at the store layer. Binding is also where a composition's derivation is legible: composition merges are **typed rebinding events with recorded provenance** (which declaration contributed each seat), so a resolved store can report how it came to be.
 
-*[Derived (store as perspective-engine)]* A bound store composition **is** a RESOLUTION ENGINE relative to a PERSPECTIVE ( [[def-cardinality-and-resolution]]) — not configuration an engine reads, but the composed thing that resolves. Its seats are the perspective's membership; its behaviors are the routing; its resolvers are the per-hop ownership of [[def-locations-and-paths]]'s progressive routing. Dynamism is fenced menu-vs-knob-shaped: an act may *select among* declared compositions (the resolver seat), but nothing mutates a composition mid-resolution.
+*[Derived (store as perspective-engine)]* A bound store composition **is** a [[term/resolution-engine|RESOLUTION ENGINE]] relative to a [[term/perspective|PERSPECTIVE]] ( [[def-cardinality-and-resolution]]) — not configuration an engine reads, but the composed thing that resolves. Its seats are the perspective's membership; its behaviors are the routing; its resolvers are the per-hop ownership of [[def-locations-and-paths]]'s progressive routing. Dynamism is fenced menu-vs-knob-shaped: an act may *select among* declared compositions (the resolver seat), but nothing mutates a composition mid-resolution.
 
-*[Derived (mint-once)]* Identity is minted **once, at the act, upstream of any fan-out**; every seat is *told* the designator and never derives its own. Corollary: co-reference across seats holds by construction, which is the precondition for over-determination verification ( [[disc-fetch-and-overdetermination]], [[DECISIONS#d6-found-but-weakly|D6 found-but-weakly]]) across stores being possible at all.
+*[Derived (mint-once)]* Identity is minted **once, at the act, upstream of any fan-out**; every seat is *told* the designator and never derives its own. Corollary: co-reference across seats holds by construction, which is the precondition for [[term/over-determination|over-determination]] verification ( [[disc-fetch-and-overdetermination]], [[DECISIONS#d6-found-but-weakly|D6 found-but-weakly]]) across stores being possible at all.
 
 *[Candidate (per-seat moments)]* A change declared once — a schema evolution, a supersession — applies at **different moments per seat kind**: materialized ahead of reads for mechanisms that require transformation, translated at read for mechanisms that keep old bytes as-is, not at all for the ephemeral. The store layer is the **decider of moments**; truth is seat-invariant while application schedules differ. (This is [[form-resolve-moments]]'s live/once/materialized menu appearing as a *per-seat property* rather than a global election.)
 

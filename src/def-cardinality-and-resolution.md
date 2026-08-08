@@ -6,22 +6,24 @@ status: axiomatic
 max: axiomatic
 state: [drafted]
 depends: [def-descriptors]
+terms-required: [reference-act, referent, designator, description]
+terms-relevant: [over-determination]
 ---
 
 # Definition: Expected Cardinality, Engines, and Perspectives
 
-A reference act carries an expected cardinality that gives a miss its meaning; resolution is performed by an engine relative to a perspective, and every engine owes the actor four things.
+A [[term/reference-act|reference act]] carries an expected cardinality that gives a miss its meaning; resolution is performed by an engine relative to a perspective, and every engine owes the actor four things.
 
 ## Formal Expression
 
-*[Definition (expected-cardinality)]* A reference act carries — implicitly or explicitly — an **EXPECTED CARDINALITY**: how many referents the actor means to pick out. This is part of the act's *type*, knowable before any resolution happens, and it is what gives a miss its meaning:
+*[Definition (expected-cardinality)]* A reference act carries — implicitly or explicitly — an **EXPECTED CARDINALITY**: how many [[term/referent|referents]] the actor means to pick out. This is part of the act's *type*, knowable before any resolution happens, and it is what gives a miss its meaning:
 
 - Under expect-**exactly-one** ({1,1}), zero or several is a *loud failure* — the actor's model of the world is wrong, and they need to know.
 - Under expect-**maybe-one** ({0,1}), zero is an *answer*: absent.
 - Under expect-**any-number** ({0,N}), zero is an *answer*: empty set.
 - Under expect-**at-least-one** ({1,N}), only zero is a failure.
 
-Same descriptors, same world, four different meanings of the same result — the bound is what disambiguates. Designators default to {1,1}; descriptions have no natural default, which is why unstated bounds on descriptions are where surprises live — an *unpoliced* stem-match is the mass case (under a maintained stem-uniqueness discipline the {1,1} is stated by the convention itself; see [[def-descriptors]]).
+Same descriptors, same world, four different meanings of the same result — the bound is what disambiguates. [[term/designator|Designators]] default to {1,1}; [[term/description|descriptions]] have no natural default, which is why unstated bounds on descriptions are where surprises live — an *unpoliced* stem-match is the mass case (under a maintained stem-uniqueness discipline the {1,1} is stated by the convention itself; see [[def-descriptors]]).
 
 *[Definition (double-bound)]* There are really **two bounds with different jobs**, usually conflated: the *operational* bound (how many the act will touch — "change the first," "take them all") and the *epistemic* bound (how many the actor believes exist — "I expect no more than three, or I've grossly misunderstood the data"). Divergence from the operational bound is failure; divergence from the epistemic bound is *information* — ideally a dialogue ("several exceed three — proceed anyway?"), not a binary error. Recorded epistemic bounds are also calibration data for free: what actors believed about the corpus, checked against reality at every act.
 
@@ -33,7 +35,7 @@ Same descriptors, same world, four different meanings of the same result — the
 - **The requested descriptors preserved beside the result** — some consumers need what was asked, some need what was found; discarding either destroys information the act carried.
 - **Never a silent best-guess.** Where narrowing is insufficient, degrade visibly: auto only when unique, choices when plural, queued when unattended.
 - **Fetch-verification when the act carried it** — a verification descriptor (hash, expected property, epistemic bound) is checked, and divergence surfaces before consequences.
-- **Weak resolution is disclosed.** When resolution succeeded via a *weaker* descriptor than the strongest one the act carried (the strong one dangled, the fallback matched), the outcome is **found-but-weakly**, never a clean hit — otherwise over-determination quietly re-creates the silent near-miss it exists to kill. The same fail-safe philosophy as `$partial-key` at recognition time, applied at resolution time.
+- **Weak resolution is disclosed.** When resolution succeeded via a *weaker* descriptor than the strongest one the act carried (the strong one dangled, the fallback matched), the outcome is **found-but-weakly**, never a clean hit — otherwise [[term/over-determination|over-determination]] quietly re-creates the silent near-miss it exists to kill. The same fail-safe philosophy as `$partial-key` at recognition time, applied at resolution time.
 - **Zero only from a completed perspective.** An engine answers "empty set" only from a perspective it can attest is complete; against a still-filling perspective the outcome is the distinct **found-none-so-far**. A premature zero is not an answer to the question that was asked, and — since misses are the teaching channel — it actively mis-teaches.
 
 ## Epistemic Status

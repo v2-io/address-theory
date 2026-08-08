@@ -1,4 +1,4 @@
-|term[universal-path] :status settled :defined-by def-locations-and-paths :anchor universal-location
+|term[universal-path] :status settled :defined-by def-locations-and-paths :anchor universal-path
   :word universal-path
   :synonyms [absolute-path]
   :avoid [universal-location]
