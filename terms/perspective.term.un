@@ -1,21 +1,8 @@
-; generated-format instantiation 2026-08-08
-|term[perspective]
-  :status carved
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss What an engine resolves relative to: an origin, a scope, a moment, a policy about what counts as the world.
-  |designation perspective
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-cardinality-and-resolution
-    :anchor engine-and-perspective
-    :projection paraphrase
-    What an engine resolves relative to: an origin, a scope, a moment, a policy about what counts as the world.
-  |rel :kind parameterizes :to @resolution-engine
-  |collision
-    :with operata-lexicon
-    :see @operata-perspective
-    Operata's perspective is who-is-looking-and-what-matters-to-them (a focus record); ours is the resolution-relative world-definition. Same word, different concepts.
-  |open
-    The parenthesis carries four things in one word (origin, scope, moment, policy) — O13's decomposition is the recorded plan; a partition into named components awaits its segment.
+|term[perspective] :status carved :defined-by def-cardinality-and-resolution :anchor engine-and-perspective
+  :word perspective
+  What an engine resolves relative to: an origin, a scope, a moment, a policy about what counts as the world.
+  |invariants
+    - Parameterizes one or more [[term/resolution-engine]]
+    - The same act legitimately resolves differently under different perspectives
+  |note :audience maintainer
+    Collision: operata's "perspective" (who-is-looking focus record) is a different concept — same word, do not merge. Decomposition (origin/scope/moment/policy as named components) is the recorded O13 plan, segment pending.

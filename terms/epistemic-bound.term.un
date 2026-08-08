@@ -1,18 +1,7 @@
-; generated-format instantiation 2026-08-08
-|term[epistemic-bound]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss How many the actor believes exist; divergence is dialogue, not failure — and recorded bounds are free calibration.
-  :dual-of @operational-bound
-  |designation epistemic-bound
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-cardinality-and-resolution
-    :anchor double-bound
-    :projection paraphrase
-    The epistemic bound: how many the actor believes exist — "I expect no more than three, or I've grossly misunderstood the data." Divergence is information, ideally a dialogue, never a binary error.
-  |rel :kind part-of :to @expected-cardinality
-  |marker
-    "Several exceed three — proceed anyway?" is this bound at work; O15's {1,N}{1,3} spelling carries both bounds.
+|term[epistemic-bound] :status settled :defined-by def-cardinality-and-resolution :anchor double-bound
+  :word epistemic-bound
+  How many the actor believes exist — "no more than three, or I've grossly misunderstood the data."
+  |invariants
+    - Belongs to [[term/expected-cardinality]]
+    - Is the dual of [[term/operational-bound]]
+    - Divergence is dialogue, never failure; recorded bounds are free calibration

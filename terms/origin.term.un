@@ -1,19 +1,8 @@
-; minted 2026-08-08 (steward ratification, [[DECISIONS#d11-universal-path|D11 universal-path]] session: "yes unless there is something better")
-|term[origin]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss The location a path routes from — exactly one per path; its manner is one of explicit | implicit | universal.
-  :dual-of @destination
-  |designation origin
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-locations-and-paths
-    :anchor path
-    :projection paraphrase
-    The origin location of a path — usually "wherever you are" (implicit), sometimes explicit shorthand, sometimes universal (routable from anywhere; see universal-path).
-  |rel :kind part-of :to @path :card 1
-  |rel :kind filled-by :to @location :card 1
-  |invariant
-    The manner is exactly one of explicit | implicit | universal (the origin trichotomy — steward sharpening 2026-08-08; def-locations-and-paths WN); a path whose origin manner is universal IS a universal path.
+|term[origin] :status settled :defined-by def-locations-and-paths :anchor path
+  :word origin
+  The location a [[term/path]] routes from.
+  |invariants
+    - Belongs to [[term/path]]
+    - Filled by exactly one [[term/location]]
+    - Is the dual of [[term/destination]]
+    - Manner is exactly one of: explicit | implicit | universal

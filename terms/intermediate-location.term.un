@@ -1,22 +1,7 @@
-; generated-format instantiation 2026-08-08
-|term[intermediate-location]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss A step along a path that is itself a location, owning the routing of its next hop.
-  |designation intermediate-location
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-locations-and-paths
-    :anchor path
-    :projection paraphrase
-    Intermediate steps of a path may themselves be intermediate locations; each is in charge of routing from there — only that item is expected to know how to route to the next.
-  |formal
-    :notation <latex:il(l, p) := l \in steps(p) \land l \ne dst(p)>
-    :reading Constitutive: an intermediate location is a non-terminal step of a path that is itself a location.
-  |set-rel :kind subset-of :to @location
-  ; Constitutive, not incidental: to BE an intermediate location is to be a
-  ; non-terminal step of a path that is itself a location.
-  |rel :kind step-of :to @path :card +
-  |rel :kind performs :to @progressive-routing
+|term[intermediate-location] :status settled :defined-by def-locations-and-paths :anchor path
+  :word intermediate-location
+  A non-terminal step of a path that is itself a [[term/location]].
+  |invariants
+    - Is a kind of [[term/location]]
+    - Is a non-terminal step of one or more [[term/path]]
+    - Owns routing its own next hop ([[term/progressive-routing]])

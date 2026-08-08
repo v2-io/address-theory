@@ -138,51 +138,35 @@ end
 def load_term_un(path)
   slug = nil
   front = {}
-  deftext = []
-  aliases = []
-  section = nil
-  desig = nil
+  deftext = nil
   path.read.each_line do |line|
     s = line.rstrip
     next if s.strip.start_with?(";")
     if (m = s.match(/\A\|term\[([a-z0-9-]+)\]/))
       slug = m[1]
-      section = :term
+      # sameline attributes on the |term line
+      front["defined-by"] = Regexp.last_match(1) if s =~ /:defined-by\s+@?(\S+)/
+      front["anchor"]     = Regexp.last_match(1) if s =~ /:anchor\s+(\S+)/
       next
     end
-    if (m = s.match(/\A\s+\|designation\s+(\S+)/))
-      section = :designation
-      desig = m[1]
+    next unless slug
+    if (m = s.match(/\A\s+:defined-by\s+@?(\S+)/)) then front["defined-by"] = m[1]; next; end
+    if (m = s.match(/\A\s+:anchor\s+(\S+)/)) then front["anchor"] = m[1]; next; end
+    if (m = s.match(/\A\s+:(alternates|synonyms)\s+\[([^\]]*)\]/))
+      (front["aliases"] ||= []).concat(m[2].split.reject { |w| w == slug })
       next
     end
-    if s =~ /\A\s+\|definition\b/
-      section = :definition
-      next
-    end
-    if s =~ /\A\s+\|(formal|example|context-sentence|invariant|not|confused|collision|set-rel|rel|marker|failure-if-misused|note|open)\b/
-      section = :other
-      next
-    end
-    case section
-    when :definition
-      if (m = s.match(/\A\s+:defined-by\s+@?(\S+)/))
-        front["defined-by"] = m[1]
-      elsif (m = s.match(/\A\s+:anchor\s+(\S+)/))
-        front["anchor"] = m[1]
-      elsif s =~ /\A\s+:/
-        # :projection and friends — the render recomputes fidelity itself
-      elsif !s.strip.empty?
-        deftext << s.strip
-      end
-    when :designation
-      if (m = s.match(/\A\s+:status\s+(\S+)/)) && %w[admitted hidden].include?(m[1]) && desig != slug
-        aliases << desig
-      end
+    next if s =~ /\A\s+:/
+    break if s =~ /\A\s+\|/ && deftext # children after the definition: done
+    next if s =~ /\A\s+\|/              # |quote before the definition: skip its block via the :/text rules below
+    if deftext.nil? && s =~ /\A\s+\S/
+      # the definition: one sentence of prose with inline [[term/x]] links
+      deftext = s.strip.gsub(/\[\[term\/([a-z0-9-]+)(?:\|([^\]]*))?\]\]/) { Regexp.last_match(2) || Regexp.last_match(1) }
     end
   end
   front["term"] = slug || path.basename(".term.un").to_s
-  front["aliases"] = aliases unless aliases.empty?
-  body = deftext.join(" ")
+  front.delete("aliases") if front["aliases"]&.empty?
+  body = deftext.to_s
   Doc.new(path: path, front: front, body: body, body_offset: 0, lines: body.lines)
 end
 

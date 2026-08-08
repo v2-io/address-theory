@@ -1,20 +1,9 @@
-; generated-format instantiation 2026-08-08
-|term[sequence-cause]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss Why order appears in an address at all: three causes, per-segment, and exactly what an engine may optimize.
-  |designation sequence-cause
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @claim-sequence-causes
-    :anchor sequence-causes
-    :projection paraphrase
-    A sequence of components appears in an address for three different reasons — subset-sequence (nested conjunction wearing a path costume), resolver-sequence (truly imperative), compositional (foldable iff endpoint-only and associative) — and the imperative-vs-declarative character of a segment is a derived property of its cause.
-  |formal
-    :notation <latex:cause(s_i) \in \{ \supseteq, \to, \circ \}>
-    :reading Subset-sequences reorder and fuse; compositional sequences fold when endpoint-only; resolver-sequences are pipeline barriers.
-  |rel :kind property-of :to @path
-  |invariant
-    Exhaustiveness is honestly open: three causes are demonstrated; "exactly three" is not argued (candidate fourth: mid-address perspective-shift, pending the act-anatomy adjudication).
+|term[sequence-cause] :status settled :defined-by claim-sequence-causes :anchor sequence-causes
+  :word sequence-cause
+  Why order appears in an address at all — and exactly what an engine may optimize.
+  |invariants
+    - Belongs to [[term/path]]
+    - Cause is exactly one of: subset-sequence | resolver-sequence | compositional — per step, never per address
+    - Subset-sequences reorder and fuse; compositional sequences fold when endpoint-only; resolver-sequences are pipeline barriers
+  |open
+    Exhaustiveness: three causes demonstrated, "exactly three" unargued; candidate fourth (mid-address perspective-shift) awaits the act-anatomy adjudication.

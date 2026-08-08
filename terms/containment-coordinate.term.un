@@ -1,18 +1,8 @@
-; generated-format instantiation 2026-08-08
-|term[containment-coordinate]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss One nesting-container designator inside a location chain.
-  |designation containment-coordinate
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-locations-and-paths
-    :anchor identity-vs-location
-    :projection paraphrase
-    Each location component is a designator for a container, arranged so that the containers nest; the family is powerful because containers can route.
-  |set-rel :kind subset-of :to @designator
-  |rel :kind part-of :to @location
-  |invariant
-    Whether "containment" covers store membership, bindings, or version pins is an open theory question (the held-lightly reduction's undischarged primitive).
+|term[containment-coordinate] :status settled :defined-by def-locations-and-paths :anchor identity-vs-location
+  :word containment-coordinate
+  :synonyms [coordinate]
+  The name of one nesting container inside a [[term/location]] chain.
+  |invariants
+    - Is a kind of [[term/designator]]
+    - Belongs to [[term/location]]
+    - Containers it names nest, which is what lets locations route

@@ -1,23 +1,7 @@
-; generated-format instantiation 2026-08-08
-|term[canonical-location]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss The promise "this will keep resolving" — breaking it is a breach, not an event.
-  :see-also [@true-identity @preferred-location @working-path]
-  |designation canonical-location
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-entities-values-promises
-    :anchor the-four-promises
-    :projection paraphrase
-    The preferred universal location, promised permanent. "This will keep resolving." A standing commitment by the naming authority — breaking it is a breach, not an event.
-  ; Suspended, not deleted: under [[DECISIONS#d11-universal-path|D11 universal-path]] the parent concept re-carved as
-  ; universal-path; whether the promise classes are now PATH-promises is
-  ; the expressly un-adjudicated knock-on (def-entities-values-promises WN).
-  |set-rel :kind subset-of :to @universal-path :status pending-adjudication :cite d11-universal-path
-  |set-rel :kind disjoint-from :to @preferred-location
-  |confused
-    :with @preferred-location
-    Canonical carries a permanence promise; preferred may be superseded without breach. The difference is the promise, not the string.
+|term[canonical-location] :status settled :defined-by def-entities-values-promises :anchor the-four-promises
+  :word canonical-location
+  The promise "this will keep resolving" — breaking it is a breach, not an event.
+  |invariants
+    - Is a canonicity promise, mutually exclusive: [[term/true-identity]] | [[term/canonical-location]] | [[term/preferred-location]] | [[term/working-path]]
+    - (pending [[DECISIONS#d11-universal-path|D11 universal-path]]) Is a kind of [[term/universal-path]]
+    - Permanence is promised by the naming authority; superseding it is a breach

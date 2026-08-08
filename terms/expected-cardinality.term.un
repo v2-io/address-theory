@@ -1,27 +1,9 @@
-; generated-format instantiation 2026-08-08
-|term[expected-cardinality]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss Part of the act's type: how many referents the actor means to pick out; gives a miss its meaning.
-  :value-type <type:bounds-pair>
-  :see-also [@operational-bound @epistemic-bound]
-  |designation expected-cardinality
-    :status preferred
-    :channel prose
-  |designation arity
-    :status admitted
-    :channel prose
-  |definition
-    :defined-by @def-cardinality-and-resolution
-    :anchor expected-cardinality
-    :projection paraphrase
-    A reference act carries — implicitly or explicitly — an expected cardinality: how many referents the actor means to pick out. Part of the act's type, knowable before any resolution, and what gives a miss its meaning.
-  |formal
-    :notation <latex:\{n,m\} \in \{\{1,1\},\{0,1\},\{0,N\},\{1,N\}\}>
-    :reading The four bounds; same descriptors + same world + different bound = different meaning of the same result. One axis, four sites (suffix sugar, paths, schema, the type algebra's exponents).
-  |rel :kind part-of :to @reference-act
-  |rel :kind has :to @operational-bound :card 1
-  |rel :kind has :to @epistemic-bound :card ?
-  |failure-if-misused
-    Unstated bounds on descriptions are where surprises live; SQL's scalar-subquery error is a bare operational bound with no typed outcome.
+|term[expected-cardinality] :status settled :defined-by def-cardinality-and-resolution :anchor expected-cardinality
+  :word expected-cardinality
+  :synonyms [arity]
+  How many referents the actor means to pick out — part of the act's type, knowable before resolution, and what gives a miss its meaning.
+  |invariants
+    - Belongs to [[term/reference-act]]
+    - Has exactly one [[term/operational-bound]]
+    - Has at most one [[term/epistemic-bound]]
+    - Bound is exactly one of: {1,1} | {0,1} | {0,N} | {1,N} — same descriptors, same world, four meanings of the same result

@@ -1,24 +1,11 @@
-; generated-format instantiation 2026-08-08
-|term[description]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss A predicate the world satisfies; picks out whatever currently satisfies it — plurality is a feature.
-  :dual-of @designator
-  |designation description
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-descriptors
-    :anchor descriptor-kinds
-    :projection paraphrase
-    A predicate the world satisfies: nothing was ever bound; the connection is re-computed, every time it is used, from whatever currently satisfies the predicate.
-  |formal
-    :notation <latex:refs(desc, t) = \{ x \mid P(x) \; at \; t \}>
-    :reading The referent set is a function of the evaluation moment; zero, one, or many.
-  |set-rel :kind subset-of :to @descriptor
-  |set-rel :kind disjoint-from :to @designator
-  |invariant
-    Kind is per-act (descriptor's [[DECISIONS#d12-location-is-description|D12 location-is-description]] theorem); the location family is the OWNED description — its container's community can enumerate and route it, which free predicates cannot claim.
+|term[description] :status settled :defined-by def-descriptors :anchor descriptor-kinds
+  :word description
+  :avoid [query filter]
+  A predicate the world satisfies — nothing was ever bound; the connection is recomputed from whatever satisfies it at each use.
+  |invariants
+    - Is a kind of [[term/descriptor]]
+    - Is the dual of [[term/designator]]
+    - Picks out zero or more [[term/referent]] — plurality is a feature
+    - Is never the act's conjunction: an act HAS one or more descriptors; a description IS one kind of descriptor
   |note :audience maintainer
-    Steward skepticism recorded (def-descriptors WN): "silent re-satisfaction" as this kind's failure mode may be state-based cruft an event-sourced foundation dissolves; adjudication deferred to the Temporal chapter.
+    Steward skepticism stands (def-descriptors WN): "silent re-satisfaction" as this kind's failure mode may dissolve under an event-sourced foundation; Temporal chapter adjudicates.

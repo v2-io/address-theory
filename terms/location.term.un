@@ -1,31 +1,11 @@
-; generated-format instantiation 2026-08-08; re-carved per [[DECISIONS#d12-location-is-description|D12 location-is-description]] same day —
-; location = a containment predicate over a designated container, so it is a
-; DESCRIPTION (the contained-in claim), while the coordinate (the container's
-; name) is a designator. The old peer-of-designator/description position was
-; the partition-breaker.
-|term[location]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss A containment predicate over a designated container — the owned description: the container's community can enumerate and route it.
-  :see-also [@containment-coordinate @path @origin]
-  |designation location
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-locations-and-paths
-    :anchor identity-vs-location
-    :projection paraphrase
-    A location is a containment predicate over a designated container: the coordinate names the container (a designator); the contained-in claim it makes is a description, distinguished from free predicates by subset-composability, delegable resolution, and partial policing.
-  |formal
-    :notation <latex:loc_c(x) := x \sqsubseteq c, \; c \; designated>
-    :reading The predicate is over containment in a NAMED container; chains of these compose by subset.
-  |set-rel :kind subset-of :to @description
-  |rel :kind names-via :to @containment-coordinate :card +
-  |invariant
-    Distinguished from free descriptions by: subset-composability (location chains conjoin by nesting); delegable resolution (the owned description — the container's community can enumerate and route); partial policing.
-  |confused
-    :with @path
-    A location describes where a thing sits; a path is steps between locations — they interchange safely only in the universal-path case ([[DECISIONS#d11-universal-path|D11 universal-path]]).
+|term[location] :status settled :defined-by def-locations-and-paths :anchor identity-vs-location
+  :word location
+  :avoid [place address]
+  A containment claim over a designated container — "contained in c", where c is named by a [[term/containment-coordinate]].
+  |invariants
+    - Is a kind of [[term/description]] — the owned description ([[DECISIONS#d12-location-is-description|D12 location-is-description]])
+    - Names its container via one or more [[term/containment-coordinate]]
+    - Composes with other locations by subset-nesting
+    - Resolution is delegable: the container's community can enumerate and route
   |note :audience maintainer
-    "Standing alone, a location is a scope" — mint of scope proposed, NOT ratified ([[DECISIONS#d12-location-is-description|D12 location-is-description]] session); do not cite scope as a term yet.
+    "Standing alone, a location is a scope" — scope mint proposed, NOT ratified; do not cite it as a term.

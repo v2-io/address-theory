@@ -1,18 +1,7 @@
-; generated-format instantiation 2026-08-08
-|term[working-path]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss No promise at all: whatever route works from here, now; expected to expire with its context.
-  :see-also [@true-identity @canonical-location]
-  |designation working-path
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-entities-values-promises
-    :anchor the-four-promises
-    :projection paraphrase
-    Whatever route works from here, now — often origin-relative, often abbreviated. No promise at all; a convenience of the current context, expected to expire with it.
-  |set-rel :kind subset-of :to @path
-  |marker
-    Relative links, ../.. chains, unqualified imports — anything that breaks when you move.
+|term[working-path] :status settled :defined-by def-entities-values-promises :anchor the-four-promises
+  :word working-path
+  No promise at all: whatever route works from here, now — expected to expire with its context.
+  |invariants
+    - Is a canonicity promise, mutually exclusive: [[term/true-identity]] | [[term/canonical-location]] | [[term/preferred-location]] | [[term/working-path]]
+    - Is a kind of [[term/path]]
+    - Breaks when you move: relative links, ../.. chains, unqualified imports

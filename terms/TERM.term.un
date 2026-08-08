@@ -1,28 +1,47 @@
-; TERM.term.un — the PATHS-LOCAL subset of verisectorium/template/TERM.term.un
-; (proposed home: beside the entries it shapes; steward may relocate)
+; TERM.term.un — the paths term-entry shape (re-cut 2026-08-08 per steward
+; verdict: the survey-driven template "failed rather miserably" against a
+; ~20-line 2022 sketch, lexicon-middleman's episode.yml — which is the spine
+; here. Diagnosis kept for the record: the survey optimized field coverage;
+; the target was reading experience. 90% payload, 10% apparatus.)
 ;
-; This corpus uses the universal template minus what has no consumer here yet:
-; no :register (single-register corpus), no ui/api designation channels, no
-; :value-type/:constraints (no scored quantities among current terms), no
-; |context-sentence (deferred until the checker can harvest them). Everything
-; kept means something to bin/refresh-lexicon or to the [[DECISIONS#d5-terms-projection|D5 terms-projection]] projection design.
+; ACCEPTANCE TEST (the five-second glance): a steward reading a term they have
+; never seen knows (1) what to call it, (2) what not to call it, (3) what it
+; is, (4) what must be true of it — before any apparatus appears.
 ;
-; PATHS-LOCAL CONVENTIONS on top of the universal template:
-;  - :subject-field is always addressing (kept anyway: the homograph fence
-;    matters at the estate level — see perspective's |collision).
-;  - |definition :defined-by must agree with the .md entry / segment "Terms
-;    defined here" declarations; bin/refresh-lexicon checks this.
-;  - |set-rel edges are the Euler-diagram substrate: a renderer may emit
-;    diagrams from subset-of/disjoint-from/overlaps/partitions edges alone.
-;  - |set-rel / |rel accept :status pending-adjudication (+ :cite ID) — a
-;    SUSPENDED relation: kept visible and cited, excluded from structural
-;    rendering (cluster nesting) until the steward rules. First customer:
-;    canonical/preferred-location under universal-path ([[DECISIONS#d11-universal-path|D11 universal-path]] knock-on).
-;  - |rel accepts a :one-of [a b c] qualifier when a relation's MANNER is a
-;    closed enum (path's origin: explicit | implicit | universal) — one seat
-;    with a qualified manner, never three relation kinds (which would triple
-;    the seat and make {1,1} arity inexpressible).
-;  - |formal :notation uses <latex:...> envelopes (dialect renders; carried
-;    inert until then, per the frozen-bare-set discipline).
+; SHAPE — above the fold, in order:
+;   :word        the term itself                                    {1,1}
+;   :alternates  spelling/morphological variants of the same word   {0,1} list
+;   :synonyms    other words legitimately used for this concept     {0,1} list
+;   :avoid       flat negative prescription — never these words     {0,1} list
+;                (a rename's old designation goes HERE, e.g.
+;                 universal-path :avoid [universal-location])
+;   |quote       evocative external grounding — ONLY where one      {0,1}
+;                genuinely earns its place; never padded
+;   <body>       the definition: ONE sentence, plain prose, sibling
+;                terms referenced inline as [[term/x]] links        {1,1}
+;   |invariants  plain-English bullets that ARE the relations —     {0,1}
+;                prose that carries structure (below)
 ;
-; See the universal template for field semantics, arities, and the WHY notes.
+; Below the fold (apparatus, each defended by one sentence of demand):
+;   :status      settled | carved | open | weak | deprecated  — steward comb state
+;   :defined-by  segment slug — D5's projection needs the authority pointer
+;   :anchor      span name in that segment — D5's grain
+;   |note :audience maintainer / |open — workflow + open questions, never rendered
+;
+; INVARIANT PHRASINGS (controlled, few — the diagram tools parse exactly
+; these; anything else is free prose, kept but not graphed):
+;   "Is a kind of [[term/X]]"                          → containment (Euler)
+;   "Every <word> is exactly one of [[A]] or [[B]]"    → partition (Euler)
+;   "Mutually exclusive: [[A]] | [[B]] | …"            → pairwise disjoint
+;   "Is the dual of [[term/X]]"                        → dual pair-binding
+;   "Belongs to [[term/X]]"                            → part-of, one
+;   "Has exactly one|at most one|one or more|zero or more [[term/X]]"
+;                                                      → has {1,1}|{0,1}|{1,N}|{0,N}
+;   "<Verb phrase> exactly one|… [[term/X]]"           → typed edge, same arities
+;   "… exactly one of: a | b | c" (after a target)     → closed manner enum
+;   leading "(pending <slugged cite>) "                → suspended relation:
+;                visible, cited, non-structural until the steward rules
+;
+; The one thing prose-carrying-structure must not blur (the specimen that
+; forced this re-cut): "Is a kind of X" is NEVER "made of X" — an act HAS
+; one or more descriptors; a description IS one kind of descriptor.

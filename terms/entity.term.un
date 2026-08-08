@@ -1,24 +1,9 @@
-; generated-format instantiation 2026-08-08
-|term[entity]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss A thing whose identity is independent of its current description; persists through change.
-  :dual-of @value-object
-  :source-type external
-  :external-equivalent close:ddd-entity
-  |designation entity
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-entities-values-promises
-    :anchor entity-value-object
-    :projection paraphrase
-    A thing whose identity is independent of its current description. It persists through change; because nothing in its content can testify to its identity, an entity's identity must be minted and maintained by convention.
-  |formal
-    :notation <latex:id(e) \perp desc_t(e)>
-    :reading Identity is orthogonal to description-at-any-moment; hence entities require designators.
-  |set-rel :kind disjoint-from :to @value-object
-  |rel :kind identified-by :to @designator
-  |invariant
-    Any content-derived handle to an entity silently becomes a handle to a value object the moment the entity changes.
+|term[entity] :status settled :defined-by def-entities-values-promises :anchor entity-value-object
+  :word entity
+  :alternates [entities]
+  A thing whose identity is independent of its current description — it persists through change.
+  |invariants
+    - Is the dual of [[term/value-object]]
+    - Never a [[term/value-object]]
+    - Identified by one or more [[term/designator]] — nothing in its content can testify to its identity
+    - Any content-derived handle silently becomes a handle to a snapshot the moment the entity changes

@@ -1,17 +1,7 @@
-; generated-format instantiation 2026-08-08
-|term[progressive-routing]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss Per-hop ownership of resolution; quietly generates most of the machinery.
-  |designation progressive-routing
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-locations-and-paths
-    :anchor progressive-routing
-    :projection paraphrase
-    Paths are resolved progressively: each intermediate location is in charge of routing from there. Corollaries: re-binding one intermediate re-routes every path through it; a default at an intermediate is a routing choice; resolution as a whole is the composite of these per-hop responsibilities.
-  |rel :kind performed-by :to @resolution-engine
-  |marker
-    DNS delegation, mount points, symlinks, import maps — any place one hop owns the next.
+|term[progressive-routing] :status settled :defined-by def-locations-and-paths :anchor progressive-routing
+  :word progressive-routing
+  Per-hop ownership of resolution: each intermediate location routes only its next hop.
+  |invariants
+    - Performed by exactly one [[term/resolution-engine]] as the composite of per-hop owners
+    - Re-binding one intermediate re-routes every path through it
+    - A default at an intermediate is a routing choice, not an accident

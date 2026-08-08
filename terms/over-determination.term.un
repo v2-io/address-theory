@@ -1,21 +1,7 @@
-; generated-format instantiation 2026-08-08
-|term[over-determination]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss Descriptors past the minimum are verification and redundant routes, not redundancy.
-  |designation over-determination
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @disc-fetch-and-overdetermination
-    :anchor over-determination
-    :projection paraphrase
-    Conjunction's second job: descriptors past the minimum needed to reach one referent are verification (co-referring disagreement is loud) and redundant routes (resolve by whichever the resolver's community knows).
-  |formal
-    :notation <latex:|D| > min \Rightarrow \forall d_i, d_j \in D: refs(d_i) \cap refs(d_j) \ni r \; (checked)>
-  |rel :kind verifies :to @referent
-  |example
-    The mail system uses the zip AND the city/state spelled out — for exactly both reasons.
-  |marker
-    Cross-store co-reference checks are only possible because identity was minted once upstream (mint-once; rowan specimen).
+|term[over-determination] :status settled :defined-by disc-fetch-and-overdetermination :anchor over-determination
+  :word over-determination
+  :avoid [redundancy]
+  Descriptors past the minimum needed to reach one referent — they are verification and redundant routes, never waste.
+  |invariants
+    - Verifies one or more [[term/referent]] by co-reference
+    - Co-referring disagreement is loud, never silently resolved

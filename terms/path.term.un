@@ -1,28 +1,9 @@
-; generated-format instantiation 2026-08-08
-|term[path]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss One set of monotonic steps between an origin location and a destination location.
-  :see-also [@sequence-cause @universal-path]
-  |designation path
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-locations-and-paths
-    :anchor path
-    :projection paraphrase
-    A PATH is one set of possibly many (so, not necessarily unique) monotonic steps between an origin LOCATION and a destination LOCATION.
-  |formal
-    :notation <latex:p: loc_{org} \to loc_{dst} = \langle s_1, ..., s_n \rangle>
-    :reading Each step's imperative-vs-declarative character derives from its sequence-cause, per segment.
-  ; WHY one `origin` relation with :one-of, not three relation kinds: the
-  ; trichotomy qualifies the MANNER of the single origin seat; three kinds
-  ; would triple the seat and make the {1,1} arity inexpressible.
-  |rel :kind origin :to @location :card 1 :one-of [explicit implicit universal]
-  |rel :kind destination :to @location :card 1
-  |rel :kind has :to @sequence-cause :card +
-  |invariant
-    The origin is exactly one of explicit | implicit | universal (steward sharpening 2026-08-08; body-absorption candidate recorded in def-locations-and-paths WN).
-  |not
-    Not necessarily unique, reversible, or shortest; logical by default — physical equivalence is by construction and intentional.
+|term[path] :status settled :defined-by def-locations-and-paths :anchor path
+  :word path
+  :alternates [paths]
+  One set of monotonic steps between two locations.
+  |invariants
+    - Has exactly one [[term/origin]]
+    - Has exactly one [[term/destination]]
+    - Steps each carry exactly one [[term/sequence-cause]]
+    - Not necessarily unique, reversible, or shortest; logical by default

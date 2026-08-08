@@ -1,30 +1,9 @@
-; generated-format instantiation 2026-08-08; re-carved per [[DECISIONS#d11-universal-path|D11 universal-path]] same day —
-; the concept was mis-attached as "universal location"; the old designation
-; itself committed the path/location conflation its own segment diagnoses.
-|term[universal-path]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss A path whose origin is universal — routable to the destination from any origin (within a bounded context); synonym: absolute path.
-  :see-also [@origin @path]
-  |designation universal-path
-    :status preferred
-    :channel prose
-  |designation absolute-path
-    :status admitted
-    :channel prose
-  ; hidden = resolvable in search/lint, never suggested — exactly this case:
-  ; the pre-D11 designation, kept findable because the corpus wrote it for a day.
-  |designation universal-location
-    :status hidden
-    :channel prose
-  |definition
-    :defined-by @def-locations-and-paths
-    :anchor universal-location
-    :projection paraphrase
-    A path that can be used effectively from anywhere — its components progressively resolve from any origin to the destination; equivalently, a path with a universal origin.
-  |set-rel :kind subset-of :to @path
-  |invariant
-    A universal path IS a path whose origin qualifier is universal — one concept; before [[DECISIONS#d11-universal-path|D11 universal-path]] it appeared at two ends (as a location kind here, as the origin trichotomy's third arm on path).
-  |invariant
-    This is the exact condition under which path, location, and identity safely interchange — the "Universal" presupposed by URI/URN/URL, explaining their conflation rather than observing it.
+|term[universal-path] :status settled :defined-by def-locations-and-paths :anchor universal-location
+  :word universal-path
+  :synonyms [absolute-path]
+  :avoid [universal-location]
+  A [[term/path]] routable to its destination from any origin (within a bounded context).
+  |invariants
+    - Is a kind of [[term/path]]
+    - Is a path whose [[term/origin]] manner is universal ([[DECISIONS#d11-universal-path|D11 universal-path]])
+    - Is the exact condition under which path, location, and identity safely interchange — the "Universal" URI/URN/URL presuppose

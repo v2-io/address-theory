@@ -1,17 +1,7 @@
-; minted 2026-08-08 (steward ratification, [[DECISIONS#d11-universal-path|D11 universal-path]] session)
-|term[destination]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss The location a path routes to — exactly one per path.
-  :dual-of @origin
-  |designation destination
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-locations-and-paths
-    :anchor path
-    :projection paraphrase
-    The destination location of a path — the location the monotonic steps arrive at.
-  |rel :kind part-of :to @path :card 1
-  |rel :kind filled-by :to @location :card 1
+|term[destination] :status settled :defined-by def-locations-and-paths :anchor path
+  :word destination
+  The location a [[term/path]] routes to.
+  |invariants
+    - Belongs to [[term/path]]
+    - Filled by exactly one [[term/location]]
+    - Is the dual of [[term/origin]]

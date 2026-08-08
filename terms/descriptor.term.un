@@ -1,26 +1,8 @@
-; generated-format instantiation 2026-08-08
-|term[descriptor]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss What an act supplies to narrow candidates; comes in exactly two kinds, split by what connects it to the referent.
-  |designation descriptor
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-descriptors
-    :anchor descriptor-kinds
-    :projection paraphrase
-    Descriptors come in two kinds, distinguished by what connects the descriptor to its referent — an agreement, or a fact.
-  |formal
-    :notation <latex:Descriptor = Designator \sqcup Description>
-    :reading The two kinds partition the space; the partition axis is the binding (agreement vs recomputed fact).
-  |set-rel :kind partitions :into [@designator @description]
-  |rel :kind part-of :to @reference-act
-  |invariant
-    Kind is determined by whether anyone maintains the binding, never by the spelling ([[DECISIONS#d8-wikilink-designators|D8 wikilink-designators]]).
-  |invariant
-    Descriptor-kind is PER-ACT ([[DECISIONS#d12-location-is-description|D12 location-is-description]] companion theorem): resolution is recursive, and one string is a designator in its own hop-act while being part of a description in the enclosing act — a directory name designates in the hop, describes in the chain. Every chain bottoms out in designators.
-  ; Family-level fact: carried here on the partition parent; designator and
-  ; description reference it rather than restating it (template convention,
-  ; recorded as feedback — the format has no shared-fact node).
+|term[descriptor] :status settled :defined-by def-descriptors :anchor descriptor-kinds
+  :word descriptor
+  :avoid [selector matcher]
+  One narrowing supplied by a [[term/reference-act]] — connected to its referent by an agreement or by a fact, and nothing else.
+  |invariants
+    - Every descriptor is exactly one of [[term/designator]] or [[term/description]]
+    - Kind is determined by whether anyone maintains the binding, never by the spelling ([[DECISIONS#d8-wikilink-designators|D8 wikilink-designators]])
+    - Kind is per-act: resolution is recursive, and one string designates in its own hop-act while describing in the enclosing act; every chain bottoms out in designators ([[DECISIONS#d12-location-is-description|D12 location-is-description]])

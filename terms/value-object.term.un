@@ -1,23 +1,9 @@
-; generated-format instantiation 2026-08-08
-|term[value-object]
-  :status settled
-  :subject-field addressing
-  :layer framing-vocabulary
-  :gloss A thing that IS its description; cannot dangle, rename, or change.
-  :dual-of @entity
-  :source-type external
-  :external-equivalent close:ddd-value-object
-  |designation value-object
-    :status preferred
-    :channel prose
-  |definition
-    :defined-by @def-entities-values-promises
-    :anchor entity-value-object
-    :projection paraphrase
-    A thing that is its description. Two value objects with the same content are not similar — they are the same, and "which one" is a meaningless question. A "changed" value object is a different value object.
-  |formal
-    :notation <latex:v_1 = v_2 \iff desc(v_1) = desc(v_2)>
-    :reading Identity IS extensional equality of description; a hash is a complete description compressed into designator shape.
-  |set-rel :kind disjoint-from :to @entity
-  |example
-    The number 47; the exact bytes of a file at a commit; a git blob.
+|term[value-object] :status settled :defined-by def-entities-values-promises :anchor entity-value-object
+  :word value-object
+  :alternates [value-objects value]
+  A thing that IS its description — "which one" is a meaningless question.
+  |invariants
+    - Is the dual of [[term/entity]]
+    - Never an [[term/entity]]
+    - Cannot dangle, rename, or change; a "changed" value object is a different value object
+    - A hash is a complete description compressed into designator shape
