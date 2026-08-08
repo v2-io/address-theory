@@ -1,0 +1,360 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# refresh — regenerate the aspects x stages matrix FROM the outline.
+#
+# Why this exists: DECISIONS.md D3 — "the feature matrix is a generated view,
+# never authority; segments and the outline are the population." Until this
+# script existed, `ra-feature-matrix.md` was hand-maintained and cited (by row
+# number) from the outline's Part III chapter headers, i.e. the dependency ran
+# backwards. This reverses it: OUTLINE.md is read as the population and the
+# matrix is emitted.
+#
+# It writes to a DIFFERENT filename than the hand-maintained matrix on purpose
+# (steward's ask, 2026-08-07) so the two can be diffed before anything is
+# replaced. Nothing here edits OUTLINE.md or ra-feature-matrix.md.
+#
+# Usage:
+#   bin/refresh                 regenerate the output file (default path below)
+#   bin/refresh --check         regenerate in memory; exit 1 if the file on disk
+#                               differs (no write) — the md-press ethos
+#   bin/refresh --stdout        print to stdout, write nothing
+#   bin/refresh --out PATH      write somewhere else
+#
+# Ruby, no gems, no network. Repairable by reading it top to bottom.
+
+require 'optparse'
+require 'time'
+
+ROOT = File.expand_path('..', __dir__)
+OUTLINE = File.join(ROOT, 'OUTLINE.md')
+HAND_MATRIX = File.join(ROOT, 'ra-feature-matrix.md')
+DEFAULT_OUT = File.join(ROOT, 'ra-feature-matrix.GENERATED.md')
+
+options = { out: DEFAULT_OUT, mode: :write }
+OptionParser.new do |o|
+  o.banner = 'Usage: bin/refresh [--check] [--stdout] [--out PATH]'
+  o.on('--check') { options[:mode] = :check }
+  o.on('--stdout') { options[:mode] = :stdout }
+  o.on('--out PATH') { |p| options[:out] = File.expand_path(p) }
+  o.on('-h', '--help') { puts o; exit 0 }
+end.parse!
+
+# ---------------------------------------------------------------- outline read
+
+Row = Struct.new(:type, :tag, :claim, :max, :state, keyword_init: true)
+Chapter = Struct.new(:title, :matrix_note, :cited_rows, :prose, :rows, keyword_init: true)
+Part = Struct.new(:title, :rows, :chapters, keyword_init: true)
+
+def split_table_row(line)
+  # Markdown table row -> cells. Leading/trailing pipes stripped; escaped pipes
+  # (\|) inside cells are preserved as literal pipes and do not split.
+  body = line.strip.sub(/\A\|/, '').sub(/\|\z/, '')
+  cells = []
+  cur = +''
+  esc = false
+  body.each_char do |ch|
+    if esc
+      cur << ch
+      esc = false
+    elsif ch == '\\'
+      cur << ch
+      esc = true
+    elsif ch == '|'
+      cells << cur.strip
+      cur = +''
+    else
+      cur << ch
+    end
+  end
+  cells << cur.strip
+  cells
+end
+
+def table_divider?(line)
+  line =~ /\A\s*\|[\s:|-]+\|\s*\z/ && line.include?('-')
+end
+
+def parse_outline(path)
+  parts = []
+  part = nil
+  chapter = nil
+  in_table = false
+  header = nil
+
+  File.readlines(path, chomp: true).each do |line|
+    if (m = line.match(/\A##\s+\*Part\*\s+(.+?)\s*\z/))
+      part = Part.new(title: m[1].strip, rows: [], chapters: [])
+      parts << part
+      chapter = nil
+      in_table = false
+      next
+    end
+
+    if line.start_with?('## ') # any other H2 (e.g. Working Notes) ends part scope
+      part = nil
+      chapter = nil
+      in_table = false
+      next
+    end
+
+    if (m = line.match(/\A###\s+\*Chapter\*\s+(.+?)\s*\z/))
+      raw = m[1].strip
+      title = raw.sub(/\s*\*\((.*)\)\*\s*\z/, '').strip
+      note = Regexp.last_match(1)
+      # Only a run that starts with a digit immediately after the word "matrix"
+      # is a row cite. "(matrix: none — a column-1 closure gap; 2026-08-07)"
+      # must yield nothing — the digits in the prose are not row numbers.
+      run = note ? note[/matrix[:\s]+(\d[\d a-z,–—-]*)/i, 1] : nil
+      nums = []
+      run&.scan(/(\d+[a-z]?)(?:\s*[–—-]\s*(\d+[a-z]?))?/)&.each do |a, b|
+        if b && a =~ /\A\d+\z/ && b =~ /\A\d+\z/
+          (a.to_i..b.to_i).each { |i| nums << i.to_s }
+        else
+          nums << a
+        end
+      end
+      chapter = Chapter.new(title: title, matrix_note: note, cited_rows: nums.uniq,
+                            prose: [], rows: [])
+      part&.chapters&.push(chapter)
+      in_table = false
+      next
+    end
+
+    if line.strip.start_with?('|') && !table_divider?(line)
+      cells = split_table_row(line)
+      if header.nil? && cells.first.to_s.downcase.include?('expected')
+        header = cells
+        in_table = true
+        next
+      end
+      if in_table && cells.length >= 5
+        tag = cells[1][/\[\[([^\]]+)\]\]/, 1] || cells[1]
+        row = Row.new(type: cells[0], tag: tag, claim: cells[2],
+                      max: cells[3], state: cells[4])
+        (chapter ? chapter.rows : part&.rows)&.push(row)
+        next
+      end
+    elsif table_divider?(line)
+      next
+    else
+      header = nil
+      in_table = false
+      if chapter && line.strip.start_with?('*') && chapter.rows.empty?
+        chapter.prose << line.strip
+      end
+    end
+  end
+  parts
+end
+
+# ------------------------------------------------------------ hand matrix read
+# Read ONLY to report divergence. Nothing from here reaches the generated body —
+# that would re-establish the matrix as a source, which is what D3 forbids.
+
+HandRow = Struct.new(:num, :feature, :usecase, :ra, :sql, :udon, keyword_init: true)
+
+def parse_hand_matrix(path)
+  return [] unless File.exist?(path)
+
+  rows = []
+  in_table = false
+  File.readlines(path, chomp: true).each do |line|
+    next if table_divider?(line)
+
+    unless line.strip.start_with?('|')
+      in_table = false
+      next
+    end
+    cells = split_table_row(line)
+    if cells.first == '#'
+      in_table = true
+      next
+    end
+    next unless in_table && cells.length >= 6 && cells[0] =~ /\A\d+[a-z]?\z/
+
+    rows << HandRow.new(num: cells[0], feature: cells[1], usecase: cells[2],
+                        ra: cells[3], sql: cells[4], udon: cells[5])
+  end
+  rows
+end
+
+# ------------------------------------------------------------------- staging
+# The stage vocabulary is the outline's own (Part III preamble + ORIENT's
+# process law): theory -> cases -> RA -> SQL -> spelling. Which stage an outline
+# row occupies is read off its slug suffix, which is the corpus's naming law
+# ("each chapter seeds three rows: disc-<aspect>-cases, form-<aspect>-ra,
+# form-<aspect>-spelling").
+
+STAGES = [
+  { key: :cases,    label: 'Cases (usecases)',  suffix: /-cases\z/ },
+  { key: :ra,       label: 'Syntax-free RA',    suffix: /-ra\z/ },
+  { key: :sql,      label: 'SQL + alg-types',   suffix: /-sql\z/ },
+  { key: :spelling, label: 'Udon spelling',     suffix: /-spelling\z/ }
+].freeze
+
+def stage_of(tag)
+  STAGES.each { |s| return s[:key] if tag =~ s[:suffix] }
+  nil
+end
+
+def mark(row)
+  return '—' if row.nil?
+
+  bits = [row.state]
+  blocked = row.claim.scan(/blocked\(([^)]*)\)/).flatten
+  bits << "blocked(#{blocked.join('; ')})" unless blocked.empty?
+  sketch = row.claim.scan(/sketch\s+(§[\d.,\s§]*\d)/).flatten
+  bits << "sketched #{sketch.join(', ')}" unless sketch.empty?
+  "#{bits.join(' · ')}<br>[[#{row.tag}]]"
+end
+
+def cell_escape(text)
+  text.to_s.gsub('|', '\\|')
+end
+
+# --------------------------------------------------------------------- render
+
+parts = parse_outline(OUTLINE)
+hand = parse_hand_matrix(HAND_MATRIX)
+
+part1 = parts.find { |p| p.title.start_with?('I ') || p.title.start_with?('I—') || p.title =~ /\AI\b/ }
+part2 = parts.find { |p| p.title =~ /\AII\b/ }
+part3 = parts.find { |p| p.title =~ /\AIII\b/ }
+part4 = parts.find { |p| p.title =~ /\AIV\b/ }
+
+out = +''
+out << "# RA feature matrix — GENERATED VIEW\n\n"
+out << "> [!warning] Generated file — do not hand-edit.\n"
+out << ">\n"
+out << "> Regenerate with `bin/refresh`. The population is [`OUTLINE.md`](OUTLINE.md) (per **D3**: segments and the outline are the authority; this file is a view over them). Anything true here that is not in the outline is a bug in this file or a gap in the outline — fix the outline, never this.\n"
+out << ">\n"
+# Dated from the population's own mtime, not from now — so re-running on a
+# later day is a no-op and `--check` stays honest about staleness.
+out << "> Written from `OUTLINE.md` as of #{File.mtime(OUTLINE).strftime('%Y-%m-%d')}. The hand-maintained [`ra-feature-matrix.md`](ra-feature-matrix.md) is still present for comparison; the divergence report at the bottom is the diff that matters.\n\n"
+
+out << "## Aspects × stages (Part III)\n\n"
+out << "*Rows are Part III chapters (the aspects); columns are the stage progression the outline declares for every chapter (theory → cases → RA → SQL → spelling). Each cell carries the outline row's `State`, any `blocked(…)` it names, any `sketch §` it cites, and the row's tag. `—` means **no row exists in the outline for that stage** — proposed-not-missing does not apply to a stage nobody has seeded yet, so an em dash here is a real gap, not a state.*\n\n"
+
+if part3
+  out << "| # | Aspect (chapter) | Cases | Syntax-free RA | SQL + alg-types | Udon spelling |\n"
+  out << "|---|---|---|---|---|---|\n"
+  part3.chapters.each_with_index do |ch, i|
+    by_stage = {}
+    unclassified = []
+    ch.rows.each do |r|
+      st = stage_of(r.tag)
+      st ? (by_stage[st] ||= r) : unclassified << r
+    end
+    cells = STAGES.map { |s| cell_escape(mark(by_stage[s[:key]])) }
+    out << "| #{i + 1} | **#{cell_escape(ch.title)}** | #{cells.join(' | ')} |\n"
+    unless unclassified.empty?
+      names = unclassified.map { |r| "[[#{r.tag}]] (#{r.state})" }.join(', ')
+      out << "| | *unstaged rows in this chapter:* #{cell_escape(names)} | | | | |\n"
+    end
+  end
+  out << "\n"
+end
+
+out << "## Foundation the aspects stand on\n\n"
+out << "*The theory stage of every aspect is Part I/II canon rather than a per-chapter row, which is why the table above has no theory column. These are the rows that supply it.*\n\n"
+[[part1, 'Part I — Foundation'], [part2, 'Part II — Common Capabilities'], [part4, 'Part IV — Evidence & Formal Grounding']].each do |p, label|
+  next unless p
+
+  out << "**#{label}**\n\n"
+  out << "| Tag | Type | Max | State |\n|---|---|---|---|\n"
+  p.rows.each do |r|
+    out << "| [[#{r.tag}]] | #{cell_escape(r.type)} | #{cell_escape(r.max)} | #{r.state} |\n"
+  end
+  out << "\n"
+end
+
+# ------------------------------------------------------------------ divergence
+
+out << "## Divergence report — outline vs the hand-maintained matrix\n\n"
+out << "*Mechanical findings only; each is a question for the steward, not a verdict. Per D3 the repair for every one of these is an **outline** edit (or an accepted loss), never an edit to the hand matrix.*\n\n"
+
+cited = {}
+part3&.chapters&.each { |ch| ch.cited_rows.each { |n| (cited[n] ||= []) << ch.title } }
+hand_nums = hand.map(&:num)
+
+findings = []
+
+no_cite = part3 ? part3.chapters.reject { |c| c.cited_rows.any? } : []
+unless no_cite.empty?
+  findings << ["Chapters with no matrix rows at all (column-1 closure gaps)",
+               no_cite.map { |c| "**#{c.title}** — the hand matrix has nothing for this aspect" }]
+end
+
+orphans = hand_nums.reject { |n| cited.key?(n) }
+unless orphans.empty?
+  findings << ["Matrix rows no chapter claims (population says they have no home)",
+               orphans.map do |n|
+                 r = hand.find { |h| h.num == n }
+                 use = r&.usecase.to_s.gsub(/\A["']|["']\z/, '')
+                 "row #{n} — *#{r&.feature}* (#{use.empty? ? 'no usecase' : "“#{use}”"})"
+               end]
+end
+
+ghosts = cited.keys.reject { |n| hand_nums.include?(n) }
+unless ghosts.empty?
+  findings << ["Row numbers cited by a chapter that the matrix does not have",
+               ghosts.map { |n| "row #{n} — cited by #{cited[n].join(', ')}" }]
+end
+
+dupes = cited.select { |_, v| v.length > 1 }
+unless dupes.empty?
+  findings << ["Rows claimed by more than one chapter",
+               dupes.map { |n, v| "row #{n} — #{v.join(' / ')}" }]
+end
+
+missing_stage = []
+part3&.chapters&.each do |ch|
+  present = ch.rows.map { |r| stage_of(r.tag) }.compact
+  STAGES.each do |s|
+    missing_stage << "#{ch.title} → #{s[:label]}" unless present.include?(s[:key])
+  end
+end
+unless missing_stage.empty?
+  by_stage_missing = STAGES.map do |s|
+    n = missing_stage.count { |m| m.end_with?(s[:label]) }
+    n.zero? ? nil : "#{s[:label]}: #{n} of #{part3.chapters.length} chapters have no row"
+  end.compact
+  findings << ["Stages with no outline row", by_stage_missing]
+end
+
+hand_only = []
+hand_only << "**Per-feature decomposition.** The hand matrix carries #{hand.length} numbered theory features; the outline carries #{part3 ? part3.chapters.length : 0} chapters. The feature→chapter grouping exists *only* in the chapter headers' transitional row cites; the feature list itself has no home in the outline."
+hand_only << "**Example usecases (column 2).** #{hand.count { |h| !h.usecase.to_s.empty? }} plain-English usecase strings live only in the matrix. The outline's `disc-*-cases` claims summarize case *families*, not the individual worked cases."
+hand_only << "**Syntax-free RA slot expressions (column 3).** #{hand.count { |h| h.ra.to_s.include?(':') }} rows carry concrete slot notation (`des:[…] ar:{n,m}` …) that appears nowhere in the outline. This is real content, filled at the RA stage — it wants a home in the `form-*-ra` segments when they draft."
+hand_only << "**The slot-notation legend and the column-4 SQL plan** (matrix preamble + working notes) are design decisions, not tracking; they belong in a segment or in DECISIONS, not in a regenerable view."
+hand_only << "**The column-1 closure-check candidates** (join-by-shared-value / write-back contracts / cross-act constraint) in the matrix working notes are open findings with no outline row."
+findings << ["Substance that lives only in the hand matrix (a generated view would lose it)", hand_only]
+
+findings.each do |title, items|
+  out << "### #{title}\n\n"
+  items.each { |i| out << "- #{i}\n" }
+  out << "\n"
+end
+
+out << "*Generated by [`bin/refresh`](bin/refresh) from `OUTLINE.md`"
+out << " (#{hand.length} hand-matrix rows read for the divergence report only).*\n"
+
+# ----------------------------------------------------------------------- emit
+
+case options[:mode]
+when :stdout
+  print out
+when :check
+  current = File.exist?(options[:out]) ? File.read(options[:out]) : nil
+  if current == out
+    warn "refresh: #{File.basename(options[:out])} is up to date"
+    exit 0
+  else
+    warn "refresh: #{File.basename(options[:out])} is stale (run bin/refresh)"
+    exit 1
+  end
+else
+  File.write(options[:out], out)
+  warn "refresh: wrote #{options[:out]}"
+end
