@@ -1,0 +1,110 @@
+; typespec-sketch — Part I's vocabulary as sorted set/type definitions
+; REGISTER: wet clay (hypothetical-sketch class). Steward asked for "a little
+; shot at what a typespec-like file would look like if we were to drop the
+; lexical terms in it" — the tier-3 formal layer the coherency checker's
+; semantic tier would verify declared set-rels against. Notation is
+; provisional: <set:…> / <type:…> envelopes carry the formal content
+; (no such dialects exist yet — this file is partly a demand statement
+; for them). Arities use the corpus's own {n,m}. Nothing here is canon;
+; where this sketch and a segment disagree, the segment wins.
+
+|typespec[paths-part-i] :version 0.0.1 :date <2026-08-08>
+  :sources [def-descriptors def-locations-and-paths
+            def-cardinality-and-resolution def-entities-values-promises]
+
+  ; ── sorts (carriers) ─────────────────────────────────────────────
+  ; Sorts are the tier-2 machinery: a set-rel is well-formed only
+  ; within one sort. D11 was a sort error (a path-property declared
+  ; in location's sort) — this layer exists so the next one is caught.
+
+  |sort[referent]     Anything addressable — entities and value objects
+  |sort[descriptor]   Narrowing devices carried by acts
+  |sort[act]          Reference acts
+  |sort[community]    Naming communities (binding maintainers)
+
+  ; ── the referent sort ────────────────────────────────────────────
+
+  |type[entity] :sort referent
+    :def <set:{ r ∈ referent | identity(r) ⊥ description(r) }>
+    ; identity independent of current description; minted+maintained
+    ; by some community k: binding(k, d, r)
+
+  |type[value-object] :sort referent
+    :def <set:{ r ∈ referent | r ≡ description(r) }>
+    :invariant <set:entity ∩ value-object = ∅>
+    :invariant <set:entity ∪ value-object = referent>   ; partition — CHECKABLE
+
+  ; ── the descriptor sort ──────────────────────────────────────────
+
+  |type[designator] :sort descriptor
+    :def <set:{ d | ∃ k ∈ community, r ∈ referent : binding(k, d, r) }>
+    ; connection = the binding, held by k; fails by dangle | collide
+    :default-arity {1,1}
+
+  |type[description] :sort descriptor
+    :def <type:referent → bool>          ; predicate, re-evaluated per use
+    :invariant <set:designator ∩ description = ∅>
+    :invariant <set:designator ∪ description = descriptor>  ; the partition (D8-refined:
+    ; kind is decided by binding-maintenance, per-act — see recursive-anatomy)
+
+  |type[containment-coordinate] :sort descriptor
+    :def <set:{ d ∈ designator | container(referent-of(d)) }>
+    :set-rel <set:containment-coordinate ⊂ designator>
+
+  |type[location] :sort descriptor                        ; D12
+    :def <set:{ contained-in(C) | C ∈ containment-coordinate }>
+    :set-rel <set:location ⊂ description>
+    ; the OWNED description: resolve(contained-in(C)) is delegable to
+    ; community-of(C); nesting gives subset-composition:
+    :invariant <set:C₁ ⊑ C₂ ⟹ contained-in(C₁) ⊆ contained-in(C₂)>
+
+  |type[scope] :sort descriptor          ; CANDIDATE MINT (proposed, not ratified)
+    :def A location standing alone — the region perspectives are built from
+    :set-rel <set:scope = location>      ; same extension, role-distinguished?
+    ; open: same type used-alone, or a genuine subtype? adjudicate at mint
+
+  ; ── the path machinery (composed locations) ──────────────────────
+
+  |type[path] :sort descriptor
+    :def <type:{ origin      : location {1,1} :manner (explicit | implicit | universal)
+                 steps       : location {0,N}          ; ordered; the intermediates
+                 destination : location {1,1} }>
+    ; monotonic; each step is an intermediate-location owning its next hop
+
+  |type[intermediate-location] :sort descriptor
+    :def <set:{ l ∈ location | ∃ p ∈ path : l ∈ steps(p) }>   ; constitutive: step-of
+
+  |type[universal-path] :sort descriptor                 ; D11
+    :def <set:{ p ∈ path | manner(origin(p)) = universal }>
+    :set-rel <set:universal-path ⊂ path>
+    :synonym absolute-path
+    ; NOTE the sort discipline working: universal-path quantifies over
+    ; path — a ⊂ location declaration here would be rejected at tier 2.
+
+  ; ── acts (where arity lives) ─────────────────────────────────────
+
+  |type[reference-act] :sort act
+    :def <type:{ descriptors : descriptor {1,N}          ; the conjunction
+                 ar          : bounds {1,1}              ; operational
+                 exp         : bounds {0,1}              ; epistemic
+                 perspective : perspective {1,1} }>
+    :invariant ar ⊥ exp                                  ; separate channels, always
+
+  |type[bounds]
+    :def <type:{ min : nat, max : nat ∪ {∞} }>           ; the {n,m} axis, 4th site
+
+  ; ── promises (social layer; NOTE: pending D11 knock-on) ──────────
+  ; canonical/preferred currently defined over "universal location";
+  ; under D11 plausibly path-promises. Suspended here as in the graph:
+
+  |type[promise-class]                   ; CANDIDATE MINT (partition-wants-a-parent)
+    :def <set:{ true-identity, canonical-?, preferred-?, working-path }>
+    ; the ?-seats await the steward's promises adjudication
+
+  ; ── what tier 3 checks, once real ────────────────────────────────
+  ; · declared set-rels vs :def comprehensions (inclusion/emptiness in
+  ;   the decidable τ fragment — type-algebra R2)
+  ; · sort discipline on every set-rel (tier 2)
+  ; · partition invariants (∩=∅ ∧ ∪=carrier) — the euler's ground truth
+  ; · arity seats on composite types vs the term graph's {n,m}
+  ; · N5-style holes reported as "unverifiable", never silently passed

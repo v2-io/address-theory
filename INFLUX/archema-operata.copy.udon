@@ -1,0 +1,258 @@
+---
+source: udon repo design/examples/ — genre-seed example document
+gathered: 2026-07-21
+status: gathered (verbatim copy)
+paths:
+  - design/examples/archema-operata.udon
+source_commit: 3d8e5b9c52b2a581c4ab9021984423073a694693
+categories: [genre-seed, agent-coordination, intent-graph, work-tracking, multi-agent, escape-hatch]
+why_included: >
+  Agent-operational domain DSL — the most harness-relevant seed here. Models
+  effort/intent/realization/perspective with multi-agent coordination baked in:
+  claim/release actions, owner-type one-of [eli human system], realization
+  delta/learnings/propagate (work-outcome tracking + upward learning
+  propagation). This is agent-coordination + memory substrate expressed as a
+  document. Directly feeds the harness programme, not just UDON: it is a
+  concrete statement of what an agent work-tracking / intent-graph store wants
+  to hold. Host-language escape (!:rb:) for query helpers and time/arg
+  plumbing.
+---
+
+; Archema-like UDON DSL — Operata (Ruby)
+
+|domain[operata]
+  :store sqlite
+  :version 0.1
+
+  |resource[effort]
+    :description "A bounded initiative with origin, intent, and temporal span"
+
+    |attributes
+      |attr[id].uuid8 :primary true
+      |attr[slug].string :allow-nil false
+      |attr[title].string :allow-nil false
+      |attr[description].text
+      |attr[origin].text
+      |attr[intent].text
+      |attr[actionability].atom :default active :one-of [active ongoing resource archived]
+      |attr[temporal].atom :default present :one-of [past present future speculative]
+      |attr[owner-id].string
+      |attr[owner-type].atom :default human :one-of [eli human system]
+      |attr[locus-id].string
+      |timestamps
+
+    |actions
+      |defaults :actions [create read update destroy]
+
+      |update[archive]
+        :description "Archive this effort for future reference"
+        |change :set-actionability archived
+        |change :set-temporal past
+
+      |update[activate]
+        :description "Activate this effort for current work"
+        |change :set-actionability active
+        |change :set-temporal present
+
+      |update[speculate]
+        :description "Mark as speculative exploration"
+        |change :set-temporal speculative
+
+    |relationships
+      |has-many[intents] :destination operata.intent
+      |has-many[perspectives] :destination operata.perspective :destination-attribute focus-effort-id
+
+    |identities
+      |identity[unique-slug] :keys [slug] :eager-check true
+
+  |resource[intent]
+    :description "A desired state or outcome"
+
+    |attributes
+      |attr[id].uuid8 :primary true
+      |attr[title].string :allow-nil false
+      |attr[description].text
+      |attr[kind].atom :default compound :one-of [compound primitive]
+      |attr[status].atom :default projected :one-of [projected active realized abandoned]
+      |attr[relationship].atom :default root :one-of [prepares decomposes supports root]
+      |attr[claimed-by].string
+      |attr[claimed-at].datetime
+      |attr[position].integer :default 0
+      |timestamps
+
+    |actions
+      |defaults :actions [create read update destroy]
+
+      |update[claim]
+        :description "Signal that you're working on this intent"
+        :arguments [claimer]
+        |change :set-claimed-by !{{claimer}}
+        |change :set-claimed-at !{{now}}
+
+      |update[release]
+        :description "Release your claim on this intent"
+        |change :set-claimed-by nil
+        |change :set-claimed-at nil
+
+      |update[start]
+        :description "Begin active work on this intent"
+        |change :set-status active
+
+      |update[realize]
+        :description "Mark this intent as achieved"
+        |change :set-status realized
+        |change :set-claimed-by nil
+        |change :set-claimed-at nil
+
+      |update[abandon]
+        :description "Decide not to pursue this intent"
+        |change :set-status abandoned
+        |change :set-claimed-by nil
+        |change :set-claimed-at nil
+
+      |update[mark-primitive]
+        :description "Mark as directly actionable"
+        |change :set-kind primitive
+
+      |update[mark-compound]
+        :description "Mark as needing further decomposition"
+        |change :set-kind compound
+
+      ; Escapes for time and argument plumbing
+      !:rb:
+        def change_claim(changeset)
+          changeset
+            .put_change(:claimed_by, changeset.arguments[:claimer])
+            .put_change(:claimed_at, Time.now.utc)
+        end
+
+    |relationships
+      |belongs-to[effort] :destination operata.effort
+      |belongs-to[parent] :destination operata.intent :allow-nil true
+      |has-many[children] :destination operata.intent :inverse-of parent
+      |has-many[realizations] :destination operata.realization
+      |has-many[perspectives] :destination operata.perspective :destination-attribute focus-intent-id
+
+    |queries
+      ; Higher-level query helpers live in Ruby
+      !:rb:
+        def self.ready
+          query
+            .filter(kind: :primitive, status: %i[projected active])
+            .all
+            .select { |intent| preparations_satisfied?(intent) }
+        end
+
+        def self.blocked
+          query
+            .filter(status: :active)
+            .all
+            .reject { |intent| preparations_satisfied?(intent) }
+        end
+
+        def self.preparations_satisfied?(intent)
+          preparing = query.filter(parent_id: intent.id, relationship: :prepares).all
+          preparing.all? { |p| p.status == :realized }
+        end
+
+  |resource[realization]
+    :description "What actually happened when working on an intent"
+
+    |attributes
+      |attr[id].uuid8 :primary true
+      |attr[outcome].text :allow-nil false
+      |attr[delta].atom :default as-expected :one-of [as-expected easier harder different blocked surprising]
+      |attr[learnings].text
+      |attr[propagate].boolean :default false
+      |attr[recorded-by].string
+      |attr[realized-at].datetime
+      |timestamps
+
+    |actions
+      |defaults :actions [create read update destroy]
+
+      |update[mark-propagate]
+        :description "Mark this learning as needing propagation upward"
+        |change :set-propagate true
+
+      |update[mark-processed]
+        :description "Mark propagation as handled"
+        |change :set-propagate false
+
+      ; Recording helper uses time and defaults
+      !:rb:
+        def self.record!(intent_id:, outcome:, delta: :as_expected, learnings: nil, recorded_by: nil, propagate: false)
+          create!(
+            intent_id: intent_id,
+            outcome: outcome,
+            delta: delta,
+            learnings: learnings,
+            recorded_by: recorded_by,
+            propagate: propagate,
+            realized_at: Time.now.utc
+          )
+        end
+
+    |relationships
+      |belongs-to[intent] :destination operata.intent
+
+  |resource[perspective]
+    :description "Contextual focus—who's looking and what matters to them"
+
+    |attributes
+      |attr[id].uuid8 :primary true
+      |attr[name].string :allow-nil false
+      |attr[owner-type].atom :default human :one-of [eli human system locus]
+      |attr[rationale].text
+      |attr[declared-at].datetime
+      |attr[current].boolean :default true
+      |timestamps
+
+    |actions
+      |defaults :actions [create read update destroy]
+
+      |create[declare]
+        :description "Declare a new focus perspective"
+        :arguments [name focus-effort-id focus-intent-id rationale owner-type]
+        |change :set-declared-at !{{now}}
+
+      |update[refocus]
+        :description "Shift focus to a different effort or intent"
+        :arguments [focus-effort-id focus-intent-id rationale]
+        |change :set-declared-at !{{now}}
+
+      |update[archive]
+        :description "Archive this perspective (no longer current)"
+        |change :set-current false
+
+      ; Escape for conditional argument handling
+      !:rb:
+        def refocus(changeset)
+          cs = changeset.put_change(:declared_at, Time.now.utc)
+          cs = cs.put_change(:focus_effort_id, changeset.arguments[:focus_effort_id]) if changeset.arguments[:focus_effort_id]
+          cs = cs.put_change(:focus_intent_id, changeset.arguments[:focus_intent_id]) if changeset.arguments[:focus_intent_id]
+          cs = cs.put_change(:rationale, changeset.arguments[:rationale]) if changeset.arguments[:rationale]
+          cs
+        end
+
+    |relationships
+      |belongs-to[focus-effort] :destination operata.effort :allow-nil true
+      |belongs-to[focus-intent] :destination operata.intent :allow-nil true
+
+    |queries
+      !:rb:
+        def self.current_for(name)
+          query.filter(name: name, current: true).sort(:declared_at, :desc).first
+        end
+
+        def self.all_current
+          query.filter(current: true).all
+        end
+
+        def self.for_effort(effort_id)
+          query.filter(focus_effort_id: effort_id, current: true).all
+        end
+
+        def self.for_intent(intent_id)
+          query.filter(focus_intent_id: intent_id, current: true).all
+        end

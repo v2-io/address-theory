@@ -1,0 +1,45 @@
+# Steward handwritten notes — the "bottom-line pretend you're implementing it" sketch
+
+**Provenance:** Joseph's handwritten notebook pages (photo shared in-session 2026-08-08; left page = first pass, right page = refined second pass). These are the notes that informed the DON (ex-LUSS) idea and were shown to the prior agent. Steward framing, verbatim: *"a 'bottom-line pretend you're implementing it right now' sketch that was trying to get to the heart of usage, since I had been in theory and specs for so long I felt I was losing my anchor — and found it was true. The premise was: 'What if, right away, we simply parsed core udon and used a quick markdown conversion to also bring that into udon, and then used existing liquid implementations? (in a pinch)' — what kinds of things could we do? What would we need? It also might end up showing that in the end this model we're putting together, and the underlying implementation, might not be possible without pulling schemas into it as well, which would be fine."*
+
+**Register:** steward brainstorm, pre-validation. Transcription below is the coord's reading of handwriting — uncertainties marked `(?)`; the photo is the primary.
+
+## Transcription — left page (first pass)
+
+- Column: `udon + Typing + paths` (double arrow, mutually informing)
+- Flow: `udon → Markdown inner Udonification → Liquid Template Parsing`; note under udonification: *"Sometimes yields inner markdown directives"*; an arrow labeled *"Narrow Host"* descending
+- Left cluster: `Directory + Config + SCHEMA (dialect)`
+- `Object Store and Path Dereferencing → Assembly Directives`
+- Central box (hatched): `LOGICAL UDON STORE`
+- Bottom right: `Liquid assembly ~~Before~~ / On ingest vs On request → View/projection of logical`
+- Left margin, the schema's jobs: *"schema ✓ sets up pipeline ✓ selects types & their parsers ✓ has specially prepared directives ready to go ✓ liquid context pre-assembly"*
+
+## Transcription — right page (refined second pass)
+
+- Top flow, labeled **"uncooked"**: `[source CHUNKS] → [Markdown Unify] → [Liquid Directives] → [Full Assembly]` (with `include` feeding Full Assembly)
+- `[SCHEMA (uncooked)] → [Dialect (verification) / Types & Parsers / ctx assembly]` *(confirmed by steward)*
+- `[ctx object + code]` beside the main flow
+- `[Layout / Pipeline / ctx assembly]` (starred)
+- `[LOGICAL UDON STORE SPEC]` → *"Libs & host"*; beneath: *"Set Constraints (eg. append-only, logical output schemas)"*
+- Right column: `[LOGICAL UDON] → [Dereference] → (store)`
+- Open question 1: *"Path desegmentation — Before or after (or both) liquid rendering → **A: Pipeline decision to make!**"*
+- Open question 2: *"Q: Mod via store → how to files? A: Pipeline backwards? Store projects en whole? Store is canon?"*
+
+## Coord's reading (assessment, decides nothing)
+
+1. **The cooked/uncooked axis is the sketch's organizing vocabulary — and it names what the store chapter has been calling seat-facts without a word for the substance.** Source chunks arrive *uncooked*; the pipeline (markdown-unify → liquid → assembly → logical udon) is the cooking; what the DON serves is cooked. This is candidate vocabulary for [[disc-store-composition-model]] — and it retroactively deepens the D9 name: the donburi holds *cooked* udon; uncooked material isn't in the bowl yet.
+2. **The schema question answers itself, in the sketch's own margin.** "Might not be possible without pulling schemas in" — the left margin already assigns schema four pipeline jobs (sets up pipeline; selects types & parsers; prepared directives; liquid ctx pre-assembly), and the right page draws SCHEMA feeding Dialect/Types/Parsers and Layout/Pipeline. In store-model vocabulary: **the schema is a bind-moment input** — it participates in constituting the bound composition (which types, which parsers, which context), not merely in judging documents afterward. Coheres with O1 (data always wants a schema — this is where the payment happens), O5 (consumer-driven), rowan (resources-authoritative). So yes: the model pulls schemas in, and the theory has a seat ready for them.
+3. **`SCHEMA (uncooked)` is a self-hosting declaration with a bootstrap order hidden in it.** The schema is itself an udon document that must be *cooked by the pipeline it configures*. Someone must cook the first schema with a schema-less (or fixed meta-schema) pipeline. Worth a named row eventually; every self-hosting system meets this and the ones that pretend otherwise meet it in production.
+4. **Open question 1 is already answered by the theory — and the sketch's own answer agrees.** "Path desegmentation before or after (or both) liquid" → *"Pipeline decision to make!"* = the resolution moment of path-work is a **per-pipeline election**, not a global law — exactly [[form-resolve-moments]]'s caller-policy framing and the store model's per-seat moments. The crossed-out "Before" on the left page (ingest-vs-request replacing before/after) is the same realization one pass earlier.
+5. **Open question 2 — the write-back trilemma — is the sketch's genuinely new theory object.** "Mod via store → how to files?" with three candidate answers: **(a) pipeline backwards** (inverse projection — the lens/optics territory the paths-ideation survey holds; hard laws), **(b) store projects files en whole** (write-back = full re-render of the touched file — rowan's projection pattern pointed at source files), **(c) store is canon** (authority inverts; files become projections — the MINEFIELD §3.10 second-store tension resolved by *choosing* the second store). These are three different answers to *which artifact holds TRUE IDENTITY* ( [[def-entities-values-promises]]) — the trilemma is a canonicity election wearing plumbing clothes. Belongs to the Store Composition chapter's cases row.
+## Steward clarifications (same session, in dialogue)
+
+**On "Dialect (verification)" — a provisional repurposing of "dialect," near-verbatim:** *"here I repurpose 'dialect' provisionally from what it was often saying in udon (something that defines types and directives and parsers etc.) and instead got rid of that 'thing' altogether, and make 'dialect' be the part of schema that is just the algebraic types and so forth — the actual structure — the elements and attributes allowed and their relationships etc. Dialects here because it defines which nouns and structures etc. are part of the language for that schema-defined set of elements and their relationships… And then it also adds the types (necessary as it typechecks attributes)."*
+
+Coord reading: the standalone dialect-thing is dissolved; **dialect becomes the schema's structural half — the signature** (which element names, which attribute keys, which type assignments, which relationships — the *nouns and grammar* of a document family), with the schema's remainder being constraints-over-that-signature plus pipeline configuration. The type-algebra already supplies the formal object for "the algebraic types and so forth": the τ signature (rows typing edges, hedges typing nodes). **Live tension, recorded not resolved:** this collides with the ruled 0.9.1 layer split ("dialects type, never constrain; schemas constrain, never type" — CORE §1.1's boundary rules), where dialect means envelope-value typing. Two meanings now provisionally share one word (envelope-dialect vs schema-dialect/signature). Per O17/O18 this is exactly the class of demand-side rethinking the semi-freeze exists to absorb *if it earns its proof* — the ruled split is a fact to price, never the verdict, and the candidate belongs in the invasive-change lane with its proof when the schema territory drafts. Flag also for the concept-matrix/terms discipline: do not let the two "dialect"s blur silently.
+
+**On 0.9.1's disposition (steward, same exchange):** *"0.9.1 will almost certainly either absorb the changes we come up with or it will get essentially skipped implementation-wise and we'll go straight to 0.10.0 [with] all of this."* Sharpens the O18a addendum one notch: the semi-freeze's absorb clause now has an explicit alternative (skip-to-0.10.0), which further deflates any incumbency weight the 0.9.1 text might be lent in design arguments — either way, the demand side's output is what ships.
+
+**On "Narrow Host" (Liquid):** confirmed as labeling Liquid-as-narrow-host-language in the first pass — and *superseded*: *"now superseded by the idea that the addressing allows all directives to effectively use udon and reference-acts exclusively (we're pretty sure…)"*. This is steward-side corroboration of [[claim-acts-as-operands]] (Part II): Liquid was the in-a-pinch scaffold; the model's endpoint is native directives over reference-acts.
+
+6. **The pragmatic premise is itself a demand statement:** core parser + markdown→udon conversion + off-the-shelf Liquid = the minimum viable cooking pipeline. Every box the sketch needs beyond those three (schema→ctx assembly, dereference against logical udon, store constraints like append-only + logical output schemas) is a measured gap between "what exists" and "what usage needs" — the anchor-to-usage the steward went looking for.
