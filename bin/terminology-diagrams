@@ -242,4 +242,21 @@ files.each do |name, c|
   path.write(c)
   warn "terminology-diagrams: wrote #{path.relative_path_from(root)}"
 end
+
+# Render SVGs beside the .dot sources (steward request 2026-08-08). Graphviz is
+# optional tooling: absent `dot` degrades to a note, never a failure — the .dot
+# files remain the artifacts of record and render anywhere.
+if system("command -v dot >/dev/null 2>&1")
+  files.keys.grep(/\.dot\z/).each do |name|
+    src = out_dir.join(name)
+    svg = out_dir.join(name.sub(/\.dot\z/, ".svg"))
+    if system("dot", "-Tsvg", src.to_s, "-o", svg.to_s)
+      warn "terminology-diagrams: rendered #{svg.relative_path_from(root)}"
+    else
+      warn "terminology-diagrams: WARNING — dot failed on #{name} (svg not updated)"
+    end
+  end
+else
+  warn "terminology-diagrams: graphviz `dot` not found — .svg render skipped (.dot files current)"
+end
 warn "terminology-diagrams: #{terms.size} terms, #{children.values.flatten.size} containments, #{pending_rels.size} pending, #{disjoints.size} disjoint pairs."
