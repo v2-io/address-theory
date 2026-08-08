@@ -1,0 +1,17 @@
+; generated-format instantiation 2026-08-08
+|term[referent]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss The thing an act intends to pick out.
+  |designation referent
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-descriptors
+    :anchor reference-act
+    :projection paraphrase
+    The intended target of a reference act; what the descriptors jointly narrow the world down to.
+  |rel :kind targeted-by :to @reference-act
+  |not
+    Not the fetched content — a fetch returns a description-as-of-now of the referent, never the referent itself (the Fetch Assumption's fourth seam).

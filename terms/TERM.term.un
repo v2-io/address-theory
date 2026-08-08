@@ -1,0 +1,20 @@
+; TERM.term.un — the PATHS-LOCAL subset of verisectorium/template/TERM.term.un
+; (proposed home: beside the entries it shapes; steward may relocate)
+;
+; This corpus uses the universal template minus what has no consumer here yet:
+; no :register (single-register corpus), no ui/api designation channels, no
+; :value-type/:constraints (no scored quantities among current terms), no
+; |context-sentence (deferred until the checker can harvest them). Everything
+; kept means something to bin/refresh-lexicon or to the D5 projection design.
+;
+; PATHS-LOCAL CONVENTIONS on top of the universal template:
+;  - :subject-field is always addressing (kept anyway: the homograph fence
+;    matters at the estate level — see perspective's |collision).
+;  - |definition :defined-by must agree with the .md entry / segment "Terms
+;    defined here" declarations; bin/refresh-lexicon checks this.
+;  - |set-rel edges are the Euler-diagram substrate: a renderer may emit
+;    diagrams from subset-of/disjoint-from/overlaps/partitions edges alone.
+;  - |formal :notation uses <latex:...> envelopes (dialect renders; carried
+;    inert until then, per the frozen-bare-set discipline).
+;
+; See the universal template for field semantics, arities, and the WHY notes.

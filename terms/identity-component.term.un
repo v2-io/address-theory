@@ -1,0 +1,18 @@
+; generated-format instantiation 2026-08-08
+|term[identity-component]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss A designator for the target itself, as opposed to its containers.
+  |designation identity-component
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-locations-and-paths
+    :anchor identity-vs-location
+    :projection paraphrase
+    Identity components are designators for the target itself; if identity is already unique enough, location is not required.
+  |set-rel :kind subset-of :to @designator
+  |set-rel :kind overlaps :to @location
+  |example
+    Santa Claus, North Pole; google.com; a UUID with no known location.

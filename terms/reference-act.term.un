@@ -1,0 +1,23 @@
+; generated-format instantiation 2026-08-08 (template: verisectorium/template/TERM.term.un)
+|term[reference-act]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss The root act: descriptors supplied to narrow the world to an intended referent.
+  :see-also [@expected-cardinality @resolution-engine]
+  |designation reference-act
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-descriptors
+    :anchor reference-act
+    :projection paraphrase
+    A reference act supplies descriptors that narrow the world down to one intended referent.
+  |formal
+    :notation <latex:act = (D, ar, exp, ...) \to R \subseteq World>
+    :reading An act carries a descriptor conjunction plus its type (bounds etc.); resolution yields a referent set.
+  |rel :kind has :to @descriptor :card +
+  |rel :kind targets :to @referent
+  |rel :kind has :to @expected-cardinality :card 1
+  |marker
+    Any address, citation, wikilink, or query is one; the postal address is the canonical specimen.

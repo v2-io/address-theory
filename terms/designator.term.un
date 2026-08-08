@@ -1,0 +1,28 @@
+; generated-format instantiation 2026-08-08
+|term[designator]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss A minted name bound by convention; fails by dangling or colliding.
+  :dual-of @description
+  |designation designator
+    :status preferred
+    :channel prose
+  |designation rigid-designator
+    :status hidden
+    :channel prose
+  |definition
+    :defined-by @def-descriptors
+    :anchor descriptor-kinds
+    :projection paraphrase
+    A minted name, bound to its referent by convention: someone bound the name to the thing, and that binding is the whole connection — the referent's own properties are irrelevant to it.
+  |formal
+    :notation <latex:bound(d, r) \; by \; community \; C; \; failure \in \{dangle, collide\}>
+  |set-rel :kind subset-of :to @descriptor
+  |set-rel :kind disjoint-from :to @description
+  |rel :kind held-by :to @naming-community :card 1
+  |confused
+    :with @description
+    If the connection is re-computed from the world's current properties at each use, it is a description — even when it looks like a name (a policed wikilink stem IS a designator; an unpoliced one degrades).
+  |failure-if-misused
+    Treating an unmaintained string-match as a designator imports silent retargeting nobody priced.

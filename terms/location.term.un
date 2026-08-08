@@ -1,0 +1,24 @@
+; generated-format instantiation 2026-08-08
+|term[location]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss A containment-coordinate descriptor family; powerful because containers can route.
+  :see-also [@containment-coordinate @path]
+  |designation location
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-locations-and-paths
+    :anchor identity-vs-location
+    :projection paraphrase
+    Location components are descriptors of a particular, powerful family — containment coordinates, each one a designator for a container, arranged so that the containers nest.
+  |formal
+    :notation <latex:loc = \langle c_1 \supset c_2 \supset ... \supset c_n \rangle>
+    :reading A chain of nested container designators; the held-lightly reduction reads it as an identity embedded in a resolvable containment hierarchy.
+  |set-rel :kind subset-of :to @descriptor
+  |set-rel :kind overlaps :to @identity-component
+  |rel :kind composed-of :to @containment-coordinate :card +
+  |confused
+    :with @path
+    A location describes where a thing sits; a path is steps between locations — they interchange safely only in the universal-location case.

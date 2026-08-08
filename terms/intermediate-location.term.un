@@ -1,0 +1,16 @@
+; generated-format instantiation 2026-08-08
+|term[intermediate-location]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss A step along a path that is itself a location, owning the routing of its next hop.
+  |designation intermediate-location
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-locations-and-paths
+    :anchor path
+    :projection paraphrase
+    Intermediate steps of a path may themselves be intermediate locations; each is in charge of routing from there — only that item is expected to know how to route to the next.
+  |set-rel :kind subset-of :to @location
+  |rel :kind performs :to @progressive-routing

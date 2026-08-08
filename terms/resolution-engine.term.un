@@ -1,0 +1,24 @@
+; generated-format instantiation 2026-08-08
+|term[resolution-engine]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss What performs resolution, relative to a perspective; owes the actor six obligations.
+  :see-also [@perspective @progressive-routing]
+  |designation resolution-engine
+    :status preferred
+    :channel prose
+  |designation engine
+    :status admitted
+    :channel prose
+  |definition
+    :defined-by @def-cardinality-and-resolution
+    :anchor engine-and-perspective
+    :projection paraphrase
+    Resolution is not a property of the reference act — it is performed by a resolution engine relative to a perspective. The same act may legitimately resolve differently under different engines; someone must own each hop, and the engine is the composite owner.
+  |rel :kind resolves :to @reference-act :card *
+  |rel :kind relative-to :to @perspective :card 1
+  |invariant
+    Owes the six obligations: typed outcomes; descriptors preserved; never a silent best-guess; fetch-verification when carried; weak resolution disclosed (D6); zero only from a completed perspective (D7).
+  |note :audience maintainer
+    Store-model candidate identity (disc-store-composition-model): a bound store composition IS an engine — composing the perspective produces the executing thing.

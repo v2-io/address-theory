@@ -1,0 +1,21 @@
+; generated-format instantiation 2026-08-08
+|term[descriptor]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss What an act supplies to narrow candidates; comes in exactly two kinds, split by what connects it to the referent.
+  |designation descriptor
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-descriptors
+    :anchor descriptor-kinds
+    :projection paraphrase
+    Descriptors come in two kinds, distinguished by what connects the descriptor to its referent — an agreement, or a fact.
+  |formal
+    :notation <latex:Descriptor = Designator \sqcup Description>
+    :reading The two kinds partition the space; the partition axis is the binding (agreement vs recomputed fact).
+  |set-rel :kind partitions :into [@designator @description]
+  |rel :kind part-of :to @reference-act
+  |invariant
+    Kind is determined by whether anyone maintains the binding, never by the spelling (D8).

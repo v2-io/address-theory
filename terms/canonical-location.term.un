@@ -1,0 +1,20 @@
+; generated-format instantiation 2026-08-08
+|term[canonical-location]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss The promise "this will keep resolving" — breaking it is a breach, not an event.
+  :see-also [@true-identity @preferred-location @working-path]
+  |designation canonical-location
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-entities-values-promises
+    :anchor the-four-promises
+    :projection paraphrase
+    The preferred universal location, promised permanent. "This will keep resolving." A standing commitment by the naming authority — breaking it is a breach, not an event.
+  |set-rel :kind subset-of :to @universal-location
+  |set-rel :kind disjoint-from :to @preferred-location
+  |confused
+    :with @preferred-location
+    Canonical carries a permanence promise; preferred may be superseded without breach. The difference is the promise, not the string.

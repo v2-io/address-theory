@@ -1,0 +1,22 @@
+; generated-format instantiation 2026-08-08
+|term[naming-community]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss Whoever maintains a designator's binding: a family, a filesystem, a registry, a store.
+  |designation naming-community
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-descriptors
+    :anchor descriptor-kinds
+    :projection paraphrase
+    The holder of a designator's meaning — a family, a filesystem, a registry — not the referent's properties.
+  |formal
+    :notation <latex:C: names \rightharpoonup referents, \; unique \; within \; C>
+    :reading A community is a uniqueness scope over its minted names (operationally: a unique constraint enforced at mint time).
+  |rel :kind maintains :to @designator :card *
+  |invariant
+    Collision policing happens at mint time or the community's designators degrade toward descriptions (D8).
+  |marker
+    Any UNIQUE index, any "name already taken" error, any registry is one at work.

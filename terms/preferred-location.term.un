@@ -1,0 +1,16 @@
+; generated-format instantiation 2026-08-08
+|term[preferred-location]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss The promise "this resolves today, and it's the one we'd rather you use" — supersedable without breach.
+  :see-also [@canonical-location]
+  |designation preferred-location
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-entities-values-promises
+    :anchor the-four-promises
+    :projection paraphrase
+    The currently best universal location, no permanence promised. May be superseded without breach.
+  |set-rel :kind subset-of :to @universal-location

@@ -1,0 +1,17 @@
+; generated-format instantiation 2026-08-08
+|term[universal-location]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss A location so fully specified it works as a path from anywhere.
+  |designation universal-location
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-locations-and-paths
+    :anchor universal-location
+    :projection paraphrase
+    A LOCATION that, due to full specificity, can be used as an effective PATH from anywhere — its components progressively resolve from anywhere to the destination. Equivalently: a PATH with a UNIVERSAL ORIGIN.
+  |set-rel :kind subset-of :to @location
+  |invariant
+    This is the exact condition under which path, location, and identity safely interchange — the "Universal" presupposed by URI/URN/URL, explaining their conflation rather than observing it.

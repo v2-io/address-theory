@@ -1,0 +1,20 @@
+; generated-format instantiation 2026-08-08
+|term[true-identity]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss The promise "this names IT" — held by the minting community, independent of routability.
+  :see-also [@canonical-location @preferred-location @working-path]
+  |designation true-identity
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-entities-values-promises
+    :anchor the-four-promises
+    :projection paraphrase
+    The designator that names the entity itself — whether or not anything can currently be fetched with it. "This names it." Held by the minting community; independent of routability.
+  |set-rel :kind disjoint-from :to @canonical-location
+  |set-rel :kind disjoint-from :to @preferred-location
+  |set-rel :kind disjoint-from :to @working-path
+  |note :audience maintainer
+    The four promises partition canonicity but no parent term ("promise-class") is minted — flagged as template feedback: a partition wants its parent. Candidate: mint promise-class; the Outcomes chapter's meta:class() would consume it.

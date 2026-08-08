@@ -1,0 +1,19 @@
+; generated-format instantiation 2026-08-08
+|term[operational-bound]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss How many the act will touch; divergence is failure.
+  :dual-of @epistemic-bound
+  |designation operational-bound
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-cardinality-and-resolution
+    :anchor double-bound
+    :projection paraphrase
+    The operational bound: how many the act will touch — "change the first," "take them all." Divergence from the operational bound is failure.
+  |rel :kind part-of :to @expected-cardinality
+  |confused
+    :with @epistemic-bound
+    Operational selects the outcome's sum branch; epistemic never touches control flow — it rides beside as information.
