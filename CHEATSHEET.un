@@ -8,37 +8,31 @@ The addressing theory's mental model, one page (2026-08-08)
 ## Things Being Reached
 
 |t[REFERENT] The thing an @{[ADDRESS]} is meant to reach — always an @{[ENTITY]} or a @{[VALUE-OBJECT]}, never both.
-|t[ENTITY]   Identity independent of current description; persists through change (the document after the edit is the same document). Nothing in its content can testify to its identity, so identity is minted + maintained by convention.
-  |rel :'identified-by+' @[DESIGNATOR]
-       :'dual!'          @[VALUE-OBJECT]
-
-|t[VALUE-OBJECT]  IS its description — "which one" is meaningless. Can't dangle, rename, or change (a changed one is a different one). Addressable by complete description (a hash = complete description compressed into designator shape) or by role (a slot on an entity).
-  |rel :'dual!' @[ENTITY]
+|t[ENTITY]   Identity independent of current description; persists through change (the document after the edit is the same document). Nothing in its content can testify to its identity, so identity is minted + maintained by convention. |rel :'identified-by+' @[DESIGNATOR] :'dual!' @[VALUE-OBJECT]
+|t[VALUE-OBJECT]  IS its description — "which one" is meaningless. Can't dangle, rename, or change (a changed one is a different one). Addressable by complete description (a hash = complete description compressed into designator shape) or by role (a slot on an entity). |rel :'dual!' @[ENTITY]
 
 ## Things Being Narrowed
 
 |t[DESCRIPTOR]  Anything that narrows the world toward a referent. Exactly one of @{[DESIGNATOR]} | @{[DESCRIPTION]} — and WHICH one is decided per-act, by whether anyone keeps the binding (D8). Resolution is recursive: every resolvable chain bottoms out in designators (D12).
+|t[DESIGNATOR]  A minted name, bound to its referent by agreement — the binding is the whole connection. Fails by DANGLE (community forgot) or COLLIDE (two mints, one name). |rel :'held-by!' @[NAMING-COMMUNITY]
+|t[DESCRIPTION]  A predicate satisfied by fact, recomputed every use; zero, one, or many referents — plurality is a feature. Fails by population drift (same words, world moved). |rel :'dual!' @[DESIGNATOR]
+|t[NAMING-COMMUNITY]  Whoever keeps a binding: a family, a filesystem, a registry, a store. Mint-time policing is what makes a designator a designator (D8) — unpoliced, the same spelling degrades into a description. |rel :'maintains*' @[DESIGNATOR]
 
-|t[DESIGNATOR]  A minted name, bound to its referent by agreement — the binding is the whole connection. Fails by DANGLE (community forgot) or COLLIDE (two mints, one name).
-  |rel :'held-by!' @[NAMING-COMMUNITY]
-
-|t[DESCRIPTION]  A predicate satisfied by fact, recomputed every use; zero, one, or many referents — plurality is a feature. Fails by population drift (same words, world moved).
-  |rel :'dual!' @[DESIGNATOR]
-
-|t[NAMING-COMMUNITY]  Whoever keeps a binding: a family, a filesystem, a registry, a store. Mint-time policing is what makes a designator a designator (D8) — unpoliced, the same spelling degrades into a description.
-  |rel :'maintains*' @[DESIGNATOR]
 
 ## The artifact and the event
 *(proposed, D13-shaped, 2026-08-08 dialogue)*
 
-|t[ADDRESS] The durable ARTIFACT: a conjunction of descriptors plus carried expectations — written on the envelope, stored in the document, handed to someone else. What retain-and-emit retains. Its components play ROLES — and the roles ARE the relation keys below: "whose name is it" applied (an attribute names what the value is TO its element, so the address's edges are named by what each component does FOR the address). This resolves both margin questions at once — no separate COMPONENT-ROLE term, no generic :component, and the pins land typed.
+|t[ARTIFACT]  A durable inscription: exists independent of any use — storable, copyable, transmissible, readable later by anyone. It persists between uses and survives its author. (Framing term: what an @{[ADDRESS]} IS, as against what an act is.)
+|t[EVENT]  An occurrence: happens once, at a moment, against a perspective, by an actor. It doesn't persist — at most its RECORD does (and the record is an artifact). |rel :'dual!' @[ARTIFACT]
+
+|t[ADDRESS] The @{[ARTIFACT]} of referring: a conjunction of descriptors plus carried expectations — written on the envelope, stored in the document, handed to someone else. What retain-and-emit retains. Its components play ROLES — and the roles ARE the relation keys below: "whose name is it" applied (an attribute names what the value is TO its element, so the address's edges are named by what each component does FOR the address).
   |rel :'identifying*'   @[DESCRIPTOR]           ; usually designators — "which one it IS"
        :'locating*'      @[DESCRIPTOR]           ; containment components — "where to narrow"
-       :'verifying*'     @[DESCRIPTOR]           ; the pins: a hash, an expected property — checked at fetch
+       :'verifying*'     @[DESCRIPTOR]           ; a hash, an expected property — fixed at write ("pinned", informally), checked at fetch
        :'expecting?'     @[EXPECTED-CARDINALITY]
-       :'promise-class?' @[TRUE-IDENTITY] | @[CANONICAL-LOCATION] | @[PREFERRED-LOCATION] | @[WORKING-PATH]
+       :'promise-class?' [@[TRUE-IDENTITY] | @[CANONICAL-LOCATION] | @[PREFERRED-LOCATION] | @[WORKING-PATH]]
 
-|t[REFERENCE-ACT]  The EVENT: an @{[ADDRESS]} in use — against a perspective, at a moment, with operational intent. (Pre-D13 canon lets this term cover both artifact and event; the carve splits them.)
+|t[REFERENCE-ACT]  The @{[EVENT]} of referring: an @{[ADDRESS]} in use — against a perspective, at a moment, with operational intent. (Pre-D13 canon lets this term cover both artifact and event; the carve splits them.)
   |rel :'address!'              @[ADDRESS]
        :'expected-cardinality!' @[EXPECTED-CARDINALITY]
        :'perspective!'          @[PERSPECTIVE]
@@ -53,7 +47,6 @@ The addressing theory's mental model, one page (2026-08-08)
 *(kind vs role — today's resolution)*
 
 |t[CONTAINMENT-COORDINATE]  A designator FOR a container: "USA", `src`, the parent element. Referent = the container itself (one thing). Fails like a designator: "no such directory".
-
 |t[LOCATION]  The description BUILT FROM a coordinate — contained-in(C). Referent = the container's CONTENTS (many, drifting). "Empty directory" is an answer, not a failure. KIND vs ROLE: the underlying kind is containment-description (D12); "location" in daily use is mostly the ROLE containment-components play inside an @{[ADDRESS]} — parallel to origin/destination as roles in a @{[PATH]}. Standing alone = a scope (mint proposed, unratified).
   |rel :'names-its-container-via+' @[CONTAINMENT-COORDINATE]
 
@@ -65,13 +58,9 @@ The addressing theory's mental model, one page (2026-08-08)
        :'destination!'       @[LOCATION]
        :'step*'              @[INTERMEDIATE-LOCATION]
        :'each-step-carries!' @[SEQUENCE-CAUSE]
-
 |t[INTERMEDIATE-LOCATION]  A non-terminal step of a path that is itself a location; owns routing its own next hop.
-
 |t[UNIVERSAL-PATH]  syn: absolute path. A path whose ORIGIN MANNER is universal — routes to its destination from any origin within a bounded resolution context. Universality is the PATH's property, never the location's (D11 — the old name "universal location" committed the exact conflation the theory diagnoses).
-
 |t[SEQUENCE-CAUSE]  Why order appears in an address at all — per SEGMENT, not per address: subset⊇ (nested conjunction in a path costume; reorderable) | resolver→ (output feeds the next resolver; a barrier) | compositional∘ (foldable iff only the endpoint matters). Exactly what an engine may optimize.
-
 |t[PROGRESSIVE-ROUTING]  Per-hop ownership: each intermediate routes only its next hop — so re-binding one intermediate re-routes every path through it, and a default at an intermediate is a routing choice.
 
 ## Resolution
@@ -79,18 +68,13 @@ The addressing theory's mental model, one page (2026-08-08)
 |t[RESOLUTION-ENGINE]  What resolves acts — never a property of the act. Owes the actor: typed outcomes (found-one · found-many · found-none · found-but-stale · found-but-weakly · found-none-so-far) · descriptors preserved beside the result · never a silent best-guess · pins checked · weak resolution disclosed · zero only from an attested-complete perspective.
   |rel :'relative-to!' @[PERSPECTIVE]
        :'resolves*'    @[REFERENCE-ACT]
-
 |t[PERSPECTIVE]  What counts as the world for one resolution: origin + scope + moment + policy. (Deliberately under-decomposed in canon; O13's rungs pending.)
-
 |t[OVER-DETERMINATION]  Descriptors past the minimum are VERIFICATION (co-referring disagreement is loud) and REDUNDANT ROUTES (resolve by whichever this resolver knows) — never waste. The zip AND the city, on purpose.
 
 ## The Promises
 *(canonicity is social; they attach to the ADDRESS)*
 
 |t[TRUE-IDENTITY]  "This names IT." Held by the minting community, independent of routability. Survives everything but community collapse.
-
 |t[CANONICAL-LOCATION]  "This will keep resolving." A standing commitment — breaking it is a breach, not an event. (Name pending the D11 knock-on: plausibly a PATH-promise.)
-
 |t[PREFERRED-LOCATION]  "Resolves today, and we'd rather you use it." May be superseded without breach. (Same pending knock-on.)
-
 |t[WORKING-PATH]  No promise at all — a convenience of the current context, expected to expire with it.
