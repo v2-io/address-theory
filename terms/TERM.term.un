@@ -14,6 +14,10 @@
 ;    defined here" declarations; bin/refresh-lexicon checks this.
 ;  - |set-rel edges are the Euler-diagram substrate: a renderer may emit
 ;    diagrams from subset-of/disjoint-from/overlaps/partitions edges alone.
+;  - |rel accepts a :one-of [a b c] qualifier when a relation's MANNER is a
+;    closed enum (path's origin: explicit | implicit | universal) — one seat
+;    with a qualified manner, never three relation kinds (which would triple
+;    the seat and make {1,1} arity inexpressible).
 ;  - |formal :notation uses <latex:...> envelopes (dialect renders; carried
 ;    inert until then, per the frozen-bare-set discipline).
 ;

@@ -65,8 +65,8 @@ def parse_term(path)
       else
         set_rels << { kind: m[1], to: m[2] }
       end
-    elsif (m = s.match(/\A\s+\|rel\s+:kind\s+(\S+)\s+:to\s+@([a-z0-9-]+)(?:\s+:card\s+(\S+))?/))
-      rels << { kind: m[1], to: m[2], card: m[3] }
+    elsif (m = s.match(/\A\s+\|rel\s+:kind\s+(\S+)\s+:to\s+@([a-z0-9-]+)(?:\s+:card\s+(\S+))?(?:\s+:one-of\s+\[([^\]]*)\])?/))
+      rels << { kind: m[1], to: m[2], card: m[3], one_of: m[4] }
     end
   end
   return nil unless slug
@@ -178,7 +178,20 @@ rel_dot << "// Render: dot -Tsvg relations.dot -o relations.svg\n"
 # Terms with no |rel and no :dual-of are omitted here — their structure is
 # set-relational and lives in euler.dot; as isolated boxes they were margin
 # noise in the first steward render.
-connected = terms.flat_map { |t| t.rels.flat_map { |r| [t.slug, r[:to]] } + (t.dual_of ? [t.slug, t.dual_of] : []) }.uniq
+# Set edges (subset-of/partitions) ride the relation views too, as thin
+# distinct edges — the first ERD review read "location is supposed to be a
+# descriptor" as MISSING because the view excluded set structure; a concept
+# map must stand alone. (Euler remains the containment-shaped view.)
+set_edges = terms.flat_map do |t|
+  t.set_rels.flat_map do |r|
+    case r[:kind]
+    when "subset-of" then [[t.slug, r[:to]]]
+    when "partitions" then r[:into].map { |c| [c, t.slug] }
+    else []
+    end
+  end
+end.uniq
+connected = (terms.flat_map { |t| t.rels.flat_map { |r| [t.slug, r[:to]] } + (t.dual_of ? [t.slug, t.dual_of] : []) } + set_edges.flatten).uniq
 omitted = terms.map(&:slug) - connected
 rel_dot << "digraph relations {\n  rankdir=LR; fontname=\"Helvetica\";\n"
 rel_dot << "  node [fontname=\"Helvetica\", shape=box, style=rounded];\n"
@@ -191,12 +204,16 @@ duals_done = []
 terms.each do |t|
   t.rels.each do |r|
     card = r[:card] ? " (#{r[:card]})" : ""
-    rel_dot << "  \"#{t.slug}\" -> \"#{r[:to]}\" [label=\"#{r[:kind]}#{card}\", fontsize=9];\n"
+    oneof = r[:one_of] ? "\\n#{r[:one_of].tr('@', '').split.join(' | ')}" : ""
+    rel_dot << "  \"#{t.slug}\" -> \"#{r[:to]}\" [label=\"#{r[:kind]}#{card}#{oneof}\", fontsize=9];\n"
   end
   if t.dual_of && !duals_done.include?([t.slug, t.dual_of].sort)
     rel_dot << "  \"#{t.slug}\" -> \"#{t.dual_of}\" [dir=both, style=bold, label=\"dual\", fontsize=9, color=\"#666666\"];\n"
     duals_done << [t.slug, t.dual_of].sort
   end
+end
+set_edges.each do |sub, sup|
+  rel_dot << "  \"#{sub}\" -> \"#{sup}\" [label=\"⊂\", fontsize=9, color=\"#999999\", fontcolor=\"#999999\", arrowhead=onormal];\n"
 end
 rel_dot << "}\n"
 
@@ -206,10 +223,11 @@ mmd << "%% The relation view as mermaid (renders in Obsidian/GitHub, zero setup)
 mmd << "%% omitted (no typed relations; see euler.dot): #{omitted.sort.join(', ')}\n" unless omitted.empty?
 mmd << "flowchart LR\n"
 terms.select { |t| connected.include?(t.slug) }.each { |t| mmd << "  #{t.slug.tr('-', '_')}[\"#{t.slug}\"]\n" }
+set_edges.each { |sub, sup| mmd << "  #{sub.tr('-', '_')} -.->|#{'⊂'}| #{sup.tr('-', '_')}\n" }
 duals_done = []
 terms.each do |t|
   t.rels.each do |r|
-    mmd << "  #{t.slug.tr('-', '_')} -->|#{r[:kind]}#{r[:card] ? " #{r[:card]}" : ''}| #{r[:to].tr('-', '_')}\n"
+    mmd << "  #{t.slug.tr('-', '_')} -->|#{r[:kind]}#{r[:card] ? " #{r[:card]}" : ''}#{r[:one_of] ? " (#{r[:one_of].tr('@', '').split.join('|')})" : ''}| #{r[:to].tr('-', '_')}\n"
   end
   if t.dual_of && !duals_done.include?([t.slug, t.dual_of].sort)
     mmd << "  #{t.slug.tr('-', '_')} <-->|dual| #{t.dual_of.tr('-', '_')}\n"

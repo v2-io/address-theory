@@ -16,8 +16,13 @@
   |formal
     :notation <latex:p: loc_{org} \to loc_{dst} = \langle s_1, ..., s_n \rangle>
     :reading Each step's imperative-vs-declarative character derives from its sequence-cause, per segment.
-  |rel :kind from :to @location :card 1
-  |rel :kind to :to @location :card 1
+  ; WHY one `origin` relation with :one-of, not three relation kinds: the
+  ; trichotomy qualifies the MANNER of the single origin seat; three kinds
+  ; would triple the seat and make the {1,1} arity inexpressible.
+  |rel :kind origin :to @location :card 1 :one-of [explicit implicit universal]
+  |rel :kind destination :to @location :card 1
   |rel :kind has :to @sequence-cause :card +
+  |invariant
+    The origin is exactly one of explicit | implicit | universal (steward sharpening 2026-08-08; body-absorption candidate recorded in def-locations-and-paths WN).
   |not
     Not necessarily unique, reversible, or shortest; logical by default — physical equivalence is by construction and intentional.
