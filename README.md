@@ -6,8 +6,8 @@
 |---|---|
 | [`OUTLINE.md`](OUTLINE.md) | **The front door** — canon view over `src/`; Part I is the foundational theory, Parts II–III are provisional homes; conventions + register in its preface |
 | [`src/`](src/) | The segments (the former theory-and-lexicon, split and drafted; one atom per file) |
-| [`terms/`](terms/) | The embedded lexicon — one entry per term, fed by the definition segments |
-| [`hypothetical-sketch.md`](hypothetical-sketch.md) | The concrete hypothetical (the `@<…>` reference-act IR, `$DOCUMENT`, LUSS, the type-algebra connection) — wet clay, nothing cemented; Part II rows are its homes-in-waiting |
+| [`terms/`](terms/) | The embedded lexicon — one `.term.un` entry per term (template: verisectorium/template/TERM.term.un; D10), fed by the definition segments; `.archive/` holds the founding `.md` entries |
+| [`hypothetical-sketch.md`](hypothetical-sketch.md) | The concrete hypothetical (the `@<…>` reference-act IR, `$DOCUMENT`, DON (the store spec, ex-LUSS), the type-algebra connection) — wet clay, nothing cemented; Part II rows are its homes-in-waiting |
 | [`ra-feature-matrix.md`](ra-feature-matrix.md) | The five-column instrument: theory features → usecase → syntax-free RA parts → SQL+alg-types → udon spelling; dependency left→right |
 | [`DECISIONS.md`](DECISIONS.md) | Thin present-truth ledger of ratified calls (`decided-by`-marked) · [`CHANGELOG.md`](CHANGELOG.md) is the history layer |
 | [`INFLUX/`](INFLUX/) | Drop-box + set-aside material — consultable, not authoritative; `.integrated/` holds dispatched sources |

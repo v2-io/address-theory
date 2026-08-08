@@ -21,7 +21,7 @@ A reference act carries an expected cardinality that gives a miss its meaning; r
 - Under expect-**any-number** ({0,N}), zero is an *answer*: empty set.
 - Under expect-**at-least-one** ({1,N}), only zero is a failure.
 
-Same descriptors, same world, four different meanings of the same result — the bound is what disambiguates. Designators default to {1,1}; descriptions have no natural default, which is why unstated bounds on descriptions are where surprises live — the wikilink stem-collision is an unstated-{1,1} violated.
+Same descriptors, same world, four different meanings of the same result — the bound is what disambiguates. Designators default to {1,1}; descriptions have no natural default, which is why unstated bounds on descriptions are where surprises live — an *unpoliced* stem-match is the mass case (under a maintained stem-uniqueness discipline the {1,1} is stated by the convention itself; see [[def-descriptors]]).
 
 *[Definition (double-bound)]* There are really **two bounds with different jobs**, usually conflated: the *operational* bound (how many the act will touch — "change the first," "take them all") and the *epistemic* bound (how many the actor believes exist — "I expect no more than three, or I've grossly misunderstood the data"). Divergence from the operational bound is failure; divergence from the epistemic bound is *information* — ideally a dialogue ("several exceed three — proceed anyway?"), not a binary error. Recorded epistemic bounds are also calibration data for free: what actors believed about the corpus, checked against reality at every act.
 
@@ -48,4 +48,4 @@ Terms defined here: [[term/expected-cardinality]], [[term/operational-bound]], [
 
 ## Working Notes
 
-- Open on the sixth obligation: what "attest is complete" means per perspective kind (a store with a declared membrane can attest; a glob over a live directory arguably cannot) — the attestation mechanics belong with the LUSS/engine design, not here.
+- Open on the sixth obligation: what "attest is complete" means per perspective kind (a store with a declared membrane can attest; a glob over a live directory arguably cannot) — the attestation mechanics belong with the DON/engine design, not here.

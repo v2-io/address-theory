@@ -47,10 +47,35 @@
 **decided-by:** ratified · **date:** 2026-08-07 · **cite:** formalisms survey §8 + addendum; founding-coord note ("adopt or decline, don't let them drift")
 
 ## D7 — engine obligation adopted: zero only from a completed perspective
-**Holds:** an engine answers "empty set" only from a perspective it can attest complete; otherwise the distinct outcome **found-none-so-far**. Sixth engine obligation in [[def-cardinality-and-resolution]]; attestation mechanics deferred to LUSS/engine design (segment WN).  
+**Holds:** an engine answers "empty set" only from a perspective it can attest complete; otherwise the distinct outcome **found-none-so-far**. Sixth engine obligation in [[def-cardinality-and-resolution]]; attestation mechanics deferred to DON/engine design (segment WN).  
 **Why:** a premature zero is not an answer to the question asked, and mis-teaches through the miss channel; warranted by the Fetch Assumption's own logic (the Kahn connection is corroborating dress, [recall]).  
 **decided-by:** ratified · **date:** 2026-08-07 · **cite:** formalisms survey §3 + finding 5
 
+## D8 — wikilink stems reclassified: designators by binding, not descriptions by spelling
+**Holds:** a wikilink stem under a maintained stem-uniqueness discipline is a natural-key designator (collision = loud, mint-time-detectable fork); the description-like behavior is the *unpoliced degenerate case*. Descriptor kind is determined by whether anyone keeps the binding, never by the spelling. Wikilink examples in [[def-descriptors]], [[def-cardinality-and-resolution]], [[obs-address-components]] re-classified accordingly.  
+**Why:** the split carried in an agent-synthesis straw-man ("a description wearing a designator's clothes") that inverted the steward's model — the stem *is* the entity's natural-key identity, which is what makes forks visible. Standing steward skepticism recorded alongside (def-descriptors WN): "silent re-satisfaction" as a concept may itself be state-based cruft an event-sourced foundation dissolves — adjudication deferred to the temporal-dynamics work.  
+**decided-by:** supported · **date:** 2026-08-07 · **cite:** in-session steward pushback + ratification ("go ahead and make them as supported")
+
+## D9 — the store spec is named DON (ex-LUSS)
+**Holds:** the udon store spec (fluxes, layout-as-mechanisms, pipeline, schema/dialect bindings, decider of resolution moments) is named **DON**, from donburi (丼, the serving bowl). Slug `form-luss` → `form-don`. History layers keep "LUSS" verbatim; present-truth surfaces carry DON with an ex-LUSS marker at first mention per file.  
+**Why:** steward called for the rename ("something potentially japanese… cooked-udon… or udon-store"); donburi won on the standalone-citability test — one syllable in use, bowl = store (the corpus already speaks in bowl-vocabulary, O16), udon-served-in-a-don as free mnemonic. *kama* and *nabe* were considered and set aside for Japanese slang baggage (okama/onabe).  
+**decided-by:** steward · **date:** 2026-08-08 · **cite:** in-session (coord candidates + recommendation; steward selection)
+
+## D10 — .term.un replaces .md as the term-entry format
+**Holds:** `terms/*.term.un` (instantiations of `verisectorium/template/TERM.term.un`) are the entries of record; the founding `.md` entries are archived at `terms/.archive/`. `bin/refresh-lexicon` reads `.term.un`; `bin/terminology-diagrams` derives Euler/relation views from its `|set-rel`/`|rel` graph.  
+**Why:** the `.md` entries carried only slug + defined-by + paraphrase — "missing everything that makes it useful" (steward); the template (from the verisectorium terminology survey) adds designations-with-status, formal/set expressions, duals, boundaries, markers, and the Euler-derivable set-relation substrate.  
+**decided-by:** steward · **date:** 2026-08-08 · **cite:** in-session ("we should replace the .md terms completely"); fork report + template feedback in verisectorium theory sop/INFLUX
+
+## D11 — "universal location" re-carved as UNIVERSAL PATH (syn. absolute path); origin/destination minted
+**Holds:** the concept formerly designated UNIVERSAL LOCATION attaches to **path**, not location: a **UNIVERSAL PATH** is a path whose origin is universal — within a bounded resolution context it routes to its destination from any origin (synonym: absolute path). A path has exactly one origin (one of explicit | implicit | universal) and one destination; `origin` and `destination` are minted as terms ("yes unless there is something better"). Canon updated in [[def-locations-and-paths]] (+ cross-refs in [[claim-sequence-causes]], [[obs-address-components]]); the promise-table knock-on (canonical/preferred defined via "universal location") is flagged in [[def-entities-values-promises]] WN, not yet adjudicated.  
+**Why:** the old designation itself committed the path/location conflation the segment diagnoses — universality (origin-independence) is a property of the route, never of the place reached. Steward: "It's not a universal location — it's a kind of path." The tell that surfaced it: "from any origin" — *from* is path-vocabulary.  
+**decided-by:** steward · **date:** 2026-08-08 · **cite:** in-session (ERD-review dialogue; coord's comprehension probe answer carrying the tell)
+
+## D12 — location re-carved: a containment description built from a container designator
+**Holds:** a LOCATION is a **containment predicate over a designated container** — the containment coordinate (the container's name) is a designator; the location (the contained-in claim) is a **description**, so `location ⊂ description` and `containment-coordinate ⊂ designator`, and def-descriptors' partition holds without a third arm. Its distinguishing marks vs free predicates: subset-semantics composability, delegable resolution (the owned description), partial policing. Standing alone a location is a **scope** (candidate mint); origin/destination/intermediate are *roles* locations fill. Companion derived result: **descriptor-kind is per-act** (resolution is recursive; every chain bottoms out in designators).  
+**Why:** D11 removed universality from location and exposed the seating question; the steward pressed it ("is it just a synonym for descriptor?") and ratified the carve ("that sounds about right"). The per-act relativity resolves the steward's three-cluster mental model honestly — the clusters are altitudes sharing designators as atoms, a theorem rather than a leak.  
+**decided-by:** ratified · **date:** 2026-08-08 · **cite:** in-session dialogue (coord carve + steward ratification)
+
 ## Overturns
 
-*(none yet)*
+*(none yet — D11 re-carves a designation; the concept and its explanatory claims stand)*
