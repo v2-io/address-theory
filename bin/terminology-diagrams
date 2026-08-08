@@ -1,0 +1,209 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# bin/terminology-diagrams — derive diagrams from the terms/*.term.un graph.
+#
+# WHY THIS EXISTS. The .term.un template carries |set-rel edges with a closed
+# kind-set (subset-of / partitions / disjoint-from / overlaps / equals)
+# precisely so that Euler diagrams are DERIVABLE by tooling instead of
+# hand-drawn, and |rel edges (open kinds, incl. part-of — mereology, kept OUT
+# of the Euler substrate on purpose) so relation views come free. This script
+# is the first consumer of that design.
+#
+# OUTPUTS (to terms/diagrams/; all GENERATED — do not hand-edit):
+#   euler.dot       — set-containment as nested graphviz clusters. Honest
+#                     limits stated in the file: dot clusters cannot draw a
+#                     true partial overlap, so `overlaps` renders as a dashed
+#                     annotated edge; pairwise-disjointness is implied by
+#                     sibling clusters and stated in a comment.
+#   relations.dot   — ERD-style typed-edge view over |rel + :dual-of +
+#                     partitions, glosses as tooltips.
+#   relations.mmd   — the same relation view as mermaid (renders in Obsidian/
+#                     GitHub with zero setup; the dot files want `dot -Tsvg`).
+#
+# USAGE
+#   terminology-diagrams [--check] [--root DIR]
+#   --check: regenerate in memory, exit 1 if the files on disk are stale.
+#
+# PARSING NOTE. Line-based harvester over the .term.un shape, NOT a conformant
+# udon parser; its behavior is a fact about this script, never the language.
+# Deleted when a real parser lands (same disposition as refresh-lexicon's).
+
+require "optparse"
+require "pathname"
+
+opts = { check: false, root: nil }
+OptionParser.new do |o|
+  o.banner = "usage: terminology-diagrams [--check] [--root DIR]"
+  o.on("--check") { opts[:check] = true }
+  o.on("--root DIR") { |v| opts[:root] = v }
+  o.on("-h", "--help") { puts o; exit 0 }
+end.parse!(ARGV)
+
+root = Pathname.new(opts[:root] || Dir.pwd).expand_path
+root = root.parent while !root.join("terms").directory? && root != root.parent
+abort "terminology-diagrams: no terms/ dir found upward of #{opts[:root] || Dir.pwd}" unless root.join("terms").directory?
+terms_dir = root.join("terms")
+
+Term = Struct.new(:slug, :gloss, :dual_of, :set_rels, :rels, keyword_init: true)
+
+def parse_term(path)
+  slug = nil
+  gloss = ""
+  dual = nil
+  set_rels = [] # {kind:, to: | into: []}
+  rels = []     # {kind:, to:, card:}
+  path.read.each_line do |line|
+    s = line.rstrip
+    next if s.strip.start_with?(";")
+    slug ||= s[/\A\|term\[([a-z0-9-]+)\]/, 1]
+    gloss = s[/\A\s+:gloss\s+(.*)\z/, 1] || gloss
+    dual ||= s[/\A\s+:dual-of\s+@([a-z0-9-]+)/, 1]
+    if (m = s.match(/\A\s+\|set-rel\s+:kind\s+(\S+)\s+:(?:to\s+@([a-z0-9-]+)|into\s+\[([^\]]*)\])/))
+      if m[3]
+        set_rels << { kind: m[1], into: m[3].scan(/@([a-z0-9-]+)/).flatten }
+      else
+        set_rels << { kind: m[1], to: m[2] }
+      end
+    elsif (m = s.match(/\A\s+\|rel\s+:kind\s+(\S+)\s+:to\s+@([a-z0-9-]+)(?:\s+:card\s+(\S+))?/))
+      rels << { kind: m[1], to: m[2], card: m[3] }
+    end
+  end
+  return nil unless slug
+  Term.new(slug: slug, gloss: gloss, dual_of: dual, set_rels: set_rels, rels: rels)
+end
+
+terms = terms_dir.glob("*.term.un")
+                 .reject { |p| p.basename.to_s == "TERM.term.un" }
+                 .sort.filter_map { |p| parse_term(p) }
+by_slug = terms.to_h { |t| [t.slug, t] }
+
+# ── Euler substrate ──────────────────────────────────────────────────────────
+# subset-of + partitions build the containment forest; overlaps/disjoint-from
+# are annotations. part-of (a |rel kind) deliberately never appears here.
+children = Hash.new { |h, k| h[k] = [] }
+overlaps = []
+disjoints = []
+terms.each do |t|
+  t.set_rels.each do |r|
+    case r[:kind]
+    when "subset-of"      then children[r[:to]] << t.slug
+    when "partitions"     then r[:into].each { |c| children[t.slug] << c unless children[t.slug].include?(c) }
+    when "overlaps"       then overlaps << [t.slug, r[:to]].sort
+    when "disjoint-from"  then disjoints << [t.slug, r[:to]].sort
+    end
+  end
+end
+children.each_value(&:uniq!)
+overlaps.uniq!
+disjoints.uniq!
+all_contained = children.values.flatten.uniq
+roots = (children.keys - all_contained) + (terms.map(&:slug) - children.keys - all_contained)
+
+def dot_label(slug) = slug.gsub("-", '\n')
+
+def emit_cluster(out, slug, children, by_slug, depth, seen)
+  ind = "  " * depth
+  if seen.include?(slug) # cycle guard: a cycle in subset-of is a data bug, reported not crashed
+    out << "#{ind}// CYCLE at #{slug} — subset-of cycles are equals-in-disguise; fix the data\n"
+    return
+  end
+  seen = seen + [slug]
+  kids = children[slug]
+  if kids.empty?
+    tip = by_slug[slug]&.gloss.to_s.gsub('"', "'")
+    out << "#{ind}\"#{slug}\" [label=\"#{dot_label(slug)}\", tooltip=\"#{tip}\"];\n"
+  else
+    out << "#{ind}subgraph \"cluster_#{slug}\" {\n"
+    out << "#{ind}  label=\"#{slug}\"; fontname=\"Helvetica\"; style=rounded;\n"
+    # A term with subset-children still needs its own anchor node for edges:
+    out << "#{ind}  \"#{slug}\" [label=\"#{dot_label(slug)}\", shape=plaintext, fontsize=9];\n"
+    kids.sort.each { |k| emit_cluster(out, k, children, by_slug, depth + 1, seen) }
+    out << "#{ind}}\n"
+  end
+end
+
+euler = +""
+euler << "// euler.dot — GENERATED by bin/terminology-diagrams; do not hand-edit.\n"
+euler << "// Set containment from |set-rel subset-of/partitions edges only\n"
+euler << "// (part-of is mereology and lives in relations.dot, never here).\n"
+euler << "// LIMITS, honestly: dot nesting cannot draw a true partial overlap —\n"
+euler << "// `overlaps` pairs render as dashed edges labeled ∩≠∅; sibling clusters\n"
+euler << "// under a partition are pairwise disjoint by that partition's claim.\n"
+euler << "// Render: dot -Tsvg euler.dot -o euler.svg\n"
+euler << "digraph euler {\n  compound=true; rankdir=TB; fontname=\"Helvetica\";\n"
+euler << "  node [fontname=\"Helvetica\", shape=box, style=rounded];\n"
+roots.sort.each { |r| emit_cluster(euler, r, children, by_slug, 1, []) }
+overlaps.each do |a, b|
+  euler << "  \"#{a}\" -> \"#{b}\" [dir=none, style=dashed, label=\"∩ ≠ ∅\", fontsize=9, constraint=false];\n"
+end
+disjoints.reject { |a, b| # a disjointness already implied by a partition needs no ink
+  children.any? { |_, kids| kids.include?(a) && kids.include?(b) }
+}.each do |a, b|
+  euler << "  \"#{a}\" -> \"#{b}\" [dir=none, style=dotted, label=\"∩ = ∅\", fontsize=9, constraint=false];\n"
+end
+euler << "}\n"
+
+# ── Relation view (ERD-style) ────────────────────────────────────────────────
+rel_dot = +""
+rel_dot << "// relations.dot — GENERATED by bin/terminology-diagrams; do not hand-edit.\n"
+rel_dot << "// Typed |rel edges + :dual-of pair-bindings + partition membership.\n"
+rel_dot << "// Render: dot -Tsvg relations.dot -o relations.svg\n"
+rel_dot << "digraph relations {\n  rankdir=LR; fontname=\"Helvetica\";\n"
+rel_dot << "  node [fontname=\"Helvetica\", shape=box, style=rounded];\n"
+terms.each do |t|
+  tip = t.gloss.gsub('"', "'")
+  rel_dot << "  \"#{t.slug}\" [tooltip=\"#{tip}\"];\n"
+end
+duals_done = []
+terms.each do |t|
+  t.rels.each do |r|
+    card = r[:card] ? " (#{r[:card]})" : ""
+    rel_dot << "  \"#{t.slug}\" -> \"#{r[:to]}\" [label=\"#{r[:kind]}#{card}\", fontsize=9];\n"
+  end
+  if t.dual_of && !duals_done.include?([t.slug, t.dual_of].sort)
+    rel_dot << "  \"#{t.slug}\" -> \"#{t.dual_of}\" [dir=both, style=bold, label=\"dual\", fontsize=9, color=\"#666666\"];\n"
+    duals_done << [t.slug, t.dual_of].sort
+  end
+end
+rel_dot << "}\n"
+
+mmd = +""
+mmd << "%% relations.mmd — GENERATED by bin/terminology-diagrams; do not hand-edit.\n"
+mmd << "%% The relation view as mermaid (renders in Obsidian/GitHub, zero setup).\n"
+mmd << "flowchart LR\n"
+terms.each { |t| mmd << "  #{t.slug.tr('-', '_')}[\"#{t.slug}\"]\n" }
+duals_done = []
+terms.each do |t|
+  t.rels.each do |r|
+    mmd << "  #{t.slug.tr('-', '_')} -->|#{r[:kind]}#{r[:card] ? " #{r[:card]}" : ''}| #{r[:to].tr('-', '_')}\n"
+  end
+  if t.dual_of && !duals_done.include?([t.slug, t.dual_of].sort)
+    mmd << "  #{t.slug.tr('-', '_')} <-->|dual| #{t.dual_of.tr('-', '_')}\n"
+    duals_done << [t.slug, t.dual_of].sort
+  end
+end
+
+# ── Write / check ────────────────────────────────────────────────────────────
+out_dir = terms_dir.join("diagrams")
+files = { "euler.dot" => euler, "relations.dot" => rel_dot, "relations.mmd" => mmd }
+
+if opts[:check]
+  stale = files.reject { |name, content| out_dir.join(name).exist? && out_dir.join(name).read == content }.keys
+  if stale.empty?
+    warn "terminology-diagrams: #{terms.size} terms — diagrams current."
+    exit 0
+  else
+    warn "terminology-diagrams: stale (#{stale.join(', ')}) — run without --check to regenerate."
+    exit 1
+  end
+end
+
+out_dir.mkpath
+files.each do |name, content|
+  path = out_dir.join(name)
+  next if path.exist? && path.read == content
+  path.write(content)
+  warn "terminology-diagrams: wrote #{path.relative_path_from(root)}"
+end
+warn "terminology-diagrams: #{terms.size} terms, #{children.values.flatten.size} containments, #{overlaps.size} overlaps."

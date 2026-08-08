@@ -1,0 +1,500 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# bin/refresh-lexicon — the lexicon instrument for a verisectorium instance.
+#
+# WHAT IT IS
+#   An M₀/M₁ instrument (verisectorium `form-instrumenta-invocation`): it OBSERVES
+#   segments and term entries and reports (M₀), and it REGENERATES one derived
+#   artifact idempotently (M₁ — LEXICON.un). It never edits `src/` or `terms/`.
+#
+# WHY IT IS GENERIC
+#   It is written to move to the verisectorium theory instance and serve every
+#   instance, so everything instance-specific is discovered or flagged, never
+#   hardcoded: the instance root is found by layout, the lexicon dir may be
+#   `terms/` or `lexicon/`, and the instance name comes from the directory.
+#
+# THE TWO JOBS
+#   1. RENDER   — assemble `LEXICON.un` from the term entries + the definition
+#                 spans they project from. A generated view in the sense of
+#                 verisectorium `form-generated-views`: declared as derived,
+#                 clobber-guarded, never hand-edited.
+#   2. CHECK    — report where the corpus and its vocabulary have drifted apart.
+#                 Located (`file:line`) and actionable, one line each, grouped by
+#                 code. `--check` renders nothing and exits 1 if anything fired.
+#
+# THE CONVENTIONS IT ASSUMES (all proposed, none ratified — see
+# `sop/INFLUX/lexicon-tooling-recommendation-2026-08-07.md` for the argument,
+# the alternatives, and what a steward ruling would change)
+#
+#   Term marking       `[[term/<slug>]]` or `[[term/<slug>|surface words]]`
+#                      (verisectorium `form-lexicon-realization`; `#instance/term/x`
+#                      cross-member is recognized but not required here).
+#   First-encounter    A defined term should be term-marked at its FIRST occurrence
+#                      in a segment body; later occurrences are free prose.
+#   Definition anchor  `*[Definition (<anchor>)]*` opens the span a term entry
+#                      projects from (D5). Gloss anchors — `*[Gloss (<anchor>)]*` —
+#                      are recognized as pedagogical introductions, never as the
+#                      definition (the recommendation's core proposal).
+#   Frontmatter arrays on a segment:
+#                      terms-required:  definitions the segment genuinely builds on
+#                      terms-relevant:  useful / pedagogical mentions, not prerequisites
+#                      terms-informal:  appear in the body without definitional
+#                                       structure on purpose — silences the warning
+#   Frontmatter on a term entry:
+#                      term:, defined-by: (segment slug), anchor: (optional; inferred
+#                      when absent), aliases:, glossed-by:
+#
+# EXIT / USAGE
+#   refresh-lexicon [--check] [--root DIR] [--out FILE] [--only CODE,CODE]
+#                   [--strict-prose] [--quiet] [--force]
+#   exit 0 clean · 1 findings under --check (or --strict) · 2 usage/IO error
+#
+# Permissive extractor, strict reporter (the asf `bin/term` discipline): loading
+# never aborts on a malformed entry — it renders what is there and reports the
+# problem, so the instrument works while the corpus is mid-edit.
+
+require "yaml"
+require "optparse"
+require "pathname"
+require "time"
+
+GENERATED_MARKER = "GENERATED VIEW"
+
+# ---------------------------------------------------------------- options ----
+
+opts = {
+  root: nil, out: nil, check: false, only: nil,
+  strict_prose: false, quiet: false, force: false, strict: false
+}
+
+parser = OptionParser.new do |o|
+  o.banner = "usage: refresh-lexicon [options]"
+  o.on("--check", "report only; write nothing; exit 1 on findings") { opts[:check] = true }
+  o.on("--strict", "exit 1 on findings even when rendering") { opts[:strict] = true }
+  o.on("--root DIR", "instance root (default: discovered from cwd)") { |v| opts[:root] = v }
+  o.on("--out FILE", "output path (default: <root>/LEXICON.un)") { |v| opts[:out] = v }
+  o.on("--only CODES", "comma-separated finding codes to report") { |v| opts[:only] = v.split(",").map(&:strip) }
+  o.on("--strict-prose", "also flag lowercase prose mentions (noisy by design)") { opts[:strict_prose] = true }
+  o.on("--quiet", "render silently; findings suppressed") { opts[:quiet] = true }
+  o.on("--force", "overwrite an output file that lacks the generated marker") { opts[:force] = true }
+  o.on("-h", "--help") { puts o; exit 0 }
+end
+parser.parse!(ARGV)
+
+# ------------------------------------------------------------- discovery ----
+
+def instance_root(start)
+  dir = Pathname.new(start).expand_path
+  dir.ascend do |d|
+    return d if d.join("src").directory? && (d.join("terms").directory? || d.join("lexicon").directory?)
+  end
+  nil
+end
+
+root = opts[:root] ? Pathname.new(opts[:root]).expand_path : instance_root(Dir.pwd)
+unless root && root.directory?
+  warn "refresh-lexicon: no verisectorium instance found (need <root>/src/ and <root>/terms|lexicon/)."
+  warn "  pass --root DIR if the layout differs; that divergence is worth reporting to the theory instance."
+  exit 2
+end
+
+terms_dir = root.join("terms").directory? ? root.join("terms") : root.join("lexicon")
+src_dir   = root.join("src")
+out_path  = Pathname.new(opts[:out] || root.join("LEXICON.un"))
+instance  = root.basename.to_s
+
+# ---------------------------------------------------------------- loading ----
+
+Doc = Struct.new(:path, :front, :body, :body_offset, :lines, keyword_init: true) do
+  def slug = front["slug"] || front["term"] || path.basename(".md").to_s
+
+  # 1-based line number in the FILE for a 0-based index into body lines.
+  def file_line(body_idx) = body_offset + body_idx + 1
+
+  def rel(root) = path.relative_path_from(root).to_s
+end
+
+def load_doc(path)
+  raw = path.read
+  front, body, offset = {}, raw, 0
+  if raw.start_with?("---\n") && (m = raw.match(/\A---\n(.*?)\n---\n/m))
+    begin
+      front = YAML.safe_load(m[1], permitted_classes: [Date]) || {}
+    rescue StandardError
+      front = { "__unparsable_frontmatter" => true }
+    end
+    body = raw[m[0].length..] || ""
+    offset = m[0].count("\n")
+  end
+  Doc.new(path: path, front: front, body: body, body_offset: offset, lines: body.lines)
+end
+
+# .term.un entries — the entry format of record since 2026-08-08 (steward call;
+# .md entries archived to terms/.archive/). This is a minimal line-based
+# harvester, NOT a conformant udon parser: it reads only the fields this
+# instrument consumes, and its behavior is a fact about this script, never
+# about the language. When a real parser lands, this function is deleted.
+def load_term_un(path)
+  slug = nil
+  front = {}
+  deftext = []
+  aliases = []
+  section = nil
+  desig = nil
+  path.read.each_line do |line|
+    s = line.rstrip
+    next if s.strip.start_with?(";")
+    if (m = s.match(/\A\|term\[([a-z0-9-]+)\]/))
+      slug = m[1]
+      section = :term
+      next
+    end
+    if (m = s.match(/\A\s+\|designation\s+(\S+)/))
+      section = :designation
+      desig = m[1]
+      next
+    end
+    if s =~ /\A\s+\|definition\b/
+      section = :definition
+      next
+    end
+    if s =~ /\A\s+\|(formal|example|context-sentence|invariant|not|confused|collision|set-rel|rel|marker|failure-if-misused|note|open)\b/
+      section = :other
+      next
+    end
+    case section
+    when :definition
+      if (m = s.match(/\A\s+:defined-by\s+@?(\S+)/))
+        front["defined-by"] = m[1]
+      elsif (m = s.match(/\A\s+:anchor\s+(\S+)/))
+        front["anchor"] = m[1]
+      elsif s =~ /\A\s+:/
+        # :projection and friends — the render recomputes fidelity itself
+      elsif !s.strip.empty?
+        deftext << s.strip
+      end
+    when :designation
+      if (m = s.match(/\A\s+:status\s+(\S+)/)) && %w[admitted hidden].include?(m[1]) && desig != slug
+        aliases << desig
+      end
+    end
+  end
+  front["term"] = slug || path.basename(".term.un").to_s
+  front["aliases"] = aliases unless aliases.empty?
+  body = deftext.join(" ")
+  Doc.new(path: path, front: front, body: body, body_offset: 0, lines: body.lines)
+end
+
+md_terms = terms_dir.glob("*.md").sort.map { |p| load_doc(p) }
+un_terms = terms_dir.glob("*.term.un").sort
+                    .reject { |p| p.basename.to_s == "TERM.term.un" } # the template is not an entry
+                    .map { |p| load_term_un(p) }
+# .term.un wins on slug collision; .md tolerated only mid-transition.
+terms = (md_terms.reject { |t| un_terms.any? { |u| u.slug == t.slug } } + un_terms).sort_by(&:slug)
+segments = src_dir.glob("*.md").sort.map { |p| load_doc(p) }
+term_by_slug = terms.to_h { |t| [t.slug, t] }
+seg_by_slug  = segments.to_h { |s| [s.slug, s] }
+
+# ---------------------------------------------------------------- parsing ----
+
+FENCE = /\A\s*(```|~~~)/
+
+# Body lines with fenced blocks blanked out, so code never triggers prose checks.
+def prose_lines(doc)
+  inside = false
+  doc.lines.map do |l|
+    if l =~ FENCE
+      inside = !inside
+      ""
+    else
+      inside ? "" : l
+    end
+  end
+end
+
+ANCHOR_RE = /\*\[(Definition|Gloss|Formulation|Derived|Claim|Observation|Postulate)\s*\(([^)]*)\)\]\*/
+
+# Anchored spans in a segment: kind, anchor name, the paragraph text, line number.
+def anchors(doc)
+  out = []
+  prose_lines(doc).each_with_index do |line, i|
+    line.scan(ANCHOR_RE) do
+      kind, name = Regexp.last_match(1), Regexp.last_match(2)
+      text = line.sub(/\A.*?#{Regexp.escape("*[#{kind} (#{name})]*")}\s*/, "").strip
+      out << { kind: kind, name: name.strip, text: text, line: doc.file_line(i) }
+    end
+  end
+  out
+end
+
+TERMLINK_RE = /\[\[(?:#[a-z0-9-]+\/)?term\/([a-z0-9-]+)(?:\|([^\]]*))?\]\]/
+
+def term_links(doc)
+  found = []
+  prose_lines(doc).each_with_index do |line, i|
+    line.scan(TERMLINK_RE) { found << { slug: Regexp.last_match(1), line: doc.file_line(i) } }
+  end
+  found
+end
+
+# Surface forms a term is likely to be written as in prose. ALL-CAPS and bold
+# forms are the corpus's own definitional-emphasis convention, so they are the
+# high-signal, low-false-positive detector; plain lowercase words like "path"
+# or "description" are only checked under --strict-prose.
+def surface_forms(slug)
+  words = slug.tr("-", " ")
+  [words, slug.tr("-", " ").split.join("-")].uniq
+end
+
+def caps_mentions(doc, slug)
+  forms = surface_forms(slug).map { |f| Regexp.escape(f).gsub("\\ ", "[ -]") }
+  re = /(?<![\w-])(#{forms.join("|")})S?(?![\w-])/i
+  hits = []
+  prose_lines(doc).each_with_index do |line, i|
+    scrubbed = line.gsub(TERMLINK_RE, " ") # a marked mention is not an unmarked one
+    scrubbed.scan(re) do
+      m = Regexp.last_match(0)
+      caps = m == m.upcase && m =~ /[A-Z]/
+      hits << { line: doc.file_line(i), text: m, caps: caps, at: Regexp.last_match.begin(0) }
+    end
+  end
+  hits
+end
+
+def declared_terms(doc, key) = Array(doc.front[key]).map { |v| v.to_s.sub(%r{\A(?:\[\[)?term/}, "").sub(/\]\]\z/, "") }
+
+# ------------------------------------------------------------- the checks ----
+
+findings = []
+def note(findings, code, loc, msg) = findings << { code: code, loc: loc, msg: msg }
+
+# --- term-entry side -------------------------------------------------------
+
+projection = {} # slug => {state:, sentence:, anchor:, segment:}
+
+terms.each do |t|
+  loc = "#{t.rel(root)}"
+  note(findings, "frontmatter-unparsable", loc, "YAML frontmatter did not parse") if t.front["__unparsable_frontmatter"]
+
+  definer = t.front["defined-by"].to_s
+  if definer.empty?
+    note(findings, "term-undefined", loc, "no `defined-by:` — the entry names no definition atom to project from")
+    projection[t.slug] = { state: "unverified" }
+    next
+  end
+
+  seg = seg_by_slug[definer]
+  unless seg
+    note(findings, "term-dangling", loc, "`defined-by: #{definer}` names no segment in #{src_dir.basename}/ (a dangling designator)")
+    projection[t.slug] = { state: "unverified" }
+    next
+  end
+
+  spans = anchors(seg)
+  named = t.front["anchor"].to_s
+  span =
+    if !named.empty?
+      spans.find { |a| a[:name] == named } ||
+        (note(findings, "anchor-dangling", loc, "`anchor: #{named}` matches no `*[…(#{named})]*` span in #{seg.rel(root)}") && nil)
+    else
+      spans.find { |a| a[:kind] == "Definition" && a[:name] == t.slug } ||
+        spans.find { |a| a[:kind] == "Definition" && a[:text] =~ /\*\*#{Regexp.escape(t.slug.tr("-", " "))}S?\*\*/i } ||
+        spans.find { |a| a[:kind] == "Definition" && a[:text] =~ /(?<![\w-])#{Regexp.escape(t.slug.tr("-", " ")).gsub("\\ ", "[ -]")}S?(?![\w-])/i }
+    end
+
+  unless span
+    note(findings, "anchor-missing", loc,
+         "no definition span found in #{seg.rel(root)}; add `anchor:` here, or a `*[Definition (#{t.slug})]*` there (D5 projection cannot run without it)")
+    projection[t.slug] = { state: "unverified", segment: definer }
+    next
+  end
+
+  entry_body = t.body.sub(/\A\s*#[^\n]*\n/, "").strip.split(/\n\s*\n/).first.to_s.strip
+  # The projection's interim discipline (D5): the entry's definition sentence stays
+  # byte-identical to a sentence of the tagged span. Anything else is a paraphrase —
+  # honest to report, since the discipline is currently specified but unsatisfied.
+  span_plain  = span[:text].gsub(/\*+/, "")
+  entry_plain = entry_body.gsub(/\*+/, "")
+  identical   = !entry_plain.empty? && span_plain.include?(entry_plain)
+
+  unless identical
+    note(findings, "definition-drift", "#{loc}:1",
+         "entry text is a paraphrase, not a projection of #{seg.rel(root)}:#{span[:line]} `#{span[:name]}` (D5 interim discipline: byte-identical)")
+  end
+
+  projection[t.slug] = {
+    state: identical ? "byte-identical" : "paraphrase",
+    sentence: entry_body, span: span, segment: definer
+  }
+end
+
+# --- segment side ----------------------------------------------------------
+
+segments.each do |s|
+  loc = s.rel(root)
+  note(findings, "frontmatter-unparsable", loc, "YAML frontmatter did not parse") if s.front["__unparsable_frontmatter"]
+
+  required = declared_terms(s, "terms-required")
+  relevant = declared_terms(s, "terms-relevant")
+  informal = declared_terms(s, "terms-informal")
+  declared = required + relevant + informal
+
+  (declared - term_by_slug.keys).each do |unknown|
+    note(findings, "declared-unknown", loc, "frontmatter names `#{unknown}`, which has no entry in #{terms_dir.basename}/")
+  end
+  ((required & relevant) | (required & informal) | (relevant & informal)).uniq.each do |dup|
+    note(findings, "declared-twice", loc, "`#{dup}` appears in two of terms-required / terms-relevant / terms-informal — the arrays are meant to be a partition")
+  end
+
+  links = term_links(s)
+  links.each do |l|
+    unless term_by_slug.key?(l[:slug])
+      note(findings, "link-dangling", "#{loc}:#{l[:line]}", "`[[term/#{l[:slug]}]]` has no entry in #{terms_dir.basename}/")
+    end
+  end
+
+  # Terms this segment DEFINES are its own, not dependencies.
+  defines = terms.select { |t| t.front["defined-by"].to_s == s.slug }.map(&:slug)
+
+  linked = links.map { |l| l[:slug] }.uniq - defines
+  (linked - declared).each do |undeclared|
+    first = links.find { |l| l[:slug] == undeclared }
+    note(findings, "undeclared-dependency", "#{loc}:#{first[:line]}",
+         "term-marks `#{undeclared}` but declares it in none of terms-required / terms-relevant / terms-informal")
+  end
+  (declared - linked - defines).each do |unused|
+    note(findings, "declared-unused", loc, "declares `#{unused}` but the body never term-marks it (stale array entry, or a missing mark)")
+  end
+
+  # First-encounter rule: an unmarked mention BEFORE the first mark (or with no
+  # mark at all) is what the warning is for. Whitelisted by terms-informal.
+  all_hits = term_by_slug.keys.to_h { |slug| [slug, caps_mentions(s, slug)] }
+
+  term_by_slug.each_key do |slug|
+    next if defines.include?(slug) || informal.include?(slug)
+    hits = all_hits[slug]
+    hits = hits.select { |h| h[:caps] } unless opts[:strict_prose]
+    # A longer term covering the same text wins: "UNIVERSAL LOCATION" is not also
+    # an unmarked "LOCATION".
+    hits = hits.reject do |h|
+      all_hits.any? do |other, ohits|
+        next false if other == slug
+        ohits.any? do |o|
+          o[:text].length > h[:text].length && o[:line] == h[:line] &&
+            o[:at] <= h[:at] && h[:at] + h[:text].length <= o[:at] + o[:text].length
+        end
+      end
+    end
+    next if hits.empty?
+    first_mark = links.select { |l| l[:slug] == slug }.map { |l| l[:line] }.min
+    early = first_mark ? hits.select { |h| h[:line] < first_mark } : hits
+    next if early.empty?
+    h = early.first
+    note(findings, "unmarked-mention", "#{loc}:#{h[:line]}",
+         "`#{h[:text]}` is the defined term `#{slug}` in plain prose#{first_mark ? " before its first mark (line #{first_mark})" : ""} — mark it `[[term/#{slug}|#{h[:text]}]]`, or whitelist it in terms-informal")
+  end
+
+  # The hand-written "Terms defined here:" declaration vs the entries' back-pointers.
+  if (m = s.body[/^Terms defined here:.*$/])
+    listed = m.scan(TERMLINK_RE).map(&:first)
+    (defines - listed).each { |x| note(findings, "defines-unlisted", loc, "defines `#{x}` (per its entry) but the \"Terms defined here\" line omits it") }
+    (listed - defines).each { |x| note(findings, "defines-unbacked", loc, "\"Terms defined here\" lists `#{x}`, whose entry does not point back here") }
+  elsif !defines.empty?
+    note(findings, "defines-undeclared", loc, "defines #{defines.size} term(s) (#{defines.join(', ')}) with no \"Terms defined here\" line")
+  end
+end
+
+# --- orphans ---------------------------------------------------------------
+
+used = segments.flat_map { |s| term_links(s).map { |l| l[:slug] } }.uniq
+(term_by_slug.keys - used).each do |slug|
+  note(findings, "term-unused", term_by_slug[slug].rel(root), "no segment term-marks this entry (an entry nothing references is a candidate for retirement or a missing mark)")
+end
+
+# ----------------------------------------------------------------- render ----
+
+def udon_text(str)
+  # Prose lines are opaque to the core, but a line that OPENS with a marker at
+  # structure position would be recognized as structure. `\` is the one escape:
+  # "the rest is text" (CORE §; primer §3).
+  str.to_s.gsub(/\s+/, " ").strip.sub(/\A([|:!;@#\\])/, '\\\\\1')
+end
+
+def render(instance:, terms:, term_by_slug:, projection:, segments:, root:, terms_dir:)
+  used_by = Hash.new { |h, k| h[k] = [] }
+  segments.each do |s|
+    term_links(s).map { |l| l[:slug] }.uniq.each { |slug| used_by[slug] << s.slug }
+  end
+
+  out = +""
+  out << "; LEXICON.un — #{GENERATED_MARKER}. Do not hand-edit: run `bin/refresh-lexicon`.\n"
+  out << "; Assembled from #{terms_dir.basename}/*.term.un (the entry format of record, 2026-08-08)\n"
+  out << "; and the definition spans in src/ they project from (DECISIONS D5).\n"
+  out << "; Vanilla udon, transitional (.un). Verisectorium: generated views are\n"
+  out << "; declared as derived, clobber-guarded, and never authoritative over their sources.\n"
+  out << "\n"
+  out << "|lexicon[#{instance}] :generated <#{Time.now.strftime('%Y-%m-%d')}> :terms #{terms.size}\n"
+  out << "  :generated-by \"bin/refresh-lexicon\"\n"
+  out << "  :authority \"segments > this view; on divergence the segment wins\"\n\n"
+
+  terms.each do |t|
+    p = projection[t.slug] || {}
+    out << "  |term[#{t.slug}]"
+    out << " :defined-by @#{p[:segment]}" if p[:segment]
+    out << " :projection #{p[:state] || 'unverified'}\n"
+    if (span = p[:span])
+      out << "    :anchor #{span[:name]}\n"
+    end
+    Array(t.front["aliases"]).then { |a| out << "    :aliases [#{a.join(' ')}]\n" unless a.empty? }
+    Array(t.front["glossed-by"]).then { |g| g.each { |seg| out << "    :glossed-by @#{seg}\n" } }
+    unless used_by[t.slug].empty?
+      out << "    :used-by [#{used_by[t.slug].sort.join(' ')}]\n"
+    end
+    body = p[:sentence] || t.body.sub(/\A\s*#[^\n]*\n/, "").strip.split(/\n\s*\n/).first.to_s
+    out << "    #{udon_text(body)}\n" unless body.strip.empty?
+    out << "\n"
+  end
+  out
+end
+
+# ---------------------------------------------------------------- reporting --
+
+selected = opts[:only] ? findings.select { |f| opts[:only].include?(f[:code]) } : findings
+
+unless opts[:quiet]
+  if selected.empty?
+    warn "refresh-lexicon: #{terms.size} terms, #{segments.size} segments — no findings."
+  else
+    selected.group_by { |f| f[:code] }.sort_by { |c, g| [-g.size, c] }.each do |code, group|
+      warn ""
+      warn "#{code} (#{group.size})"
+      group.each { |f| warn "  #{f[:loc]}: #{f[:msg]}" }
+    end
+    warn ""
+    warn "#{selected.size} finding(s). Codes: #{selected.map { |f| f[:code] }.uniq.sort.join(', ')}"
+    warn "Conventions behind these checks are PROPOSED, not ratified — see sop/INFLUX/lexicon-tooling-recommendation-2026-08-07.md"
+  end
+end
+
+if opts[:check]
+  exit(selected.empty? ? 0 : 1)
+end
+
+if out_path.exist? && !out_path.read.include?(GENERATED_MARKER) && !opts[:force]
+  warn "refresh-lexicon: #{out_path} exists without the generated marker — refusing to clobber a hand-authored file (--force overrides)."
+  exit 2
+end
+
+content = render(instance: instance, terms: terms, term_by_slug: term_by_slug,
+                 projection: projection, segments: segments, root: root, terms_dir: terms_dir)
+if out_path.exist? && out_path.read == content
+  warn "refresh-lexicon: #{out_path.relative_path_from(root)} already current." unless opts[:quiet]
+else
+  tmp = out_path.sub_ext(".un.tmp-#{Process.pid}")
+  tmp.write(content)
+  File.rename(tmp.to_s, out_path.to_s) # atomic within a filesystem; multi-agent safe
+  warn "refresh-lexicon: wrote #{out_path.relative_path_from(root)} (#{terms.size} terms)." unless opts[:quiet]
+end
+
+exit(opts[:strict] && !selected.empty? ? 1 : 0)

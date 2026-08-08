@@ -1,0 +1,138 @@
+; LEXICON.un — GENERATED VIEW. Do not hand-edit: run `bin/refresh-lexicon`.
+; Assembled from terms/*.term.un (the entry format of record, 2026-08-08)
+; and the definition spans in src/ they project from (DECISIONS D5).
+; Vanilla udon, transitional (.un). Verisectorium: generated views are
+; declared as derived, clobber-guarded, and never authoritative over their sources.
+
+|lexicon[paths] :generated <2026-08-07> :terms 26
+  :generated-by "bin/refresh-lexicon"
+  :authority "segments > this view; on divergence the segment wins"
+
+  |term[canonical-location] :defined-by @def-entities-values-promises :projection paraphrase
+    :anchor the-four-promises
+    :used-by [def-entities-values-promises]
+    The preferred universal location, promised permanent. "This will keep resolving." A standing commitment by the naming authority — breaking it is a breach, not an event.
+
+  |term[containment-coordinate] :defined-by @def-locations-and-paths :projection paraphrase
+    :anchor identity-vs-location
+    :used-by [def-locations-and-paths]
+    Each location component is a designator for a container, arranged so that the containers nest; the family is powerful because containers can route.
+
+  |term[description] :defined-by @def-descriptors :projection paraphrase
+    :anchor descriptor-kinds
+    :used-by [def-descriptors]
+    A predicate the world satisfies: nothing was ever bound; the connection is re-computed, every time it is used, from whatever currently satisfies the predicate.
+
+  |term[descriptor] :defined-by @def-descriptors :projection paraphrase
+    :anchor descriptor-kinds
+    :used-by [def-descriptors]
+    Descriptors come in two kinds, distinguished by what connects the descriptor to its referent — an agreement, or a fact.
+
+  |term[designator] :defined-by @def-descriptors :projection paraphrase
+    :anchor descriptor-kinds
+    :aliases [rigid-designator]
+    :used-by [def-descriptors]
+    A minted name, bound to its referent by convention: someone bound the name to the thing, and that binding is the whole connection — the referent's own properties are irrelevant to it.
+
+  |term[entity] :defined-by @def-entities-values-promises :projection unverified
+    :used-by [def-entities-values-promises]
+    A thing whose identity is independent of its current description. It persists through change; because nothing in its content can testify to its identity, an entity's identity must be minted and maintained by convention.
+
+  |term[epistemic-bound] :defined-by @def-cardinality-and-resolution :projection paraphrase
+    :anchor double-bound
+    :used-by [def-cardinality-and-resolution]
+    The epistemic bound: how many the actor believes exist — "I expect no more than three, or I've grossly misunderstood the data." Divergence is information, ideally a dialogue, never a binary error.
+
+  |term[expected-cardinality] :defined-by @def-cardinality-and-resolution :projection paraphrase
+    :anchor expected-cardinality
+    :aliases [arity]
+    :used-by [def-cardinality-and-resolution]
+    A reference act carries — implicitly or explicitly — an expected cardinality: how many referents the actor means to pick out. Part of the act's type, knowable before any resolution, and what gives a miss its meaning.
+
+  |term[identity-component] :defined-by @def-locations-and-paths :projection paraphrase
+    :anchor identity-vs-location
+    :used-by [def-locations-and-paths]
+    Identity components are designators for the target itself; if identity is already unique enough, location is not required.
+
+  |term[intermediate-location] :defined-by @def-locations-and-paths :projection paraphrase
+    :anchor path
+    :used-by [def-locations-and-paths]
+    Intermediate steps of a path may themselves be intermediate locations; each is in charge of routing from there — only that item is expected to know how to route to the next.
+
+  |term[location] :defined-by @def-locations-and-paths :projection paraphrase
+    :anchor identity-vs-location
+    :used-by [def-locations-and-paths]
+    Location components are descriptors of a particular, powerful family — containment coordinates, each one a designator for a container, arranged so that the containers nest.
+
+  |term[naming-community] :defined-by @def-descriptors :projection paraphrase
+    :anchor descriptor-kinds
+    :used-by [def-descriptors]
+    The holder of a designator's meaning — a family, a filesystem, a registry — not the referent's properties.
+
+  |term[operational-bound] :defined-by @def-cardinality-and-resolution :projection paraphrase
+    :anchor double-bound
+    :used-by [def-cardinality-and-resolution]
+    The operational bound: how many the act will touch — "change the first," "take them all." Divergence from the operational bound is failure.
+
+  |term[over-determination] :defined-by @disc-fetch-and-overdetermination :projection unverified
+    Conjunction's second job: descriptors past the minimum needed to reach one referent are verification (co-referring disagreement is loud) and redundant routes (resolve by whichever the resolver's community knows).
+
+  |term[path] :defined-by @def-locations-and-paths :projection byte-identical
+    :anchor path
+    :used-by [def-locations-and-paths]
+    A PATH is one set of possibly many (so, not necessarily unique) monotonic steps between an origin LOCATION and a destination LOCATION.
+
+  |term[perspective] :defined-by @def-cardinality-and-resolution :projection paraphrase
+    :anchor engine-and-perspective
+    :used-by [def-cardinality-and-resolution]
+    What an engine resolves relative to: an origin, a scope, a moment, a policy about what counts as the world.
+
+  |term[preferred-location] :defined-by @def-entities-values-promises :projection paraphrase
+    :anchor the-four-promises
+    :used-by [def-entities-values-promises]
+    The currently best universal location, no permanence promised. May be superseded without breach.
+
+  |term[progressive-routing] :defined-by @def-locations-and-paths :projection paraphrase
+    :anchor progressive-routing
+    :used-by [def-locations-and-paths]
+    Paths are resolved progressively: each intermediate location is in charge of routing from there. Corollaries: re-binding one intermediate re-routes every path through it; a default at an intermediate is a routing choice; resolution as a whole is the composite of these per-hop responsibilities.
+
+  |term[reference-act] :defined-by @def-descriptors :projection paraphrase
+    :anchor reference-act
+    :used-by [def-descriptors]
+    A reference act supplies descriptors that narrow the world down to one intended referent.
+
+  |term[referent] :defined-by @def-descriptors :projection paraphrase
+    :anchor reference-act
+    :used-by [def-descriptors]
+    The intended target of a reference act; what the descriptors jointly narrow the world down to.
+
+  |term[resolution-engine] :defined-by @def-cardinality-and-resolution :projection paraphrase
+    :anchor engine-and-perspective
+    :aliases [engine]
+    :used-by [def-cardinality-and-resolution]
+    Resolution is not a property of the reference act — it is performed by a resolution engine relative to a perspective. The same act may legitimately resolve differently under different engines; someone must own each hop, and the engine is the composite owner.
+
+  |term[sequence-cause] :defined-by @claim-sequence-causes :projection paraphrase
+    :anchor sequence-causes
+    A sequence of components appears in an address for three different reasons — subset-sequence (nested conjunction wearing a path costume), resolver-sequence (truly imperative), compositional (foldable iff endpoint-only and associative) — and the imperative-vs-declarative character of a segment is a derived property of its cause.
+
+  |term[true-identity] :defined-by @def-entities-values-promises :projection paraphrase
+    :anchor the-four-promises
+    :used-by [def-entities-values-promises]
+    The designator that names the entity itself — whether or not anything can currently be fetched with it. "This names it." Held by the minting community; independent of routability.
+
+  |term[universal-location] :defined-by @def-locations-and-paths :projection paraphrase
+    :anchor universal-location
+    :used-by [def-locations-and-paths]
+    A LOCATION that, due to full specificity, can be used as an effective PATH from anywhere — its components progressively resolve from anywhere to the destination. Equivalently: a PATH with a UNIVERSAL ORIGIN.
+
+  |term[value-object] :defined-by @def-entities-values-promises :projection unverified
+    :used-by [def-entities-values-promises]
+    A thing that is its description. Two value objects with the same content are not similar — they are the same, and "which one" is a meaningless question. A "changed" value object is a different value object.
+
+  |term[working-path] :defined-by @def-entities-values-promises :projection paraphrase
+    :anchor the-four-promises
+    :used-by [def-entities-values-promises]
+    Whatever route works from here, now — often origin-relative, often abbreviated. No promise at all; a convenience of the current context, expected to expire with it.
+
