@@ -59,11 +59,11 @@ def parse_term(path)
     slug ||= s[/\A\|term\[([a-z0-9-]+)\]/, 1]
     gloss = s[/\A\s+:gloss\s+(.*)\z/, 1] || gloss
     dual ||= s[/\A\s+:dual-of\s+@([a-z0-9-]+)/, 1]
-    if (m = s.match(/\A\s+\|set-rel\s+:kind\s+(\S+)\s+:(?:to\s+@([a-z0-9-]+)|into\s+\[([^\]]*)\])/))
+    if (m = s.match(/\A\s+\|set-rel\s+:kind\s+(\S+)\s+:(?:to\s+@([a-z0-9-]+)|into\s+\[([^\]]*)\])(?:\s+:status\s+(\S+))?(?:\s+:cite\s+(\S+))?/))
       if m[3]
-        set_rels << { kind: m[1], into: m[3].scan(/@([a-z0-9-]+)/).flatten }
+        set_rels << { kind: m[1], into: m[3].scan(/@([a-z0-9-]+)/).flatten, status: m[4], cite: m[5] }
       else
-        set_rels << { kind: m[1], to: m[2] }
+        set_rels << { kind: m[1], to: m[2], status: m[4], cite: m[5] }
       end
     elsif (m = s.match(/\A\s+\|rel\s+:kind\s+(\S+)\s+:to\s+@([a-z0-9-]+)(?:\s+:card\s+(\S+))?(?:\s+:one-of\s+\[([^\]]*)\])?/))
       rels << { kind: m[1], to: m[2], card: m[3], one_of: m[4] }
@@ -84,8 +84,15 @@ by_slug = terms.to_h { |t| [t.slug, t] }
 children = Hash.new { |h, k| h[k] = [] }
 overlaps = []
 disjoints = []
+pending = [] # suspended-but-not-deleted set-rels (:status pending-adjudication):
+             # visible, cited, and deliberately NON-structural — a containment
+             # awaiting a steward ruling must not shape the clusters.
 terms.each do |t|
   t.set_rels.each do |r|
+    if r[:status] == "pending-adjudication"
+      pending << { from: t.slug, to: r[:to], kind: r[:kind], cite: r[:cite] }
+      next
+    end
     case r[:kind]
     when "subset-of"      then children[r[:to]] << t.slug
     when "partitions"     then r[:into].each { |c| children[t.slug] << c unless children[t.slug].include?(c) }
@@ -164,6 +171,17 @@ drawn_disjoints, listed_disjoints = disjoints.reject { |a, b|
 drawn_disjoints.each do |a, b|
   euler << annot.call(a, b, "dotted", "∩ = ∅")
 end
+pending.each do |pr|
+  lbl = "#{pr[:kind] == 'subset-of' ? '⊂' : pr[:kind]}? pending#{pr[:cite] ? " (#{pr[:cite]})" : ''}"
+  # constraint stays ON for pending edges: the suspended containment may not
+  # nest its node, but it SHOULD place it near its would-be parent — the first
+  # render left canonical/preferred stranded a full canvas away from
+  # universal-path, which misreads as unrelatedness rather than suspension.
+  attrs = ["dir=none", "style=dashed", "color=\"#bb8800\"", "fontcolor=\"#bb8800\"", "label=\"#{lbl}\"", "fontsize=9", "decorate=true"]
+  attrs << "lhead=\"cluster_#{pr[:to]}\"" if children[pr[:to]].any?
+  attrs << "ltail=\"cluster_#{pr[:from]}\"" if children[pr[:from]].any?
+  euler << "  \"#{pr[:from]}\" -> \"#{pr[:to]}\" [#{attrs.join(', ')}];\n"
+end
 unless listed_disjoints.empty?
   rows = listed_disjoints.map { |a, b| "#{a} ∩ #{b} = ∅" }.join("\\l")
   euler << "  \"__disjoint_legend\" [shape=note, fontsize=9, label=\"disjoint (cross-cluster):\\l#{rows}\\l\"];\n"
@@ -191,7 +209,7 @@ set_edges = terms.flat_map do |t|
     end
   end
 end.uniq
-connected = (terms.flat_map { |t| t.rels.flat_map { |r| [t.slug, r[:to]] } + (t.dual_of ? [t.slug, t.dual_of] : []) } + set_edges.flatten).uniq
+connected = (terms.flat_map { |t| t.rels.flat_map { |r| [t.slug, r[:to]] } + (t.dual_of ? [t.slug, t.dual_of] : []) } + set_edges.flatten + pending.flat_map { |pr| [pr[:from], pr[:to]] }).uniq
 omitted = terms.map(&:slug) - connected
 rel_dot << "digraph relations {\n  rankdir=LR; fontname=\"Helvetica\";\n"
 rel_dot << "  node [fontname=\"Helvetica\", shape=box, style=rounded];\n"
@@ -215,6 +233,9 @@ end
 set_edges.each do |sub, sup|
   rel_dot << "  \"#{sub}\" -> \"#{sup}\" [label=\"⊂\", fontsize=9, color=\"#999999\", fontcolor=\"#999999\", arrowhead=onormal];\n"
 end
+pending.each do |pr|
+  rel_dot << "  \"#{pr[:from]}\" -> \"#{pr[:to]}\" [label=\"⊂? pending#{pr[:cite] ? " (#{pr[:cite]})" : ''}\", fontsize=9, style=dashed, color=\"#bb8800\", fontcolor=\"#bb8800\", arrowhead=onormal];\n"
+end
 rel_dot << "}\n"
 
 mmd = +""
@@ -224,6 +245,7 @@ mmd << "%% omitted (no typed relations; see euler.dot): #{omitted.sort.join(', '
 mmd << "flowchart LR\n"
 terms.select { |t| connected.include?(t.slug) }.each { |t| mmd << "  #{t.slug.tr('-', '_')}[\"#{t.slug}\"]\n" }
 set_edges.each { |sub, sup| mmd << "  #{sub.tr('-', '_')} -.->|#{'⊂'}| #{sup.tr('-', '_')}\n" }
+pending.each { |pr| mmd << "  #{pr[:from].tr('-', '_')} -.->|#{'⊂'}? pending#{pr[:cite] ? " #{pr[:cite]}" : ''}| #{pr[:to].tr('-', '_')}\n" }
 duals_done = []
 terms.each do |t|
   t.rels.each do |r|

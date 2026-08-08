@@ -1,0 +1,17 @@
+; minted 2026-08-08 (steward ratification, D11 session)
+|term[destination]
+  :status settled
+  :subject-field addressing
+  :layer framing-vocabulary
+  :gloss The location a path routes to — exactly one per path.
+  :dual-of @origin
+  |designation destination
+    :status preferred
+    :channel prose
+  |definition
+    :defined-by @def-locations-and-paths
+    :anchor path
+    :projection paraphrase
+    The destination location of a path — the location the monotonic steps arrive at.
+  |rel :kind part-of :to @path :card 1
+  |rel :kind filled-by :to @location :card 1

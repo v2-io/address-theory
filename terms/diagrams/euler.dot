@@ -8,6 +8,7 @@
 digraph euler {
   compound=true; rankdir=TB; fontname="Helvetica";
   node [fontname="Helvetica", shape=box, style=rounded];
+  "canonical-location" [label="canonical\nlocation", tooltip="The promise 'this will keep resolving' — breaking it is a breach, not an event."];
   subgraph "cluster_descriptor" {
     label="descriptor"; fontname="Helvetica"; style=rounded;
     "descriptor" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
@@ -22,26 +23,24 @@ digraph euler {
       label="location"; fontname="Helvetica"; style=rounded;
       "location" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
       "intermediate-location" [label="intermediate\nlocation", tooltip="A step along a path that is itself a location, owning the routing of its next hop."];
-      subgraph "cluster_universal-location" {
-        label="universal-location"; fontname="Helvetica"; style=rounded;
-        "universal-location" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
-        "canonical-location" [label="canonical\nlocation", tooltip="The promise 'this will keep resolving' — breaking it is a breach, not an event."];
-        "preferred-location" [label="preferred\nlocation", tooltip="The promise 'this resolves today, and it's the one we'd rather you use' — supersedable without breach."];
-      }
     }
   }
+  "destination" [label="destination", tooltip="The location a path routes to — exactly one per path."];
   "entity" [label="entity", tooltip="A thing whose identity is independent of its current description; persists through change."];
   "epistemic-bound" [label="epistemic\nbound", tooltip="How many the actor believes exist; divergence is dialogue, not failure — and recorded bounds are free calibration."];
   "expected-cardinality" [label="expected\ncardinality", tooltip="Part of the act's type: how many referents the actor means to pick out; gives a miss its meaning."];
   "naming-community" [label="naming\ncommunity", tooltip="Whoever maintains a designator's binding: a family, a filesystem, a registry, a store."];
   "operational-bound" [label="operational\nbound", tooltip="How many the act will touch; divergence is failure."];
+  "origin" [label="origin", tooltip="The location a path routes from — exactly one per path; its manner is one of explicit | implicit | universal."];
   "over-determination" [label="over\ndetermination", tooltip="Descriptors past the minimum are verification and redundant routes, not redundancy."];
   subgraph "cluster_path" {
     label="path"; fontname="Helvetica"; style=rounded;
     "path" [shape=point, style=invis, label="", width=0.01, height=0.01, fixedsize=true];
+    "universal-path" [label="universal\npath", tooltip="A path whose origin is universal — routable to the destination from any origin (within a bounded context); synonym: absolute path."];
     "working-path" [label="working\npath", tooltip="No promise at all: whatever route works from here, now; expected to expire with its context."];
   }
   "perspective" [label="perspective", tooltip="What an engine resolves relative to: an origin, a scope, a moment, a policy about what counts as the world."];
+  "preferred-location" [label="preferred\nlocation", tooltip="The promise 'this resolves today, and it's the one we'd rather you use' — supersedable without breach."];
   "progressive-routing" [label="progressive\nrouting", tooltip="Per-hop ownership of resolution; quietly generates most of the machinery."];
   "reference-act" [label="reference\nact", tooltip="The root act: descriptors supplied to narrow the world to an intended referent."];
   "referent" [label="referent", tooltip="The thing an act intends to pick out."];
@@ -50,6 +49,11 @@ digraph euler {
   "true-identity" [label="true\nidentity", tooltip="The promise 'this names IT' — held by the minting community, independent of routability."];
   "value-object" [label="value\nobject", tooltip="A thing that IS its description; cannot dangle, rename, or change."];
   "identity-component" -> "location" [dir=none, style=dashed, label="∩ ≠ ∅", fontsize=9, constraint=false, decorate=true, lhead="cluster_location"];
+  "canonical-location" -> "preferred-location" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false, decorate=true];
   "entity" -> "value-object" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false, decorate=true];
-  "__disjoint_legend" [shape=note, fontsize=9, label="disjoint (cross-cluster):\lcanonical-location ∩ true-identity = ∅\lpreferred-location ∩ true-identity = ∅\ltrue-identity ∩ working-path = ∅\l"];
+  "canonical-location" -> "true-identity" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false, decorate=true];
+  "preferred-location" -> "true-identity" [dir=none, style=dotted, label="∩ = ∅", fontsize=9, constraint=false, decorate=true];
+  "canonical-location" -> "universal-path" [dir=none, style=dashed, color="#bb8800", fontcolor="#bb8800", label="⊂? pending (D11)", fontsize=9, decorate=true];
+  "preferred-location" -> "universal-path" [dir=none, style=dashed, color="#bb8800", fontcolor="#bb8800", label="⊂? pending (D11)", fontsize=9, decorate=true];
+  "__disjoint_legend" [shape=note, fontsize=9, label="disjoint (cross-cluster):\ltrue-identity ∩ working-path = ∅\l"];
 }

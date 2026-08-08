@@ -21,4 +21,4 @@
   |rel :kind composed-of :to @containment-coordinate :card +
   |confused
     :with @path
-    A location describes where a thing sits; a path is steps between locations — they interchange safely only in the universal-location case.
+    A location describes where a thing sits; a path is steps between locations — they interchange safely only in the universal-path case (D11).

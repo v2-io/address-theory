@@ -7,6 +7,7 @@ flowchart LR
   description["description"]
   descriptor["descriptor"]
   designator["designator"]
+  destination["destination"]
   entity["entity"]
   epistemic_bound["epistemic-bound"]
   expected_cardinality["expected-cardinality"]
@@ -15,6 +16,7 @@ flowchart LR
   location["location"]
   naming_community["naming-community"]
   operational_bound["operational-bound"]
+  origin["origin"]
   over_determination["over-determination"]
   path["path"]
   perspective["perspective"]
@@ -24,23 +26,28 @@ flowchart LR
   referent["referent"]
   resolution_engine["resolution-engine"]
   sequence_cause["sequence-cause"]
-  universal_location["universal-location"]
+  universal_path["universal-path"]
   value_object["value-object"]
   working_path["working-path"]
-  canonical_location -.->|⊂| universal_location
+  canonical_location -.->|⊂| universal_path
   containment_coordinate -.->|⊂| designator
   description -.->|⊂| descriptor
   designator -.->|⊂| descriptor
   identity_component -.->|⊂| designator
   intermediate_location -.->|⊂| location
   location -.->|⊂| descriptor
-  preferred_location -.->|⊂| universal_location
-  universal_location -.->|⊂| location
+  preferred_location -.->|⊂| universal_path
+  universal_path -.->|⊂| path
   working_path -.->|⊂| path
+  canonical_location -.->|⊂? pending D11| universal_path
+  preferred_location -.->|⊂? pending D11| universal_path
   containment_coordinate -->|part-of| location
   description <-->|dual| designator
   descriptor -->|part-of| reference_act
   designator -->|held-by 1| naming_community
+  destination -->|part-of 1| path
+  destination -->|filled-by 1| location
+  destination <-->|dual| origin
   entity -->|identified-by| designator
   entity <-->|dual| value_object
   epistemic_bound -->|part-of| expected_cardinality
@@ -53,6 +60,8 @@ flowchart LR
   location -->|composed-of +| containment_coordinate
   naming_community -->|maintains *| designator
   operational_bound -->|part-of| expected_cardinality
+  origin -->|part-of 1| path
+  origin -->|filled-by 1| location
   over_determination -->|verifies| referent
   path -->|origin 1 (explicit|implicit|universal)| location
   path -->|destination 1| location

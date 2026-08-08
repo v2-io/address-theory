@@ -4,7 +4,7 @@
   :subject-field addressing
   :layer framing-vocabulary
   :gloss One set of monotonic steps between an origin location and a destination location.
-  :see-also [@sequence-cause @universal-location]
+  :see-also [@sequence-cause @universal-path]
   |designation path
     :status preferred
     :channel prose

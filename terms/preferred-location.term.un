@@ -13,4 +13,7 @@
     :anchor the-four-promises
     :projection paraphrase
     The currently best universal location, no permanence promised. May be superseded without breach.
-  |set-rel :kind subset-of :to @universal-location
+  ; Suspended, not deleted: under D11 the parent concept re-carved as
+  ; universal-path; whether the promise classes are now PATH-promises is
+  ; the expressly un-adjudicated knock-on (def-entities-values-promises WN).
+  |set-rel :kind subset-of :to @universal-path :status pending-adjudication :cite D11

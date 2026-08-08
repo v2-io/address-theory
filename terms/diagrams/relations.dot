@@ -10,6 +10,7 @@ digraph relations {
   "description" [tooltip="A predicate the world satisfies; picks out whatever currently satisfies it — plurality is a feature."];
   "descriptor" [tooltip="What an act supplies to narrow candidates; comes in exactly two kinds, split by what connects it to the referent."];
   "designator" [tooltip="A minted name bound by convention; fails by dangling or colliding."];
+  "destination" [tooltip="The location a path routes to — exactly one per path."];
   "entity" [tooltip="A thing whose identity is independent of its current description; persists through change."];
   "epistemic-bound" [tooltip="How many the actor believes exist; divergence is dialogue, not failure — and recorded bounds are free calibration."];
   "expected-cardinality" [tooltip="Part of the act's type: how many referents the actor means to pick out; gives a miss its meaning."];
@@ -18,6 +19,7 @@ digraph relations {
   "location" [tooltip="A containment-coordinate descriptor family; powerful because containers can route."];
   "naming-community" [tooltip="Whoever maintains a designator's binding: a family, a filesystem, a registry, a store."];
   "operational-bound" [tooltip="How many the act will touch; divergence is failure."];
+  "origin" [tooltip="The location a path routes from — exactly one per path; its manner is one of explicit | implicit | universal."];
   "over-determination" [tooltip="Descriptors past the minimum are verification and redundant routes, not redundancy."];
   "path" [tooltip="One set of monotonic steps between an origin location and a destination location."];
   "perspective" [tooltip="What an engine resolves relative to: an origin, a scope, a moment, a policy about what counts as the world."];
@@ -27,13 +29,16 @@ digraph relations {
   "referent" [tooltip="The thing an act intends to pick out."];
   "resolution-engine" [tooltip="What performs resolution, relative to a perspective; owes the actor six obligations."];
   "sequence-cause" [tooltip="Why order appears in an address at all: three causes, per-segment, and exactly what an engine may optimize."];
-  "universal-location" [tooltip="A location so fully specified it works as a path from anywhere."];
+  "universal-path" [tooltip="A path whose origin is universal — routable to the destination from any origin (within a bounded context); synonym: absolute path."];
   "value-object" [tooltip="A thing that IS its description; cannot dangle, rename, or change."];
   "working-path" [tooltip="No promise at all: whatever route works from here, now; expected to expire with its context."];
   "containment-coordinate" -> "location" [label="part-of", fontsize=9];
   "description" -> "designator" [dir=both, style=bold, label="dual", fontsize=9, color="#666666"];
   "descriptor" -> "reference-act" [label="part-of", fontsize=9];
   "designator" -> "naming-community" [label="held-by (1)", fontsize=9];
+  "destination" -> "path" [label="part-of (1)", fontsize=9];
+  "destination" -> "location" [label="filled-by (1)", fontsize=9];
+  "destination" -> "origin" [dir=both, style=bold, label="dual", fontsize=9, color="#666666"];
   "entity" -> "designator" [label="identified-by", fontsize=9];
   "entity" -> "value-object" [dir=both, style=bold, label="dual", fontsize=9, color="#666666"];
   "epistemic-bound" -> "expected-cardinality" [label="part-of", fontsize=9];
@@ -46,6 +51,8 @@ digraph relations {
   "location" -> "containment-coordinate" [label="composed-of (+)", fontsize=9];
   "naming-community" -> "designator" [label="maintains (*)", fontsize=9];
   "operational-bound" -> "expected-cardinality" [label="part-of", fontsize=9];
+  "origin" -> "path" [label="part-of (1)", fontsize=9];
+  "origin" -> "location" [label="filled-by (1)", fontsize=9];
   "over-determination" -> "referent" [label="verifies", fontsize=9];
   "path" -> "location" [label="origin (1)\nexplicit | implicit | universal", fontsize=9];
   "path" -> "location" [label="destination (1)", fontsize=9];
@@ -59,14 +66,16 @@ digraph relations {
   "resolution-engine" -> "reference-act" [label="resolves (*)", fontsize=9];
   "resolution-engine" -> "perspective" [label="relative-to (1)", fontsize=9];
   "sequence-cause" -> "path" [label="property-of", fontsize=9];
-  "canonical-location" -> "universal-location" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
+  "canonical-location" -> "universal-path" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "containment-coordinate" -> "designator" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "description" -> "descriptor" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "designator" -> "descriptor" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "identity-component" -> "designator" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "intermediate-location" -> "location" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "location" -> "descriptor" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
-  "preferred-location" -> "universal-location" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
-  "universal-location" -> "location" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
+  "preferred-location" -> "universal-path" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
+  "universal-path" -> "path" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
   "working-path" -> "path" [label="⊂", fontsize=9, color="#999999", fontcolor="#999999", arrowhead=onormal];
+  "canonical-location" -> "universal-path" [label="⊂? pending (D11)", fontsize=9, style=dashed, color="#bb8800", fontcolor="#bb8800", arrowhead=onormal];
+  "preferred-location" -> "universal-path" [label="⊂? pending (D11)", fontsize=9, style=dashed, color="#bb8800", fontcolor="#bb8800", arrowhead=onormal];
 }
