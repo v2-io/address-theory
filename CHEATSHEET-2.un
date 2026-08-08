@@ -1,0 +1,46 @@
+# CHEATSHEET-2.un
+The re-derivation — nailing the terms that are very unlikely to change (2026-08-08)
+
+**Register**: working sheet, steward-led re-derivation from the problem domain (supersedes CHEATSHEET.un's seating where they conflict; canon segments not yet touched). Rule in force: millennia of mapping/travel/search practice are the demand map for vocabulary — no coinages where an ancient word exists.
+
+**Conventions**: as CHEATSHEET.un (|t[NAME] · sameline gloss = :'$main' · quoted suffix keys ! ? + * · @[X] value refs, @{[X]} prose refs).
+
+## Nailed (steward, 2026-08-08)
+
+|t[LOCATION]  DESIGNATOR that has a parent LOCATION-scope and any number of inner sub-LOCATIONs. The DESIGNATOR is only unique in its parent's context.
+  *Acceptable*: PLACE, COORDINATES
+  |rel :'scoped-by!' @[LOCATION]              ; the parent (the root's parent is the community's world)
+       :'contains*'  @[LOCATION]
+
+|t[PATH]  Ordered set of steps between ORIGIN-LOCATION and DESTINATION-LOCATION.
+  *Acceptable*: ROUTE, CHECKPOINTS
+  *Usage note (marked as commitment, not definition)*: here we use the subset constructed so that the DESTINATION fully determines — or as closely as possible — the target ENTITY or VALUE-OBJECT.
+  |rel :'origin!'      @[LOCATION]
+       :'destination!' @[LOCATION]
+       :'step*'        @[LOCATION]
+
+|t[ADDRESS]  Progressively scoped LOCATIONs — usually so that the first step after the origin is discernible by which container is shared with the origin.
+  |rel :'step+' @[LOCATION]                   ; each scoped inside the previous
+
+|t[DIRECTIONS]  PATH that isn't an ADDRESS.
+  *Acceptable*: INSTRUCTIONS
+
+## Falls out free (derived, not stipulated)
+
+- **ADDRESS ⊂ PATH** — by DIRECTIONS' complement definition.
+- **Address uniqueness is compositional**: each step unique-in-its-parent (LOCATION's definition) ⟹ the whole chain unique from the shared container. Not a separate axiom.
+- **Relative and absolute are ONE definition**: absolute address = the case where the shared container is the community root ("/", "USA", the DNS root). No second concept needed.
+- **D8 transfers whole to LOCATION**: collision = two mints in one parent; dangle = the parent's community forgot. Scoped natural keys, as always practiced.
+- **The subset-sequence law lands home**: an address is declarative (order derivable from scoping, both designation-and-route at once); DIRECTIONS are the imperative remainder (resolver steps, offsets — origin-bound, order essential).
+
+## Un-minted by this sheet
+
+- **containment-coordinate** — LOCATION now holds that seat under its ancient name.
+- **universal-path** — likely absorbed: "absolute address" (shared container = community root). Pending confirmation.
+- **location-as-contained-in-predicate** (D12's seating) — the contents-of reading needs no term; "within X" is prose.
+
+## Coord flags (open, deliberately not resolved here)
+
+- **Endpoint vs occupant** (last round's result, still standing): an ADDRESS designates the endpoint uniquely; it reaches the referent only via what occupies it — the wrong-Joseph seam. Where identity components / IDENTIFIER sit relative to these four is the next nail.
+- **The promises** re-derive naturally against these (the-address-promised-permanent / current-best-address / directions-from-here / identifier) — not yet re-stated.
+- **REFERENCE / REFERENCE-ACT** (artifact/event — steward-ratified in dialogue) join once the four above settle.
