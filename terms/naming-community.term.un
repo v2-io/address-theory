@@ -17,6 +17,6 @@
     :reading A community is a uniqueness scope over its minted names (operationally: a unique constraint enforced at mint time).
   |rel :kind maintains :to @designator :card *
   |invariant
-    Collision policing happens at mint time or the community's designators degrade toward descriptions (D8).
+    Collision policing happens at mint time or the community's designators degrade toward descriptions ([[DECISIONS#d8-wikilink-designators|D8 wikilink-designators]]).
   |marker
     Any UNIQUE index, any "name already taken" error, any registry is one at work.

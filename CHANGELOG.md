@@ -2,21 +2,27 @@
 
 *Present truth lives in segments and the outline; process rules in `sop/ORIENT.md`; this file is where what-happened-and-why lands, so it stops carving itself into headers and preambles.*
 
+## 2026-08-08 — terminology remediation (steward review of the two-day batch)
+
+- ORIENT's founding "cite it by ID" line removed as false prescriptive instruction that slipped in (steward call); the convention is now slugged, self-naming decision links. The bare-D-number citations it produced across canon are being swept (fork remediation). Kit feedback routed to the verisectorium theory influx: the citation convention shipped worse than ASF's existing slug discipline.
+- Term-template verdict: the survey-driven format "failed rather miserably" against the steward's lived exemplar (`_ref/…/lexicon-middleman/data/episode.yml` — word/alternates/synonyms/avoid, one-sentence definition with inline term links, plain-English invariants that carry structure). Re-cut under way: episode.yml's shape as the spine, apparatus below the fold or dead; set-theory relation notation replaced by rowan-like/prose-that-parses forms (steward: the set symbols obscured is-a vs made-of on a glance). Diagnosis recorded: the template optimized field coverage when the target was reading experience — supply-side survey vs demand-side use, the session's drift failure one layer down.
+- Also in remediation: the designed-but-never-executed term-linking + definition-anchor pass over segments (steward caught it absent; it had read as done).
+
 ## 2026-08-08 — terms instantiated as .term.un (fork; staged, dual-format)
 
 - A context-fork read the verisectorium terminology survey whole, founded `verisectorium/template/TERM.term.un` (universal; WHY-argued choices; set-rel/formal fields for Euler-derivability and algebraic definitions), derived the narrow local subset `terms/TERM.term.un`, and instantiated all 26 entries as `terms/<term>.term.un` beside their `.md` originals — replace-vs-ride is Joseph's call, both kept. Template feedback (incl. three hallway-test findings) routed to the theory instance's SOP influx. Known gap: `bin/refresh-lexicon` doesn't read `.term.un` yet — converge checker and format.
 
-## 2026-08-08 — location re-carved (D12); typespec sketch cut; vocabulary tightening
+## 2026-08-08 — location re-carved ([[DECISIONS#d12-location-is-description|D12 location-is-description]]); typespec sketch cut; vocabulary tightening
 
-- **D12**: location = containment description built from a container designator (`location ⊂ description`, `containment-coordinate ⊂ designator` — the partition holds without a third arm); standalone location = scope; path positions are roles. Companion theorem landed in canon: descriptor-kind is per-act; all chains bottom out in designators. def-locations-and-paths carries both.
+- **[[DECISIONS#d12-location-is-description|D12 location-is-description]]**: location = containment description built from a container designator (`location ⊂ description`, `containment-coordinate ⊂ designator` — the partition holds without a third arm); standalone location = scope; path positions are roles. Companion theorem landed in canon: descriptor-kind is per-act; all chains bottom out in designators. def-locations-and-paths carries both.
 - **Typespec sketch** (`INFLUX/typespec-sketch-2026-08-08.un`): first cut of the tier-3 formal layer — Part I's terms as sorted set/type definitions with arities and invariants, wet clay, the seat the coherency checker's semantic tier would verify against.
-- Proposed to steward, not landed: promise-table re-terming (canonical/preferred as *path*-promises per the D11 knock-on); `scope` mint.
+- Proposed to steward, not landed: promise-table re-terming (canonical/preferred as *path*-promises per the [[DECISIONS#d11-universal-path|D11 universal-path]] knock-on); `scope` mint.
 
-## 2026-08-08 — universal location re-carved as UNIVERSAL PATH (D11)
+## 2026-08-08 — universal location re-carved as UNIVERSAL PATH ([[DECISIONS#d11-universal-path|D11 universal-path]])
 
 - Steward correction out of the ERD review dialogue: "universal location" was the theory's own vocabulary committing the path/location conflation its segment diagnoses — the concept is a **universal path** (path with universal origin; syn. absolute path). Canon updated (def-locations-and-paths definition + reduction theorem + discussion; claim-sequence-causes special-case cite; obs-address-components), the origin trichotomy (explicit | implicit | universal) recorded as body-absorption candidate, `origin`/`destination` mints ratified, and the promises-table knock-on (canonical/preferred as *path*-promises?) flagged in def-entities WN for adjudication. Terminology-side rename (designation-status flip, the template's hidden-label machinery's first live use) delegated to the fork.
 
-## 2026-08-08 — terms move to .term.un (D10); diagram tooling lands
+## 2026-08-08 — terms move to .term.un ([[DECISIONS#d10-term-un-format|D10 term-un-format]]); diagram tooling lands
 
 - The 26 `.md` term entries archived to `terms/.archive/` and replaced by `.term.un` instantiations of the new `verisectorium/template/TERM.term.un` (founded same session from the terminology survey; steward: "replace the .md terms completely"). `bin/refresh-lexicon` patched to read `.term.un` as the format of record (26 entries, 36 located findings — the honest drift state carries over). New `bin/terminology-diagrams` derives `terms/diagrams/{euler.dot,relations.dot,relations.mmd}` from the `|set-rel`/`|rel` graph — Euler containment from subset-of/partitions only (part-of stays mereology), overlaps as annotated edges, duals bolded; validated through graphviz. Template feedback (partition-wants-parent; part-of ≠ subset-of; phase-law linting) routed to the verisectorium theory SOP influx. These changes committed same-day at steward direction; the wider session batch remains staged for review.
 
@@ -24,9 +30,9 @@
 
 - Joseph's handwritten "pretend you're implementing it right now" notebook pages (the sketch that informed DON, previously shown only to the prior agent) transcribed + read into `INFLUX/steward-notes-bottom-line-pipeline-2026-08-08.md` (photo is primary; transcription is frozen baseline, coord reading beside it). Theory touches: the **write-back trilemma** (pipeline-backwards / project-en-whole / store-is-canon — read as a canonicity election) added to disc-store-cases; **cooked/uncooked** candidate vocabulary + schema-as-bind-moment-input + the self-hosting bootstrap note recorded in disc-store-composition-model WN. The sketch's own margin answers its schema question (four pipeline jobs assigned to schema), and its "Pipeline decision to make!" independently confirms per-seat/per-pipeline resolution moments.
 
-## 2026-08-08 — LUSS renamed DON (D9)
+## 2026-08-08 — LUSS renamed DON ([[DECISIONS#d9-don-name|D9 don-name]])
 
-- The store spec renamed **DON** (donburi, the serving bowl) from LUSS, steward selection among coord candidates (kamado, yude, plain udon-store also offered; kama/nabe pre-eliminated for slang baggage). Slug `form-luss` → `form-don`; present-truth surfaces updated (OUTLINE, README, sop/ORIENT, two segments, D7's text); history layers (this file's earlier entries, INFLUX gathered notes) keep LUSS verbatim per the rename discipline.
+- The store spec renamed **DON** (donburi, the serving bowl) from LUSS, steward selection among coord candidates (kamado, yude, plain udon-store also offered; kama/nabe pre-eliminated for slang baggage). Slug `form-luss` → `form-don`; present-truth surfaces updated (OUTLINE, README, sop/ORIENT, two segments, [[DECISIONS#d7-completed-perspective|D7 completed-perspective]]'s text); history layers (this file's earlier entries, INFLUX gathered notes) keep LUSS verbatim per the rename discipline.
 
 ## 2026-08-08 — store-composition theory segment drafted (steward-invited scaffold)
 

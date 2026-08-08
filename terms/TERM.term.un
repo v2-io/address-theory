@@ -5,7 +5,7 @@
 ; no :register (single-register corpus), no ui/api designation channels, no
 ; :value-type/:constraints (no scored quantities among current terms), no
 ; |context-sentence (deferred until the checker can harvest them). Everything
-; kept means something to bin/refresh-lexicon or to the D5 projection design.
+; kept means something to bin/refresh-lexicon or to the [[DECISIONS#d5-terms-projection|D5 terms-projection]] projection design.
 ;
 ; PATHS-LOCAL CONVENTIONS on top of the universal template:
 ;  - :subject-field is always addressing (kept anyway: the homograph fence
@@ -17,7 +17,7 @@
 ;  - |set-rel / |rel accept :status pending-adjudication (+ :cite ID) — a
 ;    SUSPENDED relation: kept visible and cited, excluded from structural
 ;    rendering (cluster nesting) until the steward rules. First customer:
-;    canonical/preferred-location under universal-path (D11 knock-on).
+;    canonical/preferred-location under universal-path ([[DECISIONS#d11-universal-path|D11 universal-path]] knock-on).
 ;  - |rel accepts a :one-of [a b c] qualifier when a relation's MANNER is a
 ;    closed enum (path's origin: explicit | implicit | universal) — one seat
 ;    with a qualified manner, never three relation kinds (which would triple

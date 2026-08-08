@@ -13,7 +13,7 @@
     :projection paraphrase
     Identity components are designators for the target itself; if identity is already unique enough, location is not required.
   |set-rel :kind subset-of :to @designator
-  ; (pre-D12 overlap with location removed: under D12 location ⊂ description,
+  ; (pre-D12 overlap with location removed: under [[DECISIONS#d12-location-is-description|D12 location-is-description]] location ⊂ description,
   ; so the partition separates them cleanly; the held-lightly reduction's
   ; kinship survives as the per-act theorem on descriptor.)
   |example

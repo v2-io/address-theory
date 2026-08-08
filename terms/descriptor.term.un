@@ -18,9 +18,9 @@
   |set-rel :kind partitions :into [@designator @description]
   |rel :kind part-of :to @reference-act
   |invariant
-    Kind is determined by whether anyone maintains the binding, never by the spelling (D8).
+    Kind is determined by whether anyone maintains the binding, never by the spelling ([[DECISIONS#d8-wikilink-designators|D8 wikilink-designators]]).
   |invariant
-    Descriptor-kind is PER-ACT (D12 companion theorem): resolution is recursive, and one string is a designator in its own hop-act while being part of a description in the enclosing act — a directory name designates in the hop, describes in the chain. Every chain bottoms out in designators.
+    Descriptor-kind is PER-ACT ([[DECISIONS#d12-location-is-description|D12 location-is-description]] companion theorem): resolution is recursive, and one string is a designator in its own hop-act while being part of a description in the enclosing act — a directory name designates in the hop, describes in the chain. Every chain bottoms out in designators.
   ; Family-level fact: carried here on the partition parent; designator and
   ; description reference it rather than restating it (template convention,
   ; recorded as feedback — the format has no shared-fact node).

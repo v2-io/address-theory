@@ -19,7 +19,7 @@ A brief survey of the location, identity, and description components that real s
 **Common Location Components (Digital).** Often positional (Street → City → State, Postal Code, Country):
 
 - Server: either name (for DNS) or address (IP) with implicit or explicit port — itself a location-vs-named-identity decision.
-- Location — note the URI/URN/URL possible conflation of path, destination, and identity; per [[def-locations-and-paths]] that is the "Universal…" in the names presupposing a UNIVERSAL PATH (re-carved D11 — universality is the path's property, not the location's), the condition under which they interchange safely:
+- Location — note the URI/URN/URL possible conflation of path, destination, and identity; per [[def-locations-and-paths]] that is the "Universal…" in the names presupposing a UNIVERSAL PATH (re-carved [[DECISIONS#d11-universal-path|D11 universal-path]] — universality is the path's property, not the location's), the condition under which they interchange safely:
   - Namespace⁺: hierarchy of namespaces (NID + NSS in typical URNs).
   - Path⁺: hierarchy of (logical) containers — sometimes mapping directly to filesystem directories.
 

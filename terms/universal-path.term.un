@@ -1,4 +1,4 @@
-; generated-format instantiation 2026-08-08; re-carved per D11 same day —
+; generated-format instantiation 2026-08-08; re-carved per [[DECISIONS#d11-universal-path|D11 universal-path]] same day —
 ; the concept was mis-attached as "universal location"; the old designation
 ; itself committed the path/location conflation its own segment diagnoses.
 |term[universal-path]
@@ -25,6 +25,6 @@
     A path that can be used effectively from anywhere — its components progressively resolve from any origin to the destination; equivalently, a path with a universal origin.
   |set-rel :kind subset-of :to @path
   |invariant
-    A universal path IS a path whose origin qualifier is universal — one concept; before D11 it appeared at two ends (as a location kind here, as the origin trichotomy's third arm on path).
+    A universal path IS a path whose origin qualifier is universal — one concept; before [[DECISIONS#d11-universal-path|D11 universal-path]] it appeared at two ends (as a location kind here, as the origin trichotomy's third arm on path).
   |invariant
     This is the exact condition under which path, location, and identity safely interchange — the "Universal" presupposed by URI/URN/URL, explaining their conflation rather than observing it.

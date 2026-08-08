@@ -38,7 +38,7 @@ Same descriptors, same world, four different meanings of the same result — the
 
 ## Epistemic Status
 
-Definitional for the cardinality vocabulary and the engine/perspective split; the obligations list is a *formulation* — a chosen contract, argued from the fetch seams rather than derived. Obligations five and six were adopted deliberately (DECISIONS D6, D7 — ratified), with mixed provenance worth keeping distinct: found-but-weakly rests on this corpus's own `$partial-key` doctrine plus a **[verified]** external anchor (Phelps–Wilensky's measured re-anchoring-with-confidence); completed-perspective rests on the Fetch Assumption's own logic, with the Kahn-premise connection (formalisms survey §3) as corroborating dress at **[recall]** tier — the warrant is ours, the dress is theirs.
+Definitional for the cardinality vocabulary and the engine/perspective split; the obligations list is a *formulation* — a chosen contract, argued from the fetch seams rather than derived. Obligations five and six were adopted deliberately (DECISIONS [[DECISIONS#d6-found-but-weakly|D6 found-but-weakly]], [[DECISIONS#d7-completed-perspective|D7 completed-perspective]] — ratified), with mixed provenance worth keeping distinct: found-but-weakly rests on this corpus's own `$partial-key` doctrine plus a **[verified]** external anchor (Phelps–Wilensky's measured re-anchoring-with-confidence); completed-perspective rests on the Fetch Assumption's own logic, with the Kahn-premise connection (formalisms survey §3) as corroborating dress at **[recall]** tier — the warrant is ours, the dress is theirs.
 
 ## Discussion
 

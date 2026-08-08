@@ -1,4 +1,4 @@
-; generated-format instantiation 2026-08-08; re-carved per D12 same day —
+; generated-format instantiation 2026-08-08; re-carved per [[DECISIONS#d12-location-is-description|D12 location-is-description]] same day —
 ; location = a containment predicate over a designated container, so it is a
 ; DESCRIPTION (the contained-in claim), while the coordinate (the container's
 ; name) is a designator. The old peer-of-designator/description position was
@@ -26,6 +26,6 @@
     Distinguished from free descriptions by: subset-composability (location chains conjoin by nesting); delegable resolution (the owned description — the container's community can enumerate and route); partial policing.
   |confused
     :with @path
-    A location describes where a thing sits; a path is steps between locations — they interchange safely only in the universal-path case (D11).
+    A location describes where a thing sits; a path is steps between locations — they interchange safely only in the universal-path case ([[DECISIONS#d11-universal-path|D11 universal-path]]).
   |note :audience maintainer
-    "Standing alone, a location is a scope" — mint of scope proposed, NOT ratified (D12 session); do not cite scope as a term yet.
+    "Standing alone, a location is a scope" — mint of scope proposed, NOT ratified ([[DECISIONS#d12-location-is-description|D12 location-is-description]] session); do not cite scope as a term yet.

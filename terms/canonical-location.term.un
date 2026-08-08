@@ -13,10 +13,10 @@
     :anchor the-four-promises
     :projection paraphrase
     The preferred universal location, promised permanent. "This will keep resolving." A standing commitment by the naming authority — breaking it is a breach, not an event.
-  ; Suspended, not deleted: under D11 the parent concept re-carved as
+  ; Suspended, not deleted: under [[DECISIONS#d11-universal-path|D11 universal-path]] the parent concept re-carved as
   ; universal-path; whether the promise classes are now PATH-promises is
   ; the expressly un-adjudicated knock-on (def-entities-values-promises WN).
-  |set-rel :kind subset-of :to @universal-path :status pending-adjudication :cite D11
+  |set-rel :kind subset-of :to @universal-path :status pending-adjudication :cite d11-universal-path
   |set-rel :kind disjoint-from :to @preferred-location
   |confused
     :with @preferred-location
