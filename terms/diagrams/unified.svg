@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-d2-version="0.7.1" preserveAspectRatio="xMinYMin meet" viewBox="0 0 3115 2940"><svg class="d2-2727297101 d2-svg" width="3115" height="2940" viewBox="-88 -106 3115 2940"><rect x="-88.000000" y="-106.000000" width="3115.000000" height="2940.000000" rx="0.000000" fill="#FFFFFF" class=" fill-N7" stroke-width="0" /><style type="text/css"><![CDATA[
+.d2-2727297101 .text {
+	font-family: "d2-2727297101-font-regular";
+}
+@font-face {
+	font-family: d2-2727297101-font-regular;
+	src: url("data:application/font-woff;base64,d09GRgABAAAAABTcAAoAAAAAH1AAAguFAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAAA9AAAAGAAAABgXd/Vo2NtYXAAAAFUAAAA1gAAATQHfyhnZ2x5ZgAAAiwAAA2VAAAS5AYOWL9oZWFkAAAPxAAAADYAAAA2G4Ue32hoZWEAAA/8AAAAJAAAACQKhAYBaG10eAAAECAAAADVAAAA/G8xC4Nsb2NhAAAQ+AAAAIAAAACAmB6dVG1heHAAABF4AAAAIAAAACAAVwD2bmFtZQAAEZgAAAMjAAAIFAbDVU1wb3N0AAAUvAAAAB0AAAAg/9EAMgADAgkBkAAFAAACigJYAAAASwKKAlgAAAFeADIBIwAAAgsFAwMEAwICBGAAAvcAAAADAAAAAAAAAABBREJPAEAAIP//Au7/BgAAA9gBESAAAZ8AAAAAAeYClAAAACAAA3icjM67TpoBGIDh5+fQQkspbWnr2V/xAB7xLDAYEwddjIkmzN6GxityNcbBSLwTvQiN22dCcPedn+FFIitBSS6poy6VU5Ca17Bk2YqWjj37Dhw5cabrwqWrtBpBX9YHsqk9kIeOneo6/5DxrKwirygTr/EWL/EYvbiPu7iNm7iOXjw81fovnyuxZVfLmm1Nc/2LhgWLg5dV6zZsysjKyfviq4Kib74r+aHsp4pffvuj6q9//hsybMSoMeMmTEpNmVYzY1Zbxw7vAAAA//8BAAD//zenLfIAAHicjFhrcBvXdT73YoklBPCxxGPxBhZLYgEQIB6LxYIECIgkQIIUSVAAKZGURL1oUQ9Lkak4imJX8tSypdiuwzbuxGPLidK4EysT13Iy48TjSR9OrDJ1Y086rRPXkeO2GcaTOE3Dsk2amIvO7oIPOf3RX4u5c+8953znO985F9AAMwBYwE+ABnTQAm1gBuAphupgOI4lRV4UWVojcogiZ9CPpCWEhpNEKkXE+3/ef+HSJTR9ET+xfnfP5YWF1+bOn5f+aOV9KYHeeB8waACwCy+BDigAI8lzfj/HarUaI29kOZZ83fOap83bSrR4//nduXdncr/Mo4/Nz4unu7tPS7N4af3s8jIAAIZZAJzES9Ao38NTfMJiNmlZjk+khKSfZWefffLzz/zp1K5z586d24WXblx75i8Kj95//0MAgJSzCbwEeuUkxVA8xVIMNVtF8clJ6U28JP0CGdfPIkF6fWM/PI+XZN/l/bNV2ZH6PRG8BEZl3Ujzfr8g36XhWIvFTM3u+cUQoSHLe/59iCBIvCTNX02cSqLq+ln0zJX48aR0AzAka2v4LnwNWsAF0ODz+4VkKsUnLHI4Wi6RUsLxac0miwWNVi4NDV2qVC+WShermb2xk9PTJ2PThsmnTpz43O7dnztx4qnJ4YELlU89/vinKhcGtnDSK7Ga6jgpQLEUtQnVKyNncg/fffeRPdW9e+bwUvtUaWFe+hCV+gaHRCX+UG0N/RJfg4jiISdaLOpZP8d14bq/NOnf8JOm3Vj2HrUWP9GZYA/yfSVX3DPn6Q0Kc5nMPBtxD3eJA0zCfsDf256aNwjhno5IJuYLOJuDTaH+WKIcibSnXEwy7Ana9YHWSF88OZUABE4A9CFeAlKOhBUYM0v96y303i08Mji4/hIovtIA+Ld4CRgAXsMbLRaaT6VE47ZfGlajco7U/Nmje4o6k47QW/X7RvcZrAZC17ajOHF1/qiupZEg2xoP4yXpaeGkIJxKorukp5On1F/rZ9Gj/mG/f9gv3avmEL2IVsEO7QC0T06hmFTgIDkFHDPFyga5REoUtDJGr/bu/szTVGcgNOLy+o72zEwUSI1vt4XNsRcOJwzDfRNTlCfNek3dluDpfdJbPc5Qv89zpSUbDXYAhkptDf0OL4MRvGpGWJKleDOp2lJ5o9KGNFssKOgb9mrI/gpmyoGDRzIHB7PlTNGzk/XmDYwrgZdfnXZxD99T/USuuDA7cdTnrTlpFcuu2hp6Aa3KuG9jZj3Tchh8IiXSWi1q23k823cqFyvaQuaoK1zkqgO+Hks7M2HILk5UFrM+OmW0RqfS1QWXSXQxMi+jtTX09kYMKmbK5ZzAb4AlCpuGfrPvTOawGMp5iWqB1DhHbTuznm43l/cPGh66UD6Xc9urr6ynu53B4oDkpKPV9N6jgBX//w6tghU8d0RgNmlJxrLhvYZRoEJ038lcfl48cBfC0jcb9g6yGYfLU34dEflufrehd7E8sZi7/3iTTTe230ylTG7kHxkrKzi5AVAe/6OqkawgCsk6TqzPbObNLHWov784TIda2xzOwsIC+lKuYWxkr47MG+bGBqQDAKCBSM2LPkCrEIdeGNtkkeDf9lEu5c2sqg2sj1NzUM+5JrElFcZ6afv86p7/njnrZ9psPqOVS0zGTe1NN+YpOjaR4HxNbR3xuamp7JnRUG+2szPbmxqc5KOTzUyr3brrvULe020h9AGnp6uJMBU6hfEQ2ZBvFTzJ0SCld5hot9gbGY2iF/OCkM0KQl662uv32QnCGDJzXQo2FQD0A7xcV58NjlIspfKTqlQ07FhibKgSjnVkOvDyq/NM9PAB6e9RsJDzd0jXoVaDIgB8Hb+E/ZAFAC303g8AtVrthzUOvqas59T1+2DT5gpeBoOq17yRJ40sR5oruzVv7vvSy7OP78PLkhvBt6XbPzv5QP1MbQ1+iJehRcWe4qlNet/oClaadQRJ6hsthm4BH1t/wkghlCMI1Rb+FVpV9IbiZYmRs3RHlOTmt1IgNd7RznS+xT8e3jVcCXelCpVwNFVAK4NsNB4OJjdC3yVdr382MESrdQzrNrZjWCA17PgmiMpld2BYr4X/QKvQAo7/s89scge1ZBby+YVM9lg+fyybHxvL58bH63WcXaxMLGYLC9XJ48cnqwugaBGPfodW63W85Z3CUD9Hm43btUj2lCl3zh3JHEz7Bnz4vCJF+XYm9z389bQzcOWeyidybvvUs0h7hxbJesGjtzfsNAiicv1mUYg8pdmuF+hhwrUrpIrGTgY39r+5KRjfe37aGVBEw+XqWh9D2i3F2ODOHFqtTxVqNHXFU4G2lYIuutVgavEM2NDKdFdqR4kgEjlpWeWRs7aGHkSrEFJ4tL1XKq3yI51SbZTfT86xQW+hMxZjeIevPzRTjow7A7aUt6vTHXOwhUiwbOCcoo2JeGw+ekcTIwQzZS+dNFpDTtpl1jcxYhfXH1DsW2trqIjPyH1Q4TEriCKviNAmn38+3lsa3VF88EEm1OQ2tJqihtkSaso1XL06IK1G4joiR+qVu3bV1tAbaEXm3R01QdUl+r2xUrUz5s/4ZFx8o4bDB1BS+kEhx3WiGck+GogBkmsQ/S1agaaP9GPNKy9M7dfTekJP79i/+6toRfqgvcSypXZkkuxyHAD4JbTy/+vjX7gyWWpsJonGVt2uiVEd1Ug0tpBD4384P6hr0RGNrTsKaEX6qW/A5xvwIdu2X3bUwBY6Ooqs9CEgaAZAN9EK2AB4kePpuimRJ2m2PqeSZPMXPjvTp7c2EXqLPrPns5+fGWqyNxNNVkO/9P4pY8hkChlP/eq/7rGEzeZO+h4FR0MtqmDg2M4JUbwDjmY82+oytDaadMFUi/7bU0f1Nj2hN+3YO/ENKlr8vpboww2ZSDv6qfSfnpKPKXlR0/pqbDQi3+8BQJ9BK6AD4AUkD0aIMXsQ/ASN1gA1htH5gbD06QGljsK1NfQafgT0GwxJ1st1uwb8z6HTpw8dPH36YLpQSKeLRcPz17/43HNfvP58/6XHHrvvvsceu6TEVQZA38AXFZ2V27aQSomyyJf/5OPhPnv+cgG9JTTSreu3CmpttAOg7+BHZBx4IYfrssBtCobcHHhz4NDDg9neQMEZDezLzRwbuHfUnra9HD/0x/fy4mDEGw0LC1PZ+66UMTEECOy1NfSX+JHfrzdW2Byet0zIGiRb+mD0mDfkGk/3jHAzo4WyL8MHBlzhjtl09e6dyZ6J9EGDyKbcXTsFf7c3700x0VS7K8lGpsZ6RkxEU7U/XQkDljUC/RO+CDq5QkRe7tQyRYwCIyAZB9Z8fJlAhMHezEv/gqj9e/euvmwv2egwLSVvptCT0sf7b8q42Gpr6G/wxfoktBWD4rqRMbPkllT/bHSeCbhG05ndIzkm6gqbUf7XFN3lEmdSvUcMKSbljJQH+kdMRifih75laO6cLhYPJ1QNjdXW0HeV3AcAkE9LbhjS/P50tzVMogZPyd041BvdmUnm5nuKH8sndzm6jGl3ZCSK3RNc9WhyCpUC4QNHxvK5YemrhU8fe+DaEOfiaQd//q6OzqNHevcnlfyHZS3AFxUtyGGRERhzs4Z8UcuN5aVX0dPdpYCJ+ORf3dg7xJceuvKUOhcFa2toGT8CHghDt4KP4um2kUhhjllVUs3295KmLrxKR/htdk5kRTebilX46mFnwORKePkDlJftEcKZYKEhXYyVu/x82RCZSIT64q2ErZSIjwQPjTCZaAvRGu7tjI5H0HHXTjban476E6x0Kx8PJv1ttsGwUFTxDdTW0F9v4GtUtVJB07iZ1dQdjUvx/d5MxjvkaSz1dvVN82P2LpPolmcq90SgcjQ5xefnu4tn0Ldyw4HIgcNj67/hnEnamfzkMX9YAbZwdeGBa0NqffXV1uCbsCi/a7dX9h/YWNZmZVkD63CxrMvBynujtT1wCxahDYDmUilO62O3HRkwdcYQ1mIr227zdgx+JWbMB5DL6fAkIzsPy7OXagu9gzmIAaAToJW/tZp67x3rcQUbf20NXcBfARt0AIj+nOYjpdmsocltDlwnrZ0RbzzGZOiod0oc3eeNhh0NPpvPZ7Ox7K1oKZtKeQPdHkdne3TPCJdP9/SH/mF7fBPoBXgOfw0aAIwcx5Pk0VbNtKYVvfDl/fu/DAiC8A5qQXb5TS8KvDm48k4+D8r6j/GvkVVdZ8xB/MaPu7uV+XAC6fCPZO7S6lBOK7yi38oNDub4nu7unpt33b58+d1568Hbi4u3DwICf20CbtfPcAozZRaYTdoZZT+fGxy8Wd9tnX/38uXbgMBXO44o/B3o3MihfEpQDsvg8GaV3FtapjwBzD/J9OhYnmd1PZmII+DUOr1ep9YZcDyZHhOnE64YSqKYk58Wx9LRULxrko/zOkKXjPGTXfFQVOkhteOoqW5XUFVh6+WhPCYENTNyzGZt3QfWYw86Ghxer6PBEbSHs9269kSiXdedfVI1E0vqCB0fV83IrvBOxRVXQnalPm/Bs2hl47+VSgWtyP2/9l08AiJ+SeYytY0XVo/HavV48IjLZnW7rTYXAFLeAX+OVuqz+4Z+yuOK1mvpaKJ01qZ2ayX7dmNDTtPAh7Fr/d9Gpv8XAAD//wEAAP//X+bwWQAAAAABAAAAAguFZjTw418PPPUAAwPoAAAAANhdoKEAAAAA3WYvNv46/tsIbwPIAAAAAwACAAAAAAAAAAEAAAPY/u8AAAiY/jr+OghvAAEAAAAAAAAAAAAAAAAAAAA/eJw0jq1OA2EURM/cFRhCAgIW0rQbaBqWn36IBhQCgUJAruPjAXgUDHg8qi+BLgaD4S3gmtJVS7oBNZPMnOTYE7fMwCoKuyfbI1krZHsg2zMTOyXbJgdW0is22NKCidW4ZoztkKRvxhrS14Jjq3DmXPLTfuoLp8WLc9z2cOt3f++YO1wv9OSUVnGlD1btnVKvrC27pgwUHCm4VjBUsKNgXcG2gpO/rVawT8MFDek/NWVEw43OqIuKWglXYqTErhID5ji0b0vHXwAAAP//AQAA//8vszX6AAAAAAAALAAsAFAAbgCGAJIAtADkAQYBSgFcAZYBzgICAjACYgKWArgDJANGA1IDXgN4A5QDxgPoBBQESAR8BJwE3AUCBSQFQAV6BaYF1gXsBhIGKgZUBpIGtgbqByoHRAeaB9oH8AgQCBwIKAhgCHAIfAiICKIIvAj4CTQJQAlWCXIAAQAAAD8AjAAMAGYABwABAAAAAAAAAAAAAAAAAAQAA3icnJTdThtXFIU/B9ttVDUXFYrIDTqXbZWM3QiiBK5MCYpVhFOP0x+pqjR4xj9iPDPyDFCqPkCv+xZ9i1z1OfoQVa+rs7wNNqoUgRCwzpy991lnr7UPsMm/bFCrPwT+av5guMZ2c8/wAx41nxre4Ljxt+H6SkyDuPGb4SZfNvqGP+J9/Q/DH7NT/9nwQ7bqR4Y/4Xl90/CnG45/DD9ih/cLXIOX/G64xhaF4Qds8pPhDR5jNWt1HtM23OAztg032QYGTKlImZIxxjFiyphz5iSUhCTMmTIiIcbRpUNKpa8ZkZBj/L9fI0Iq5kSqOKHCkRKSElEysYq/KivnrU4caTW3vQ4VEyJOlXFGRIYjZ0xORsKZ6lRUFOzRokXJUHwLKkoCSqakBOTMGdOixxHHDJgwpcRxpEqeWUjOiIpLIp3vLMJ3ZkhCRmmszsmIxdOJX6LsLsc4ehSKXa18vFbhKY7vlO255Yr9ikC/boXZ+rlLNhEX6meqrqTauZSCE+36czt8K1yxh7tXf9aZfLhHsf5XqnzKufSPpVQmJhnObdEhlINC9wTHgdZdQnXke7oMeEOPdwy07tCnT4cTBnR5rdwefRxf0+OEQ2V0hRd7R3LMCT/i+IauYnztxPqzUCzhFwpzdymOc91jRqGee+aB7prohndX2M9QvuaOUjlDzZGPdNIv05xFjM0VhRjO1MulN0rrX2yOmOkuXtubfT8NFzZ7yym+ItcMe7cuOHnlFow+pGpwyzOX+gmIiMk5VcSQnBktKq7E+y0R56Q4DtW9N5qSis51jj/nSi5JmIlBl0x15hT6G5lvQuM+XPO9s7ckVr5nenZ9q/uc4tSrG43eqXvLvdC6nKwo0DJV8xU3DcU1M+8nmqlV/qFyS71uOc/ok0j1VDe4/Q48J6DNDrvsM9E5Q+1c2BvR1jvR5hX76sEZiaJGcnViFXYJeMEuu7zixVrNDocc0GP/DhwXWT0OeH1rZ12nZRVndf4Um7b4Op5dr17eW6/P7+DLLzRRNy9jX9r4bl9YtRv/nxAx81zc1uqd3BOC/wAAAP//AQAA//8HW0wwAHicYmBmAIP/5xiMGLAAAAAAAP//AQAA//8vAQIDAAAA");
+}
+.appendix-icon {
+	filter: drop-shadow(0px 0px 32px rgba(31, 36, 58, 0.1));
+}
+.d2-2727297101 .text-bold {
+	font-family: "d2-2727297101-font-bold";
+}
+@font-face {
+	font-family: d2-2727297101-font-bold;
+	src: url("data:application/font-woff;base64,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");
+}
+.d2-2727297101 .text-italic {
+	font-family: "d2-2727297101-font-italic";
+}
+@font-face {
+	font-family: d2-2727297101-font-italic;
+	src: url("data:application/font-woff;base64,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");
+}]]></style><style type="text/css"><![CDATA[.shape {
+  shape-rendering: geometricPrecision;
+  stroke-linejoin: round;
+}
+.connection {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.blend {
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+		.d2-2727297101 .fill-N1{fill:#0A0F25;}
+		.d2-2727297101 .fill-N2{fill:#676C7E;}
+		.d2-2727297101 .fill-N3{fill:#9499AB;}
+		.d2-2727297101 .fill-N4{fill:#CFD2DD;}
+		.d2-2727297101 .fill-N5{fill:#DEE1EB;}
+		.d2-2727297101 .fill-N6{fill:#EEF1F8;}
+		.d2-2727297101 .fill-N7{fill:#FFFFFF;}
+		.d2-2727297101 .fill-B1{fill:#0D32B2;}
+		.d2-2727297101 .fill-B2{fill:#0D32B2;}
+		.d2-2727297101 .fill-B3{fill:#E3E9FD;}
+		.d2-2727297101 .fill-B4{fill:#E3E9FD;}
+		.d2-2727297101 .fill-B5{fill:#EDF0FD;}
+		.d2-2727297101 .fill-B6{fill:#F7F8FE;}
+		.d2-2727297101 .fill-AA2{fill:#4A6FF3;}
+		.d2-2727297101 .fill-AA4{fill:#EDF0FD;}
+		.d2-2727297101 .fill-AA5{fill:#F7F8FE;}
+		.d2-2727297101 .fill-AB4{fill:#EDF0FD;}
+		.d2-2727297101 .fill-AB5{fill:#F7F8FE;}
+		.d2-2727297101 .stroke-N1{stroke:#0A0F25;}
+		.d2-2727297101 .stroke-N2{stroke:#676C7E;}
+		.d2-2727297101 .stroke-N3{stroke:#9499AB;}
+		.d2-2727297101 .stroke-N4{stroke:#CFD2DD;}
+		.d2-2727297101 .stroke-N5{stroke:#DEE1EB;}
+		.d2-2727297101 .stroke-N6{stroke:#EEF1F8;}
+		.d2-2727297101 .stroke-N7{stroke:#FFFFFF;}
+		.d2-2727297101 .stroke-B1{stroke:#0D32B2;}
+		.d2-2727297101 .stroke-B2{stroke:#0D32B2;}
+		.d2-2727297101 .stroke-B3{stroke:#E3E9FD;}
+		.d2-2727297101 .stroke-B4{stroke:#E3E9FD;}
+		.d2-2727297101 .stroke-B5{stroke:#EDF0FD;}
+		.d2-2727297101 .stroke-B6{stroke:#F7F8FE;}
+		.d2-2727297101 .stroke-AA2{stroke:#4A6FF3;}
+		.d2-2727297101 .stroke-AA4{stroke:#EDF0FD;}
+		.d2-2727297101 .stroke-AA5{stroke:#F7F8FE;}
+		.d2-2727297101 .stroke-AB4{stroke:#EDF0FD;}
+		.d2-2727297101 .stroke-AB5{stroke:#F7F8FE;}
+		.d2-2727297101 .background-color-N1{background-color:#0A0F25;}
+		.d2-2727297101 .background-color-N2{background-color:#676C7E;}
+		.d2-2727297101 .background-color-N3{background-color:#9499AB;}
+		.d2-2727297101 .background-color-N4{background-color:#CFD2DD;}
+		.d2-2727297101 .background-color-N5{background-color:#DEE1EB;}
+		.d2-2727297101 .background-color-N6{background-color:#EEF1F8;}
+		.d2-2727297101 .background-color-N7{background-color:#FFFFFF;}
+		.d2-2727297101 .background-color-B1{background-color:#0D32B2;}
+		.d2-2727297101 .background-color-B2{background-color:#0D32B2;}
+		.d2-2727297101 .background-color-B3{background-color:#E3E9FD;}
+		.d2-2727297101 .background-color-B4{background-color:#E3E9FD;}
+		.d2-2727297101 .background-color-B5{background-color:#EDF0FD;}
+		.d2-2727297101 .background-color-B6{background-color:#F7F8FE;}
+		.d2-2727297101 .background-color-AA2{background-color:#4A6FF3;}
+		.d2-2727297101 .background-color-AA4{background-color:#EDF0FD;}
+		.d2-2727297101 .background-color-AA5{background-color:#F7F8FE;}
+		.d2-2727297101 .background-color-AB4{background-color:#EDF0FD;}
+		.d2-2727297101 .background-color-AB5{background-color:#F7F8FE;}
+		.d2-2727297101 .color-N1{color:#0A0F25;}
+		.d2-2727297101 .color-N2{color:#676C7E;}
+		.d2-2727297101 .color-N3{color:#9499AB;}
+		.d2-2727297101 .color-N4{color:#CFD2DD;}
+		.d2-2727297101 .color-N5{color:#DEE1EB;}
+		.d2-2727297101 .color-N6{color:#EEF1F8;}
+		.d2-2727297101 .color-N7{color:#FFFFFF;}
+		.d2-2727297101 .color-B1{color:#0D32B2;}
+		.d2-2727297101 .color-B2{color:#0D32B2;}
+		.d2-2727297101 .color-B3{color:#E3E9FD;}
+		.d2-2727297101 .color-B4{color:#E3E9FD;}
+		.d2-2727297101 .color-B5{color:#EDF0FD;}
+		.d2-2727297101 .color-B6{color:#F7F8FE;}
+		.d2-2727297101 .color-AA2{color:#4A6FF3;}
+		.d2-2727297101 .color-AA4{color:#EDF0FD;}
+		.d2-2727297101 .color-AA5{color:#F7F8FE;}
+		.d2-2727297101 .color-AB4{color:#EDF0FD;}
+		.d2-2727297101 .color-AB5{color:#F7F8FE;}.appendix text.text{fill:#0A0F25}.md{--color-fg-default:#0A0F25;--color-fg-muted:#676C7E;--color-fg-subtle:#9499AB;--color-canvas-default:#FFFFFF;--color-canvas-subtle:#EEF1F8;--color-border-default:#0D32B2;--color-border-muted:#0D32B2;--color-neutral-muted:#EEF1F8;--color-accent-fg:#0D32B2;--color-accent-emphasis:#0D32B2;--color-attention-subtle:#676C7E;--color-danger-fg:red;}.sketch-overlay-B1{fill:url(#streaks-darker-d2-2727297101);mix-blend-mode:lighten}.sketch-overlay-B2{fill:url(#streaks-darker-d2-2727297101);mix-blend-mode:lighten}.sketch-overlay-B3{fill:url(#streaks-bright-d2-2727297101);mix-blend-mode:darken}.sketch-overlay-B4{fill:url(#streaks-bright-d2-2727297101);mix-blend-mode:darken}.sketch-overlay-B5{fill:url(#streaks-bright-d2-2727297101);mix-blend-mode:darken}.sketch-overlay-B6{fill:url(#streaks-bright-d2-2727297101);mix-blend-mode:darken}.sketch-overlay-AA2{fill:url(#streaks-dark-d2-2727297101);mix-blend-mode:overlay}.sketch-overlay-AA4{fill:url(#streaks-bright-d2-2727297101);mix-blend-mode:darken}.sketch-overlay-AA5{fill:url(#streaks-bright-d2-2727297101);mix-blend-mode:darken}.sketch-overlay-AB4{fill:url(#streaks-bright-d2-2727297101);mix-blend-mode:darken}.sketch-overlay-AB5{fill:url(#streaks-bright-d2-2727297101);mix-blend-mode:darken}.sketch-overlay-N1{fill:url(#streaks-darker-d2-2727297101);mix-blend-mode:lighten}.sketch-overlay-N2{fill:url(#streaks-dark-d2-2727297101);mix-blend-mode:overlay}.sketch-overlay-N3{fill:url(#streaks-normal-d2-2727297101);mix-blend-mode:color-burn}.sketch-overlay-N4{fill:url(#streaks-normal-d2-2727297101);mix-blend-mode:color-burn}.sketch-overlay-N5{fill:url(#streaks-bright-d2-2727297101);mix-blend-mode:darken}.sketch-overlay-N6{fill:url(#streaks-bright-d2-2727297101);mix-blend-mode:darken}.sketch-overlay-N7{fill:url(#streaks-bright-d2-2727297101);mix-blend-mode:darken}.light-code{display: block}.dark-code{display: none}]]></style><g class="Y2Fub25pY2FsLWxvY2F0aW9u"><g class="shape" ><rect x="295.000000" y="1713.000000" width="177.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="383.500000" y="1751.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">canonical-location</text><title>The promise &#39;this will keep resolving&#39; — breaking it is a breach, not an event.</title></g><g class="ZGVzY3JpcHRvcg=="><g class="shape" ><rect x="1003.000000" y="651.000000" width="960.000000" height="1128.000000" stroke="#0D32B2" fill="#E3E9FD" class=" stroke-B1 fill-B4" style="stroke-width:2;" /></g><text x="1483.000000" y="684.000000" fill="#0A0F25" class="text fill-N1" style="text-anchor:middle;font-size:28px">descriptor</text><title>One narrowing supplied by a reference-act — connected to its referent by an agreement or by a fact, and nothing else.</title></g><g class="ZGVzdGluYXRpb24="><g class="shape" ><rect x="401.000000" y="12.000000" width="127.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="464.500000" y="50.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">destination</text><title>The location a path routes to.</title></g><g class="ZW50aXR5"><g class="shape" ><rect x="1870.000000" y="299.000000" width="89.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="1914.500000" y="337.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">entity</text><title>A thing whose identity is independent of its current description — it persists through change.</title></g><g class="ZXBpc3RlbWljLWJvdW5k"><g class="shape" ><rect x="2664.000000" y="299.000000" width="165.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="2746.500000" y="337.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">epistemic-bound</text><title>How many the actor believes exist — &#39;no more than three, or I&#39;ve grossly misunderstood the data.&#39;</title></g><g class="ZXhwZWN0ZWQtY2FyZGluYWxpdHk="><g class="shape" ><rect x="2616.000000" y="1359.000000" width="193.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="2712.500000" y="1397.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">expected-cardinality</text><title>How many referents the actor means to pick out — part of the act&#39;s type, knowable before resolution, and what gives a miss its meaning.</title></g><g class="bmFtaW5nLWNvbW11bml0eQ=="><g class="shape" ><rect x="925.000000" y="2220.000000" width="185.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="1017.500000" y="2258.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">naming-community</text><title>Whoever maintains a designator&#39;s binding — a family, a filesystem, a store.</title></g><g class="b3BlcmF0aW9uYWwtYm91bmQ="><g class="shape" ><rect x="2730.000000" y="2220.000000" width="179.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="2819.500000" y="2258.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">operational-bound</text><title>How many the act will touch — &#39;change the first,&#39; &#39;take them all.&#39;</title></g><g class="b3JpZ2lu"><g class="shape" ><rect x="741.000000" y="299.000000" width="87.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="784.500000" y="337.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">origin</text><title>The location a path routes from.</title></g><g class="b3Zlci1kZXRlcm1pbmF0aW9u"><g class="shape" ><rect x="2525.000000" y="2320.000000" width="185.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="2617.500000" y="2358.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">over-determination</text><title>Descriptors past the minimum needed to reach one referent — they are verification and redundant routes, never waste.</title></g><g class="cGF0aA=="><g class="shape" ><rect x="184.000000" y="2220.000000" width="411.000000" height="166.000000" stroke="#0D32B2" fill="#E3E9FD" class=" stroke-B1 fill-B4" style="stroke-width:2;" /></g><text x="389.500000" y="2253.000000" fill="#0A0F25" class="text fill-N1" style="text-anchor:middle;font-size:28px">path</text><title>One set of monotonic steps between two locations.</title></g><g class="cGVyc3BlY3RpdmU="><g class="shape" ><rect x="2102.000000" y="2220.000000" width="127.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="2165.500000" y="2258.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">perspective</text><title>What an engine resolves relative to: an origin, a scope, a moment, a policy about what counts as the world.</title></g><g class="cHJlZmVycmVkLWxvY2F0aW9u"><g class="shape" ><rect x="531.000000" y="1713.000000" width="175.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="618.500000" y="1751.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">preferred-location</text><title>The promise &#39;this resolves today, and it&#39;s the one we&#39;d rather you use.&#39;</title></g><g class="cHJvZ3Jlc3NpdmUtcm91dGluZw=="><g class="shape" ><rect x="2209.000000" y="299.000000" width="186.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="2302.000000" y="337.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">progressive-routing</text><title>Per-hop ownership of resolution: each intermediate location routes only its next hop.</title></g><g class="cmVmZXJlbmNlLWFjdA=="><g class="shape" ><rect x="2365.000000" y="2251.000000" width="140.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="2435.000000" y="2289.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">reference-act</text><title>&#39;The address you gave us is ambiguous and there are several people by that name it might end up with.&#39; — the refused package that opens the postal model</title></g><g class="cmVmZXJlbnQ="><g class="shape" ><rect x="2448.000000" y="2667.000000" width="120.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="2508.000000" y="2705.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">referent</text><title>The thing a reference-act intends to pick out.</title></g><g class="cmVzb2x1dGlvbi1lbmdpbmU="><g class="shape" ><rect x="2217.000000" y="1447.000000" width="170.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="2302.000000" y="1485.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">resolution-engine</text><title>What performs resolution — never a property of the act itself.</title></g><g class="c2VxdWVuY2UtY2F1c2U="><g class="shape" ><rect x="464.000000" y="2667.000000" width="158.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="543.000000" y="2705.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">sequence-cause</text><title>Why order appears in an address at all — and exactly what an engine may optimize.</title></g><g class="dHJ1ZS1pZGVudGl0eQ=="><g class="shape" ><rect x="548.000000" y="12.000000" width="137.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="616.500000" y="50.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">true-identity</text><title>The promise &#39;this names IT&#39; — held by the minting community, independent of routability.</title></g><g class="dmFsdWUtb2JqZWN0"><g class="shape" ><rect x="2063.000000" y="651.000000" width="134.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="2130.000000" y="689.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">value-object</text><title>A thing that IS its description — &#39;which one&#39; is a meaningless question.</title></g><g class="ZGVzY3JpcHRvci5kZXNjcmlwdGlvbg=="><g class="shape" ><rect x="1185.000000" y="786.000000" width="401.000000" height="401.000000" stroke="#0D32B2" fill="#EDF0FD" class=" stroke-B1 fill-B5" style="stroke-width:2;" /></g><text x="1385.500000" y="815.000000" fill="#0A0F25" class="text fill-N1" style="text-anchor:middle;font-size:24px">description</text><title>A predicate the world satisfies — nothing was ever bound; the connection is recomputed from whatever satisfies it at each use.</title></g><g class="ZGVzY3JpcHRvci5kZXNpZ25hdG9y"><g class="shape" ><rect x="1385.000000" y="1478.000000" width="527.000000" height="166.000000" stroke="#0D32B2" fill="#EDF0FD" class=" stroke-B1 fill-B5" style="stroke-width:2;" /></g><text x="1648.500000" y="1507.000000" fill="#0A0F25" class="text fill-N1" style="text-anchor:middle;font-size:24px">designator</text><title>A minted name bound to its referent by convention — the binding, not the referent&#39;s properties, is the whole connection.</title></g><g class="cGF0aC51bml2ZXJzYWwtcGF0aA=="><g class="shape" ><rect x="234.000000" y="2270.000000" width="149.000000" height="66.000000" stroke="#0D32B2" fill="#EDF0FD" class=" stroke-B1 fill-B5" style="stroke-width:2;" /></g><text x="308.500000" y="2308.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">universal-path</text><title>A path routable to its destination from any origin (within a bounded context).</title></g><g class="cGF0aC53b3JraW5nLXBhdGg="><g class="shape" ><rect x="403.000000" y="2270.000000" width="142.000000" height="66.000000" stroke="#0D32B2" fill="#EDF0FD" class=" stroke-B1 fill-B5" style="stroke-width:2;" /></g><text x="474.000000" y="2308.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">working-path</text><title>No promise at all: whatever route works from here, now — expected to expire with its context.</title></g><g class="ZGVzY3JpcHRvci5kZXNjcmlwdGlvbi5sb2NhdGlvbg=="><g class="shape" ><rect x="1235.000000" y="836.000000" width="301.000000" height="166.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="1385.500000" y="861.000000" fill="#0A0F25" class="text fill-N1" style="text-anchor:middle;font-size:20px">location</text><title>A containment claim over a designated container — &#39;contained in c&#39;, where c is named by a containment-coordinate.</title></g><g class="ZGVzY3JpcHRvci5kZXNpZ25hdG9yLmNvbnRhaW5tZW50LWNvb3JkaW5hdGU="><g class="shape" ><rect x="1435.000000" y="1528.000000" width="219.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="1544.500000" y="1566.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">containment-coordinate</text><title>The name of one nesting container inside a location chain.</title></g><g class="ZGVzY3JpcHRvci5kZXNpZ25hdG9yLmlkZW50aXR5LWNvbXBvbmVudA=="><g class="shape" ><rect x="1674.000000" y="1528.000000" width="188.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;" /></g><text x="1768.000000" y="1566.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">identity-component</text><title>A designator for the target itself, as opposed to its containers.</title></g><g class="ZGVzY3JpcHRvci5kZXNjcmlwdGlvbi5sb2NhdGlvbi5pbnRlcm1lZGlhdGUtbG9jYXRpb24="><g class="shape" ><rect x="1285.000000" y="886.000000" width="201.000000" height="66.000000" stroke="#0D32B2" fill="#FFFFFF" class=" stroke-B1 fill-N7" style="stroke-width:2;" /></g><text x="1385.500000" y="924.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px">intermediate-location</text><title>A non-terminal step of a path that is itself a location.</title></g><g class="ZGVzY3JpcHRvci4oZGVzaWduYXRvci5jb250YWlubWVudC1jb29yZGluYXRlIC0mZ3Q7IGRlc2NyaXB0aW9uLmxvY2F0aW9uKVswXQ=="><marker id="mk-d2-2727297101-3488378134" markerWidth="10.000000" markerHeight="12.000000" refX="7.000000" refY="6.000000" viewBox="0.000000 0.000000 10.000000 12.000000" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="0.000000,0.000000 10.000000,6.000000 0.000000,12.000000" fill="#0D32B2" class="connection fill-B1" stroke-width="2" /> </marker><path d="M 1545.166016 1596.000000 L 1545.166016 1679.000000 S 1545.166016 1689.000000 1535.166016 1689.000000 L 1155.916016 1689.000000 S 1145.916016 1689.000000 1145.916016 1679.000000 L 1145.916016 751.000000 S 1145.916016 741.000000 1155.916016 741.000000 L 1321.166016 741.000000 S 1331.166016 741.000000 1331.166016 751.000000 L 1331.166016 832.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="1145.500000" y="1328.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">belongs-to {1,1}</text></g><g class="KGRlc2NyaXB0b3IuZGVzY3JpcHRpb24gLSZndDsgcmVmZXJlbnQpWzBd"><path d="M 1391.416016 1189.000000 L 1391.416016 1272.000000 S 1391.416016 1282.000000 1381.416016 1282.000000 L 1330.416016 1282.000000 S 1320.416016 1282.000000 1320.416016 1292.000000 L 1320.416016 2617.000000 S 1320.416016 2627.000000 1330.416016 2627.000000 L 2462.249023 2627.000000 S 2472.249023 2627.000000 2472.249023 2637.000000 L 2472.249023 2663.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="1320.000000" y="2473.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">picks-out {0,N}</text></g><g class="KGRlc2NyaXB0b3IuZGVzaWduYXRvciAtJmd0OyBuYW1pbmctY29tbXVuaXR5KVswXQ=="><path d="M 1584.249023 1646.000000 L 1584.249023 2115.000000 S 1584.249023 2125.000000 1574.249023 2125.000000 L 1059.041016 2125.000000 S 1049.041016 2125.000000 1049.041016 2135.000000 L 1049.041016 2216.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="1510.000000" y="2131.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">held-by {1,1}</text></g><g class="KGRlc3RpbmF0aW9uIC0mZ3Q7IHBhdGgpWzBd"><path d="M 452.007996 80.000000 L 452.007996 158.000000 S 452.007996 168.000000 442.007996 168.000000 L 140.500000 168.000000 S 130.500000 168.000000 130.500000 178.000000 L 130.500000 2015.000000 S 130.500000 2025.000000 140.500000 2025.000000 L 253.748993 2025.000000 S 263.748993 2025.000000 263.748993 2035.000000 L 263.748993 2216.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="130.500000" y="1060.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">belongs-to {1,1}</text></g><g class="KGRlc3RpbmF0aW9uIC0mZ3Q7IGRlc2NyaXB0b3IuZGVzY3JpcHRpb24ubG9jYXRpb24pWzBd"><path d="M 502.808014 80.000000 L 502.808014 108.000000 S 502.808014 118.000000 512.808014 118.000000 L 1370.250000 118.000000 S 1380.250000 118.000000 1380.250000 128.000000 L 1380.250000 832.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="1281.000000" y="124.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">filled-by {1,1}</text></g><g class="KGVudGl0eSAtJmd0OyBkZXNjcmlwdG9yLmRlc2lnbmF0b3IpWzBd"><path d="M 1900.291016 367.000000 L 1900.291016 546.000000 S 1900.291016 556.000000 1890.291016 556.000000 L 1755.166016 556.000000 S 1745.166016 556.000000 1745.166016 566.000000 L 1745.166016 1474.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="1745.500000" y="849.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">identified-by {1,N}</text></g><g class="KGVwaXN0ZW1pYy1ib3VuZCAtJmd0OyBleHBlY3RlZC1jYXJkaW5hbGl0eSlbMF0="><path d="M 2705.933105 367.000000 L 2705.933105 395.000000 S 2705.933105 405.000000 2695.933105 405.000000 L 2671.865967 405.000000 S 2661.865967 405.000000 2661.865967 415.000000 L 2661.865967 1355.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2661.500000" y="845.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">belongs-to {1,1}</text></g><g class="KGV4cGVjdGVkLWNhcmRpbmFsaXR5IC0mZ3Q7IHJlZmVyZW5jZS1hY3QpWzBd"><path d="M 2654.791016 1427.000000 L 2654.791016 1814.000000 S 2654.791016 1824.000000 2644.791016 1824.000000 L 2459.916016 1824.000000 S 2449.916016 1824.000000 2449.916016 1834.000000 L 2449.916016 2248.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2537.500000" y="1830.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">belongs-to {1,1}</text></g><g class="KGV4cGVjdGVkLWNhcmRpbmFsaXR5IC0mZ3Q7IG9wZXJhdGlvbmFsLWJvdW5kKVswXQ=="><path d="M 2719.916016 1427.000000 L 2719.916016 1965.000000 S 2719.916016 1975.000000 2729.916016 1975.000000 L 2765.666016 1975.000000 S 2775.666016 1975.000000 2775.666016 1985.000000 L 2775.666016 2216.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2720.000000" y="1856.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">has {1,1}</text></g><g class="KGV4cGVjdGVkLWNhcmRpbmFsaXR5IC0mZ3Q7IGVwaXN0ZW1pYy1ib3VuZClbMF0="><path d="M 2752.365967 1357.000000 L 2752.365967 369.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2752.000000" y="868.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">has {0,1}</text></g><g class="KGRlc2NyaXB0b3IuZGVzY3JpcHRpb24ubG9jYXRpb24uaW50ZXJtZWRpYXRlLWxvY2F0aW9uIC0mZ3Q7IHBhdGgpWzBd"><path d="M 1381.416016 954.000000 L 1381.416016 1222.000000 S 1381.416016 1232.000000 1371.416016 1232.000000 L 1135.666016 1232.000000 S 1125.666016 1232.000000 1125.666016 1242.000000 L 1125.666016 2065.000000 S 1125.666016 2075.000000 1115.666016 2075.000000 L 353.415985 2075.000000 S 343.415985 2075.000000 343.415985 2085.000000 L 343.415985 2216.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="1126.000000" y="1855.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">is-a-nonterminal-step-of {1,N}</text></g><g class="ZGVzY3JpcHRvci4oZGVzY3JpcHRpb24ubG9jYXRpb24gLSZndDsgZGVzaWduYXRvci5jb250YWlubWVudC1jb29yZGluYXRlKVswXQ=="><path d="M 1401.416016 1004.000000 L 1401.416016 1373.000000 S 1401.416016 1383.000000 1411.416016 1383.000000 L 1535.166016 1383.000000 S 1545.166016 1383.000000 1545.166016 1393.000000 L 1545.166016 1524.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="1401.500000" y="1342.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">names-its-container-via {1,N}</text></g><g class="KG5hbWluZy1jb21tdW5pdHkgLSZndDsgZGVzY3JpcHRvci5kZXNpZ25hdG9yKVswXQ=="><path d="M 987.375000 2218.000000 L 987.375000 2135.000000 S 987.375000 2125.000000 977.375000 2125.000000 L 941.916016 2125.000000 S 931.916016 2125.000000 931.916016 2115.000000 L 931.916016 616.000000 S 931.916016 606.000000 941.916016 606.000000 L 1043.416016 606.000000 S 1053.416016 606.000000 1053.416016 616.000000 L 1053.416016 1423.000000 S 1053.416016 1433.000000 1063.416016 1433.000000 L 1525.166016 1433.000000 S 1535.166016 1433.000000 1535.166016 1443.000000 L 1535.166016 1474.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="931.500000" y="709.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">maintains {0,N}</text></g><g class="KG9wZXJhdGlvbmFsLWJvdW5kIC0mZ3Q7IGV4cGVjdGVkLWNhcmRpbmFsaXR5KVswXQ=="><path d="M 2810.416016 2218.000000 L 2810.416016 1834.000000 S 2810.416016 1824.000000 2800.416016 1824.000000 L 2780.591064 1824.000000 S 2770.591064 1824.000000 2770.591064 1814.000000 L 2770.591064 1429.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2789.500000" y="1830.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">belongs-to {1,1}</text></g><g class="KG9yaWdpbiAtJmd0OyBwYXRoKVswXQ=="><path d="M 763.708008 367.000000 L 763.708008 395.000000 S 763.708008 405.000000 753.708008 405.000000 L 233.000000 405.000000 S 223.000000 405.000000 223.000000 415.000000 L 223.000000 1965.000000 S 223.000000 1975.000000 233.000000 1975.000000 L 263.748993 1975.000000 S 273.748993 1975.000000 273.748993 1985.000000 L 273.748993 2216.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="223.500000" y="1053.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">belongs-to {1,1}</text></g><g class="KG9yaWdpbiAtJmd0OyBkZXNjcmlwdG9yLmRlc2NyaXB0aW9uLmxvY2F0aW9uKVswXQ=="><path d="M 807.208008 367.000000 L 807.208008 395.000000 S 807.208008 405.000000 817.208008 405.000000 L 1331.166016 405.000000 S 1341.166016 405.000000 1341.166016 415.000000 L 1341.166016 832.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="1270.000000" y="411.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">filled-by {1,1}</text></g><g class="KG92ZXItZGV0ZXJtaW5hdGlvbiAtJmd0OyByZWZlcmVudClbMF0="><path d="M 2544.250000 2388.000000 L 2544.250000 2663.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2544.500000" y="2532.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">verifies {1,N}</text></g><g class="KHBhdGggLSZndDsgb3JpZ2luKVswXQ=="><path d="M 318.583008 2388.000000 L 318.583008 2416.000000 S 318.583008 2426.000000 328.583008 2426.000000 L 820.249023 2426.000000 S 830.249023 2426.000000 830.249023 2416.000000 L 830.249023 465.000000 S 830.249023 455.000000 820.249023 455.000000 L 795.458008 455.000000 S 785.458008 455.000000 785.458008 445.000000 L 785.458008 369.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="830.000000" y="1654.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">has {1,1}</text></g><g class="KHBhdGggLSZndDsgZGVzdGluYXRpb24pWzBd"><path d="M 298.583008 2388.000000 L 298.583008 2416.000000 S 298.583008 2426.000000 288.583008 2426.000000 L 50.000000 2426.000000 S 40.000000 2426.000000 40.000000 2416.000000 L 40.000000 128.000000 S 40.000000 118.000000 50.000000 118.000000 L 416.608002 118.000000 S 426.608002 118.000000 426.608002 108.000000 L 426.608002 82.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="40.000000" y="1213.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">has {1,1}</text></g><g class="KHBhdGggLSZndDsgc2VxdWVuY2UtY2F1c2UpWzBd"><path d="M 308.583008 2388.000000 L 308.583008 2517.000000 S 308.583008 2527.000000 318.583008 2527.000000 L 506.708008 2527.000000 S 516.708008 2527.000000 516.708008 2537.000000 L 516.708008 2663.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="412.500000" y="2533.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">steps-each-carry {1,1}</text></g><g class="KHBlcnNwZWN0aXZlIC0mZ3Q7IHJlc29sdXRpb24tZW5naW5lKVswXQ=="><path d="M 2186.916016 2218.000000 L 2186.916016 1884.000000 S 2186.916016 1874.000000 2196.916016 1874.000000 L 2292.916016 1874.000000 S 2302.916016 1874.000000 2302.916016 1864.000000 L 2302.916016 1517.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2252.000000" y="1880.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">parameterizes {1,N}</text></g><g class="KHByb2dyZXNzaXZlLXJvdXRpbmcgLSZndDsgcmVzb2x1dGlvbi1lbmdpbmUpWzBd"><path d="M 2302.916016 366.500000 L 2302.916016 1443.500000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2302.500000" y="912.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">performed-by {1,1}</text></g><g class="KHJlZmVyZW5jZS1hY3QgLSZndDsgZGVzY3JpcHRvcilbMF0="><path d="M 2393.916016 2250.000000 L 2393.916016 2035.000000 S 2393.916016 2025.000000 2383.916016 2025.000000 L 2021.666016 2025.000000 S 2011.666016 2025.000000 2011.666016 2015.000000 L 2011.666016 616.000000 S 2011.666016 606.000000 2001.666016 606.000000 L 1765.166016 606.000000 S 1755.166016 606.000000 1755.166016 616.000000 L 1755.166016 647.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2012.000000" y="1475.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">has {1,N}</text></g><g class="KHJlZmVyZW5jZS1hY3QgLSZndDsgZXhwZWN0ZWQtY2FyZGluYWxpdHkpWzBd"><path d="M 2477.916016 2250.000000 L 2477.916016 1884.000000 S 2477.916016 1874.000000 2487.916016 1874.000000 L 2683.391113 1874.000000 S 2693.391113 1874.000000 2693.391113 1864.000000 L 2693.391113 1429.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2621.500000" y="1880.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">carries {1,1}</text></g><g class="KHJlZmVyZW5jZS1hY3QgLSZndDsgcmVmZXJlbnQpWzBd"><path d="M 2412.583008 2320.000000 L 2412.583008 2416.000000 S 2412.583008 2426.000000 2402.583008 2426.000000 L 2361.249023 2426.000000 S 2351.249023 2426.000000 2351.249023 2436.000000 L 2351.249023 2567.000000 S 2351.249023 2577.000000 2361.249023 2577.000000 L 2486.250000 2577.000000 S 2496.250000 2577.000000 2496.250000 2587.000000 L 2496.250000 2663.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2351.000000" y="2540.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">targets {1,N}</text></g><g class="KHJlZmVyZW50IC0mZ3Q7IHJlZmVyZW5jZS1hY3QpWzBd"><path d="M 2520.250000 2665.000000 L 2520.250000 2537.000000 S 2520.250000 2527.000000 2510.250000 2527.000000 L 2469.250000 2527.000000 S 2459.250000 2527.000000 2459.250000 2517.000000 L 2459.250000 2322.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2459.000000" y="2529.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">targeted-by {1,N}</text></g><g class="KHJlc29sdXRpb24tZW5naW5lIC0mZ3Q7IHJlZmVyZW5jZS1hY3QpWzBd"><path d="M 2345.416016 1515.000000 L 2345.416016 1965.000000 S 2345.416016 1975.000000 2355.416016 1975.000000 L 2411.916016 1975.000000 S 2421.916016 1975.000000 2421.916016 1985.000000 L 2421.916016 2248.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2345.000000" y="1926.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">resolves {0,N}</text></g><g class="KHJlc29sdXRpb24tZW5naW5lIC0mZ3Q7IHBlcnNwZWN0aXZlKVswXQ=="><path d="M 2260.416016 1515.000000 L 2260.416016 1814.000000 S 2260.416016 1824.000000 2250.416016 1824.000000 L 2111.666016 1824.000000 S 2101.666016 1824.000000 2101.666016 1834.000000 L 2101.666016 1965.000000 S 2101.666016 1975.000000 2111.666016 1975.000000 L 2134.583008 1975.000000 S 2144.583008 1975.000000 2144.583008 1985.000000 L 2144.583008 2216.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="2117.000000" y="1830.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">relative-to {1,1}</text></g><g class="KHNlcXVlbmNlLWNhdXNlIC0mZ3Q7IHBhdGgpWzBd"><path d="M 569.374023 2665.000000 L 569.374023 2537.000000 S 569.374023 2527.000000 579.374023 2527.000000 L 656.583008 2527.000000 S 666.583008 2527.000000 666.583008 2517.000000 L 666.583008 2185.000000 S 666.583008 2175.000000 656.583008 2175.000000 L 363.415985 2175.000000 S 353.415985 2175.000000 353.415985 2185.000000 L 353.415985 2216.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-2727297101-3488378134)" mask="url(#d2-2727297101)" /><text x="666.500000" y="2296.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px">belongs-to {1,1}</text></g><g class="ZGVzY3JpcHRvci4oZGVzY3JpcHRpb24gJmx0Oy0mZ3Q7IGRlc2lnbmF0b3IpWzBd"><marker id="mk-d2-2727297101-1425065359" markerWidth="10.000000" markerHeight="12.000000" refX="3.000000" refY="6.000000" viewBox="0.000000 0.000000 10.000000 12.000000" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="10.000000,0.000000 0.000000,6.000000 10.000000,12.000000" fill="#666666" class="connection" stroke-width="2" /> </marker><marker id="mk-d2-2727297101-1262156804" markerWidth="10.000000" markerHeight="12.000000" refX="7.000000" refY="6.000000" viewBox="0.000000 0.000000 10.000000 12.000000" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="0.000000,0.000000 10.000000,6.000000 0.000000,12.000000" fill="#666666" class="connection" stroke-width="2" /> </marker><path d="M 1416.416016 1191.000000 L 1416.416016 1222.000000 S 1416.416016 1232.000000 1426.416016 1232.000000 L 1601.416016 1232.000000 S 1611.416016 1232.000000 1611.416016 1242.000000 L 1611.416016 1474.000000" stroke="#666666" fill="none" class="connection" style="stroke-width:2;" marker-start="url(#mk-d2-2727297101-1425065359)" marker-end="url(#mk-d2-2727297101-1262156804)" mask="url(#d2-2727297101)" /><text x="1611.000000" y="1241.000000" fill="#676C7E" class="text-bold fill-N2" style="text-anchor:middle;font-size:16px">dual</text></g><g class="KGRlc3RpbmF0aW9uICZsdDstJmd0OyBvcmlnaW4pWzBd"><path d="M 477.407990 82.000000 L 477.407990 158.000000 S 477.407990 168.000000 487.407990 168.000000 L 775.458008 168.000000 S 785.458008 168.000000 785.458008 178.000000 L 785.458008 295.000000" stroke="#666666" fill="none" class="connection" style="stroke-width:2;" marker-start="url(#mk-d2-2727297101-1425065359)" marker-end="url(#mk-d2-2727297101-1262156804)" mask="url(#d2-2727297101)" /><text x="652.000000" y="174.000000" fill="#676C7E" class="text-bold fill-N2" style="text-anchor:middle;font-size:16px">dual</text></g><g class="KGVudGl0eSAmbHQ7LSZndDsgdmFsdWUtb2JqZWN0KVswXQ=="><path d="M 1929.958008 369.000000 L 1929.958008 395.000000 S 1929.958008 405.000000 1939.958008 405.000000 L 2120.916016 405.000000 S 2130.916016 405.000000 2130.916016 415.000000 L 2130.916016 647.000000" stroke="#666666" fill="none" class="connection" style="stroke-width:2;" marker-start="url(#mk-d2-2727297101-1425065359)" marker-end="url(#mk-d2-2727297101-1262156804)" mask="url(#d2-2727297101)" /><text x="2131.000000" y="413.000000" fill="#676C7E" class="text-bold fill-N2" style="text-anchor:middle;font-size:16px">dual</text></g><g class="KGVwaXN0ZW1pYy1ib3VuZCAmbHQ7LSZndDsgb3BlcmF0aW9uYWwtYm91bmQpWzBd"><path d="M 2788.433105 369.000000 L 2788.433105 395.000000 S 2788.433105 405.000000 2798.433105 405.000000 L 2892.916016 405.000000 S 2902.916016 405.000000 2902.916016 415.000000 L 2902.916016 1965.000000 S 2902.916016 1975.000000 2892.916016 1975.000000 L 2875.166016 1975.000000 S 2865.166016 1975.000000 2865.166016 1985.000000 L 2865.166016 2216.000000" stroke="#666666" fill="none" class="connection" style="stroke-width:2;" marker-start="url(#mk-d2-2727297101-1425065359)" marker-end="url(#mk-d2-2727297101-1262156804)" mask="url(#d2-2727297101)" /><text x="2903.000000" y="1260.000000" fill="#676C7E" class="text-bold fill-N2" style="text-anchor:middle;font-size:16px">dual</text></g><g class="KGNhbm9uaWNhbC1sb2NhdGlvbiAtJmd0OyBwYXRoLnVuaXZlcnNhbC1wYXRoKVswXQ=="><marker id="mk-d2-2727297101-3574740684" markerWidth="10.000000" markerHeight="12.000000" refX="7.000000" refY="6.000000" viewBox="0.000000 0.000000 10.000000 12.000000" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="0.000000,0.000000 10.000000,6.000000 0.000000,12.000000" fill="#bb8800" class="connection" stroke-width="2" /> </marker><path d="M 384.000000 1781.000000 L 384.000000 1965.000000 S 384.000000 1975.000000 374.000000 1975.000000 L 293.748993 1975.000000 S 283.748993 1975.000000 283.748993 1985.000000 L 283.748993 2266.000000" stroke="#bb8800" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:6.000000,5.919384;" marker-end="url(#mk-d2-2727297101-3574740684)" mask="url(#d2-2727297101)" /><text x="284.000000" y="1981.000000" fill="#bb8800" class="text-italic" style="text-anchor:middle;font-size:16px">is-a? pending (d11-universal-path)</text></g><g class="KHByZWZlcnJlZC1sb2NhdGlvbiAtJmd0OyBwYXRoLnVuaXZlcnNhbC1wYXRoKVswXQ=="><path d="M 619.000000 1781.000000 L 619.000000 2015.000000 S 619.000000 2025.000000 609.000000 2025.000000 L 343.415985 2025.000000 S 333.415985 2025.000000 333.415985 2035.000000 L 333.415985 2266.000000" stroke="#bb8800" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:6.000000,5.919384;" marker-end="url(#mk-d2-2727297101-3574740684)" mask="url(#d2-2727297101)" /><text x="477.000000" y="2031.000000" fill="#bb8800" class="text-italic" style="text-anchor:middle;font-size:16px">is-a? pending (d11-universal-path)</text></g><g transform="translate(456 1697)" class="appendix-icon"><title>The promise &#39;this will keep resolving&#39; — breaking it is a breach, not an event.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MNQW433ONFRWC3BNNRXWGYLUNFXW4)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MNQW433ONFRWC3BNNRXWGYLUNFXW4">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1947 635)" class="appendix-icon"><title>One narrowing supplied by a reference-act — connected to its referent by an agreement or by a fact, and nothing else.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33S)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33S">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(512 -4)" class="appendix-icon"><title>The location a path routes to.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MRSXG5DJNZQXI2LPNY)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MRSXG5DJNZQXI2LPNY">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1943 283)" class="appendix-icon"><title>A thing whose identity is independent of its current description — it persists through change.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MVXHI2LUPE)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MVXHI2LUPE">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2813 283)" class="appendix-icon"><title>How many the actor believes exist — &#39;no more than three, or I&#39;ve grossly misunderstood the data.&#39;</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MVYGS43UMVWWSYZNMJXXK3TE)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MVYGS43UMVWWSYZNMJXXK3TE">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2793 1343)" class="appendix-icon"><title>How many referents the actor means to pick out — part of the act&#39;s type, knowable before resolution, and what gives a miss its meaning.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MV4HAZLDORSWILLDMFZGI2LOMFWGS5DZ)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MV4HAZLDORSWILLDMFZGI2LOMFWGS5DZ">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1094 2204)" class="appendix-icon"><title>Whoever maintains a designator&#39;s binding — a family, a filesystem, a store.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-NZQW22LOM4WWG33NNV2W42LUPE)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-NZQW22LOM4WWG33NNV2W42LUPE">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2893 2204)" class="appendix-icon"><title>How many the act will touch — &#39;change the first,&#39; &#39;take them all.&#39;</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-N5YGK4TBORUW63TBNQWWE33VNZSA)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-N5YGK4TBORUW63TBNQWWE33VNZSA">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(812 283)" class="appendix-icon"><title>The location a path routes from.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-N5ZGSZ3JNY)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-N5ZGSZ3JNY">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2694 2304)" class="appendix-icon"><title>Descriptors past the minimum needed to reach one referent — they are verification and redundant routes, never waste.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-N53GK4RNMRSXIZLSNVUW4YLUNFXW4)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-N53GK4RNMRSXIZLSNVUW4YLUNFXW4">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(579 2204)" class="appendix-icon"><title>One set of monotonic steps between two locations.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-OBQXI2A)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-OBQXI2A">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2213 2204)" class="appendix-icon"><title>What an engine resolves relative to: an origin, a scope, a moment, a policy about what counts as the world.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-OBSXE43QMVRXI2LWMU)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-OBSXE43QMVRXI2LWMU">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(690 1697)" class="appendix-icon"><title>The promise &#39;this resolves today, and it&#39;s the one we&#39;d rather you use.&#39;</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-OBZGKZTFOJZGKZBNNRXWGYLUNFXW4)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-OBZGKZTFOJZGKZBNNRXWGYLUNFXW4">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2379 283)" class="appendix-icon"><title>Per-hop ownership of resolution: each intermediate location routes only its next hop.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-OBZG6Z3SMVZXG2LWMUWXE33VORUW4ZY)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-OBZG6Z3SMVZXG2LWMUWXE33VORUW4ZY">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2489 2235)" class="appendix-icon"><title>&#39;The address you gave us is ambiguous and there are several people by that name it might end up with.&#39; — the refused package that opens the postal model</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-OJSWMZLSMVXGGZJNMFRXI)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-OJSWMZLSMVXGGZJNMFRXI">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2552 2651)" class="appendix-icon"><title>The thing a reference-act intends to pick out.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-OJSWMZLSMVXHI)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-OJSWMZLSMVXHI">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2371 1431)" class="appendix-icon"><title>What performs resolution — never a property of the act itself.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-OJSXG33MOV2GS33OFVSW4Z3JNZSQ)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-OJSXG33MOV2GS33OFVSW4Z3JNZSQ">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(606 2651)" class="appendix-icon"><title>Why order appears in an address at all — and exactly what an engine may optimize.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-ONSXC5LFNZRWKLLDMF2XGZI)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-ONSXC5LFNZRWKLLDMF2XGZI">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(669 -4)" class="appendix-icon"><title>The promise &#39;this names IT&#39; — held by the minting community, independent of routability.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-ORZHKZJNNFSGK3TUNF2HS)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-ORZHKZJNNFSGK3TUNF2HS">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(2181 635)" class="appendix-icon"><title>A thing that IS its description — &#39;which one&#39; is a meaningless question.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-OZQWY5LFFVXWE2TFMN2A)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-OZQWY5LFFVXWE2TFMN2A">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1570 770)" class="appendix-icon"><title>A predicate the world satisfies — nothing was ever bound; the connection is recomputed from whatever satisfies it at each use.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43DOJUXA5DJN5XA)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43DOJUXA5DJN5XA">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1896 1462)" class="appendix-icon"><title>A minted name bound to its referent by convention — the binding, not the referent&#39;s properties, is the whole connection.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43JM5XGC5DPOI)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43JM5XGC5DPOI">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(367 2254)" class="appendix-icon"><title>A path routable to its destination from any origin (within a bounded context).</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-OBQXI2BOOVXGS5TFOJZWC3BNOBQXI2A)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-OBQXI2BOOVXGS5TFOJZWC3BNOBQXI2A">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(529 2254)" class="appendix-icon"><title>No promise at all: whatever route works from here, now — expected to expire with its context.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-OBQXI2BOO5XXE23JNZTS24DBORUA)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-OBQXI2BOO5XXE23JNZTS24DBORUA">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1520 820)" class="appendix-icon"><title>A containment claim over a designated container — &#39;contained in c&#39;, where c is named by a containment-coordinate.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43DOJUXA5DJN5XC43DPMNQXI2LPNY)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43DOJUXA5DJN5XC43DPMNQXI2LPNY">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1638 1512)" class="appendix-icon"><title>The name of one nesting container inside a location chain.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43JM5XGC5DPOIXGG33OORQWS3TNMVXHILLDN5XXEZDJNZQXIZI)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43JM5XGC5DPOIXGG33OORQWS3TNMVXHILLDN5XXEZDJNZQXIZI">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1846 1512)" class="appendix-icon"><title>A designator for the target itself, as opposed to its containers.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43JM5XGC5DPOIXGSZDFNZ2GS5DZFVRW63LQN5XGK3TU)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43JM5XGC5DPOIXGSZDFNZ2GS5DZFVRW63LQN5XGK3TU">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><g transform="translate(1470 870)" class="appendix-icon"><title>A non-terminal step of a path that is itself a location.</title><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43DOJUXA5DJN5XC43DPMNQXI2LPNYXGS3TUMVZG2ZLENFQXIZJNNRXWGYLUNFXW4)">
+<path d="M16 31.1109C24.3456 31.1109 31.1111 24.3454 31.1111 15.9998C31.1111 7.65415 24.3456 0.888672 16 0.888672C7.65436 0.888672 0.888885 7.65415 0.888885 15.9998C0.888885 24.3454 7.65436 31.1109 16 31.1109Z" fill="white" stroke="#DEE1EB"/>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 19.998V15.998" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 12H16.0098" stroke="#2E3346" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3427_35082111-d2-2727297101-MRSXGY3SNFYHI33SFZSGK43DOJUXA5DJN5XC43DPMNQXI2LPNYXGS3TUMVZG2ZLENFQXIZJNNRXWGYLUNFXW4">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</g><mask id="d2-2727297101" maskUnits="userSpaceOnUse" x="-88" y="-106" width="3115" height="2940">
+<rect x="-88" y="-106" width="3115" height="2940" fill="white"></rect>
+<rect x="1092.000000" y="1312.000000" width="107" height="21" fill="black"></rect>
+<rect x="1270.000000" y="2457.000000" width="100" height="21" fill="black"></rect>
+<rect x="1467.000000" y="2115.000000" width="86" height="21" fill="black"></rect>
+<rect x="77.000000" y="1044.000000" width="107" height="21" fill="black"></rect>
+<rect x="1236.000000" y="108.000000" width="90" height="21" fill="black"></rect>
+<rect x="1685.000000" y="833.000000" width="121" height="21" fill="black"></rect>
+<rect x="2608.000000" y="829.000000" width="107" height="21" fill="black"></rect>
+<rect x="2484.000000" y="1814.000000" width="107" height="21" fill="black"></rect>
+<rect x="2690.000000" y="1840.000000" width="60" height="21" fill="black"></rect>
+<rect x="2722.000000" y="852.000000" width="60" height="21" fill="black"></rect>
+<rect x="1027.000000" y="1839.000000" width="198" height="21" fill="black"></rect>
+<rect x="1304.000000" y="1326.000000" width="195" height="21" fill="black"></rect>
+<rect x="879.000000" y="693.000000" width="105" height="21" fill="black"></rect>
+<rect x="2736.000000" y="1814.000000" width="107" height="21" fill="black"></rect>
+<rect x="170.000000" y="1037.000000" width="107" height="21" fill="black"></rect>
+<rect x="1225.000000" y="395.000000" width="90" height="21" fill="black"></rect>
+<rect x="2502.000000" y="2516.000000" width="85" height="21" fill="black"></rect>
+<rect x="800.000000" y="1638.000000" width="60" height="21" fill="black"></rect>
+<rect x="10.000000" y="1197.000000" width="60" height="21" fill="black"></rect>
+<rect x="339.000000" y="2517.000000" width="147" height="21" fill="black"></rect>
+<rect x="2185.000000" y="1864.000000" width="134" height="21" fill="black"></rect>
+<rect x="2239.000000" y="896.000000" width="127" height="21" fill="black"></rect>
+<rect x="1981.000000" y="1459.000000" width="62" height="21" fill="black"></rect>
+<rect x="2581.000000" y="1864.000000" width="81" height="21" fill="black"></rect>
+<rect x="2308.000000" y="2524.000000" width="86" height="21" fill="black"></rect>
+<rect x="2401.000000" y="2513.000000" width="116" height="21" fill="black"></rect>
+<rect x="2299.000000" y="1910.000000" width="92" height="21" fill="black"></rect>
+<rect x="2065.000000" y="1814.000000" width="104" height="21" fill="black"></rect>
+<rect x="613.000000" y="2280.000000" width="107" height="21" fill="black"></rect>
+<rect x="1593.000000" y="1225.000000" width="36" height="21" fill="black"></rect>
+<rect x="634.000000" y="158.000000" width="36" height="21" fill="black"></rect>
+<rect x="2113.000000" y="397.000000" width="36" height="21" fill="black"></rect>
+<rect x="2885.000000" y="1244.000000" width="36" height="21" fill="black"></rect>
+<rect x="170.000000" y="1965.000000" width="228" height="21" fill="black"></rect>
+<rect x="363.000000" y="2015.000000" width="228" height="21" fill="black"></rect>
+</mask></svg></svg>
