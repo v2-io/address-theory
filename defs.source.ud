@@ -121,9 +121,14 @@
   consultations that justifies one resolution result. The path is the
   evidence; folding a result down to its bare referent discards exactly the
   justification, and is a choice, not a default.
-  ; [SG] resolution paths — and their soundness/completeness proofs for
-  ; path-based resolution are inheritable so long as the correspondence
-  ; holds.
+  ; [SG] resolution paths. Proof-inheritance pointer, corrected 2026-08-09:
+  ; ESOP 2015's Theorem 1 is proven only for the FIXED policy (WF = P*·I*,
+  ; fixed order) — the paper itself says the algorithm does not cover the
+  ; §2.5 variants. Since EDGE declares labels the extension point, the
+  ; proofs this theory actually needs are the generalized metatheory:
+  ; van Antwerpen et al., "Scopes as Types" (OOPSLA 2018) and Rouvoet et
+  ; al. (OOPSLA 2020) — neither yet in ref/, neither yet read here.
+  ; Unverified until a def/ segment drafts against them.
 
 |t[WALK-STEP][MEDIATED-STEP] Two kinds of step in a @[RESOLUTION-PATH]. A
   **WALK-STEP** traverses a standing @[EDGE] — no resolution needed to take
@@ -138,17 +143,26 @@
   ; a mediated jump's lexical context). Both are inherited, load-bearing,
   ; and the reason "some crossings take execution" is structure, not vibes.
 
-|t[ADMISSIBILITY][PREFERENCE] A resolution policy decomposes into exactly
-  two declared parts. **ADMISSIBILITY**: which path shapes count at all — a
-  constraint over @[EDGE]-label sequences. **PREFERENCE**: a declared order
-  among admissible results — shadowing ("nearer beats farther", "local
-  beats imported") made inspectable.
-  ; [SG] WF predicate + specificity ordering; they demonstrate that policy
-  ; variants (transitive vs non-transitive imports, include-vs-import) are
-  ; edits to these two declarations with the calculus untouched. Why it is
-  ; nailed this early: it reconciles "never a silent best-guess" with real
-  ; systems that DO prefer — a pick under a declared preference is
+|t[ADMISSIBILITY][PREFERENCE] The declared parts of a resolution policy
+  nailed here are two. **ADMISSIBILITY**: which path shapes count at all —
+  a constraint over @[EDGE]-label sequences. **PREFERENCE**: a declared
+  order among admissible *results* — shadowing ("nearer beats farther",
+  "local beats imported") made inspectable. Both belong to the act, not
+  globally to the resolver.
+  ; [SG] WF predicate + specificity ordering (2015); verified 2026-08-09
+  ; against the modern formulation (Zwaan & Bach Poulsen, ECOOP 2024, §3 —
+  ; ref/zwaan-2024-defining/): the split survived and was PROMOTED from one
+  ; global policy pair to per-query parameters (label-regex + label order,
+  ; alongside a data predicate that corresponds to the act's own narrowing
+  ; material). Per-act placement above is therefore current state of the
+  ; art, not a 2015 artifact. Preference is deliberately over RESULTS, not
+  ; labels — their Appendix A.1 shows label orders insufficient (Java's
+  ; inaccessible-inherited-field case forces a path-level order).
+  ; Why nailed this early: it reconciles "never a silent best-guess" with
+  ; real systems that DO prefer — a pick under a declared preference is
   ; disclosed by construction; a pick without one is a silent guess.
+  ; These two are NOT claimed exhaustive of policy — see ACCESSIBILITY in
+  ; the not-nailed list below.
 
 |t[AMBIGUITY] More than one maximally-@[PREFERENCE]-preferred resolution
   result. An outcome, not an error: ambiguity is what insufficient
@@ -156,6 +170,14 @@
   ; The postal on-ramp's one-liner survives verbatim; it earned it.
 
 ;; ── Deliberately NOT nailed (named so they cannot smuggle) ───────────
+; ACCESSIBILITY — a third policy component, formalized in the same research
+;   line (ECOOP 2024): a predicate over the ⟨origin, path, declaration⟩
+;   triple ("may THIS asker, via THIS route, reach THIS thing") that
+;   neither label-sequence admissibility nor result preference expresses —
+;   and that can participate IN preference (an inaccessible nearer result
+;   letting a farther one win). Not exotic in our domain: file permissions,
+;   DNS split-horizon, "who in the household may be told." The right
+;   factoring is open even in the literature; nailed later, on demand.
 ; WORLD / root-scope naming and the one-world-per-scope claim.
 ; ADDRESS and DIRECTIONS as path classifications (all-walk vs mediated-
 ;   bearing is the candidate cut; the old progressive-scoping texture may

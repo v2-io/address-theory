@@ -2,6 +2,12 @@
 
 *Append-only, informal. Present truth lives in def/, src/, and the outline; decisions in DECISIONS.ud; process in sop/. This file is archaeological source, not active work.*
 
+## 2026-08-09 — Zwaan 2024 assessed; sheet amended on its findings
+
+- A delegated reader worked `ref/zwaan-2024-defining/` (Zwaan & Bach Poulsen, ECOOP 2024) against the foundation sheet + ESOP 2015; coord then read the paper's §3 first-hand. Verdict: an *accessibility* application paper, not new resolution theory — skip whole-read; §3 is the best compact statement of the modern query formulation in ref/.
+- Sheet amendments: ADMISSIBILITY/PREFERENCE re-registered as verified-against-current-SOTA (the 2015 split survived, promoted to per-query parameters; preference-over-results confirmed as the general side); the RESOLUTION-PATH proof-inheritance pointer corrected (2015's theorem covers only the fixed policy — the generalized metatheory is Scopes-as-Types OOPSLA 2018 / Rouvoet OOPSLA 2020, neither read yet); ACCESSIBILITY added to the not-nailed list as a known third policy component over ⟨origin, path, declaration⟩ that can participate in preference.
+- Candidate future ref/ pulls, when demanded: the EVCS 2023 scope-graphs survey; OOPSLA 2018/2020 for the generalized proofs.
+
 ## 2026-08-08 — defs.source.ud laid down (foundation cut, on conviction)
 
 - `defs.source.ud` written fresh (bannered interim until def/ integration): reference-act, expected-cardinality, binding (mint/dangle/collide), match, designator/description as derived, scope, edge, location-as-named-scope, origin, resolution, resolution-path, walk-step/mediated-step, admissibility/preference, ambiguity — plus a deliberately-NOT-nailed list. Two argued divergences from the archived CHEATSHEET-2: binding uniqueness is a policed norm, not definitional (the postal incident is the counterexample to defining collision away); bind/match mechanisms are primitive with designator/description derived per-connection. Steward flagged both for discussion.
