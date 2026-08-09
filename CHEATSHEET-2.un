@@ -16,7 +16,7 @@ So a total of 4 concepts/terms with at least 9 total synonyms for various of the
 TERM       --> The term or subterm being defined, after the first bolded instance
 
 COMMENT DISCIPLINE (steward catch, 2026-08-08): comments may cite, question, or record a
-decision — they may NOT carry conceptual nouns that are neither nailed nor @{flagged}.
+decision — they may NOT dress a phrase up as a term (ALL-CAPS, "scare quotes", claims of well-definedness) unless it is nailed or @{flagged}. Plain English doing plain work is fine — definitions are written IN English.
 The comment channel is where undefined terms smuggle in precisely because the definition
 conventions don't reach it; any load-bearing noun in a comment gets @{...} or gets cut.
 
@@ -27,7 +27,7 @@ conventions don't reach it; any load-bearing noun in a comment gets @{...} or ge
   ; Not here on purpose: where a designator is UNIQUE — that is what @[LOCATION] adds
   ; (unique within parent). A bare designator (UUID) claims no such placement.
 
-|t[LOCATION][PARENT-][SUB-][WITHIN] A **LOCATION** is a @{DESIGNATOR} that is unique within its **PARENT-LOCATION**'s scope, and contains any number of inner **SUB-LOCATIONS**. A location is **WITHIN** its parent and, transitively, everything its parent is within — a location's *containers* are exactly the locations it is WITHIN.
+|t[LOCATION][PARENT-][SUB-] A **LOCATION** is a @{DESIGNATOR} that is unique within its **PARENT-LOCATION**'s scope, and contains any number of inner **SUB-LOCATIONS**.
   :synonyms [place coordinates]
   :examples [city state zip street subdomain directory]
   |rel :parent-location (@[LOCATION] | @[WORLD]) {1,1}
@@ -36,7 +36,7 @@ conventions don't reach it; any load-bearing noun in a comment gets @{...} or ge
 |t[WORLD] A root @{LOCATION} that has no (nil) parent. Every LOCATION is transitively within exactly one WORLD, so an @{ADDRESS} can only run between locations that share one. There are many worlds (the postal world, a filesystem, DNS, one document's tree) — crossing between worlds is never an address step; only @{DIRECTIONS} can do it.
   :examples ["/" "the DNS root" "a document root" "the postal world"]
   ; The one-world-per-location claim is the load-bearing addition — it is what makes
-  ; the nearest-shared-WITHIN well-defined (any two locations in one world share at least the world itself). Falsifier: a LOCATION genuinely in two worlds.
+  ; any two locations in one world ultimately share a scope (the world itself, at worst). Falsifier: a LOCATION genuinely in two worlds.
 
 |t[PATH][-ORIGIN-][-DESTINATION-][-STEP][WAYPOINT] A **PATH** is an ordered set of steps between **ORIGIN** @{LOCATION} and **DESTINATION** @{LOCATION}; its intermediate steps are **WAYPOINT**s (== path-step == step).
   Here we scope the DESTINATION to one that attempts to determine or partially determine a specific @{TARGET-SET}.
@@ -55,9 +55,7 @@ conventions don't reach it; any load-bearing noun in a comment gets @{...} or ge
   ;     locations — the written shorthand costs the model nothing; steps stay locations.
 
 |t[ADDRESS] An **ADDRESS** is two or more progressively scoped @{LOCATION}s.
-  Usually so that the first step is discernible by the nearest LOCATION that both it and the origin are WITHIN.
-  ; rephrased from "which container is shared with the origin" — closing the steward's
-  ; catch: "container" was undefined; WITHIN (now a LOCATION subterm) carries it.
+  Usually so that the first step after the origin is discernible by which container is shared with the origin.
   |rel :step @[LOCATION] {2,N}
   ; {2,N} confirmed: one location alone is just a LOCATION (and one bare name alone is
   ; just a DESIGNATOR) — address-ness begins when scoping composes. Consistent test:
@@ -69,15 +67,15 @@ conventions don't reach it; any load-bearing noun in a comment gets @{...} or ge
 ## Falls out free (derived, not stipulated)
 
 - **ADDRESS ⊂ PATH** — by DIRECTIONS' complement definition.
-- **Address uniqueness is compositional**: each step unique-in-its-parent (LOCATION's definition) ⟹ the whole chain unique from the first shared WITHIN. Not a separate axiom.
-- **Relative and absolute are ONE definition**: absolute address = the case where the shared WITHIN is the @{WORLD} itself. No second concept needed.
+- **Address uniqueness is compositional**: each step unique-in-its-parent (LOCATION's definition) ⟹ the whole chain unique from wherever it starts. Not a separate axiom.
+- **Relative and absolute are ONE definition**: absolute address = the case where the chain starts directly at the @{WORLD}. No second concept needed.
 - **D8 transfers whole to LOCATION**: collision = two mints in one parent; dangle = the parent's community forgot. Scoped natural keys, as always practiced.
 - **The subset-sequence law lands home**: an address is declarative (order derivable from scoping, both designation-and-route at once); DIRECTIONS are the imperative remainder (resolver steps, offsets — origin-bound, order essential).
 
 ## Un-minted by this sheet
 
 - **containment-coordinate** — LOCATION now holds that seat under its ancient name.
-- **universal-path** — likely absorbed: "absolute address" (first step directly WITHIN the WORLD). Pending confirmation.
+- **universal-path** — likely absorbed: "absolute address" (chain starts at the WORLD). Pending confirmation.
 - **location-as-contained-in-predicate** (D12's seating) — the contents-of reading needs no term; "within X" is prose.
 - **intermediate-location** — WAYPOINT holds that seat under its ancient name (a role of LOCATION in a PATH).
 - **naming-community** (as a dependency of the core four) — DESIGNATOR now carries binding-upkeep without it ("whoever minted it or inherits its upkeep"); the term may still earn its own entry later for policing/collision machinery, but nothing here depends on it.
