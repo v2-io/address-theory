@@ -1,0 +1,1 @@
+../../theory/to-integrate/primary/type-algebra.md

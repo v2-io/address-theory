@@ -1,0 +1,1 @@
+../../theory/to-integrate/refine-more/paths-ideation/terminator-table.md
