@@ -15,14 +15,17 @@ So a total of 4 concepts/terms with at least 9 total synonyms for various of the
 **TERM**   --> Bold the first time the term or subterm is used *in its own definition*.
 TERM       --> The term or subterm being defined, after the first bolded instance
 
+COMMENT DISCIPLINE (steward catch, 2026-08-08): comments may cite, question, or record a
+decision — they may NOT carry conceptual nouns that are neither nailed nor @{flagged}.
+The comment channel is where undefined terms smuggle in precisely because the definition
+conventions don't reach it; any load-bearing noun in a comment gets @{...} or gets cut.
+
 ## Well Settled
 
-|t[DESIGNATOR][MINT][DANGLE][COLLIDE] A **DESIGNATOR** is a name deliberately bound (**MINTED**) to a thing — the binding, not any property of the thing, is the whole connection. Whoever minted it (or inherits its upkeep) keeps the binding; a designator can therefore **DANGLE** (the binding is lost or was never known here) or **COLLIDE** (two mints of one name in one scope). Compare @{DESCRIPTION}: satisfied by the thing's properties, recomputed at every use, never minted.
+|t[DESIGNATOR][MINT][DANGLE][COLLIDE] A **DESIGNATOR** is a name deliberately bound (**MINTED**) to a @{REFERENT} — the binding, not any property of the referent, is the whole connection. Whoever minted it keeps the binding; a designator can therefore **DANGLE** (the binding is lost or was never known here) or **COLLIDE** (two mints of one name in one place). Compare @{DESCRIPTION}: satisfied by the referent's properties, recomputed at every use, never minted.
   :examples [filename slug bibkey "Joseph" UUID]
-  ; note the deliberate lean-ness: no "community" dependency — "whoever minted it or
-  ; inherits its upkeep" carries the binding-maintenance idea without a new term.
-  ; Uniqueness-scoping is NOT here: it lives in LOCATION (unique within parent), because
-  ; bare designators (UUIDs) may be unscoped. Scoped-ness is what LOCATION adds.
+  ; Not here on purpose: where a designator is UNIQUE — that is what @[LOCATION] adds
+  ; (unique within parent). A bare designator (UUID) claims no such placement.
 
 |t[LOCATION][PARENT-][SUB-] A **LOCATION** is a @{DESIGNATOR} that is unique within its **PARENT-LOCATION**'s scope, and contains any number of inner **SUB-LOCATIONS**.
   :synonyms [place coordinates]
@@ -30,12 +33,10 @@ TERM       --> The term or subterm being defined, after the first bolded instanc
   |rel :parent-location (@[LOCATION] | @[WORLD]) {1,1}
        :sub-locations    @[LOCATION]             {0,N}
 
-|t[WORLD] A root @{LOCATION} that has no (nil) parent. Every LOCATION is transitively within exactly one WORLD, so two locations are addressable-between only when they share one. There are many worlds (the postal world, a filesystem, DNS, one document's tree) — an @{ADDRESS} lives entirely inside one; crossing between worlds is never an address step (it is @{DIRECTIONS} territory — a resolver hop, e.g. a scheme).
+|t[WORLD] A root @{LOCATION} that has no (nil) parent. Every LOCATION is transitively within exactly one WORLD, so an @{ADDRESS} can only run between locations that share one. There are many worlds (the postal world, a filesystem, DNS, one document's tree) — crossing between worlds is never an address step; only @{DIRECTIONS} can do it.
   :examples ["/" "the DNS root" "a document root" "the postal world"]
-  ; kept community-free per steward note. The one-world-per-location claim is the
-  ; load-bearing addition: it's what makes "shared container" well-defined and
-  ; absolute-vs-relative meaningful. If a real counter-case exists (a location in
-  ; two worlds), this is where the model bends — flagged as its falsifier.
+  ; The one-world-per-location claim is the load-bearing addition — it is what makes
+  ; "shared container" well-defined. Falsifier: a LOCATION genuinely in two worlds.
 
 |t[PATH][-ORIGIN-][-DESTINATION-][-STEP][WAYPOINT] A **PATH** is an ordered set of steps between **ORIGIN** @{LOCATION} and **DESTINATION** @{LOCATION}; its intermediate steps are **WAYPOINT**s (== path-step == step).
   Here we scope the DESTINATION to one that attempts to determine or partially determine a specific @{TARGET-SET}.
@@ -46,13 +47,12 @@ TERM       --> The term or subterm being defined, after the first bolded instanc
        :step        @[LOCATION] {0,N}
   ; the step question, resolved (coord — revert if it misses):
   ; (a) steps stay type-LOCATION. A "coordinate with no children" is already a legal
-  ;     LOCATION (sub-locations {0,N} includes zero) — leaf locations need no new kind.
-  ; (b) WAYPOINT is the ROLE a location plays as an intermediate step — the ancient word,
-  ;     un-minting "intermediate-location". Origin/destination/waypoint = the three roles,
-  ;     all type-LOCATION (the kind/role split doing its job).
-  ; (c) address-as-step is COMPOSITION, not a third step-kind: paths concatenate, so a
-  ;     sub-PATH (incl. an ADDRESS) given as a step FLATTENS into its locations. Allowing
-  ;     it in the written form is sugar; the model's steps stay locations — no muddying.
+  ;     LOCATION (sub-locations {0,N} includes zero) — leaves need no new kind.
+  ; (b) WAYPOINT names what a location is DOING as an intermediate step, not a new kind
+  ;     of thing — like ORIGIN and DESTINATION name what a location is doing at the ends.
+  ;     Un-mints "intermediate-location" under the ancient word.
+  ; (c) a sub-PATH (incl. an ADDRESS) written as a step just concatenates into its
+  ;     locations — the written shorthand costs the model nothing; steps stay locations.
 
 |t[ADDRESS] An **ADDRESS** is two or more progressively scoped @{LOCATION}s.
   Usually so that the first step after the origin is discernible by which container is shared with the origin.
@@ -82,7 +82,8 @@ TERM       --> The term or subterm being defined, after the first bolded instanc
 
 ## Coord flags (open, deliberately not resolved here)
 
-- **TARGET-SET** — newly referenced in PATH's usage note, undefined: presumably "the @{ENTITY}s / @{VALUE-OBJECT}s the destination is meant to determine." Needs its nail (and it's where the referent side re-enters this sheet).
+- **@{REFERENT} / @{TARGET-SET}** — the same gap, now flagged in both its appearances: DESIGNATOR's binding needs a referent (was hiding as "thing" — steward catch), and PATH's destination determines a target-set (presumably: the set of referents). One nail closes both; it's where @{ENTITY}/@{VALUE-OBJECT} re-enter this sheet.
+- **Smuggled-and-now-flagged from the comment sweep**: @{ROLE} (what origin/destination/waypoint are instances of — currently carried by plain language, may deserve its nail), and whatever DIRECTIONS' steps are made of (resolver-ish hops — deliberately NOT named here; DIRECTIONS' interior is its own future nail).
 - **Endpoint vs occupant** (last round's result, still standing): an ADDRESS designates the endpoint uniquely; it reaches the referent only via what occupies it — the wrong-Joseph seam. Where identity components / IDENTIFIER sit relative to these four is the next nail.
 - **The promises** re-derive naturally against these (the-address-promised-permanent / current-best-address / directions-from-here / identifier) — not yet re-stated.
 - **REFERENCE / REFERENCE-ACT** (artifact/event — steward-ratified in dialogue) join once the four above settle.
