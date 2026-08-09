@@ -10,5 +10,4 @@ The stable home for external material segments may cite (Working Notes and Refer
 | `addressing-exploration.md` | The demand map (D1–D9, traps, terminator itch) |
 | `type-algebra.md` | The τ algebra spike (rows/hedges, arities, three fiat seats, N1–N6) |
 | `terminator-table.md` | ~130 measured spelling cases; `[L]`/`[P]` register |
-
-*(Candidates awaiting claw-back vet: the scope-graphs paper (esop15), and archived-INFLUX primaries — see PRACTICA.)*
+| `esop15/` | Néron, Tolmach, Visser & Wachsmuth, "A Theory of Name Resolution", ESOP 2015 (md conversion + pdf; copy — source archived) |

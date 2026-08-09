@@ -1,0 +1,169 @@
+; defs.source.ud — INTERIM term-nailing sheet
+; BANNER: This file is applicable ONLY until its content is integrated into
+; def/ (one segment per term, full cadence) and it is retired by delete-test.
+; Nothing here is canon by virtue of being here; it is the working surface
+; where terms get nailed before earning their def/ segment.
+;
+; Conventions (same as the re-derivation sheets):
+;   |t[TERM][SUB-TERM]  each |t nails one term (+ any sub-terms it defines)
+;   **TERM**            bold at first use within its own definition
+;   @[TERM]             reference to a nailed term
+;   @{TERM}             flagged: load-bearing but not yet nailed
+; Comment discipline: comments may cite, question, or record — they may NOT
+; dress a phrase up as a term unless it is nailed or @{flagged}.
+;
+; Guideline in force: millennia of naming/mapping/scoping practice are the
+; demand map for vocabulary — a coinage where an ancient word exists is a
+; smell. External grounding used here: Néron, Tolmach, Visser & Wachsmuth,
+; "A Theory of Name Resolution" (ESOP 2015) — ref/esop15/ — read whole; the
+; borrowings are marked [SG] where the correspondence is exact enough to
+; inherit their proofs.
+
+;; ── The act ──────────────────────────────────────────────────────────
+
+|t[REFERENCE-ACT] A **REFERENCE-ACT** is the production of narrowing material
+  intended to determine a set of referents, made from an @[ORIGIN], carrying
+  an @[EXPECTED-CARDINALITY]. The act is written at one moment and resolved
+  at another — possibly elsewhere, by someone else, many times — and nothing
+  guarantees the world holds still in between. That gap is constitutive, not
+  incidental: every failure vocabulary below names a way the gap opens.
+  :examples [a mailing address, a wikilink, an import statement, a URL, "the Joseph in accounting"]
+
+|t[EXPECTED-CARDINALITY] Bounds {n,m} on how many referents a @[REFERENCE-ACT]
+  intends. Part of the act, not of the resolver. A miss has meaning only
+  against it: zero against {1,1} says the actor's model is wrong; three
+  against {1,1} is @[AMBIGUITY]; zero against {0,N} is an answer.
+  ; Independently arrived at by: SQL's scalar subquery (a {1,1} with only a
+  ; hard error channel), hybrid logic's nominals ({1,1} in the semantics),
+  ; wikilink stem lookup, and the steward's O15. That convergence is why
+  ; this is nailed early despite being act-anatomy.
+  ; NOT nailed here: the operational-vs-epistemic double bound. One bound,
+  ; breadth first.
+
+;; ── The two connection mechanisms ────────────────────────────────────
+
+|t[BINDING][MINT][DANGLE][COLLIDE] A **BINDING** is a deliberate, maintained
+  association from a name to a referent, held within one @[SCOPE] by whoever
+  **MINTED** it or inherits its upkeep. The association — not any property
+  of the referent — is the whole connection. Its failure modes are the
+  maintenance's: a binding **DANGLES** (upkeep lost or never known here) or
+  **COLLIDES** (more than one mint of the name in one scope).
+  :examples [a filename, a phone-book entry, an import's declaration, a variable declaration, "Joseph" within a household]
+  ; [SG] declaration. Collision is NOT defined away: duplicate bindings are
+  ; representable, and what they produce is @[AMBIGUITY] at resolution —
+  ; loud, first-class. Uniqueness-within-a-scope is a NORM a scope's
+  ; maintainers may police (at mint time, the cheap place); it is not part
+  ; of this definition. The refused-package incident is the postal system
+  ; exhibiting exactly this: collisions exist; the virtue is surfacing them.
+
+|t[MATCH] A **MATCH** is a connection established by testing candidates
+  against supplied criteria at use time — the referents are whatever
+  currently passes. Nothing was minted and nothing is maintained; the
+  answer can differ every time the world's population differs.
+  :examples [a glob, "the resident aged 47", a WHERE clause, a content hash (the test: bytes equal), a full-text search]
+  ; The two mechanisms exhaust known addressing practice: every form we
+  ; have examined decomposes into bindings consulted and matches run
+  ; (positional index = match on current ordering; hash = match on content;
+  ; forwarding pointer = binding held at the old endpoint). Falsifier: a
+  ; mechanism that is neither. If found, this layer reorganizes.
+
+|t[DESIGNATOR] Act-material that reaches its referent by @[BINDING].
+|t[DESCRIPTION] Act-material that reaches its referents by @[MATCH].
+  ; Derived vocabulary, kept because both words are ancient and useful.
+  ; The classification is per-connection, not per-spelling: the same
+  ; written form ("atom", a wikilink stem) is a DESIGNATOR where a scope's
+  ; maintainers keep the binding and a DESCRIPTION over a population nobody
+  ; polices. Kind follows maintenance.
+
+;; ── Where bindings live ──────────────────────────────────────────────
+
+|t[SCOPE] A **SCOPE** is the unit of resolution locality: it holds
+  @[BINDING]s, it is where @[REFERENCE-ACT]s originate, and it connects to
+  other scopes by labeled @[EDGE]s. The economics scopes exist for:
+  bindings need only be unambiguous *locally*, and locally-cheap bindings
+  compose into global reach.
+  :examples [a household, a directory, a document's tree, a module, a namespace, the DNS root]
+  ; [SG] scope — "a minimal region behaving uniformly with respect to name
+  ; resolution", holding declarations and references, with labeled edges.
+  ; A scope with no parent edge is a ROOT SCOPE; every scope reaches at
+  ; least one root through containment. (Whether roots deserve the name
+  ; WORLD, with a one-world-per-scope claim, is deliberately not nailed.)
+
+|t[EDGE] A labeled connection from one @[SCOPE] to another, traversable
+  during resolution. The universal label is **containment** (child scope →
+  parent scope); other labels exist and are the extension point.
+  :examples [lexical parent, module import, filesystem mount, "extends", a symlink's jump]
+  ; [SG] the P (parent) and I (import) edges; their result that admissible
+  ; label-sequences can be stated as a regular language over labels is
+  ; inherited machinery, not restated here.
+
+|t[LOCATION] A **LOCATION** is a @[SCOPE] that is itself the referent of a
+  @[BINDING] — a named scope. Location-ness is a role a scope plays, not a
+  new kind of thing.
+  :examples [a directory (bound by its name in the parent), a city, a module, a keyed element in a document]
+  ; [SG] "declaration with associated named scope" — their module concept,
+  ; which they show is also a class, a package, a record: anything named
+  ; that encapsulates bindings. Same generality claimed here.
+
+;; ── Resolution ───────────────────────────────────────────────────────
+
+|t[ORIGIN] The @[SCOPE] a @[REFERENCE-ACT] resolves from. Constitutive, not
+  optional: the same act-material yields different referents from different
+  origins, legitimately.
+
+|t[RESOLUTION] **RESOLUTION** derives, for a @[REFERENCE-ACT] at its
+  @[ORIGIN], the set of referents its material determines — each result
+  carried with its @[RESOLUTION-PATH]. Plurality is the normal case the
+  machinery must represent: zero, one, and many are all outcomes, given
+  meaning by the act's @[EXPECTED-CARDINALITY].
+
+|t[RESOLUTION-PATH] The sequence of @[EDGE] traversals and @[BINDING]
+  consultations that justifies one resolution result. The path is the
+  evidence; folding a result down to its bare referent discards exactly the
+  justification, and is a choice, not a default.
+  ; [SG] resolution paths — and their soundness/completeness proofs for
+  ; path-based resolution are inheritable so long as the correspondence
+  ; holds.
+
+|t[WALK-STEP][MEDIATED-STEP] Two kinds of step in a @[RESOLUTION-PATH]. A
+  **WALK-STEP** traverses a standing @[EDGE] — no resolution needed to take
+  it. A **MEDIATED-STEP** must first *resolve a name* to obtain its edge:
+  the step exists only through a sub-resolution.
+  :examples-mediated [an import, a symlink, a forwarding address, "ask the registry where it lives now"]
+  ; [SG] P-steps vs I-steps, with the two disciplines that come with the
+  ; distinction: (a) termination — a mediated step's sub-resolution may not
+  ; use the step it enables (their seen-imports set); (b) admissibility —
+  ; policies constrain WHERE mediated steps may appear in a path (their
+  ; WF ∈ P*·I* : walk first, mediate after — no walking onward from inside
+  ; a mediated jump's lexical context). Both are inherited, load-bearing,
+  ; and the reason "some crossings take execution" is structure, not vibes.
+
+|t[ADMISSIBILITY][PREFERENCE] A resolution policy decomposes into exactly
+  two declared parts. **ADMISSIBILITY**: which path shapes count at all — a
+  constraint over @[EDGE]-label sequences. **PREFERENCE**: a declared order
+  among admissible results — shadowing ("nearer beats farther", "local
+  beats imported") made inspectable.
+  ; [SG] WF predicate + specificity ordering; they demonstrate that policy
+  ; variants (transitive vs non-transitive imports, include-vs-import) are
+  ; edits to these two declarations with the calculus untouched. Why it is
+  ; nailed this early: it reconciles "never a silent best-guess" with real
+  ; systems that DO prefer — a pick under a declared preference is
+  ; disclosed by construction; a pick without one is a silent guess.
+
+|t[AMBIGUITY] More than one maximally-@[PREFERENCE]-preferred resolution
+  result. An outcome, not an error: ambiguity is what insufficient
+  narrowing IS, and it is surfaced with its candidate set.
+  ; The postal on-ramp's one-liner survives verbatim; it earned it.
+
+;; ── Deliberately NOT nailed (named so they cannot smuggle) ───────────
+; WORLD / root-scope naming and the one-world-per-scope claim.
+; ADDRESS and DIRECTIONS as path classifications (all-walk vs mediated-
+;   bearing is the candidate cut; the old progressive-scoping texture may
+;   or may not survive it).
+; PATH itself as a first-class term distinct from RESOLUTION-PATH (the
+;   written-artifact sense: material that DENOTES a route).
+; ENTITY vs VALUE-OBJECT; the four promises; canonicity.
+; Moments, versions, as-of; the entity-that-moves ladder (vacated vs
+;   dangled).
+; The operational/epistemic double bound; selection policies.
+; REFERENT / TARGET-SET seating.

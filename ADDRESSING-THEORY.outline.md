@@ -10,12 +10,12 @@
 
 | Expected<br>Type | Tag | Claim | Max | State |
 |---|---|---|---|---|
-| Definition | [[def-designator]] | Name deliberately bound (minted) to a referent; the binding is the whole connection; dangle/collide | axiomatic | proposed |
-| Definition | [[def-location]] | A designator unique within its parent-location's scope; contains sub-locations | axiomatic | proposed |
-| Definition | [[def-world]] | Root location with no parent; every location transitively within exactly one world; crossing worlds is never an address step | axiomatic | proposed |
-| Definition | [[def-path]] | Ordered steps between origin and destination locations; waypoints; origin/destination as roles | axiomatic | proposed |
-| Definition | [[def-address]] | Two or more progressively scoped locations; uniqueness compositional; relative/absolute one definition | axiomatic | proposed |
-| Definition | [[def-directions]] | Path that isn't an address; the imperative remainder; the only cross-world mechanism | axiomatic | proposed |
+| Definition | [[def-reference-act]] | Narrowing material intended to determine referents, from an origin, with expected cardinality; the writing/use gap is constitutive | axiomatic | proposed |
+| Definition | [[def-binding]] | Deliberate maintained name→referent association within one scope; mint/dangle/collide; uniqueness is a policed norm, never definitional | axiomatic | proposed |
+| Definition | [[def-match]] | Connection by test against the current population; with binding, the two connection mechanisms (exhaustiveness stated with its falsifier); designator/description as derived per-connection classifications | axiomatic | proposed |
+| Definition | [[def-scope]] | The unit of resolution locality: holds bindings, originates acts, connects by labeled edges; locally-cheap bindings compose into global reach; root scopes | axiomatic | proposed |
+| Definition | [[def-location]] | A scope that is the referent of a binding — a named scope; location-ness is a role | axiomatic | proposed |
+| Definition | [[def-resolution]] | Act + origin → result set, each result carrying its resolution path; walk-steps vs mediated-steps; the admissibility/preference policy split; ambiguity as surfaced outcome | axiomatic | proposed |
 
 ## *Part* II — Theory
 
@@ -25,5 +25,6 @@
 
 ## *Working Notes (outline-level)*
 
-- **Third-edition reset (steward, 2026-08-08):** everything moved to `.archive/second-theory-iteration-2026-08-08/`; only deemed-worthy parts return, deliberately. The prior edition's foundation (descriptor-kind partition as the primary cut, D12's location-as-description seating) is under active re-derivation — the CHEATSHEET-2 line (location as scoped designator; world; address/directions) and the reach/check gap-model dialogue are the live candidates. Part I's rows above carry the CHEATSHEET-2 "well settled" terms as `proposed` until their `def/` segments draft.
+- **Third-edition reset (steward, 2026-08-08):** everything moved to `.archive/second-theory-iteration-2026-08-08/`; only deemed-worthy parts return, deliberately, on conviction — never as preservation.
+- **Foundation cut (this edition, from `defs.source.ud`):** connection *mechanisms* (binding/match) are primitive; designator/description are derived per-connection classifications; scopes are the locality unit and locations are named scopes; resolution is path-carrying and policy-split into admissibility + preference; ambiguity is a surfaced outcome, and binding uniqueness is a policed norm rather than a definitional clause. Two deliberate divergences from the prior edition's sheets are argued in `defs.source.ud`'s own comments (uniqueness-out-of-LOCATION; bind/match-under-designator/description). External grounding: Néron–Tolmach–Visser–Wachsmuth, ESOP 2015 (`ref/esop15/`), whose declarations/scopes/paths/WF+ordering machinery corresponds closely enough to inherit proofs — the correspondence is load-bearing and should be verified again whenever a def/ segment drafts from it.
 - **def/-primacy decision (steward, 2026-08-08):** the prior edition's parallel dev-segments-vs-term-entries split is retired; terms are defined once in `def/`, theory builds around them, `LEXICON.md` generates.
