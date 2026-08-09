@@ -1,0 +1,39 @@
+; PRACTICA — strategic navigator for the addressing theory (this instance)
+; Top of the intention DAG + immediate WIP. Deep material lives in the outline,
+; def/, src/, and INFLUX; this file stays thin and current.
+; Update :updated + area states at every session boundary.
+; Read ORIENT.md before working any area.
+
+|practica[addressing-theory] :updated <2026-08-08>
+
+|area[third-edition-reset] :priority primary :state active :opened <2026-08-08>
+  :why Steward reset to skeleton (.archive/second-theory-iteration-2026-08-08/);
+       only deliberately clawed-back material returns. SOP store founded this
+       session (sop/SOP.outline.md + sop/src/disc-orient.md, copied-with-deltas
+       from verisectorium); ref/ founded for citable primaries.
+  :next Claw-back round 1 awaits steward vet (list proposed in-session:
+        defs.source.ud from CHEATSHEET-2; DECISIONS carry-forward set; ref/
+        copies of archived INFLUX primaries). Nothing pulled until vetted.
+
+|area[defs-and-lexicon] :priority primary :state blocked-on-clawback :opened <2026-08-08>
+  :why def/ has primacy this edition -- terms defined once in def/*.ud, LEXICON.md
+       assembled by bin/ tooling (udon in, markdown out). defs.source.ud
+       (CHEATSHEET-2 lineage, bannered interim) is the seed to integrate from.
+  :next After claw-back vet: create defs.source.ud; draft the first def/ entries
+        (designator, location, world, path, address, directions are the nailed
+        set); then the bin/ assembler.
+
+|area[outline-and-src] :priority secondary :state seeded :opened <2026-08-08>
+  :why ADDRESSING-THEORY.outline.md is the canon view; src/ empty by design
+       until def/ terms stand and worthy prior material is clawed back
+       segment-by-segment (delete-test on arrival, never transplanted whole).
+  :next Populate outline parts as def/ stabilizes; adjudicate which prior src/
+        segments' content survives (the designator/description-first foundation
+        is under active re-derivation -- see steward dialogue in archived
+        fable-model-reflections + CHEATSHEET-2).
+
+|area[sop-store] :priority background :state active :opened <2026-08-08>
+  :why Praxes fidelity across turnover; feedback via sop/INFLUX/ is the only
+       amendment channel; verisectorium proposes upgrades there.
+  :next First exercise on the next fresh session; route general-convention
+        feedback copies to verisectorium theory sop/INFLUX/.

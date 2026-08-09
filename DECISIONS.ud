@@ -1,0 +1,22 @@
+; DECISIONS — present-truth ledger (third edition)
+; One entry per decision: what holds, why (short), decided-by, date, cite.
+; Append or expressly overturn; never silently rewrite. Lower entries
+; supersede earlier ones. History and deliberation live in CHANGELOG.md
+; and the cited records -- this file stays thin.
+;
+; decided-by vocabulary (carried forward from the second edition's D1,
+; steward-decided there 2026-08-07; re-ratify or amend at will):
+;   steward    - steward made the call; agent or council ratified
+;   ratified   - agent made the call; steward ratified
+;   council    - agent call after red-teaming + unified validation from other agents
+;   supported  - agent call with provisional steward/council support; easier revisit
+;   defacto    - "decided" without really being decided; recorded so the record exists
+;   proposed   - from steward or any agent; not blocking anything yet
+;   transition - rejected but still existing somewhere; defacto-but-being-fixed
+
+|decision[decided-by-vocabulary]
+  :holds The seven-value decided-by vocabulary above governs this ledger.
+  :why The weight of a decision is who stood behind it and how.
+  :decided-by steward
+  :date <2026-08-08>
+  :cite Second edition D1 (in .archive/second-theory-iteration-2026-08-08/DECISIONS.md), carried at reset.
