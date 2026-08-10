@@ -26,7 +26,7 @@
 
   |discussion
     — The purpose of a reference can be any number of things (referent-absence, convenience, compactness, machine-readability, stable indirection, etc.)
-    - How the relation is made effective — how material actually reaches things — is exactly the next distinction (@[binding], @[match]); this entry only establishes that the relation exists, is directional, and is carried by an artifact.
+    - How the relation is made effective — how material actually reaches things — is exactly the next distinction (@{binding}, @{match}); this entry only establishes that the relation exists, is directional, and is carried by an artifact.
     - Philosophy-of-language note: strictly (Strawson), agents refer using expressions — referring is an act (in this case a "referral act"). The artifact-first cut is chosen because the theory's machinery manipulates artifacts (documents carry references; stores resolve them); the definition absorbs the act's theory-tractable part (the creator's intent, as expected cardinality) into the artifact, and the events are named with plain verbs — a reference is written, then used.
   |examples
     - Mailing address: an envelope's address block is a reference; the intended cardinality is one recipient (usually); the days between writing and delivery are the gap.
@@ -37,4 +37,4 @@
 
   |working-notes
     - Expected-cardinality settled early on convergence: SQL's scalar subquery (a {1,1} with only a hard error channel), hybrid logic's nominals ({1,1} in the semantics), wikilink stem lookup, steward O15.
-    - Deliberately left open: the operational-vs-epistemic double bound; @{TARGET-SET} vs referent seating; the internal composite structure of references (real references are usually conjunctions of parts — the address's several lines; treated when paths are); a reference's ORIGIN — resolution is origin-relative, the reference itself is not (see @[resolution]).
+    - Deliberately left open: the operational-vs-epistemic double bound; @{TARGET-SET} vs referent seating; the internal composite structure of references (real references are usually conjunctions of parts — the address's several lines; treated when paths are); a reference's ORIGIN — resolution is origin-relative, the reference itself is not (see @{resolution}).

@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+# compose-defs — the whole-picture view: concatenates each def/ file's
+# leading prose (everything before its first |term[ line), in outline
+# order, so the term-groups' narrative intros read as one continuous pass.
+# Relies on the convention that every group's terms are all discussed in
+# its leading prose.
+#
+# Usage: bin/compose-defs [-o OUTFILE]   (default: stdout)
+
+root    = File.expand_path("..", __dir__)
+outline = File.join(root, "ADDRESSING-THEORY.outline.md")
+abort "no outline at #{outline}" unless File.exist?(outline)
+
+slugs = File.read(outline).scan(/\[\[(def-[a-z-]+)\.ud\]\]/).flatten.uniq
+abort "no [[def-*.ud]] links found in outline" if slugs.empty?
+
+out = +""
+slugs.each do |slug|
+  path = File.join(root, "def", "#{slug}.ud")
+  unless File.exist?(path)
+    out << ";; !! #{slug}.ud referenced in outline but missing\n\n"
+    next
+  end
+  head = []
+  File.foreach(path) do |line|
+    break if line =~ /^\s*\|term\[/
+    head << line
+  end
+  out << ";; ═══ #{slug} #{"═" * [60 - slug.length, 3].max}\n"
+  out << head.join.rstrip << "\n\n"
+end
+
+if (i = ARGV.index("-o"))
+  File.write(ARGV[i + 1], out)
+  puts "wrote #{ARGV[i + 1]}"
+else
+  print out
+end
