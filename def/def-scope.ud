@@ -1,0 +1,20 @@
+|term[scope][edge][containment][root-scope]
+  :status proposed
+  :word scope
+  :synonyms [jurisdiction namespace]
+  :avoid [context region]  ; both too loose to carry the locality claim
+  :depends [binding]
+
+  A **SCOPE** is the unit of resolution locality: the jurisdiction within which a maintainer's @[binding]s are kept and collisions counted. Scopes connect by labeled, directed **EDGES**, traversable when resolving; the universal label is **CONTAINMENT** (a scope to the scope enclosing it), and other labels are an open extension point. A scope with no containment edge outward is a **ROOT-SCOPE**.
+
+  |invariants
+    - Makes binding's "jurisdiction" precise: collision is counted within one scope; two mints of one name in different scopes are simply two bindings
+    - A binding need only be unambiguous locally — within its scope — and locally-cheap bindings compose, across edges, into global reach; no maintainer ever needs a globally unique name
+    - Every scope reaches at least one root-scope through containment
+  |examples [a household, a directory, a document's tree, a module, a namespace, the DNS root]
+  |example-edges [lexical parent, module import, filesystem mount, "extends", a symlink's jump]
+
+  |working-notes
+    - Every line of the mailing address names a scope; "Joseph" is cheap precisely because its scope is a household, and scope-composition is what makes the cheap name globally reachable — the economics scopes exist for.
+    - Corresponds to the scope-graphs formalism (scopes, labeled edges, scoped data — ref/vanantwerpen-2018-scopes/ Fig. 1), generalized past programs; each inheritance is verified where used, not here.
+    - Deliberately left open: whether root-scopes deserve the name @{WORLD} and any one-root-per-scope claim; whether edge labels want a taxonomy or stay an open set priced per policy (lean: open set).

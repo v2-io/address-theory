@@ -1,0 +1,20 @@
+|term[binding][mint][maintainer][dangle][collide]
+  :status proposed
+  :word binding
+  :synonyms [declaration]  ; the scope-graphs literature's word
+  :avoid [mapping entry]   ; both suggest a table, hiding the maintenance
+  :depends [reference-act]
+
+  A **BINDING** is a deliberate association from a name to a referent, created (**MINTED**) at a moment and kept thereafter by a **MAINTAINER** — whoever minted it or inherits its upkeep. It **DANGLES** when the upkeep is lost or unknown where the name is used; it **COLLIDES** when a maintainer holds more than one mint of the same name.
+
+  |invariants
+    - The association is the whole connection; no property of the referent participates
+    - Its failure modes are the maintenance's: dangle and collide, nothing else
+    - Collision is never defined away: uniqueness is a norm a maintainer may police (cheapest at mint time); unpoliced, the collision surfaces later as ambiguity at use
+  |examples [a filename, a phone-book entry, a variable declaration, "Joseph" within a household, a DNS record]
+
+  |working-notes
+    - Uniqueness-as-norm is a deliberate divergence from the prior edition (which built "unique within parent" into the definition): the refused-package incident shows real systems have collisions and are judged by how they surface them; the scope-graphs calculus agrees — duplicate declarations stay representable so erroneous programs stay describable.
+    - "Joseph" in a large jurisdiction is not a weak name — it is a good binding whose maintaining community is too large for the job; that is why the rest of the address exists.
+    - Where bindings live (the jurisdiction that counts collisions) stays informal until @[scope].
+    - Hardest known stress case, recorded before someone finds it against us: Java packages "exist by virtue of use" — the namespace is constituted by the union of its users, which strains "kept by whoever minted it."

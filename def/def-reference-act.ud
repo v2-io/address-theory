@@ -1,0 +1,18 @@
+|term[reference-act][referring-material][referent][expected-cardinality]
+  :status proposed
+  :word reference act
+  :avoid [pointer link address]  ; each names something narrower, defined later or not yet
+  :depends []
+
+  A **REFERENCE-ACT** is the production of **REFERRING-MATERIAL** intended to determine a set of **REFERENTS**, carrying an **EXPECTED-CARDINALITY** — bounds {n,m} on how many referents the act intends.
+
+  |invariants
+    - Written at one moment, used at another — possibly elsewhere, by someone else, many times; nothing guarantees the world holds still in between, and that gap is constitutive, not incidental
+    - The expected cardinality belongs to the act, never to whatever later processes it
+    - A miss has meaning only against the expected cardinality: zero against {1,1} says the actor's model is wrong; three against {1,1} says the material narrowed insufficiently; zero against {0,N} is the answer
+  |examples [a mailing address, a wikilink, an import statement, a URL, "the Joseph in accounting", a citation key]
+
+  |working-notes
+    - The postal on-ramp in one line: each line of an address is referring material stripping candidates; the intended cardinality is one recipient; the days between writing and delivery are the gap in its plainest form.
+    - Expected-cardinality settled early on convergence: SQL's scalar subquery (a {1,1} with only a hard error channel), hybrid logic's nominals ({1,1} in the semantics), wikilink stem lookup, steward O15.
+    - Deliberately left open: the operational-vs-epistemic double bound; @{TARGET-SET} vs referent seating; the act's ORIGIN — deliberately absent here, since resolution is origin-relative but the act itself is not (see @[resolution]).

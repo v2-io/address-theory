@@ -8,14 +8,16 @@
 
 *The def/ terms, given primacy: each row is a `def/<slug>.ud` segment; `LEXICON.md` is generated from them. Interim carrier until populated: `defs.source.ud` (bannered; retires by integration + delete-test).*
 
-| Expected<br>Type | Tag | Claim | Max | State |
-|---|---|---|---|---|
-| Definition | [[def-reference-act]] | Narrowing material intended to determine referents, from an origin, with expected cardinality; the writing/use gap is constitutive | axiomatic | proposed |
-| Definition | [[def-binding]] | Deliberate maintained name→referent association within one scope; mint/dangle/collide; uniqueness is a policed norm, never definitional | axiomatic | proposed |
-| Definition | [[def-match]] | Connection by test against the current population; with binding, the two connection mechanisms (exhaustiveness stated with its falsifier); designator/description as derived per-connection classifications | axiomatic | proposed |
-| Definition | [[def-scope]] | The unit of resolution locality: holds bindings, originates acts, connects by labeled edges; locally-cheap bindings compose into global reach; root scopes | axiomatic | proposed |
-| Definition | [[def-location]] | A scope that is the referent of a binding — a named scope; location-ness is a role | axiomatic | proposed |
-| Definition | [[def-resolution]] | Act + origin → result set, each result carrying its resolution path; walk-steps vs mediated-steps; the admissibility/preference policy split; ambiguity as surfaced outcome | axiomatic | proposed |
+| Expected<br>Type | Tag                   | Claim                                                                                                                                                                                                       | Max       | State    |
+| ---------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | -------- |
+| Definition       | [[def-reference-act.ud]] | Referring material intended to determine referents, with expected cardinality as act-anatomy; the writing/use gap is constitutive                                                                           | axiomatic | drafted  |
+| Definition       | [[def-binding.ud]]       | Deliberate maintained name→referent association; mint/maintainer/dangle/collide; uniqueness is a policed norm, never definitional                                                                           | axiomatic | drafted  |
+| Definition       | [[def-match.ud]]         | Connection by test against the current population; with binding, the two connection mechanisms (exhaustiveness held with its stated refutation condition); designator/description derived per-connection    | axiomatic | drafted  |
+| Definition       | [[def-scope.ud]]         | The unit of resolution locality — binding's "jurisdiction" made precise; labeled edges (containment universal); root scopes; locally-cheap bindings compose into global reach                               | axiomatic | drafted  |
+| Definition       | [[def-location.ud]]      | A scope that is the referent of a binding — a named scope; location-ness is a role                                                                                                                          | axiomatic | drafted  |
+| Definition       | [[def-resolution.ud]]    | Act + origin → result set, each result carrying its resolution path; walk vs mediated steps; the admissibility/preference policy split; ambiguity as surfaced outcome                                       | axiomatic | drafted  |
+
+*Reading order is dependency order: each segment uses only its predecessors (`depends` in each frontmatter). The one deliberate deferral making that true: the act's origin lives in def-resolution, not def-reference-act — resolution is origin-relative; the act itself is not.*
 
 ## *Part* II — Theory
 

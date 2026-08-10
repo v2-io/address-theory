@@ -1,16 +1,16 @@
-; defs.source.ud — INTERIM term-nailing sheet
+; defs.source.ud — INTERIM term-settling sheet
 ; BANNER: This file is applicable ONLY until its content is integrated into
 ; def/ (one segment per term, full cadence) and it is retired by delete-test.
 ; Nothing here is canon by virtue of being here; it is the working surface
-; where terms get nailed before earning their def/ segment.
+; where terms get settled before earning their def/ segment.
 ;
 ; Conventions (same as the re-derivation sheets):
-;   |t[TERM][SUB-TERM]  each |t nails one term (+ any sub-terms it defines)
+;   |t[TERM][SUB-TERM]  each |t settles one term (+ any sub-terms it defines)
 ;   **TERM**            bold at first use within its own definition
-;   @[TERM]             reference to a nailed term
-;   @{TERM}             flagged: load-bearing but not yet nailed
+;   @[TERM]             reference to a settled term
+;   @{TERM}             flagged: load-bearing but not yet defined
 ; Comment discipline: comments may cite, question, or record — they may NOT
-; dress a phrase up as a term unless it is nailed or @{flagged}.
+; dress a phrase up as a term unless it is defined here or @{flagged}.
 ;
 ; Guideline in force: millennia of naming/mapping/scoping practice are the
 ; demand map for vocabulary — a coinage where an ancient word exists is a
@@ -36,8 +36,8 @@
   ; Independently arrived at by: SQL's scalar subquery (a {1,1} with only a
   ; hard error channel), hybrid logic's nominals ({1,1} in the semantics),
   ; wikilink stem lookup, and the steward's O15. That convergence is why
-  ; this is nailed early despite being act-anatomy.
-  ; NOT nailed here: the operational-vs-epistemic double bound. One bound,
+  ; it is settled early despite being act-anatomy.
+  ; Deliberately left open here: the operational-vs-epistemic double bound. One bound,
   ; breadth first.
 
 ;; ── The two connection mechanisms ────────────────────────────────────
@@ -93,7 +93,7 @@
   ; resolution", holding declarations and references, with labeled edges.
   ; A scope with no parent edge is a ROOT SCOPE; every scope reaches at
   ; least one root through containment. (Whether roots deserve the name
-  ; WORLD, with a one-world-per-scope claim, is deliberately not nailed.)
+  ; WORLD, with a one-world-per-scope claim, is deliberately left open.)
 
 |t[EDGE] A labeled connection from one @[SCOPE] to another, traversable
   during resolution. The universal label is **containment** (child scope →
@@ -137,7 +137,7 @@
   ; precondition is this sheet's BINDING maintenance-locality restated —
   ; locality of upkeep is what makes the change-frontier enumerable.
   ; What does NOT transfer: their world only grows (no retraction) —
-  ; stability under deletion/rebinding is open here (see not-nailed).
+  ; stability under deletion/rebinding is open here (see the open list).
 
 |t[RESOLUTION-PATH] The sequence of @[EDGE] traversals and @[BINDING]
   consultations that justifies one resolution result. The path is the
@@ -194,7 +194,7 @@
   ; exists. That open question is this term's research frontier.
 
 |t[ADMISSIBILITY][PREFERENCE] The declared parts of a resolution policy
-  nailed here are two. **ADMISSIBILITY**: which path shapes count at all —
+  defined here are two. **ADMISSIBILITY**: which path shapes count at all —
   a constraint over @[EDGE]-label sequences. **PREFERENCE**: a declared
   order among admissible *results* — shadowing ("nearer beats farther",
   "local beats imported") made inspectable. Both belong to the act, not
@@ -209,7 +209,7 @@
   ; labels — their Appendix A.1 shows label orders insufficient (Java's
   ; inaccessible-inherited-field case forces a path-level order). The
   ; concrete SG order (vanantwerpen-2018 Fig. 1, read first-hand) is
-  ; narrower than this nail: a PREFIX order (compares only common-prefix
+  ; narrower than this definition: a PREFIX order (compares only common-prefix
   ; paths) paired with a DATA order ("same name shadows"). Ours stays the
   ; more general "preorder over results" deliberately — and the field's
   ; retrospective agrees from its own side (zwaan-2023 §5: label-local
@@ -217,18 +217,18 @@
   ; would be an innocuous change to the theory," with only algorithmic
   ; cost unclear). A def/ draft should still say what the generality
   ; costs, if anything.
-  ; Why nailed this early: it reconciles "never a silent best-guess" with
+  ; Why settled this early: it reconciles "never a silent best-guess" with
   ; real systems that DO prefer — a pick under a declared preference is
   ; disclosed by construction; a pick without one is a silent guess.
   ; These two are NOT claimed exhaustive of policy — see ACCESSIBILITY in
-  ; the not-nailed list below.
+  ; the deliberately-open list below.
 
 |t[AMBIGUITY] More than one maximally-@[PREFERENCE]-preferred resolution
   result. An outcome, not an error: ambiguity is what insufficient
   narrowing IS, and it is surfaced with its candidate set.
   ; The postal on-ramp's one-liner survives verbatim; it earned it.
 
-;; ── Deliberately NOT nailed (named so they cannot smuggle) ───────────
+;; ── Deliberately left open (named so they cannot arrive by assumption) ──
 ; ACCESSIBILITY — a third policy component, formalized in the same research
 ;   line (ECOOP 2024): a predicate over the ⟨origin, path, declaration⟩
 ;   triple ("may THIS asker, via THIS route, reach THIS thing") that
@@ -236,12 +236,12 @@
 ;   and that can participate IN preference (an inaccessible nearer result
 ;   letting a farther one win). Not exotic in our domain: file permissions,
 ;   DNS split-horizon, "who in the household may be told." The right
-;   factoring is open even in the literature; nailed later, on demand.
+;   factoring is open even in the literature; defined later, on demand.
 ; UNANSWERABLE-YET as a resolution outcome — the stability-aware fourth
 ;   state beside zero/one/many: an answer returned while the world's
 ;   change-frontier could still carry a critical edge for the act is not
 ;   yet an answer. The growing-world half has a theorem (RESOLUTION's
-;   comment); whether it earns a nail or lives inside RESOLUTION is open.
+;   comment); whether it earns its own definition or lives inside RESOLUTION is open.
 ; Stability under RETRACTION and REBINDING — the shrinking/moving estate
 ;   (dangle, vacated referents). Out of scope for everything read so far
 ;   (extension-only lattices). The literature's nearest work, per the
@@ -253,7 +253,7 @@
 ;   (added/removed paths). The only place in this line where the graph
 ;   legitimately shrinks and answers are repaired, not recomputed. Neither
 ;   in ref/, neither read beyond the survey's gesture; pull when this
-;   layer gets nailed.
+;   layer gets defined.
 ; Cycle handling in RESOLUTION-PATH — acyclic-by-construction (the SG
 ;   choice) vs cycles-representable-and-cut; symlink loops and circular
 ;   forwarding make this a real election, not an inheritance.

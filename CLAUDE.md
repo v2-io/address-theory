@@ -19,7 +19,7 @@
 |   |                                     |        |      |
 | ~ | src/                                | some   | Flat directory (currently) with all of the segments that the outline references -- canonical claims. |
 | ~ | def/[def-term-slug].ud              | some   | Flat directory (currently) with all of the segments that define the terms for the LEXICON.md |
-| ~ | defs.source.ud                      | some   | INTERIM term-nailing sheet (CHEATSHEET-2 lineage, bannered) -- retires when integrated into def/ (delete-test). |
+| ~ | defs.source.ud                      | some   | INTERIM term-settling sheet (CHEATSHEET-2 lineage, bannered) -- retires when integrated into def/ (delete-test). |
 | ~ | ref/                                | rare   | Citable primaries: symlinks to live estate sources (copies only when the source is archived/external). See ref/README.md. |
 | ~ | sop/SOP.outline.md                  | rare   | (Eventually rare, that is). Standard Operating Procedures. Will have *praxes* (meta) and *doctrina* (domain). |
 | ~ | .archive/                           | some   | At the time of this writing, it holds, in particular, second-theory-iteration-2026-08-08/ which we are replacing. |

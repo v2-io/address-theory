@@ -2,6 +2,12 @@
 
 *Append-only, informal. Present truth lives in def/, src/, and the outline; decisions in DECISIONS.ud; process in sop/. This file is archaeological source, not active work.*
 
+## 2026-08-09 — the six def/ entries drafted; terminology register normalized
+
+- def/ populated with the six foundation terms in the *landed* terminology format (episode.yml spine as CHEATSHEET-2 practices it: word/synonyms/avoid, short plain-English definition with term links, plain-English invariants, examples; formal sourcing as terse comments). First draft used the ASF claim-segment cadence by mistake — the exact apparatus-over-reading failure the second edition's remediation diagnosed — caught by the steward and rewritten same session.
+- Linearization fixed while drafting: reading order = dependency order (reference-act → binding → match → scope → location → resolution) with one deliberate deferral making it true — the act's ORIGIN lives in def-resolution, not def-reference-act (resolution is origin-relative; the act is not). Expected-cardinality folded into reference-act as act-anatomy; edge/containment/root-scope into scope; the eight resolution-side terms into def-resolution with named split-seams.
+- "Nailed/not-nailed" jargon replaced with ordinary epistemological phrasing (settled / defined / deliberately left open) across the sheet and navigators.
+
 ## 2026-08-09 — the survey closes the four-paper pass
 
 - zwaan-2023 (EVCS survey) entrypoints from the same reader; coord read §5 whole + §3.1/§3.4–3.5 first-hand. Three touches: MEDIATED-STEP gains the field's own concession that import-erasure weakened the model, with the anomaly-free-explicit-imports open question named as this term's research frontier; PREFERENCE gains first-party support for full path ordering ("innocuous change to the theory," Scala case); the retraction not-nailed entry sharpened — Zwaan et al. 2022 (incremental; graph diffs with removals, answer repair) is the literature's only shrinking-graph work, named unread. ref/ indexed.
