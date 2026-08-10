@@ -66,6 +66,12 @@
   ; (positional index = match on current ordering; hash = match on content;
   ; forwarding pointer = binding held at the old endpoint). Falsifier: a
   ; mechanism that is neither. If found, this layer reorganizes.
+  ; Hardest known stress case, on record so it isn't discovered against us:
+  ; Java packages "exist by virtue of use" — no authoritative declaration;
+  ; the scope is constituted by the union of its users. Decomposes (matches
+  ; over declared-membership data), but strains "deliberate, maintained,
+  ; held by whoever minted it" — a name whose maintainers are exactly its
+  ; users deserves thought when BINDING's def/ segment drafts.
 
 |t[DESIGNATOR] Act-material that reaches its referent by @[BINDING].
 |t[DESCRIPTION] Act-material that reaches its referents by @[MATCH].
@@ -116,32 +122,70 @@
   carried with its @[RESOLUTION-PATH]. Plurality is the normal case the
   machinery must represent: zero, one, and many are all outcomes, given
   meaning by the act's @[EXPECTED-CARDINALITY].
+  ; A miss's meaning tacitly presupposes the answer is STABLE — that the
+  ; world's further change cannot add or shadow results. The growing-world
+  ; half of that presupposition is a theorem, read first-hand 2026-08-09
+  ; (ref/rouvoet-2020-knowing/ §5.1–5.2, defined for arbitrary graph
+  ; extensions, nothing type-checker-specific): an answer is stable under
+  ; growth iff the change contains no CRITICAL EDGE for the act (first
+  ; missing step whose source already exists, continuing a live prefix of
+  ; the admissibility regex — checkable by one-step lookahead). Two
+  ; portable sharpenings: reachability only GROWS under growth, but
+  ; visibility (preference-filtered) is NON-monotone — a nearer arrival
+  ; can silently invalidate a prior HIT, not just fill a miss; and their
+  ; "scopes queried from anywhere, extended only locally" soundness
+  ; precondition is this sheet's BINDING maintenance-locality restated —
+  ; locality of upkeep is what makes the change-frontier enumerable.
+  ; What does NOT transfer: their world only grows (no retraction) —
+  ; stability under deletion/rebinding is open here (see not-nailed).
 
 |t[RESOLUTION-PATH] The sequence of @[EDGE] traversals and @[BINDING]
   consultations that justifies one resolution result. The path is the
   evidence; folding a result down to its bare referent discards exactly the
   justification, and is a choice, not a default.
-  ; [SG] resolution paths. Proof-inheritance pointer, corrected 2026-08-09:
-  ; ESOP 2015's Theorem 1 is proven only for the FIXED policy (WF = P*·I*,
-  ; fixed order) — the paper itself says the algorithm does not cover the
-  ; §2.5 variants. Since EDGE declares labels the extension point, the
-  ; proofs this theory actually needs are the generalized metatheory:
-  ; van Antwerpen et al., "Scopes as Types" (OOPSLA 2018) and Rouvoet et
-  ; al. (OOPSLA 2020) — neither yet in ref/, neither yet read here.
-  ; Unverified until a def/ segment drafts against them.
+  ; [SG] resolution paths. Inheritance target settled 2026-08-09 (both
+  ; papers in ref/, load-bearing sections read first-hand): there is no
+  ; generalized analogue of ESOP 2015's soundness theorem because the
+  ; calculus/algorithm gap DISSOLVED — in the modern line resolution is a
+  ; DEFINITION (reachability = paths under the label regex; visibility =
+  ; minimum under the result order; ref/rouvoet-2020-knowing/ §3.1, calculus
+  ; in ref/vanantwerpen-2018-scopes/ Fig. 1). What the modern line proves
+  ; instead is answer STABILITY under graph growth — which is our
+  ; writing/use gap made formal (see RESOLUTION's comment). The definition
+  ; transfers to our objects under premises we must establish per draft:
+  ; (1) answered against a snapshot (fixed finite graph); (2) paths are
+  ; ACYCLIC — their NR-Cons bakes no-revisiting-a-scope into path formation;
+  ; this sheet is currently SILENT on cycles, and symlink loops / circular
+  ; forwarding make that a real question here, not an inherited answer;
+  ; (3) admissibility regular over labels; (4) preference a preorder over
+  ; results applied as a minimum. Walk-steps only — mediated steps are
+  ; their own story (see MEDIATED-STEP).
 
 |t[WALK-STEP][MEDIATED-STEP] Two kinds of step in a @[RESOLUTION-PATH]. A
   **WALK-STEP** traverses a standing @[EDGE] — no resolution needed to take
   it. A **MEDIATED-STEP** must first *resolve a name* to obtain its edge:
   the step exists only through a sub-resolution.
   :examples-mediated [an import, a symlink, a forwarding address, "ask the registry where it lives now"]
-  ; [SG] P-steps vs I-steps, with the two disciplines that come with the
-  ; distinction: (a) termination — a mediated step's sub-resolution may not
-  ; use the step it enables (their seen-imports set); (b) admissibility —
-  ; policies constrain WHERE mediated steps may appear in a path (their
-  ; WF ∈ P*·I* : walk first, mediate after — no walking onward from inside
-  ; a mediated jump's lexical context). Both are inherited, load-bearing,
-  ; and the reason "some crossings take execution" is structure, not vibes.
+  ; [SG — ESOP 2015 specifically] P-steps vs I-steps, with two disciplines:
+  ; (a) termination — a mediated step's sub-resolution may not use the step
+  ; it enables (their seen-imports set); (b) admissibility — policies
+  ; constrain WHERE mediated steps may appear (their WF ∈ P*·I*: walk
+  ; first, mediate after). Status update, 2026-08-09, both successor papers
+  ; read: the modern calculus ERASED the I-step (mediation = a query, then
+  ; a plain edge asserted contingent on its answer), and the circularity
+  ; seen-imports cut through resurfaced as SCHEDULING STUCKNESS — their
+  ; solver deadlocks on self-influencing mediation (query waits on edge,
+  ; edge waits on query; ref/rouvoet-2020-knowing/ §6, LMR/Rust) even when
+  ; a stable model exists; Rust escapes by iterated fixpoint, Scala by
+  ; language design. Our domain cannot design mediation away (symlinks,
+  ; forwarding, DNS delegation — self-referential forwarding is everyday
+  ; pathology), so the in-calculus discipline is KEPT, by choice, with two
+  ; honesty markers: the termination argument is proven only in the fixed
+  ; 2015 setting — re-deriving it under open labels is THIS theory's
+  ; obligation, not an inheritance; and ESOP 2015's own admitted anomaly
+  ; (mutually-recursive mediation resolving one name two ways in one
+  ; derivation, their Fig. 12) is unresolved in all three papers — a live
+  ; hazard on our critical path, settled nowhere upstream.
 
 |t[ADMISSIBILITY][PREFERENCE] The declared parts of a resolution policy
   nailed here are two. **ADMISSIBILITY**: which path shapes count at all —
@@ -157,7 +201,12 @@
   ; material). Per-act placement above is therefore current state of the
   ; art, not a 2015 artifact. Preference is deliberately over RESULTS, not
   ; labels — their Appendix A.1 shows label orders insufficient (Java's
-  ; inaccessible-inherited-field case forces a path-level order).
+  ; inaccessible-inherited-field case forces a path-level order). The
+  ; concrete SG order (vanantwerpen-2018 Fig. 1, read first-hand) is
+  ; narrower than this nail: a PREFIX order (compares only common-prefix
+  ; paths) paired with a DATA order ("same name shadows"). Ours stays the
+  ; more general "preorder over results" deliberately; a def/ draft should
+  ; say what the extra generality costs, if anything.
   ; Why nailed this early: it reconciles "never a silent best-guess" with
   ; real systems that DO prefer — a pick under a declared preference is
   ; disclosed by construction; a pick without one is a silent guess.
@@ -178,6 +227,19 @@
 ;   letting a farther one win). Not exotic in our domain: file permissions,
 ;   DNS split-horizon, "who in the household may be told." The right
 ;   factoring is open even in the literature; nailed later, on demand.
+; UNANSWERABLE-YET as a resolution outcome — the stability-aware fourth
+;   state beside zero/one/many: an answer returned while the world's
+;   change-frontier could still carry a critical edge for the act is not
+;   yet an answer. The growing-world half has a theorem (RESOLUTION's
+;   comment); whether it earns a nail or lives inside RESOLUTION is open.
+; Stability under RETRACTION and REBINDING — the shrinking/moving estate
+;   (dangle, vacated referents). Out of scope for everything read so far
+;   (extension-only lattices); the literature's nearest work is the
+;   incremental/concurrent line ("Scope States", ECOOP 2021 — not in ref/,
+;   not read), named here so the gap is visible.
+; Cycle handling in RESOLUTION-PATH — acyclic-by-construction (the SG
+;   choice) vs cycles-representable-and-cut; symlink loops and circular
+;   forwarding make this a real election, not an inheritance.
 ; WORLD / root-scope naming and the one-world-per-scope claim.
 ; ADDRESS and DIRECTIONS as path classifications (all-walk vs mediated-
 ;   bearing is the candidate cut; the old progressive-scoping texture may

@@ -2,6 +2,12 @@
 
 *Append-only, informal. Present truth lives in def/, src/, and the outline; decisions in DECISIONS.ud; process in sop/. This file is archaeological source, not active work.*
 
+## 2026-08-09 — the generalized metatheory assessed; sheet amended (second round)
+
+- Same delegated reader worked Scopes-as-Types (2018) + Knowing-When-to-Ask (2020) whole; coord then read the recommended sections first-hand (2018 §2.1; 2020 §5.1–5.2 + the LMR/Rust study) and verified the report at the primaries.
+- Load-bearing findings, all folded into defs.source.ud: ESOP 2015's soundness theorem *dissolved* rather than generalized (resolution is a definition in the modern line; the inheritance premises are snapshot/finiteness/acyclicity/regular-admissibility/preorder-preference); answer *stability* is the modern theorem and is the writing/use gap made formal — critical/weakly-critical edges transfer verbatim to a growing estate, visibility is non-monotone (a hit can be invalidated, not just a miss filled), retraction is out of all read scope; the seen-imports discipline resurfaced as scheduling stuckness on self-influencing mediation — MEDIATED-STEP keeps it by argued choice, with the termination re-derivation marked as our obligation and the 2015 Fig-12 anomaly marked live.
+- Not-nailed list grew three entries (unanswerable-yet; stability under retraction/rebinding, with Scope States ECOOP 2021 named as the unread nearest work; the cycle election). BINDING/MATCH gained its hardest known stress case (Java packages, exist-by-use). PREFERENCE notes the concrete SG order (prefix + data) is narrower than our nail, deliberately.
+
 ## 2026-08-09 — Zwaan 2024 assessed; sheet amended on its findings
 
 - A delegated reader worked `ref/zwaan-2024-defining/` (Zwaan & Bach Poulsen, ECOOP 2024) against the foundation sheet + ESOP 2015; coord then read the paper's §3 first-hand. Verdict: an *accessibility* application paper, not new resolution theory — skip whole-read; §3 is the best compact statement of the modern query formulation in ref/.
