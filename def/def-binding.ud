@@ -1,20 +1,39 @@
-|term[binding][name][mint][maintainer][dangle][collide]
+|term-group[binding][name][mint][maintainer][dangle][collide]
   :status proposed
-  :word binding
-  :synonyms [declaration]  ; the scope-graphs literature's word
-  :avoid [mapping entry]   ; both suggest a table, hiding the maintenance
-  :depends [reference]
 
-  A **NAME** is a recognizable, repeatable token — a word, a string, a number; nothing about it does any work beyond being recognizable wherever it is used. A **BINDING** is a deliberate association from a name to a referent, created (**MINTED**) at a moment and kept thereafter by a **MAINTAINER** — whoever minted it or inherits its upkeep. It **DANGLES** when the upkeep is lost or unknown where the name is used; it **COLLIDES** when a maintainer holds more than one mint of the same name.
+  A **BINDING** is the first of the two mechanisms by which a @[reference] actually reaches its referents (the other is @[match]): someone deliberately associates a **NAME** with a referent and keeps the association alive. Everything about a binding — including both of its failure modes — is a fact about that upkeep, never about the name or the referent themselves.
 
-  |invariants
-    - The association is the whole connection; no property of the referent participates — and none of the name either, beyond recognizability (which is what makes a name a name)
-    - Its failure modes are the maintenance's: dangle and collide, nothing else
-    - Collision is never defined away: uniqueness is a norm a maintainer may police (cheapest at mint time); unpoliced, the collision surfaces later as ambiguity at use
-  |examples [a filename, a phone-book entry, a variable declaration, "Joseph" within a household, a DNS record]
+  |term[name] A recognizable, repeatable token — a word, a string, a number.
+    |invariants
+      - Nothing about a name does any work beyond being recognizable wherever it is used
 
-  |working-notes
-    - Uniqueness-as-norm is a deliberate divergence from the prior edition (which built "unique within parent" into the definition): the refused-package incident shows real systems have collisions and are judged by how they surface them; the scope-graphs calculus agrees — duplicate declarations stay representable so erroneous programs stay describable.
+  |term[binding] A deliberate, maintained association from a name to a referent.
+    :synonyms [declaration] ; the scope-graphs literature's word
+    |rels :binds   @{name}       {1,1}
+          :to      @{referent}   {1,1}
+          :kept-by @{maintainer} {1,1}
+    |invariants
+      - The association is the whole connection; no property of the referent participates, and none of the name's beyond recognizability
+      - Its failure modes are the maintenance's: @{dangle} and @{collide}, nothing else
+      - Uniqueness of names is a norm a maintainer may police (cheapest at mint time), never part of this definition; unpoliced, a collision surfaces later as ambiguity at use
+
+  |term[mint] The creation of a binding, at a moment, by its first maintainer.
+
+  |term[maintainer] Whoever minted a binding or inherits its upkeep — a person, a family, a filesystem, a registry, a community.
+
+  |term[dangle] The failure where a binding's upkeep is lost, or unknown where the name is used.
+
+  |term[collide] The failure where one maintainer holds more than one mint of the same name.
+
+  |discussion
+    - Collision is never defined away: the refused-package incident shows real systems have collisions and are judged by how they surface them, and the scope-graphs calculus agrees — duplicate declarations stay representable precisely so that erroneous states (the normal case in tooling) remain describable. This is a deliberate divergence from a prior formulation that built "unique within parent" into the definitions.
     - "Joseph" in a large jurisdiction is not a weak name — it is a good binding whose maintaining community is too large for the job; that is why the rest of the address exists.
-    - Where bindings live (the jurisdiction that counts collisions) stays informal until @[scope].
+    - Where bindings live — the jurisdiction within which collisions are counted — stays informal until @[scope].
+  |examples
+    - A filename (maintainer: the filesystem)
+    - A phone-book entry (maintainer: the publisher)
+    - A variable declaration (maintainer: the language scope it lives in)
+    - "Joseph" within a household (maintainer: the family)
+    - A DNS record (maintainer: the zone's operator)
+  |working-notes
     - Hardest known stress case, recorded before someone finds it against us: Java packages "exist by virtue of use" — the namespace is constituted by the union of its users, which strains "kept by whoever minted it."

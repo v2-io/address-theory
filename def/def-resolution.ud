@@ -1,27 +1,50 @@
-|term[resolution][origin][resolution-path][walk-step][mediated-step][admissibility][preference][ambiguity]
+|term-group[resolution][origin][resolution-path][walk-step][mediated-step][admissibility][preference][ambiguity]
   :status proposed
-  :word resolution
-  :synonyms [dereference lookup]
-  :avoid [fetch]  ; resolution determines referents; fetching them is a further act
-  :depends [reference binding match scope location]
 
-  **RESOLUTION** derives, for a @[reference] used at an **ORIGIN** (the @[scope] it is used from), the set of referents it determines — each result carrying its **RESOLUTION-PATH**: the sequence of edge traversals and connection events (bindings consulted, matches run) that justifies it. Paths are made of **WALK-STEPS** (traverse a standing edge; no resolution needed) and **MEDIATED-STEPS** (the edge exists only through a sub-resolution: an import, a symlink, a forwarding address, a delegation). A resolution policy declares **ADMISSIBILITY** (which path shapes count at all — a constraint over edge-label sequences) and **PREFERENCE** (a declared order among admissible results — shadowing made inspectable). **AMBIGUITY** is more than one maximally-preferred result.
+  **RESOLUTION** is where everything above comes together: a @[reference], used from somewhere, is worked back to the referents it determines — with the route kept as evidence, the policy that shaped the answer declared, and every outcome (including none and too-many) given standing.
 
-  |invariants
-    - Origin-relative by construction: the same reference yields different referents from different origins, legitimately
-    - Zero, one, and many are all outcomes; the reference's expected cardinality gives each its meaning
-    - The path is the evidence; reducing a result to its bare referent discards exactly the justification — a choice, never a default
-    - A mediated step's sub-resolution may not use the step it enables
-    - A selection under declared preference is disclosed by construction; a selection without one is a silent guess
-    - Ambiguity is an outcome, not an error — it is what insufficient narrowing is — and it surfaces with its candidate set
+  |term[origin] The @[scope] a reference is used from.
+    |invariants
+      - Constitutive, not optional: the same reference yields different referents from different origins, legitimately
+
+  |term[resolution] The derivation, for a reference used at an origin, of the set of referents it determines.
+    :synonyms [dereference lookup]
+    :avoid [fetch] ; resolution determines referents; fetching them is a further act
+    |rels :of      @{reference} {1,1}
+          :from    @{origin}    {1,1}
+          :results @{referent}  {0,N}  ; each carried with its resolution-path
+          :under   (@{admissibility} | @{preference}) {0,N}
+    |invariants
+      - Zero, one, and many are all outcomes; the reference's intended cardinality gives each its meaning
+
+  |term[resolution-path] The sequence of edge traversals and connection events (bindings consulted, matches run) that justifies one resolution result.
+    |rels :steps (@{walk-step} | @{mediated-step}) {1,N}
+    |invariants
+      - The path is the evidence; reducing a result to its bare referent discards exactly the justification — a choice, never a default
+
+  |term[walk-step] A path step that traverses a standing @{edge}; no resolution is needed to take it.
+
+  |term[mediated-step] A path step whose edge exists only through a sub-resolution: a name must first be resolved to obtain the edge — an import, a symlink, a forwarding address, a delegation.
+    |invariants
+      - A mediated step's sub-resolution may not use the step it enables
+
+  |term[admissibility] The declared half of a resolution policy that says which path shapes count at all — a constraint over edge-label sequences.
+
+  |term[preference] The declared half of a resolution policy that orders admissible results — shadowing ("nearer beats farther", "local beats imported") made inspectable.
+    |invariants
+      - A selection under declared preference is disclosed by construction; a selection without one is a silent guess
+
+  |term[ambiguity] More than one maximally-preferred result.
+    |invariants
+      - An outcome, not an error — it is what insufficient narrowing is — and it surfaces with its candidate set
+
+  |discussion
+    - The path-carrying form and the admissibility/preference split are the scope-graphs line's current formulation, verified at the primaries (ref/vanantwerpen-2018-scopes/ §2.1; ref/zwaan-2024-defining/ §3); per-reference policy is their own endpoint, and result-level preference is where their retrospective says the theory should go (ref/zwaan-2023-scope/ §5). Formal inheritance holds under premises established where used: resolution against a snapshot; finiteness; acyclic paths; regular admissibility; preference a preorder applied as a minimum.
+    - Admissibility + preference are not exhaustive of policy: accessibility (may this asker, via this route, reach this thing) is a known third component, deliberately left open.
+    - The mediated-step discipline is kept by argument, not inheritance: the modern scope-graphs line erased explicit mediation, its solvers deadlock on self-influencing mediation (an everyday pathology in our domain — symlink loops, circular forwarding), and its own retrospective concedes the erasure weakened the model. Termination under open edge labels is this theory's undischarged obligation.
   |examples
     - The refused package, end to end: "several people by that name" is ambiguity surfaced with candidates; the missing digit is a reference narrowing short of its {1,1}; the forwarding card at the old apartment is a mediated step
     - "Local shadows imported" as a declared preference; "no walking onward from inside an imported context" as admissibility
-
   |working-notes
-    - The path-carrying form and the admissibility/preference split are the scope-graphs line's current formulation, verified at the primaries (ref/vanantwerpen-2018-scopes/ §2.1; ref/zwaan-2024-defining/ §3); per-reference policy is their own endpoint, and result-level preference is where their retrospective says the theory should go (ref/zwaan-2023-scope/ §5).
-    - Formal inheritance holds under premises established where used: resolution against a snapshot; finiteness; acyclic paths; regular admissibility; preference a preorder applied as a minimum.
-    - Admissibility + preference are not exhaustive of policy: accessibility (may this asker, via this route, reach this thing) is a known third component, deliberately left open.
-    - The mediated-step discipline is kept by argument, not inheritance: the modern line erased explicit mediation, its solvers deadlock on self-influencing mediation (an everyday pathology in our domain), and its own retrospective concedes the erasure weakened the model. Termination under open edge labels is this theory's undischarged obligation.
     - Deliberately left open: the stability-aware outcome (an answer given while the world can still change it is not yet an answer; the growing-world half has a portable theorem — ref/rouvoet-2020-knowing/ §5.1–5.2); stability under retraction and rebinding (nearest work: Zwaan 2022, unread); the cycle election; accessibility's factoring; @{ADDRESS}/@{DIRECTIONS} over the step kinds; selection policies below preference.
-    - This entry defines eight terms; split when any earns independent weight (candidate seams: the step kinds; the policy pair).
+    - This group defines eight terms; split when any earns independent weight (candidate seams: the step kinds; the policy pair).

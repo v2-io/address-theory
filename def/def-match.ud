@@ -1,18 +1,27 @@
-|term[match][designator][description]
+|term-group[match][designator][description]
   :status proposed
-  :word match
-  :avoid [search query]  ; each names an activity or artifact, not the connection established
-  :depends [reference binding]
 
-  A **MATCH** is a connection from a @[reference] to referents established by running a test at the moment of use: the referents are whatever, in the world's current population, passes the criteria the reference supplies. With @[binding] it forms the two connection mechanisms; the classic vocabulary derives per connection: a **DESIGNATOR** is a reference (or component of one) that reaches its referent through a binding on its name; a **DESCRIPTION** is one that reaches its referents by match.
+  A **MATCH** is the second mechanism by which a @[reference] reaches its referents: instead of consulting a maintained @[binding], a test is run at the moment of use. With binding it forms the two connection mechanisms, and the classic vocabulary — **DESIGNATOR** and **DESCRIPTION** — derives from which mechanism a reference's connection actually uses, never from how it is spelled.
 
-  |invariants
-    - Nothing is minted and nothing is maintained; the answer may differ whenever the population differs
-    - Fails through the world's motion: the same criteria, run later, quietly pick out something else — detectable only if the reference carries something to check against
-    - Designator/description follows the connection, never the spelling: one written form is a designator where maintainers police the binding, a description over a population nobody polices
-  |examples [a glob, "the resident aged 47", a WHERE clause, a content hash (the test: bytes equal), a full-text search]
+  |term[match] A connection from a reference to referents established by running a test at the moment of use: the referents are whatever, in the world's current population, passes the criteria the reference supplies.
+    :avoid [search query] ; each names an activity or artifact, not the connection established
+    |invariants
+      - Nothing is minted and nothing is maintained; the answer may differ whenever the population differs
+      - Fails through the world's motion: the same criteria, run later, quietly pick out something else — detectable only if the reference carries something to check against
 
+  |term[designator] A reference (or component of one) that reaches its referent through a @[binding] on its name.
+
+  |term[description] A reference (or component of one) that reaches its referents by match.
+
+  |discussion
+    - Designator/description follows the connection, never the spelling: one written form is a designator where maintainers police the binding, and a description over a population nobody polices. Kind follows maintenance.
+    - The two mechanisms' complementary failure modes — a binding fails through its maintenance, a match through the world's motion — drive all the later machinery.
+  |examples
+    - A glob (match on names present)
+    - "The resident aged 47" (match on properties)
+    - A WHERE clause
+    - A content hash (the test: bytes equal)
+    - A full-text search
   |working-notes
     - Exhaustiveness — every addressing form examined decomposes into bindings consulted and matches run (positional index = match on the current ordering; hash = match on content; forwarding pointer = a binding at the old endpoint) — is held provisionally with its refutation stated: a mechanism that is neither reorganizes this layer.
-    - The two mechanisms' complementary failure modes (maintenance vs world-motion) drive all the later machinery.
-    - Open: whether "population" needs its own definition or is carried by @[scope] once resolution is in hand.
+    - Open: whether "population" (what a match tests against) needs its own definition or is carried by @[scope] once resolution is in hand.

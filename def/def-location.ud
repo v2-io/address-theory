@@ -1,17 +1,22 @@
-|term[location]
+|term-group[location]
   :status proposed
-  :word location
-  :synonyms [named scope]
-  :avoid [place position address]  ; address is a later, composite notion
-  :depends [binding scope]
 
-  A **LOCATION** is a @[scope] that is itself the referent of a @[binding] — a named scope. Location-ness is a role a scope plays when some enclosing jurisdiction keeps a name for it, not a new kind of thing.
+  A **LOCATION** is what you get when a @[scope] is itself the referent of a @[binding] — a named scope. Location-ness is a role a scope plays when some enclosing jurisdiction keeps a name for it, not a new kind of thing.
 
-  |invariants
-    - Nothing is added beyond scope + binding; in particular uniqueness does not re-enter here — an unpoliced parent with two same-named children holds two locations whose shared name surfaces as ambiguity at resolution
-  |examples [a directory (bound by its name in its parent), a city, a module, a keyed element in a document, a mailbox]
+  |term[location] A scope that is itself the referent of a binding — a named scope.
+    :synonyms ["named scope"]
+    :avoid [place position address] ; address is a later, composite notion
+    |rels :scope    @{scope}   {1,1}
+          :named-by @{binding} {1,N}  ; more than one = aliases, all equally real
+    |invariants
+      - Nothing is added beyond scope + binding; in particular uniqueness does not re-enter here — an unpoliced parent with two same-named children holds two locations whose shared name surfaces as ambiguity at resolution
 
-  |working-notes
+  |discussion
     - The address's middle lines are locations: the city is a scope (keeps street names) named in the state's scope; the street a scope (keeps house numbers) named in the city's. A chain of locations, each named in the previous one, is the recognizable shape of an address — but @{ADDRESS} as a term is deferred until @[resolution] exists to define it against.
     - Exact scope-graphs correspondence: "declaration with associated named scope" — their module, shown equally to be a class, a package, a record: anything named that encapsulates bindings. The same generality is claimed here.
+  |examples
+    - A directory (bound by its name in its parent)
+    - A city; a mailbox
+    - A module; a keyed element in a document
+  |working-notes
     - Open: must a location's own scope and the binding's holding scope be related? Registries keep names far from what they name — lean: no.
