@@ -13,7 +13,7 @@
     |invariants
       - It is an artifact: it may persist, travel, or be copied; the mind or machine that writes it and the one that uses it may be far apart in time, place, and kind.
       - It is written once but may be used multiple times, at different times
-      - It does not require its referents to be present, or even to exist yet, to be validly written — a capability, not a purpose (references also exist for convenience, compactness, machine-readability, stable indirection); deferred determination rests on this capability
+      - It does not require its referents to be present, or even to exist yet, to be validly written. This allows deferral.
       - Determination is deferred and the world may change in the meantime; that gap is constitutive, not incidental.
 
   |term[intended-cardinality] The range of the number of referents a reference stands in for, with a minimum and a maximum {min,max}.
@@ -25,6 +25,7 @@
         - Zero  against {0,N} = simply the current answer
 
   |discussion
+    — The purpose of a reference can be any number of things (referent-absence, convenience, compactness, machine-readability, stable indirection, etc.)
     - How the relation is made effective — how material actually reaches things — is exactly the next distinction (@[binding], @[match]); this entry only establishes that the relation exists, is directional, and is carried by an artifact.
     - Philosophy-of-language note: strictly (Strawson), agents refer using expressions — referring is an act (in this case a "referral act"). The artifact-first cut is chosen because the theory's machinery manipulates artifacts (documents carry references; stores resolve them); the definition absorbs the act's theory-tractable part (the creator's intent, as expected cardinality) into the artifact, and the events are named with plain verbs — a reference is written, then used.
   |examples
