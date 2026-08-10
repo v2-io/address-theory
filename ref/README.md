@@ -12,4 +12,5 @@ The stable home for external material segments may cite (Working Notes and Refer
 | `terminator-table.md` | ~130 measured spelling cases; `[L]`/`[P]` register |
 | `esop15/` | Néron, Tolmach, Visser & Wachsmuth, "A Theory of Name Resolution", ESOP 2015 (md conversion + pdf; copy — source archived) |
 | `zwaan-2024-defining/` | Zwaan & Bach Poulsen, "Defining Name Accessibility using Scope Graphs", ECOOP 2024 — accessibility as policy over ⟨origin, path, declaration⟩; §3 = best compact statement of the modern query formulation |
-| `vanantwerpen-2018-scopes/` | van Antwerpen, Bach Poulsen, Rouvoet & Visser, "Scopes as Types", OOPSLA 2018 — generalized metatheory the `[SG]` proof-inheritance marks point at (with Rouvoet 2020, incoming) |
+| `vanantwerpen-2018-scopes/` | van Antwerpen, Bach Poulsen, Rouvoet & Visser, "Scopes as Types", OOPSLA 2018 — generalized metatheory the `[SG]` proof-inheritance marks point at |
+| `rouvoet-2020-knowing/` | Rouvoet, van Antwerpen, Bach Poulsen, Krebbers & Visser, "Knowing When to Ask", OOPSLA 2020 — sound scheduling of queries against a graph still being built; where the seen-imports discipline lives now (bears on MEDIATED-STEP) |

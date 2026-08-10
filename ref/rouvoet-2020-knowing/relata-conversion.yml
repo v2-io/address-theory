@@ -1,0 +1,76 @@
+---
+schema: 1
+sha: 64a9891f376d428e5f28065d9644c3107f01d10ceaa503d6de6cee05e7de3b07
+source:
+  path: "/Users/josephwecker-v2/.local/share/relata/pdfs/rouvoet-2020-knowing.pdf"
+  filename: rouvoet-2020-knowing.pdf
+  bytes: 332648
+  kind: pdf
+converter:
+  name: marker_single
+  version: 1.10.2
+  argv:
+  - marker_single
+  - "/Users/josephwecker-v2/.local/share/relata/pdfs/rouvoet-2020-knowing.pdf"
+  - "--output_dir"
+  - "/Users/josephwecker-v2/.local/share/relata/markdown/.tmp-convert.64a9891f376d428e5f28065d9644c3107f01d10ceaa503d6de6cee05e7de3b07.39180.f8fd2f58/marker-out"
+force_ocr:
+  requested:
+  applied: false
+  decided_by: probe
+  reason: all 7 native-digital checks passed — trusting the text layer
+  probe:
+    thresholds:
+      min_font_count: 1
+      max_replacement_ratio: 0.002
+      min_chars_per_page: 200
+      min_alnum_ratio: 0.55
+      min_text_page_ratio: 0.8
+    signals:
+      pages: 28
+      producer: ConfPub - oopsla20main-p222-p rev-914a6909e2-48215M p1580
+      creator: Conference Publishing Consulting
+      font_count: 29
+      ocr_font_names: []
+      sampled_pages: 10
+      chars_per_page_median: 4207.0
+      replacement_ratio: 0.0
+      alnum_ratio: 0.95096
+      text_page_ratio: 1.0
+    checks:
+    - name: embedded_fonts
+      value: 29
+      threshold: ">= 1"
+      pass: true
+    - name: no_ocr_fonts
+      value: []
+      threshold: empty
+      pass: true
+    - name: no_ocr_producer
+      value: ConfPub - oopsla20main-p222-p rev-914a6909e2-48215M p1580 / Conference
+        Publishing Consulting
+      threshold: no OCR-engine signature
+      pass: true
+    - name: chars_per_page
+      value: 4207.0
+      threshold: ">= 200"
+      pass: true
+    - name: replacement_chars
+      value: 0.0
+      threshold: "<= 0.002"
+      pass: true
+    - name: alnum_ratio
+      value: 0.95096
+      threshold: ">= 0.55"
+      pass: true
+    - name: text_page_ratio
+      value: 1.0
+      threshold: ">= 0.8"
+      pass: true
+run:
+  started_at: '2026-08-10T01:30:07Z'
+  finished_at: '2026-08-10T01:35:17Z'
+  duration_s: 309.852
+  exit_status: 0
+  log: conversion.log
+created_by: relata-convert/0.6.0
