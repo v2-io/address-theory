@@ -2,6 +2,12 @@
 
 *Append-only, informal. Present truth lives in def/, src/, and the outline; decisions in DECISIONS.ud; process in sop/. This file is archaeological source, not active work.*
 
+## 2026-08-10 — compose-defs → markdown LEXICON-overview.md
+
+- `bin/compose-defs` refined: default write is markdown to `LEXICON-overview.md` (outline-ordered leading prose of each `def/*.ud`); strips `|term-group` / `:status` wire markup; section headings from the group's primary term; one source line → one markdown paragraph; blurb lives in the `GENERATED VIEW` HTML comment. Term links derived each run from live `|term-group[…]` headers (no hardcoded map): `@{term}` → `*[[def-….ud|term]]*`, `**TERM**` → `'**[[def-….ud|term]]**'`; display text lowercase, title-cased only at sentence start; singular/plural surfaces expanded via `dry-inflector` (so `@{reference}`/`@{references}`/`@{referent}`/`@{referents}` share a def file); unmapped surfaces warned on stderr. `-o PATH` and `-` (stdout) retained.
+- Leading-prose term marking pass: bare official terms in the six `def/*` intros marked with `@{…}` (cross- and same-group); ordinary English left alone ("collision", "jurisdiction", "mint time", …).
+- Layout table notes the overview as a non-definitional continuous pass (full `LEXICON.md` assembler still pending).
+
 ## 2026-08-09 — headword recut: REFERENCE-ACT → REFERENCE; pseudo-terms eliminated
 
 - Steward challenge ("why a reference-act instead of thousands of years of terminology?") upheld: the act-headword was academically pedigreed (Strawson/Searle) but wrong-footed — the theory manipulates artifacts, and the ancient word REFERENCE covers the whole span (address, wikilink, import, URL) that no map/path word does. def-reference-act.ud → def-reference.ud; events carried by plain verbs (written, used); the act retired as headword with the reasoning in the entry's working notes.

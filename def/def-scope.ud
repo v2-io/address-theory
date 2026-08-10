@@ -1,7 +1,7 @@
 |term-group[scope][edge][containment][root-scope]
   :status proposed
 
-  A **SCOPE** makes @{binding}'s informal "jurisdiction" precise: it is the unit within which bindings are kept and collisions counted. Scopes connect to one another by labeled **EDGES**; the universal edge label is **CONTAINMENT** — pointing from a scope to the scope enclosing it — and a scope with no outward containment edge is a **ROOT-SCOPE**. This arrangement is the economics the whole theory rides on: a binding need only be unambiguous *locally*, within its scope, and locally-cheap bindings compose across edges into global reach. No maintainer ever needs a globally unique name.
+  A **SCOPE** makes @{binding}'s informal "jurisdiction" precise: it is the unit within which @{bindings} are kept and collisions counted. @{scopes} connect to one another by labeled **EDGES**; the universal edge label is **CONTAINMENT** — pointing from a @{scope} to the @{scope} enclosing it — and a @{scope} with no outward containment edge is a **ROOT-SCOPE**. This arrangement is the economics the whole theory rides on: a @{binding} need only be unambiguous *locally*, within its @{scope}, and locally-cheap @{bindings} compose across @{edges} into global reach. No @{maintainer} ever needs a globally unique @{name}.
 
   |term[scope] The unit of resolution locality: the jurisdiction within which a maintainer's bindings are kept and collisions counted.
     :synonyms [jurisdiction namespace]

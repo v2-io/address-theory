@@ -1,7 +1,7 @@
 |term-group[reference][referents][intended-cardinality][resolve][dereference]
   :status   proposed
 
-  A **REFERENCE** is recorded material that is used as a proxy or to stand in for its **REFERENT**s, often when the referents are not at hand or can't be known yet. The two terms are only well-defined in relation to each other. A reference has an *intent* when it is created— and we specifically define the recorded **INTENDED-CARDINALITY** of a reference: Whether it intends to stand in for a single referent {1,1}, at most one{0,1}, or, for example, as many as there might be {0,N}. To **RESOLVE** a reference is to determine what it reaches — always *as of a moment*; to **DEREFERENCE** it is to resolve and take hold of the referents as they then stand.
+  A **REFERENCE** is recorded material that is used as a proxy or to stand in for its **REFERENT**s, often when the @{referents} are not at hand or can't be known yet. The two terms are only well-defined in relation to each other. A @{reference} has an *intent* when it is created— and we specifically define the recorded **INTENDED-CARDINALITY** of a @{reference}: Whether it intends to stand in for a single @{referent} {1,1}, at most one{0,1}, or, for example, as many as there might be {0,N}. To **RESOLVE** a @{reference} is to determine what it reaches — always *as of a moment*; to **DEREFERENCE** it is to @{resolve} and take hold of the @{referents} as they then stand.
 
   |term[referents] The things that a reference is proxy for.
 

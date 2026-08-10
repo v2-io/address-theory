@@ -1,7 +1,7 @@
 |term-group[match][designator][description]
   :status proposed
 
-  A **MATCH** is the second mechanism by which a @{reference} reaches its @{referents}: instead of consulting a maintained @{binding}, a test is run at the moment of use. With binding it forms the two connection mechanisms, and the classic vocabulary — **DESIGNATOR** and **DESCRIPTION** — derives from which mechanism a reference's connection actually uses, never from how it is spelled.
+  A **MATCH** is the second mechanism by which a @{reference} reaches its @{referents}: instead of consulting a maintained @{binding}, a test is run at the moment of use. With @{binding} it forms the two connection mechanisms, and the classic vocabulary — **DESIGNATOR** and **DESCRIPTION** — derives from which mechanism a @{reference}'s connection actually uses, never from how it is spelled.
 
   |term[match      ] A connection from a reference to referents established by running a test at the moment of use: the referents are whatever, in the world's current population, passes the criteria the reference supplies.
     :avoid [search query] ; each names an activity or artifact, not the connection established

@@ -1,7 +1,7 @@
 |term-group[resolution][origin][resolution-path][walk-step][mediated-step][admissibility][preference][ambiguity]
   :status proposed
 
-  **RESOLUTION** is where everything above comes together: a @{reference}, resolved from an **ORIGIN** scope, is worked back to the referents it reaches as of that moment. Each result carries its **RESOLUTION-PATH** — the route that justifies it, made of **WALK-STEPS** (traversals of standing edges) and **MEDIATED-STEPS** (edges that exist only through a sub-resolution). The answer is shaped by declared policy — **ADMISSIBILITY** (which path shapes count at all) and **PREFERENCE** (which admissible results win) — and every outcome has standing, including none and too-many (**AMBIGUITY**).
+  **RESOLUTION** is where everything above comes together: a @{reference}, resolved from an **ORIGIN** @{scope}, is worked back to the @{referents} it reaches as of that moment. Each result carries its **RESOLUTION-PATH** — the route that justifies it, made of **WALK-STEPS** (traversals of standing @{edges}) and **MEDIATED-STEPS** (@{edges} that exist only through a sub-@{resolution}). The answer is shaped by declared policy — **ADMISSIBILITY** (which path shapes count at all) and **PREFERENCE** (which admissible results win) — and every outcome has standing, including none and too-many (**AMBIGUITY**).
 
   |term[origin] The @{scope} a reference is used from.
     |invariants

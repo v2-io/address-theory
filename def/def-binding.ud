@@ -1,8 +1,8 @@
 |term-group[binding][name][mint][maintainer][dangle][collide]
   :status proposed
 
-  A **BINDING** is the first of the two mechanisms by which a @{reference} actually reaches its @{referents} (the other is @{match}): someone (the **MAINTAINER**) deliberately associates (**MINT**s) a **NAME** with a referent and keeps that association (binding) alive. Everything about a binding is a fact about that upkeep, not the name or the referent. The maintenance involved fails when the binding no longer reaches a referent, called a **DANGLE**, or when the maintainer has more than one mint of the same name (they **COLLIDE**).
-  The name can be considered a new {1,1} reference to a referent that is more direct. The uniqueness of names is a *norm* a maintainer may police (cheapest at mint time) in order to avoid collision failures, instead of an invariant.
+  A **BINDING** is the first of the two mechanisms by which a @{reference} actually reaches its @{referents} (the other is @{match}): someone (the **MAINTAINER**) deliberately associates (**MINT**s) a **NAME** with a @{referent} and keeps that association (@{binding}) alive. Everything about a @{binding} is a fact about that upkeep, not the @{name} or the @{referent}. The maintenance involved fails when the @{binding} no longer reaches a @{referent}, called a **DANGLE**, or when the @{maintainer} has more than one @{mint} of the same @{name} (they **COLLIDE**).
+  The @{name} can be considered a new {1,1} @{reference} to a @{referent} that is more direct. The uniqueness of @{names} is a *norm* a @{maintainer} may police (cheapest at mint time) in order to avoid collision failures, instead of an invariant.
 
   |term[name      ] A repeatable token (e.g., a word, string, or number) that is recognizable wherever it is used.
   |term[mint      ] The creation of a binding, at a moment, by its first maintainer.

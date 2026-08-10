@@ -13,7 +13,8 @@
 | Priority | File / Directory             | Modify | description                           |
 |----------|------------------------------|--------|---------------------------------------|
 | 1 | ORIENT.md -> sop/src/disc-orient.md | rare   | Orientation- loaded automatically for claude. *doctrina*, *praxes*, and *professio* aspects. Critical reading. |
-| 2 | LEXICON.md                          | never  | Automatically generated from def/ entries -- critical definitions needed to understand anything and talk about it. |
+| 2 | LEXICON.md                          | never  | Full term lexicon, assembled from def/ entries (assembler still pending) — critical definitions needed to understand anything and talk about it. |
+| 2 | LEXICON-overview.md                 | never  | Generated continuous reading pass over def/ leading prose (`bin/compose-defs`); not a second definition source. |
 | 3 | PRACTICA.ud                         | sess   | Current main efforts -- constitutes the "handoff" most of the time, or fresh entry. Keep up-to-date. |
 | 4 | ADDRESSING-THEORY.outline.md        | often  | Central outline for this sub-project. This is the main entrypoint for understanding the domain. |
 |   |                                     |        |      |
@@ -28,7 +29,7 @@
 | ~ | DECISIONS.ud                        | often  | Decision log, with provenance and authority. Append-only (mostly)-- lower items supersede earlier. |
 | ~ | CHANGELOG.md                        | sess   | Append only *very open-ended / informal* format. Append to throughout your session. As archeological src, not active work. |
 | ~ | sop/INFLUX/                         | rare   | In particular, a place to put feedback etc. *at any time* about the process or SOPs themselves, including praxes. |
-| ~ | bin/                                | rare   | Instruments (empty at the moment until pulled/built as needed; first up: the def/ -> LEXICON.md assembler). |
+| ~ | bin/compose-defs                    | rare   | Regenerates LEXICON-overview.md from def/ leading prose in outline order. |
 |   |                                     |        |      |
 | ~ | CLAUDE.md                           | rare   | This file-- add to it, carefully, as appropriate. Don't be redundant with proper tracking files & SOPs please |
 | ∅ | AGENTS.md -> CLAUDE.md              |        | AGENTS right now is symliked to this file |

@@ -1,7 +1,7 @@
 |term-group[location]
   :status proposed
 
-  A **LOCATION** is what you get when a @{scope} is itself the referent of a @{binding} — a named scope. Location-ness is a role a scope plays when some enclosing jurisdiction keeps a name for it, not a new kind of thing.
+  A **LOCATION** is what you get when a @{scope} is itself the @{referent} of a @{binding} — a named @{scope}. Location-ness is a role a @{scope} plays when some enclosing jurisdiction keeps a @{name} for it, not a new kind of thing.
 
   |term[location] A scope that is itself the referent of a binding — a named scope.
     :synonyms ["named scope"]
