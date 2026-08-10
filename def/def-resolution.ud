@@ -3,23 +3,23 @@
   :word resolution
   :synonyms [dereference lookup]
   :avoid [fetch]  ; resolution determines referents; fetching them is a further act
-  :depends [reference-act binding match scope location]
+  :depends [reference binding match scope location]
 
-  **RESOLUTION** derives, for a @[reference-act] at its **ORIGIN** (the @[scope] it starts from), the set of referents its material determines — each result carrying its **RESOLUTION-PATH**: the sequence of edge traversals and connection events (bindings consulted, matches run) that justifies it. Paths are made of **WALK-STEPS** (traverse a standing edge; no resolution needed) and **MEDIATED-STEPS** (the edge exists only through a sub-resolution: an import, a symlink, a forwarding address, a delegation). A resolution policy declares **ADMISSIBILITY** (which path shapes count at all — a constraint over edge-label sequences) and **PREFERENCE** (a declared order among admissible results — shadowing made inspectable). **AMBIGUITY** is more than one maximally-preferred result.
+  **RESOLUTION** derives, for a @[reference] used at an **ORIGIN** (the @[scope] it is used from), the set of referents it determines — each result carrying its **RESOLUTION-PATH**: the sequence of edge traversals and connection events (bindings consulted, matches run) that justifies it. Paths are made of **WALK-STEPS** (traverse a standing edge; no resolution needed) and **MEDIATED-STEPS** (the edge exists only through a sub-resolution: an import, a symlink, a forwarding address, a delegation). A resolution policy declares **ADMISSIBILITY** (which path shapes count at all — a constraint over edge-label sequences) and **PREFERENCE** (a declared order among admissible results — shadowing made inspectable). **AMBIGUITY** is more than one maximally-preferred result.
 
   |invariants
-    - Origin-relative by construction: the same material yields different referents from different origins, legitimately
-    - Zero, one, and many are all outcomes; the act's expected cardinality gives each its meaning
+    - Origin-relative by construction: the same reference yields different referents from different origins, legitimately
+    - Zero, one, and many are all outcomes; the reference's expected cardinality gives each its meaning
     - The path is the evidence; reducing a result to its bare referent discards exactly the justification — a choice, never a default
     - A mediated step's sub-resolution may not use the step it enables
     - A selection under declared preference is disclosed by construction; a selection without one is a silent guess
     - Ambiguity is an outcome, not an error — it is what insufficient narrowing is — and it surfaces with its candidate set
   |examples
-    - The refused package, end to end: "several people by that name" is ambiguity surfaced with candidates; the missing digit is material falling short of {1,1}; the forwarding card at the old apartment is a mediated step
+    - The refused package, end to end: "several people by that name" is ambiguity surfaced with candidates; the missing digit is a reference narrowing short of its {1,1}; the forwarding card at the old apartment is a mediated step
     - "Local shadows imported" as a declared preference; "no walking onward from inside an imported context" as admissibility
 
   |working-notes
-    - The path-carrying form and the admissibility/preference split are the scope-graphs line's current formulation, verified at the primaries (ref/vanantwerpen-2018-scopes/ §2.1; ref/zwaan-2024-defining/ §3); per-act policy is their own endpoint, and result-level preference is where their retrospective says the theory should go (ref/zwaan-2023-scope/ §5).
+    - The path-carrying form and the admissibility/preference split are the scope-graphs line's current formulation, verified at the primaries (ref/vanantwerpen-2018-scopes/ §2.1; ref/zwaan-2024-defining/ §3); per-reference policy is their own endpoint, and result-level preference is where their retrospective says the theory should go (ref/zwaan-2023-scope/ §5).
     - Formal inheritance holds under premises established where used: resolution against a snapshot; finiteness; acyclic paths; regular admissibility; preference a preorder applied as a minimum.
     - Admissibility + preference are not exhaustive of policy: accessibility (may this asker, via this route, reach this thing) is a known third component, deliberately left open.
     - The mediated-step discipline is kept by argument, not inheritance: the modern line erased explicit mediation, its solvers deadlock on self-influencing mediation (an everyday pathology in our domain), and its own retrospective concedes the erasure weakened the model. Termination under open edge labels is this theory's undischarged obligation.

@@ -1,0 +1,22 @@
+|term[reference][referent][expected-cardinality]
+  :status proposed
+  :word reference
+  :avoid [pointer link address]  ; each names a narrower kind, defined later or not at all
+  :depends []
+
+  A **REFERENCE** is recorded material that stands for something beyond itself: its **REFERENTS**, the things it is intended to determine. Reference and referent are the two ends of this one stand-for relation — the relation is the primitive; the two words name its poles. A reference also carries an **EXPECTED-CARDINALITY**: bounds {n,m}, declared by its writer, on how many referents it intends.
+
+  |invariants
+    - A reference is an artifact: it persists, travels, and is copied; the mind that writes it and the mind that uses it may be far apart in time, place, and kind
+    - It works in its referents' absence — that is its purpose: acting on what is not at hand
+    - Determination is deferred: a reference is written once and used later, possibly many times, and nothing guarantees the world holds still in between; that gap is constitutive, not incidental
+    - The expected cardinality belongs to the reference (declared at writing), never to whatever later processes it, and it is what gives a miss its meaning: zero against {1,1} says the writer's model of the world is wrong; three against {1,1} says the reference narrowed insufficiently; zero against {0,N} is simply the answer
+  |examples [a mailing address, a wikilink, an import statement, a URL, "the Joseph in accounting", a citation key]
+
+  |working-notes
+    - Defining reference and referent as co-defined poles is deliberate, not a shortcut: any "independent" definition of either smuggles the other in (the thing referred to; the material that refers). How the relation is made effective — how material actually reaches things — is exactly the next distinction (@[binding], @[match]); this entry only establishes that the relation exists, is directional, and is carried by an artifact.
+    - The word deliberately shares udon core's "reference" (the @-selector): the core's construct is the special case, this term the generalization, and sharing the word says so.
+    - Philosophy-of-language note: strictly (Strawson), agents refer using expressions — referring is an act. The artifact-first cut is chosen because the theory's machinery manipulates artifacts (documents carry references; stores resolve them); the events are named with plain verbs — a reference is written, then used. A prior draft made the act the headword (REFERENCE-ACT); retired, since no event-noun has yet been needed.
+    - The postal on-ramp in one line: an envelope's address block is a reference; each line strips candidates; the intended cardinality is one recipient; the days between writing and delivery are the gap in its plainest form.
+    - Expected-cardinality settled early on convergence: SQL's scalar subquery (a {1,1} with only a hard error channel), hybrid logic's nominals ({1,1} in the semantics), wikilink stem lookup, steward O15.
+    - Deliberately left open: the operational-vs-epistemic double bound; @{TARGET-SET} vs referent seating; the internal composite structure of references (real references are usually conjunctions of parts — the address's several lines; treated when paths are); a reference's ORIGIN — resolution is origin-relative, the reference itself is not (see @[resolution]).

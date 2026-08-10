@@ -1,14 +1,14 @@
-|term[binding][mint][maintainer][dangle][collide]
+|term[binding][name][mint][maintainer][dangle][collide]
   :status proposed
   :word binding
   :synonyms [declaration]  ; the scope-graphs literature's word
   :avoid [mapping entry]   ; both suggest a table, hiding the maintenance
-  :depends [reference-act]
+  :depends [reference]
 
-  A **BINDING** is a deliberate association from a name to a referent, created (**MINTED**) at a moment and kept thereafter by a **MAINTAINER** — whoever minted it or inherits its upkeep. It **DANGLES** when the upkeep is lost or unknown where the name is used; it **COLLIDES** when a maintainer holds more than one mint of the same name.
+  A **NAME** is a recognizable, repeatable token — a word, a string, a number; nothing about it does any work beyond being recognizable wherever it is used. A **BINDING** is a deliberate association from a name to a referent, created (**MINTED**) at a moment and kept thereafter by a **MAINTAINER** — whoever minted it or inherits its upkeep. It **DANGLES** when the upkeep is lost or unknown where the name is used; it **COLLIDES** when a maintainer holds more than one mint of the same name.
 
   |invariants
-    - The association is the whole connection; no property of the referent participates
+    - The association is the whole connection; no property of the referent participates — and none of the name either, beyond recognizability (which is what makes a name a name)
     - Its failure modes are the maintenance's: dangle and collide, nothing else
     - Collision is never defined away: uniqueness is a norm a maintainer may police (cheapest at mint time); unpoliced, the collision surfaces later as ambiguity at use
   |examples [a filename, a phone-book entry, a variable declaration, "Joseph" within a household, a DNS record]

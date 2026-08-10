@@ -2,13 +2,13 @@
   :status proposed
   :word match
   :avoid [search query]  ; each names an activity or artifact, not the connection established
-  :depends [reference-act binding]
+  :depends [reference binding]
 
-  A **MATCH** is a connection from referring material to referents established by running a test at the moment of use: the referents are whatever, in the world's current population, passes the supplied criteria. With @[binding] it forms the two connection mechanisms; the classic vocabulary derives per connection: a **DESIGNATOR** is referring material that reaches by binding, a **DESCRIPTION** is referring material that reaches by match.
+  A **MATCH** is a connection from a @[reference] to referents established by running a test at the moment of use: the referents are whatever, in the world's current population, passes the criteria the reference supplies. With @[binding] it forms the two connection mechanisms; the classic vocabulary derives per connection: a **DESIGNATOR** is a reference (or component of one) that reaches its referent through a binding on its name; a **DESCRIPTION** is one that reaches its referents by match.
 
   |invariants
     - Nothing is minted and nothing is maintained; the answer may differ whenever the population differs
-    - Fails through the world's motion: the same criteria, run later, quietly pick out something else — detectable only if the act carries something to check against
+    - Fails through the world's motion: the same criteria, run later, quietly pick out something else — detectable only if the reference carries something to check against
     - Designator/description follows the connection, never the spelling: one written form is a designator where maintainers police the binding, a description over a population nobody polices
   |examples [a glob, "the resident aged 47", a WHERE clause, a content hash (the test: bytes equal), a full-text search]
 

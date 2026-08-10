@@ -10,14 +10,14 @@
 
 | Expected<br>Type | Tag                   | Claim                                                                                                                                                                                                       | Max       | State    |
 | ---------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | -------- |
-| Definition       | [[def-reference-act.ud]] | Referring material intended to determine referents, with expected cardinality as act-anatomy; the writing/use gap is constitutive                                                                           | axiomatic | drafted  |
-| Definition       | [[def-binding.ud]]       | Deliberate maintained name→referent association; mint/maintainer/dangle/collide; uniqueness is a policed norm, never definitional                                                                           | axiomatic | drafted  |
+| Definition       | [[def-reference.ud]]     | Recorded material standing for its referents — reference/referent as co-defined poles of one relation; expected cardinality declared at writing; the writing/use gap is constitutive                        | axiomatic | drafted  |
+| Definition       | [[def-binding.ud]]       | Name (defined) → referent association, deliberate and maintained; mint/maintainer/dangle/collide; uniqueness is a policed norm, never definitional                                                          | axiomatic | drafted  |
 | Definition       | [[def-match.ud]]         | Connection by test against the current population; with binding, the two connection mechanisms (exhaustiveness held with its stated refutation condition); designator/description derived per-connection    | axiomatic | drafted  |
 | Definition       | [[def-scope.ud]]         | The unit of resolution locality — binding's "jurisdiction" made precise; labeled edges (containment universal); root scopes; locally-cheap bindings compose into global reach                               | axiomatic | drafted  |
 | Definition       | [[def-location.ud]]      | A scope that is the referent of a binding — a named scope; location-ness is a role                                                                                                                          | axiomatic | drafted  |
 | Definition       | [[def-resolution.ud]]    | Act + origin → result set, each result carrying its resolution path; walk vs mediated steps; the admissibility/preference policy split; ambiguity as surfaced outcome                                       | axiomatic | drafted  |
 
-*Reading order is dependency order: each segment uses only its predecessors (`depends` in each frontmatter). The one deliberate deferral making that true: the act's origin lives in def-resolution, not def-reference-act — resolution is origin-relative; the act itself is not.*
+*Reading order is dependency order: each segment uses only its predecessors (`depends` in each frontmatter). The one deliberate deferral making that true: a reference's origin lives in def-resolution, not def-reference — resolution is origin-relative; the reference itself is not.*
 
 ## *Part* II — Theory
 
