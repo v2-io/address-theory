@@ -1,0 +1,1896 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Scopes as Types",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          45.087890625,
+          83.3203125
+        ],
+        [
+          148.33172607421875,
+          83.3203125
+        ],
+        [
+          148.33172607421875,
+          97.7779541015625
+        ],
+        [
+          45.087890625,
+          97.7779541015625
+        ]
+      ]
+    },
+    {
+      "title": "ACM Reference Format:",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          44.3759765625,
+          338.203125
+        ],
+        [
+          143.36468505859375,
+          338.203125
+        ],
+        [
+          143.36468505859375,
+          348.5712585449219
+        ],
+        [
+          44.3759765625,
+          348.5712585449219
+        ]
+      ]
+    },
+    {
+      "title": "1 INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          45.3251953125,
+          387.0703125
+        ],
+        [
+          138.9284210205078,
+          387.0703125
+        ],
+        [
+          138.9284210205078,
+          397.55255126953125
+        ],
+        [
+          45.3251953125,
+          397.55255126953125
+        ]
+      ]
+    },
+    {
+      "title": "2 SCOPES AS TYPES",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          45.5625,
+          307.265625
+        ],
+        [
+          146.1796875,
+          307.265625
+        ],
+        [
+          146.1796875,
+          318.1426696777344
+        ],
+        [
+          45.5625,
+          318.1426696777344
+        ]
+      ]
+    },
+    {
+      "title": "2.1 Scope Graphs and the Resolution Calculus",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          44.61328125,
+          417.1846618652344
+        ],
+        [
+          259.9140319824219,
+          417.1846618652344
+        ],
+        [
+          259.9140319824219,
+          427.14727783203125
+        ],
+        [
+          44.61328125,
+          427.14727783203125
+        ]
+      ]
+    },
+    {
+      "title": "2.2 Simply-Typed Lambda Calculus",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          44.138671875,
+          313.5
+        ],
+        [
+          212.25,
+          313.5
+        ],
+        [
+          212.25,
+          323.7890625
+        ],
+        [
+          44.138671875,
+          323.7890625
+        ]
+      ]
+    },
+    {
+      "title": "2.3 Records and Structural Subtyping",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          45.5625,
+          307.6171875
+        ],
+        [
+          221.46859741210938,
+          307.6171875
+        ],
+        [
+          221.46859741210938,
+          318.900390625
+        ],
+        [
+          45.5625,
+          318.900390625
+        ]
+      ]
+    },
+    {
+      "title": "2.4 Classes and Nominal Subtyping: Featherweight Java",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          44.61328125,
+          598.0078125
+        ],
+        [
+          304.69921875,
+          598.0078125
+        ],
+        [
+          304.69921875,
+          608.0335540771484
+        ],
+        [
+          44.61328125,
+          608.0335540771484
+        ]
+      ]
+    },
+    {
+      "title": "\\mathcal{G}, s \\vdash \\llbracket c_i \\rrbracket \\Rightarrow T\nSyntactic to Semantic Typing\n(\\text{T-Class}) \\xrightarrow{DECL(C_i), P^*, \\leq_{\\top}, <_l \\vdash s \\mapsto C_j : CLASS(s_c)} \ns \\vdash \\llbracket c_i \\rrbracket \\Rightarrow \\mathsf{INST}(s_c)\nG, s \\vdash L OK\nClass Typing\ns \\xrightarrow{:} \\mathsf{C}_i : \\mathsf{CLASS}(s_c) \\quad s_c \\xrightarrow{\\mathsf{P}} s \\quad DECL(\\mathsf{D}_j), \\epsilon, \\leq_\\mathsf{T}, <_l \\vdash p : s \\mapsto \\mathsf{D}_k : \\mathsf{CLASS}(s_d) \\\\ \\hline \\nabla s_c \\quad s_c \\xrightarrow{\\mathsf{S}} s_d \\quad s_c \\vdash \\bar{\\mathsf{C}}_h \\quad \\bar{\\mathsf{f}}_j ; \\; \\mathsf{K} \\; \\mathsf{OK} \\quad s_c \\vdash \\bar{\\mathsf{M}}_g \\; \\mathsf{OK} \\\\ \\hline s \\vdash \\mathsf{class} \\; \\mathsf{C}_i \\; \\mathsf{extends} \\; \\mathsf{D}_j \\; \\{ \\; \\bar{\\mathsf{C}}_h \\; \\bar{\\mathsf{f}}_j ; \\; \\mathsf{K} \\; \\bar{\\mathsf{M}}_g \\; \\} \\; \\mathsf{OK} \\\\ \\\\ \\end{cases}\nField and Constructor Typing\n\\frac{DECL(\\mathsf{C}_z), \\mathsf{P}, \\leq_{\\top}, <_l \\vdash s \\mapsto \\mathsf{C}_u : \\mathsf{CLASS}(s) \\quad s \\vdash \\llbracket \\bar{\\mathsf{D}}_i \\rrbracket \\Rightarrow \\bar{T} \\quad WFD_{\\top}, \\mathsf{S}, \\leq_{\\top}, <_l \\vdash p : s \\stackrel{\\mathsf{K}}{\\mapsto} \\bar{T}}{s \\vdash \\llbracket \\bar{\\mathsf{C}}_x \\rrbracket \\Rightarrow \\bar{U} \\quad s \\vdash \\llbracket \\bar{\\mathsf{E}}_k \\rrbracket \\Rightarrow \\bar{V} \\quad \\bar{U} = \\bar{V} \\quad s \\stackrel{\\mathsf{L}}{\\longrightarrow} \\bar{\\mathsf{I}}_m : \\bar{U} \\quad s \\stackrel{\\mathsf{L}}{\\longrightarrow} \\bar{T}, \\bar{U} \\quad \\bar{\\mathsf{g}}_j \\simeq \\bar{\\mathsf{g}}_h}{s \\vdash \\bar{\\mathsf{C}}_x \\quad \\bar{\\mathsf{f}}_y ; \\quad \\mathsf{C}_z \\quad (\\bar{\\mathsf{D}}_i \\quad \\bar{\\mathsf{g}}_j, \\bar{\\mathsf{E}}_k \\quad \\bar{\\mathsf{f}}_g) \\quad \\{\\mathsf{super} \\quad (\\bar{\\mathsf{g}}_h) ; \\quad \\mathsf{this.} \\quad \\bar{\\mathsf{f}}_m = \\bar{\\mathsf{f}}_n \\} \\quad \\mathsf{OK}}\nG, s \\vdash M OK\nMethod Typing\n\\begin{array}{c} s \\vdash \\llbracket \\bar{\\mathsf{D}}_{k} \\rrbracket \\Rightarrow \\bar{T} \\qquad s \\vdash \\llbracket \\mathsf{C}_{i} \\rrbracket \\Rightarrow T \\qquad s \\stackrel{\\vdash}{\\longrightarrow} \\mathsf{m}_{j} : \\bar{T} \\to T \\qquad \\nabla s_{m} \\\\ s_{m} \\stackrel{P}{\\longrightarrow} s \\qquad s_{m} \\stackrel{\\vdash}{\\longrightarrow} \\mathsf{x}_{g} : \\bar{T} \\qquad s_{m} \\stackrel{\\vdash}{\\longrightarrow} \\mathsf{this} : \\mathsf{INST}(s) \\qquad s_{m} \\vdash \\mathsf{e} : U \\qquad \\vdash U \\lessdot T \\\\ & \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad \\qquad\nExpression Typing\n\\underbrace{DECL(\\mathsf{x}_i), \\mathsf{P}^*\\mathsf{S}^*, \\leq_\\mathsf{T}, <_l \\vdash p : s \\mapsto \\mathsf{x}_j : T}_{\\mathsf{S} \\vdash \\mathsf{x}_i : T} \\quad \\underbrace{(\\mathsf{FJ}\\text{-Field})} \\underbrace{DECL(\\mathsf{f}_i), \\mathsf{S}^*, \\leq_\\mathsf{T}, <_l \\vdash p : s_c \\mapsto \\mathsf{f}_j : T}_{\\mathsf{S} \\vdash \\mathsf{P}}\n(\\text{FJ-Invk}) \\frac{s \\vdash \\mathsf{e} : \\mathsf{INST}(s_c) \\qquad DECL(\\mathsf{m}_i), \\mathsf{S}^*, \\leq_\\top, <_l \\vdash p : s_c \\mapsto \\bar{U} \\to T \\qquad s \\vdash \\bar{\\mathsf{e}} : \\bar{V} \\qquad \\vdash \\bar{V} <: \\bar{U}}{s \\vdash \\mathsf{e} \\cdot \\mathsf{m}_i \\, (\\bar{\\mathsf{e}}) : T}\nDECL(c_i), P^*, \\leq_T, <_l \\vdash s \\stackrel{:}{\\mapsto} c_i : CLASS(s_c) \\quad s \\vdash \\bar{e} : \\bar{T}\n(\\text{FJ-New}) \\frac{WFD_{\\top}, \\epsilon, \\leq_{\\top}, <_{l} \\vdash p : s_{c} \\stackrel{\\mathsf{K}}{\\longmapsto} \\bar{U} \\qquad \\vdash \\bar{T} <: \\bar{U}}{s \\vdash \\mathsf{new} \\ \\mathsf{C}_{l}(\\bar{\\mathtt{e}}) : \\mathsf{INST}(s_{c})}\n(\\text{FJ-UCast}) \\frac{s \\vdash e : T \\quad s \\vdash \\llbracket \\mathsf{C}_i \\rrbracket \\Rightarrow U \\quad \\vdash T \\mathrel{<:} U}{s \\vdash (C_i)e : U} \\quad (\\text{FJ-DCast}) \\frac{s \\vdash e : T \\quad s \\vdash \\llbracket \\mathsf{C}_i \\rrbracket \\Rightarrow U \\quad \\vdash U \\mathrel{<:} T \\quad U \\neq T}{s \\vdash (C_i)e : U}\n(\\text{FJ-Stupid}) \\xrightarrow{s \\vdash e : T \\qquad s \\vdash \\llbracket c_i \\rrbracket} \\Rightarrow U \\qquad \\vdash T \\nleq : U \\qquad \\vdash U \\nleq : T \\qquad \\textit{stupid warning}\ns \\vdash (c_i)e : U\n\\mathcal{G} \\vdash T \\mathrel{<:} T\nSubtyping\n(<:-Class) \\frac{\\vdash p: s_1 \\rightarrow s_2 \\quad p \\in S^*}{\\vdash \\mathsf{INST}(s_1) <: \\mathsf{INST}(s_2)}\nLabel Order and Data Well-Formedness\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "heading_level": null,
+      "page_id": 11,
+      "polygon": [
+        [
+          46.51171875,
+          68.90625
+        ],
+        [
+          439.48828125,
+          68.90625
+        ],
+        [
+          439.48828125,
+          644.25
+        ],
+        [
+          46.51171875,
+          642.0
+        ]
+      ]
+    },
+    {
+      "title": "2.5 Parametric Polymorphism",
+      "heading_level": null,
+      "page_id": 13,
+      "polygon": [
+        [
+          45.087890625,
+          245.586669921875
+        ],
+        [
+          187.6356201171875,
+          245.586669921875
+        ],
+        [
+          187.6356201171875,
+          255.54928588867188
+        ],
+        [
+          45.087890625,
+          255.54928588867188
+        ]
+      ]
+    },
+    {
+      "title": "Syntax\ntype identifiers X \\in TypeId := some countable set\nexpressions e \\in Expr ::= ... | Fun(X) \\{ e \\} | e [t]\nsyntactic types t \\in Type ::= ... \\mid X \\Rightarrow t \\mid X\nsemantic types T, U, V \\in Type ::= ... \\mid ALL(X, s) \\mid X \\mid \\pi_B(s)\nResolution Syntax Parameters\nlabels l \\in \\mathcal{L} := \\dots \\mid I\nand otherwise like STLC\n\\mathcal{G}, s \\vdash \\llbracket \\mathsf{t} \\rrbracket \\Rrightarrow T\nSyntactic to Semantic Typing\n(\\text{T-All}) \\frac{\\nabla s_{a} \\quad s_{a} \\stackrel{P}{\\longrightarrow} s \\quad s_{a} \\stackrel{V}{\\longrightarrow} \\chi_{i}}{s_{a} \\vdash [\\![t]\\!] \\Rightarrow T \\quad s_{a} \\stackrel{B}{\\longrightarrow} T} }{s \\vdash [\\![x_{i}]\\!] \\Rightarrow \\text{ALL}(\\chi_{i}, s_{a})} \n(\\text{T-Var}) \\frac{DECL(\\chi_{i}), P^{*}, \\leq_{T}, <_{l} \\vdash p : s \\stackrel{V}{\\longmapsto} \\chi_{j}}{s \\vdash [\\![\\chi_{i}]\\!] \\Rightarrow \\chi_{j}} \nExpression Typing (Selected Rules)\n \\begin{array}{cccccccccccccccccccccccccccccccccccc\n(F-Strict) \\frac{s \\vdash e : T \\vdash T \\Rightarrow U}{s \\vdash o : U}\n\\boxed{\\mathcal{G} \\vdash T \\Rightarrow T \\mid \\mathcal{G}, p \\vdash T \\stackrel{.}{\\Rightarrow} T}\nType Normalization\n(Strict-Pi) \\xrightarrow{\\qquad p \\vdash T \\Rightarrow \\hat{U} \\qquad \\qquad} (Strict-NotPi) \\xrightarrow{T \\neq \\pi_{B}(s)} \\xrightarrow{(N-Pi)} \\xrightarrow{\\mu} \\xrightarrow{\\pi_{B}(s) \\Rightarrow T \\qquad p \\vdash T \\Rightarrow U} \\xrightarrow{p \\vdash \\pi_{B}(s) \\Rightarrow U}\n\\text{(N-Done)} \\frac{}{s \\vdash T \\ \\dot{\\Rightarrow} \\ T} \\qquad \\text{(N-Num)} \\frac{}{p \\vdash \\mathsf{NUM} \\ \\dot{\\Rightarrow} \\ \\mathsf{NUM}} \\qquad \\text{(N-Fun)} \\frac{p \\vdash T_1 \\ \\dot{\\Rightarrow} \\ T_2 \\qquad p \\vdash U_1 \\ \\dot{\\Rightarrow} \\ U_2}{p \\vdash T_1 \\ \\rightarrow U_1 \\ \\dot{\\Rightarrow} \\ T_2 \\ \\rightarrow IU_2}\nWFD_{\\top}, \\epsilon, \\leq_{\\top}, <_l \\vdash p' : s_k \\stackrel{\\sigma}{\\longmapsto} \\mathsf{X}_j := T\n(N-All) \\frac{WFD_{\\top}, \\epsilon, \\leq_{\\top}, <_{l} \\vdash p' : s_{k} \\stackrel{\\sigma}{\\longmapsto} x_{j} := T \\quad s'_{k} \\stackrel{I}{\\longmapsto} s_{a}}{p \\vdash ALL(x_{i}, s'_{k}) \\stackrel{\\sigma}{\\Rightarrow} T \\quad s'_{k} \\stackrel{\\sigma}{\\longrightarrow} x_{j} := T} \\qquad (N-Var) \\frac{WFD_{\\top}, \\epsilon, \\leq_{\\top}, <_{l} \\vdash p' : s_{k} \\longmapsto x_{j} := T}{p \\vdash U \\stackrel{\\Rightarrow}{\\Rightarrow} V}\n(N-Var) \\frac{\\nabla s'_{k} \\quad p \\vdash ALL(x_{i}, s'_{k}) \\stackrel{\\Rightarrow}{\\Rightarrow} T \\quad s'_{k} \\stackrel{\\sigma}{\\longrightarrow} x_{j} := T}{p \\vdash U \\stackrel{\\Rightarrow}{\\Rightarrow} V}\n(\\text{Eq-Num}) \\frac{                                   \nSemantic Type Equality\n\n\\nabla s'_{1} \\qquad s'_{1} \\xrightarrow{\\longrightarrow} s_{1} \\qquad s'_{1} \\xrightarrow{\\sigma} \\mathbf{x}_{i} := X\n\n\n\\nabla s'_{2} \\qquad s'_{2} \\xrightarrow{\\longrightarrow} s_{2} \\qquad s'_{2} \\xrightarrow{\\sigma} \\mathbf{x}_{j} := X\n\n\n\\vdash \\pi_{B}(s'_{1}) \\cong \\pi_{B}(s'_{2}) \\qquad \\nabla X\n\n\n(\\text{Eq-All}) \\xrightarrow{\\vdash \\text{ALL}(X_{i}, s_{1})} \\cong \\text{ALL}(X_{i}, s_{2})\n\n\n(\\text{Eq-Pi1}) \\xrightarrow{\\vdash \\pi_{B}(s)} T\n\n\n(\\text{Eq-Pi2}) \\xrightarrow{\\vdash T \\cong U}\n\n|\\hat{l} <_l \\hat{l}|\nLabel Order\nS <_1 P S <_1 I\nFig. 10. Syntax and typing rules for System F (expressions and syntactic types extend Fig. 3)",
+      "heading_level": null,
+      "page_id": 14,
+      "polygon": [
+        [
+          47.25,
+          82.96875
+        ],
+        [
+          440.4375,
+          82.96875
+        ],
+        [
+          440.4375,
+          654.75
+        ],
+        [
+          47.25,
+          654.75
+        ]
+      ]
+    },
+    {
+      "title": "2.6 Discussion",
+      "heading_level": null,
+      "page_id": 16,
+      "polygon": [
+        [
+          45.3251953125,
+          322.3828125
+        ],
+        [
+          117.0109634399414,
+          322.3828125
+        ],
+        [
+          117.0109634399414,
+          333.25885009765625
+        ],
+        [
+          45.3251953125,
+          333.25885009765625
+        ]
+      ]
+    },
+    {
+      "title": "3 STATIX: SPECIFICATION WITH SCOPES AND CONSTRAINTS",
+      "heading_level": null,
+      "page_id": 17,
+      "polygon": [
+        [
+          44.61328125,
+          186.328125
+        ],
+        [
+          340.76953125,
+          186.328125
+        ],
+        [
+          340.76953125,
+          196.5968017578125
+        ],
+        [
+          44.61328125,
+          196.5968017578125
+        ]
+      ]
+    },
+    {
+      "title": "4 EXECUTING STATIX SPECIFICATIONS",
+      "heading_level": null,
+      "page_id": 19,
+      "polygon": [
+        [
+          43.6640625,
+          535.5
+        ],
+        [
+          236.25,
+          535.5
+        ],
+        [
+          236.25,
+          544.21875
+        ],
+        [
+          43.6640625,
+          544.21875
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Constraint Solving by Simplification",
+      "heading_level": null,
+      "page_id": 19,
+      "polygon": [
+        [
+          44.61328125,
+          573.75
+        ],
+        [
+          234.75,
+          573.75
+        ],
+        [
+          234.75,
+          583.2421875
+        ],
+        [
+          44.61328125,
+          583.2421875
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Name Resolution Algorithm",
+      "heading_level": null,
+      "page_id": 20,
+      "polygon": [
+        [
+          45.5625,
+          574.2334594726562
+        ],
+        [
+          195.8844757080078,
+          574.2334594726562
+        ],
+        [
+          195.8844757080078,
+          584.1960601806641
+        ],
+        [
+          45.5625,
+          584.1960601806641
+        ]
+      ]
+    },
+    {
+      "title": "4.3 Sound Name Resolution",
+      "heading_level": null,
+      "page_id": 21,
+      "polygon": [
+        [
+          44.25,
+          451.5
+        ],
+        [
+          177.75,
+          451.5
+        ],
+        [
+          177.75,
+          459.4921875
+        ],
+        [
+          44.25,
+          459.4921875
+        ]
+      ]
+    },
+    {
+      "title": "4.4 Incompleteness",
+      "heading_level": null,
+      "page_id": 23,
+      "polygon": [
+        [
+          44.8505859375,
+          86.8359375
+        ],
+        [
+          138.86892700195312,
+          86.8359375
+        ],
+        [
+          138.86892700195312,
+          97.1434326171875
+        ],
+        [
+          44.8505859375,
+          97.1434326171875
+        ]
+      ]
+    },
+    {
+      "title": "5 EVALUATION",
+      "heading_level": null,
+      "page_id": 23,
+      "polygon": [
+        [
+          44.8505859375,
+          423.6328125
+        ],
+        [
+          122.87889099121094,
+          423.6328125
+        ],
+        [
+          122.87889099121094,
+          434.4505615234375
+        ],
+        [
+          44.8505859375,
+          434.4505615234375
+        ]
+      ]
+    },
+    {
+      "title": "6 RELATED WORK",
+      "heading_level": null,
+      "page_id": 24,
+      "polygon": [
+        [
+          44.138671875,
+          422.9219665527344
+        ],
+        [
+          140.009765625,
+          422.9219665527344
+        ],
+        [
+          140.009765625,
+          432.88458251953125
+        ],
+        [
+          44.138671875,
+          432.88458251953125
+        ]
+      ]
+    },
+    {
+      "title": "7 CONCLUSION",
+      "heading_level": null,
+      "page_id": 26,
+      "polygon": [
+        [
+          44.8505859375,
+          496.6459503173828
+        ],
+        [
+          127.51129150390625,
+          496.6459503173828
+        ],
+        [
+          127.51129150390625,
+          506.6085510253906
+        ],
+        [
+          44.8505859375,
+          506.6085510253906
+        ]
+      ]
+    },
+    {
+      "title": "ACKNOWLEDGMENTS",
+      "heading_level": null,
+      "page_id": 26,
+      "polygon": [
+        [
+          44.8505859375,
+          592.287239074707
+        ],
+        [
+          153.57357788085938,
+          592.287239074707
+        ],
+        [
+          153.57357788085938,
+          602.2498397827148
+        ],
+        [
+          44.8505859375,
+          602.2498397827148
+        ]
+      ]
+    },
+    {
+      "title": "REFERENCES",
+      "heading_level": null,
+      "page_id": 27,
+      "polygon": [
+        [
+          45.3251953125,
+          86.8359375
+        ],
+        [
+          108.59247589111328,
+          86.8359375
+        ],
+        [
+          108.59247589111328,
+          97.1434326171875
+        ],
+        [
+          45.3251953125,
+          97.1434326171875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          126
+        ],
+        [
+          "Line",
+          46
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "Picture",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          155
+        ],
+        [
+          "Line",
+          48
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Footnote",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          169
+        ],
+        [
+          "Line",
+          48
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          369
+        ],
+        [
+          "Line",
+          53
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          689
+        ],
+        [
+          "Line",
+          93
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          129
+        ],
+        [
+          "Line",
+          57
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Footnote",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          60
+        ],
+        [
+          "Line",
+          47
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          396
+        ],
+        [
+          "Line",
+          61
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          850
+        ],
+        [
+          "Line",
+          91
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          84
+        ],
+        [
+          "Line",
+          73
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          594
+        ],
+        [
+          "Line",
+          58
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 11,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          31
+        ],
+        [
+          "Line",
+          29
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 12,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          405
+        ],
+        [
+          "Line",
+          72
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 13,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          250
+        ],
+        [
+          "Line",
+          52
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 14,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          51
+        ],
+        [
+          "Line",
+          30
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 15,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          291
+        ],
+        [
+          "Line",
+          50
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 16,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          356
+        ],
+        [
+          "Line",
+          70
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 17,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          603
+        ],
+        [
+          "Line",
+          58
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 18,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          64
+        ],
+        [
+          "Line",
+          39
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 19,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          113
+        ],
+        [
+          "Line",
+          57
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 20,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          395
+        ],
+        [
+          "Line",
+          55
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 21,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          52
+        ],
+        [
+          "Span",
+          27
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 22,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          73
+        ],
+        [
+          "Span",
+          30
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 23,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          273
+        ],
+        [
+          "Line",
+          65
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 24,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          144
+        ],
+        [
+          "Line",
+          47
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 25,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          495
+        ],
+        [
+          "Line",
+          67
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 26,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          175
+        ],
+        [
+          "Line",
+          56
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 27,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          201
+        ],
+        [
+          "Line",
+          58
+        ],
+        [
+          "ListItem",
+          20
+        ],
+        [
+          "Reference",
+          20
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 28,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          218
+        ],
+        [
+          "Line",
+          59
+        ],
+        [
+          "Reference",
+          22
+        ],
+        [
+          "ListItem",
+          21
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 29,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          22
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/vanantwerpen-2018-scopes"
+}

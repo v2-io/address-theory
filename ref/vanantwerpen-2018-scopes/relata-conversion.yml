@@ -1,0 +1,79 @@
+---
+schema: 1
+sha: 4270922a3e30be407ae734d724fa6f1d678fb1f26238818aa5c4c7a5df873395
+source:
+  path: "/Users/josephwecker-v2/.local/share/relata/pdfs/vanantwerpen-2018-scopes.pdf"
+  filename: vanantwerpen-2018-scopes.pdf
+  bytes: 506506
+  kind: pdf
+converter:
+  name: marker_single
+  version: 1.10.2
+  argv:
+  - marker_single
+  - "/Users/josephwecker-v2/.local/share/relata/pdfs/vanantwerpen-2018-scopes.pdf"
+  - "--output_dir"
+  - "/Users/josephwecker-v2/.local/share/relata/markdown/.tmp-convert.4270922a3e30be407ae734d724fa6f1d678fb1f26238818aa5c4c7a5df873395.38220.0808d5b7/marker-out"
+force_ocr:
+  requested:
+  applied: false
+  decided_by: probe
+  reason: all 7 native-digital checks passed — trusting the text layer
+  probe:
+    thresholds:
+      min_font_count: 1
+      max_replacement_ratio: 0.002
+      min_chars_per_page: 200
+      min_alnum_ratio: 0.55
+      min_text_page_ratio: 0.8
+    signals:
+      pages: 30
+      producer: pdfTeX-1.40.19
+      creator: LaTeX with acmart 2018/07/25 v1.55 Typesetting articles for the Association
+        for Computing Machinery and hyperref 2018/02/06 v6.86b Hypertext links for
+        LaTeX
+      font_count: 26
+      ocr_font_names: []
+      sampled_pages: 10
+      chars_per_page_median: 4169.5
+      replacement_ratio: 0.0
+      alnum_ratio: 0.93367
+      text_page_ratio: 1.0
+    checks:
+    - name: embedded_fonts
+      value: 26
+      threshold: ">= 1"
+      pass: true
+    - name: no_ocr_fonts
+      value: []
+      threshold: empty
+      pass: true
+    - name: no_ocr_producer
+      value: pdfTeX-1.40.19 / LaTeX with acmart 2018/07/25 v1.55 Typesetting articles
+        for the Association for Computing Machinery and hyperref 2018/02/06 v6.86b
+        Hypertext links for LaTeX
+      threshold: no OCR-engine signature
+      pass: true
+    - name: chars_per_page
+      value: 4169.5
+      threshold: ">= 200"
+      pass: true
+    - name: replacement_chars
+      value: 0.0
+      threshold: "<= 0.002"
+      pass: true
+    - name: alnum_ratio
+      value: 0.93367
+      threshold: ">= 0.55"
+      pass: true
+    - name: text_page_ratio
+      value: 1.0
+      threshold: ">= 0.8"
+      pass: true
+run:
+  started_at: '2026-08-10T01:18:01Z'
+  finished_at: '2026-08-10T01:22:54Z'
+  duration_s: 292.779
+  exit_status: 0
+  log: conversion.log
+created_by: relata-convert/0.6.0

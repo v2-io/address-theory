@@ -11,3 +11,5 @@ The stable home for external material segments may cite (Working Notes and Refer
 | `type-algebra.md` | The τ algebra spike (rows/hedges, arities, three fiat seats, N1–N6) |
 | `terminator-table.md` | ~130 measured spelling cases; `[L]`/`[P]` register |
 | `esop15/` | Néron, Tolmach, Visser & Wachsmuth, "A Theory of Name Resolution", ESOP 2015 (md conversion + pdf; copy — source archived) |
+| `zwaan-2024-defining/` | Zwaan & Bach Poulsen, "Defining Name Accessibility using Scope Graphs", ECOOP 2024 — accessibility as policy over ⟨origin, path, declaration⟩; §3 = best compact statement of the modern query formulation |
+| `vanantwerpen-2018-scopes/` | van Antwerpen, Bach Poulsen, Rouvoet & Visser, "Scopes as Types", OOPSLA 2018 — generalized metatheory the `[SG]` proof-inheritance marks point at (with Rouvoet 2020, incoming) |
