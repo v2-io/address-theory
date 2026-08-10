@@ -1,38 +1,264 @@
 #!/usr/bin/env ruby
-# compose-defs — the whole-picture view: concatenates each def/ file's
-# leading prose (everything before its first |term[ line), in outline
-# order, so the term-groups' narrative intros read as one continuous pass.
-# Relies on the convention that every group's terms are all discussed in
-# its leading prose.
+# compose-defs — the whole-picture overview of the foundation definitions.
 #
-# Usage: bin/compose-defs [-o OUTFILE]   (default: stdout)
+# Concatenates each def/ file's *leading prose* (everything before its first
+# |term[ line), in outline order, as markdown — so the term-groups' narrative
+# intros read as one continuous pass. Relies on the convention that every
+# group's terms are all discussed in its leading prose.
+#
+# Term map: derived each run from live |term-group[…] headers (no hardcoded
+# list). Singular/plural surface forms expanded via dry-inflector so
+# @{reference}/@{references}/@{referent}/@{referents} all resolve to the same
+# def file; the written surface form is what appears in the link text.
+#
+# Surface forms in the overview:
+#   @{term}        → *[[def-….ud|term]]*   when the term lives in another def file
+#                  → ==*term*==            when it is defined in this same file/group
+#                                          (Obsidian highlight + emphasis)
+#   **TERM**       → '**[[def-….ud|TERM]]**'   (single-quoted; always linked;
+#                    display keeps the CAPS — definitional spotlight)
+# For @{…}, display is the written surface, title-cased only at sentence start.
+#
+# Usage:
+#   bin/compose-defs              write LEXICON-overview.md at instance root
+#   bin/compose-defs -o PATH      write PATH
+#   bin/compose-defs -            write stdout
 
-root    = File.expand_path("..", __dir__)
-outline = File.join(root, "ADDRESSING-THEORY.outline.md")
+require "dry/inflector"
+
+root        = File.expand_path("..", __dir__)
+outline     = File.join(root, "ADDRESSING-THEORY.outline.md")
+default_out = File.join(root, "LEXICON-overview.md")
+inflector   = Dry::Inflector.new
+
 abort "no outline at #{outline}" unless File.exist?(outline)
 
 slugs = File.read(outline).scan(/\[\[(def-[a-z-]+)\.ud\]\]/).flatten.uniq
 abort "no [[def-*.ud]] links found in outline" if slugs.empty?
 
-out = +""
+# ── helpers ──────────────────────────────────────────────────────────
+
+def title_case_first(s)
+  return s if s.empty?
+  s[0].upcase + s[1..]
+end
+
+# Hyphen-segment title case: intended-cardinality → Intended-Cardinality
+def title_case_term(s)
+  s.split("-").map { |w| w.empty? ? w : w[0].upcase + w[1..] }.join("-")
+end
+
+# Position is a sentence start if nothing precedes it, or the nearest
+# non-whitespace character before it is . ? or !
+def at_sentence_start(text, pos)
+  return true if pos <= 0
+  i = pos - 1
+  i -= 1 while i >= 0 && text[i] =~ /\s/
+  return true if i < 0
+  ".?!".include?(text[i])
+end
+
+# Register a term slug and its singular/plural variants under one def file.
+# Canonical entries come from |term-group|; inflection fills the rest so
+# authors can write whichever surface the sentence wants.
+def register_term!(term_map, inflector, term, def_file)
+  surfaces = [term, inflector.singularize(term), inflector.pluralize(term)]
+  # Also: if the entry is already plural, singularize then re-pluralize
+  # covers irregular pairs dry-inflector knows (and is a no-op otherwise).
+  surfaces << inflector.pluralize(inflector.singularize(term))
+  surfaces << inflector.singularize(inflector.pluralize(term))
+  surfaces.map { |s| s.downcase }.uniq.each do |surface|
+    existing = term_map[surface]
+    if existing && existing != def_file
+      warn "compose-defs: surface #{surface.inspect} claimed by both " \
+           "#{existing} and #{def_file} (keeping #{existing})"
+      next
+    end
+    term_map[surface] = def_file
+  end
+end
+
+def resolve_def(term_map, slug)
+  term_map[slug.downcase]
+end
+
+# Rewrite @{term} and **TERM** (optional trailing s outside the bold) using
+# the live term→def map. +home_def+ is this section's own def file: same-file
+# @{…} becomes emphasis only; cross-file becomes a wikilink. Unmapped tokens
+# are left alone; listed in +unmapped+.
+def rewrite_terms(text, term_map, home_def, unmapped)
+  out = +""
+  i = 0
+  while i < text.length
+    rest = text[i..]
+    if (m = rest.match(/\A@\{([a-z][a-z0-9-]*)\}/i))
+      # Surface as written (authors write @{scopes}/@{references}/…);
+      # lookup is case-insensitive.
+      surface = m[1]
+      slug = surface.downcase
+      def_file = resolve_def(term_map, slug)
+      if def_file
+        display = at_sentence_start(text, i) ? title_case_first(slug) : slug
+        if def_file == home_def
+          # Same group/file: Obsidian highlight + emphasis; no self-wikilink.
+          out << "==*#{display}*=="
+        else
+          out << "*[[#{def_file}|#{display}]]*"
+        end
+      else
+        unmapped << "@{#{surface}}"
+        out << m[0]
+      end
+      i += m[0].length
+    elsif (m = rest.match(/\A\*\*([A-Z][A-Z0-9-]*)\*\*(s)?/))
+      caps = m[1]
+      trailing_s = m[2] # "s" or nil — plural marker outside the bold in source
+      slug = caps.downcase
+      # Fold trailing s into the CAPS display so bold wraps a complete
+      # wikilink — '**[[…|REFERENT]]**s' breaks bold close in Obsidian;
+      # '**[[…|REFERENTS]]**' does not. Lookup uses the lowercased surface.
+      surface_lower = trailing_s ? slug + trailing_s : slug
+      display_caps  = trailing_s ? caps + trailing_s.upcase : caps
+      def_file = resolve_def(term_map, surface_lower) || resolve_def(term_map, slug)
+      if def_file
+        out << "'**[[#{def_file}|#{display_caps}]]**'"
+      else
+        unmapped << "**#{caps}**#{trailing_s}"
+        out << m[0]
+      end
+      i += m[0].length
+    else
+      out << text[i]
+      i += 1
+    end
+  end
+  out
+end
+
+# ── extract (+ build live term map) ──────────────────────────────────
+
+term_map = {} # surface-slug → "def-….ud"
+sections = []
+
 slugs.each do |slug|
   path = File.join(root, "def", "#{slug}.ud")
   unless File.exist?(path)
-    out << ";; !! #{slug}.ud referenced in outline but missing\n\n"
+    sections << { slug: slug, missing: true }
     next
   end
+
   head = []
   File.foreach(path) do |line|
     break if line =~ /^\s*\|term\[/
     head << line
   end
-  out << ";; ═══ #{slug} #{"═" * [60 - slug.length, 3].max}\n"
-  out << head.join.rstrip << "\n\n"
+
+  primary = nil
+  status  = nil
+  prose   = []
+  terms   = []
+  def_file = "#{slug}.ud"
+
+  head.each do |line|
+    if line =~ /^\s*\|term-group((?:\[[^\]]+\])+)/
+      terms = line.scan(/\[([^\]]+)\]/).flatten
+      primary = terms.first
+      terms.each { |t| register_term!(term_map, inflector, t, def_file) }
+      next
+    end
+    if (m = line.match(/^\s*:status\s+(\S+)/))
+      status = m[1]
+      next
+    end
+    prose << line
+  end
+
+  # Drop blank lines, dedent common indent (the .ud sources indent under
+  # term-group), then treat each remaining source line as its own markdown
+  # paragraph — the def/ convention is one long line per paragraph, with
+  # adjacent lines meaning a new paragraph, not a soft wrap.
+  prose = prose.reject { |l| l.strip.empty? }
+  if prose.any?
+    min_indent = prose.map { |l| l[/^\s*/].size }.min
+    prose = prose.map { |l| l.sub(/^[ \t]{0,#{min_indent}}/, "").rstrip }
+  end
+
+  title = title_case_term(primary || slug.sub(/\Adef-/, ""))
+
+  # Subtitle roster: concept form (singularized), title-cased, middle-dot joined.
+  # referents → Referent; intended-cardinality → Intended-Cardinality.
+  term_roster = terms.map { |t|
+    title_case_term(inflector.singularize(t))
+  }.uniq
+
+  sections << {
+    slug:        slug,
+    primary:     primary,
+    status:      status,
+    title:       title,
+    term_roster: term_roster,
+    prose:       prose, # Array of paragraphs; rewritten after full map is built
+  }
 end
 
-if (i = ARGV.index("-o"))
-  File.write(ARGV[i + 1], out)
-  puts "wrote #{ARGV[i + 1]}"
+# ── rewrite + render ─────────────────────────────────────────────────
+
+unmapped = []
+
+md = +""
+md << <<~HEADER
+  <!-- GENERATED VIEW — do not edit by hand; regenerate with `bin/compose-defs`
+
+  The foundation term-groups' narrative intros, in outline (dependency) order —
+  one continuous reading pass over what the formal |term[ entries then pin down.
+  Source: leading prose of each def/*.ud linked from ADDRESSING-THEORY.outline.md.
+  Term links derived each run from live |term-group[…] headers; singular/plural
+  surfaces expanded via dry-inflector.
+  -->
+
+HEADER
+
+md << "# LEXICON overview\n\n"
+
+sections.each do |s|
+  if s[:missing]
+    md << "## #{s[:slug]}\n\n"
+    md << "> **Missing:** `#{s[:slug]}.ud` is linked from the outline but not " \
+          "present under `def/`.\n\n"
+    next
+  end
+
+  home_def = "#{s[:slug]}.ud"
+  rewritten = s[:prose].map { |para|
+    rewrite_terms(para, term_map, home_def, unmapped)
+  }
+  md << "## #{s[:title]}\n"
+  unless s[:term_roster].empty?
+    md << "*(  " << s[:term_roster].join("  ·  ") << "  )*\n"
+  end
+  md << "\n"
+  md << rewritten.join("\n\n") << "\n\n"
+end
+
+unless unmapped.empty?
+  warn "compose-defs: unmapped term surface(s) left as-is:"
+  unmapped.uniq.each { |t| warn "  #{t}" }
+end
+
+# ── write ────────────────────────────────────────────────────────────
+
+out_path =
+  if (i = ARGV.index("-o"))
+    ARGV[i + 1] or abort "compose-defs: -o requires a path"
+  elsif ARGV.include?("-")
+    nil # stdout
+  else
+    default_out
+  end
+
+if out_path
+  File.write(out_path, md)
+  warn "wrote #{out_path}"
 else
-  print out
+  print md
 end
