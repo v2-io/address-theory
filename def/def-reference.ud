@@ -1,7 +1,7 @@
-|term-group[reference][referents][intended-cardinality]
+|term-group[reference][referents][intended-cardinality][resolve][dereference]
   :status   proposed
 
-  A **REFERENCE** is recorded material that is used as a proxy or to stand in for its **REFERENT**s, often when the referents are not at hand or can't be known yet. The two terms are only well-defined in relation to each other. A reference has an *intent* when it is created— and we specifically define the recorded **INTENDED-CARDINALITY** of a reference: Whether it intends to stand in for a single referent {1,1}, at most one{0,1}, or, for example, as many as there might be {0,N}. 
+  A **REFERENCE** is recorded material that is used as a proxy or to stand in for its **REFERENT**s, often when the referents are not at hand or can't be known yet. The two terms are only well-defined in relation to each other. A reference has an *intent* when it is created— and we specifically define the recorded **INTENDED-CARDINALITY** of a reference: Whether it intends to stand in for a single referent {1,1}, at most one{0,1}, or, for example, as many as there might be {0,N}. To **RESOLVE** a reference is to determine what it reaches — always *as of a moment*; to **DEREFERENCE** it is to resolve and take hold of the referents as they then stand.
 
   |term[referents] The things that a reference is proxy for.
 
@@ -24,10 +24,14 @@
         - Three against {1,1} = the reference narrowed insufficiently;
         - Zero  against {0,N} = simply the current answer
 
+  |term[resolve    ] To determine what a reference reaches — as of now. There is no untimed resolving: an "untimed" answer is either a fiction or an unstated claim that the world has held still.
+
+  |term[dereference] To resolve a reference *and take hold of* its referents. What is obtained is referent-state as of that moment, never the referent timelessly.
+
   |discussion
     — The purpose of a reference can be any number of things (referent-absence, convenience, compactness, machine-readability, stable indirection, etc.)
     - How the relation is made effective — how material actually reaches things — is exactly the next distinction (@{binding}, @{match}); this entry only establishes that the relation exists, is directional, and is carried by an artifact.
-    - Philosophy-of-language note: strictly (Strawson), agents refer using expressions — referring is an act (in this case a "referral act"). The artifact-first cut is chosen because the theory's machinery manipulates artifacts (documents carry references; stores resolve them); the definition absorbs the act's theory-tractable part (the creator's intent, as expected cardinality) into the artifact, and the events are named with plain verbs — a reference is written, then used.
+    - Philosophy-of-language note: strictly (Strawson), agents refer using expressions — referring is an act (in this case a "referral act"). The artifact-first cut is chosen because the theory's machinery manipulates artifacts (documents carry references; stores resolve them); the definition absorbs the act's theory-tractable part (the creator's intent, as expected cardinality) into the artifact, and the events are named with plain verbs — a reference is written, then resolved or dereferenced.
   |examples
     - Mailing address: an envelope's address block is a reference; the intended cardinality is one recipient (usually); the days between writing and delivery are the gap.
     - Links (such as wikilinks, hyperlinks, anchors, URLs, and URIs)

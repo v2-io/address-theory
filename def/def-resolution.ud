@@ -1,17 +1,18 @@
 |term-group[resolution][origin][resolution-path][walk-step][mediated-step][admissibility][preference][ambiguity]
   :status proposed
 
-  **RESOLUTION** is where everything above comes together: a @{reference}, used from an **ORIGIN** scope, is worked back to the referents it determines. Each result carries its **RESOLUTION-PATH** — the route that justifies it, made of **WALK-STEPS** (traversals of standing edges) and **MEDIATED-STEPS** (edges that exist only through a sub-resolution). The answer is shaped by declared policy — **ADMISSIBILITY** (which path shapes count at all) and **PREFERENCE** (which admissible results win) — and every outcome has standing, including none and too-many (**AMBIGUITY**).
+  **RESOLUTION** is where everything above comes together: a @{reference}, resolved from an **ORIGIN** scope, is worked back to the referents it reaches as of that moment. Each result carries its **RESOLUTION-PATH** — the route that justifies it, made of **WALK-STEPS** (traversals of standing edges) and **MEDIATED-STEPS** (edges that exist only through a sub-resolution). The answer is shaped by declared policy — **ADMISSIBILITY** (which path shapes count at all) and **PREFERENCE** (which admissible results win) — and every outcome has standing, including none and too-many (**AMBIGUITY**).
 
   |term[origin] The @{scope} a reference is used from.
     |invariants
       - Constitutive, not optional: the same reference yields different referents from different origins, legitimately
 
-  |term[resolution] The derivation, for a reference used at an origin, of the set of referents it determines.
-    :synonyms [dereference lookup]
-    :avoid [fetch] ; resolution determines referents; fetching them is a further act
+  |term[resolution] The outcome of resolving a reference: the set of referents it reaches, from an origin, as of a moment — each carried with its resolution-path.
+    :synonyms [lookup]
+    :avoid [fetch] ; resolution determines referents as of the moment; taking hold of them is @{dereference}'s further step
     |rels :of      @{reference} {1,1}
           :from    @{origin}    {1,1}
+          :as-of   @{moment}    {1,1}  ; always — untimed answers are fictions or unstated stability claims
           :results @{referent}  {0,N}  ; each carried with its resolution-path
           :under   (@{admissibility} | @{preference}) {0,N}
     |invariants
