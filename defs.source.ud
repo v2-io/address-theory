@@ -185,7 +185,13 @@
   ; obligation, not an inheritance; and ESOP 2015's own admitted anomaly
   ; (mutually-recursive mediation resolving one name two ways in one
   ; derivation, their Fig. 12) is unresolved in all three papers — a live
-  ; hazard on our critical path, settled nowhere upstream.
+  ; hazard on our critical path, settled nowhere upstream. The field's own
+  ; retrospective (ref/zwaan-2023-scope/ §5, read first-hand) concedes the
+  ; cost of the erasure — dropping explicit imports "weakened scope graphs
+  ; as a stand-alone model for name binding: name-based dependencies are
+  ; not clearly reflected in the graph anymore" — and leaves as an open
+  ; question whether an anomaly-free algorithm with explicit imports
+  ; exists. That open question is this term's research frontier.
 
 |t[ADMISSIBILITY][PREFERENCE] The declared parts of a resolution policy
   nailed here are two. **ADMISSIBILITY**: which path shapes count at all —
@@ -205,8 +211,12 @@
   ; concrete SG order (vanantwerpen-2018 Fig. 1, read first-hand) is
   ; narrower than this nail: a PREFIX order (compares only common-prefix
   ; paths) paired with a DATA order ("same name shadows"). Ours stays the
-  ; more general "preorder over results" deliberately; a def/ draft should
-  ; say what the extra generality costs, if anything.
+  ; more general "preorder over results" deliberately — and the field's
+  ; retrospective agrees from its own side (zwaan-2023 §5: label-local
+  ; shadowing proved insufficient for Scala; "allowing full path ordering
+  ; would be an innocuous change to the theory," with only algorithmic
+  ; cost unclear). A def/ draft should still say what the generality
+  ; costs, if anything.
   ; Why nailed this early: it reconciles "never a silent best-guess" with
   ; real systems that DO prefer — a pick under a declared preference is
   ; disclosed by construction; a pick without one is a silent guess.
@@ -234,9 +244,16 @@
 ;   comment); whether it earns a nail or lives inside RESOLUTION is open.
 ; Stability under RETRACTION and REBINDING — the shrinking/moving estate
 ;   (dangle, vacated referents). Out of scope for everything read so far
-;   (extension-only lattices); the literature's nearest work is the
-;   incremental/concurrent line ("Scope States", ECOOP 2021 — not in ref/,
-;   not read), named here so the gap is visible.
+;   (extension-only lattices). The literature's nearest work, per the
+;   survey (zwaan-2023 §3.4–3.5, skimmed): "Scope States" (ECOOP 2021 —
+;   per-scope open-edge sets owned by hierarchical units; critical edges
+;   for a DISTRIBUTED graph) and especially Zwaan et al. 2022 (OOPSLA,
+;   incremental): edited units emit a DIFF of their scope graph — removals
+;   included — and unchanged units receive diffs of query answers
+;   (added/removed paths). The only place in this line where the graph
+;   legitimately shrinks and answers are repaired, not recomputed. Neither
+;   in ref/, neither read beyond the survey's gesture; pull when this
+;   layer gets nailed.
 ; Cycle handling in RESOLUTION-PATH — acyclic-by-construction (the SG
 ;   choice) vs cycles-representable-and-cut; symlink loops and circular
 ;   forwarding make this a real election, not an inheritance.

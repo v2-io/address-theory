@@ -2,6 +2,10 @@
 
 *Append-only, informal. Present truth lives in def/, src/, and the outline; decisions in DECISIONS.ud; process in sop/. This file is archaeological source, not active work.*
 
+## 2026-08-09 — the survey closes the four-paper pass
+
+- zwaan-2023 (EVCS survey) entrypoints from the same reader; coord read §5 whole + §3.1/§3.4–3.5 first-hand. Three touches: MEDIATED-STEP gains the field's own concession that import-erasure weakened the model, with the anomaly-free-explicit-imports open question named as this term's research frontier; PREFERENCE gains first-party support for full path ordering ("innocuous change to the theory," Scala case); the retraction not-nailed entry sharpened — Zwaan et al. 2022 (incremental; graph diffs with removals, answer repair) is the literature's only shrinking-graph work, named unread. ref/ indexed.
+
 ## 2026-08-09 — the generalized metatheory assessed; sheet amended (second round)
 
 - Same delegated reader worked Scopes-as-Types (2018) + Knowing-When-to-Ask (2020) whole; coord then read the recommended sections first-hand (2018 §2.1; 2020 §5.1–5.2 + the LMR/Rust study) and verified the report at the primaries.

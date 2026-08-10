@@ -1,0 +1,75 @@
+---
+schema: 1
+sha: efb7d38e3addb65689480a0ba27f121e943606b8f5d200dc834796d0a2964ead
+source:
+  path: "/Users/josephwecker-v2/.local/share/relata/pdfs/zwaan-2023-scope.pdf"
+  filename: zwaan-2023-scope.pdf
+  bytes: 768667
+  kind: pdf
+converter:
+  name: marker_single
+  version: 1.10.2
+  argv:
+  - marker_single
+  - "/Users/josephwecker-v2/.local/share/relata/pdfs/zwaan-2023-scope.pdf"
+  - "--output_dir"
+  - "/Users/josephwecker-v2/.local/share/relata/markdown/.tmp-convert.efb7d38e3addb65689480a0ba27f121e943606b8f5d200dc834796d0a2964ead.39717.e4dabdbc/marker-out"
+force_ocr:
+  requested:
+  applied: false
+  decided_by: probe
+  reason: all 7 native-digital checks passed — trusting the text layer
+  probe:
+    thresholds:
+      min_font_count: 1
+      max_replacement_ratio: 0.002
+      min_chars_per_page: 200
+      min_alnum_ratio: 0.55
+      min_text_page_ratio: 0.8
+    signals:
+      pages: 13
+      producer: LaTeX with oasics-v2021.cls
+      creator: LaTeX with hyperref
+      font_count: 36
+      ocr_font_names: []
+      sampled_pages: 10
+      chars_per_page_median: 3716.5
+      replacement_ratio: 0.0
+      alnum_ratio: 0.94812
+      text_page_ratio: 1.0
+    checks:
+    - name: embedded_fonts
+      value: 36
+      threshold: ">= 1"
+      pass: true
+    - name: no_ocr_fonts
+      value: []
+      threshold: empty
+      pass: true
+    - name: no_ocr_producer
+      value: LaTeX with oasics-v2021.cls / LaTeX with hyperref
+      threshold: no OCR-engine signature
+      pass: true
+    - name: chars_per_page
+      value: 3716.5
+      threshold: ">= 200"
+      pass: true
+    - name: replacement_chars
+      value: 0.0
+      threshold: "<= 0.002"
+      pass: true
+    - name: alnum_ratio
+      value: 0.94812
+      threshold: ">= 0.55"
+      pass: true
+    - name: text_page_ratio
+      value: 1.0
+      threshold: ">= 0.8"
+      pass: true
+run:
+  started_at: '2026-08-10T01:35:55Z'
+  finished_at: '2026-08-10T01:38:12Z'
+  duration_s: 136.913
+  exit_status: 0
+  log: conversion.log
+created_by: relata-convert/0.6.0
