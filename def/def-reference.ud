@@ -4,7 +4,7 @@
   :avoid [pointer link address]  ; each names a narrower kind, defined later or not at all
   :depends []
 
-  A **REFERENCE** is recorded material that stands for something beyond itself: its **REFERENTS**, the things it is intended to determine. Reference and referent are the two ends of this one stand-for relation — the relation is the primitive; the two words name its poles. We deliberately define the reference as including what are elsewhere parts of a "reference act" — the *intent* — with the part of the intent tractable to the theory being its **EXPECTED-CARDINALITY**: when the reference is first created, what does its creator intend for it to find? A single referent ({1,1})? At most one ({0,1})? As many things as there are in a place ({0,N})?
+  A **REFERENCE** is recorded material that stands for something beyond itself: its **REFERENTS**, the things it is intended to determine. Standing-for is the primitive notion here, and the two words simply name its ends: the reference is the material doing the standing-for; the referents are the things stood for. Neither gets an independent definition, because neither has one — take away the relation and nothing is left of either word. We deliberately define the reference as including what are elsewhere parts of a "reference act" — the *intent* — with the part of the intent tractable to the theory being its **EXPECTED-CARDINALITY**: when the reference is first created, what does its creator intend for it to find? A single referent ({1,1})? At most one ({0,1})? As many things as there are in a place ({0,N})?
 
   |invariants
     - A reference is an artifact: it persists, travels, and is copied; the mind that writes it and the mind that uses it may be far apart in time, place, and kind
