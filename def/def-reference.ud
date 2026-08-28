@@ -30,6 +30,7 @@
 
   |discussion
     — The purpose of a reference can be any number of things (referent-absence, convenience, compactness, machine-readability, stable indirection, etc.)
+    - The reference is one of two species of *deferred* recorded material — material whose determination happens at use, not at writing (this entry's own invariant language: "this allows deferral"; "determination is deferred"). The sibling species is the @{generator}, which *produces* material rather than standing for any — it operates on @{referents} without being a proxy for them. "Proxy" belongs to this entry alone: it is the reference's definiens, never the genus name.
     - How the relation is made effective — how material actually reaches things — is exactly the next distinction (@{binding}, @{match}); this entry only establishes that the relation exists, is directional, and is carried by an artifact.
     - Philosophy-of-language note: strictly (Strawson), agents refer using expressions — referring is an act (in this case a "referral act"). The artifact-first cut is chosen because the theory's machinery manipulates artifacts (documents carry references; stores resolve them); the definition absorbs the act's theory-tractable part (the creator's intent, as expected cardinality) into the artifact, and the events are named with plain verbs — a reference is written, then resolved or dereferenced.
   |examples
@@ -42,3 +43,4 @@
   |working-notes
     - Expected-cardinality settled early on convergence: SQL's scalar subquery (a {1,1} with only a hard error channel), hybrid logic's nominals ({1,1} in the semantics), wikilink stem lookup, steward O15.
     - Deliberately left open: the operational-vs-epistemic double bound; @{TARGET-SET} vs referent seating; the internal composite structure of references (real references are usually conjunctions of parts — the address's several lines; treated when paths are); a reference's ORIGIN — resolution is origin-relative, the reference itself is not (see @{resolution}).
+    - Genus note (2026-08-27): "deferred" as the shared genus of reference and @{generator} was adopted from this entry's own invariant wording rather than coined; whether the genus earns its own def entry is open (currently it lives in the two species' prose — see def-generator's working notes).

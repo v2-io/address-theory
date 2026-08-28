@@ -2,6 +2,13 @@
 
 *Append-only, informal. Present truth lives in def/, src/, and the outline; decisions in DECISIONS.ud; process in sop/. This file is archaeological source, not active work.*
 
+## 2026-08-27 — def-generator drafted; the deferral genus named in def-reference
+
+- Out of the lexical-forms-redux session (`../theory/to-integrate/lexical-forms-redux.md` — a from-scratch problem-space carve of the udon surface, derived deliberately *without* reading this instance first, then reconciled to its vocabulary): the steward's ratifying formulation *"Directives are deferred generators of the atomic parts, often using resolved referents as their primary prerequisite"* landed as `def/def-generator.ud` (proposed) — the reference's sibling species under the *deferred* genus, with `evaluate` as the produce-side act. The genus word is adopted from def-reference's own invariants ("this allows deferral"; "determination is deferred"), not coined.
+- def-reference gains a discussion line placing it as one of two species and pinning "proxy" as its definiens alone (a session draft had promoted "proxy" to the genus name; steward caught the dilution and the circularity it invited — recorded here so the widening isn't innocently retried). Working note added for the open genus-entry question.
+- Outline Part I row added (after def-resolution — it uses reference + resolution vocabulary); `bin/compose-defs` re-run, no unmapped surfaces.
+- Open questions seeded in def-generator's working notes: genus entry or prose; evaluation policy factoring; output seating (produce-side analog of referent seating); evaluation's failure vocabulary (miss vocabulary explicitly does not transfer).
+
 ## 2026-08-10 — compose-defs → markdown LEXICON-overview.md
 
 - `bin/compose-defs` refined: default write is markdown to `LEXICON-overview.md` (outline-ordered leading prose of each `def/*.ud`); strips `|term-group` / `:status` wire markup; section headings from the group's primary term; one source line → one markdown paragraph; blurb lives in the `GENERATED VIEW` HTML comment. Term links derived each run from live `|term-group[…]` headers (no hardcoded map): `@{term}` → `*[[def-….ud|term]]*`, `**TERM**` → `'**[[def-….ud|term]]**'`; display text lowercase, title-cased only at sentence start; singular/plural surfaces expanded via `dry-inflector` (so `@{reference}`/`@{references}`/`@{referent}`/`@{referents}` share a def file); unmapped surfaces warned on stderr. `-o PATH` and `-` (stdout) retained.

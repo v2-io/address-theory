@@ -16,6 +16,7 @@
 | Definition       | [[def-scope.ud]]         | The unit of resolution locality — binding's "jurisdiction" made precise; labeled edges (containment universal); root scopes; locally-cheap bindings compose into global reach                               | axiomatic | drafted  |
 | Definition       | [[def-location.ud]]      | A scope that is the referent of a binding — a named scope; location-ness is a role                                                                                                                          | axiomatic | drafted  |
 | Definition       | [[def-resolution.ud]]    | Act + origin → result set, each result carrying its resolution path; walk vs mediated steps; the admissibility/preference policy split; ambiguity as surfaced outcome                                       | axiomatic | drafted  |
+| Definition       | [[def-generator.ud]]     | Deferred material that produces rather than stands for — the reference's sibling species under the deferral genus (named from def-reference's own invariants); evaluate as the produce-side act; inputs usually references; no referents behind it, so the miss vocabulary does not apply | proposed | drafted  |
 
 *Reading order is dependency order: each segment uses only its predecessors (`depends` in each frontmatter). The one deliberate deferral making that true: a reference's origin lives in def-resolution, not def-reference — resolution is origin-relative; the reference itself is not.*
 

@@ -1,0 +1,40 @@
+|term-group[generator][evaluate]
+  :status proposed
+
+  A **GENERATOR** is the second species of *deferred* recorded material — the first is the @{reference}, and the genus (determination at use, not at writing; the gap constitutive) is named in def-reference's own invariants. Where a @{reference} stands as proxy for @{referents} that exist or may yet, a @{generator} *produces* material that does not exist until the generator is used. To **EVALUATE** a @{generator} is to perform that production — always from an origin, as of a moment, exactly as @{resolution} is origin-relative and moment-indexed — most often after dereferencing the @{references} it consumes as inputs. A @{generator} is not a @{reference}: it operates *on* @{referents} without standing for any.
+
+  |term[generator] Deferred recorded material that produces material rather than standing for it.
+    :avoid [directive template macro] ; each names a surface construct or artifact family hosting generators, not the kind itself
+    |rels :inputs   @{reference} {0,N}   ; usually — the steward's formulation below
+          :produces material    {0,N}   ; "material" is not yet a lexicon term: things, facts, text — or further deferred items
+    |invariants
+      - It is an artifact exactly as a reference is: written once, usable many times, at different times, from different origins; the writing-to-use gap is the same constitutive gap
+      - Its output may itself contain deferred material — references, or further generators; producing is not fully determining
+      - No referents stand behind it, so the miss vocabulary (count-against-intended-cardinality) does not apply to it; what failure means for an evaluation is its own question, currently open
+
+  |term[evaluate ] To perform a generator's production, from an origin, as of a moment — the produce-side counterpart of @{resolve}.
+    |invariants
+      - There is no untimed evaluating, for the same reason there is no untimed resolving
+
+  |discussion
+    - Steward's seed formulation (2026-08-27, ratifying): "Directives are deferred generators of the atomic parts, often using resolved referents as their primary prerequisite." The "often" does the same honest work it does in def-reference's intro: inputs are typical, not definitional (a generator of constant material is still a generator).
+    - The duality with @{reference}: pull vs produce. A reference's determination consults the world; a generator's transforms into it. The species meet at a corner the way @{binding} and @{match} do: a generator with no inputs producing fixed material is generator at its most reference-like (its output could have been written), without the species merging — what distinguishes them is which failure modes apply, not how much work the use performs.
+    - The shared genus is what makes a single *hold* stance possible across both species: a reference kept as a value instead of reached through, and a generator kept as material instead of run (a template held for later — including a generator whose output contains generators, which is templating a template), are one operation on the genus, not two device-families.
+    - Classic vocabulary lands the same way designator/description do in @{match}: template, directive, macro, view name the *hosting surfaces* generators appear in; the kind follows what the use does, never the spelling.
+
+  |examples
+    |            Example             |           Produces                       |
+    |--------------------------------|------------------------------------------|
+    | A template                     | a document, from bindings + slots        |
+    | A loop over a collection       | one item of material per referent        |
+    | A conditional inclusion        | material, or none, per a tested referent |
+    | A macro / alias expansion      | material in place of its name            |
+    | A database view definition     | rows, at query time                      |
+    | A build rule                   | an artifact, from named inputs           |
+
+  |working-notes
+    - Open: does the genus (deferred recorded material) earn its own def entry, or continue living in the two species' prose? Lean: prose until a third species survives — the current candidate (interpretation-under-a-named-vocabulary, as with typed literals) may instead reduce to a reference into a vocabulary's @{scope}.
+    - Open: evaluation policy — does it factor the way resolution's does (admissibility/preference), or is it wholly host-defined? Nothing here presumes either.
+    - Open: output seating — where produced material lands (the use's own position? a declared destination?) is unowned; the produce-side analog of def-reference's open referent-seating question.
+    - Open: failure vocabulary for evaluation (the invariant above rules out inheriting the miss vocabulary; nothing replaces it yet).
+    - Provenance: the 2026-08-27 lexical-forms-redux session (`../../theory/to-integrate/lexical-forms-redux.md`) — the material/deferred carve, the proxy reconciliation (proxy stays reference's definiens; the genus named from def-reference's invariant wording), and the steward's seed formulation quoted above.
