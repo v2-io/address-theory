@@ -5,6 +5,8 @@
 *(Also another (possibly last) adhoc/bespoke Verisectorium instance, trying to implement its principles and tooling as they become available.)*
 *(This is at least the third attempt at this-- some earlier ones are in .archive)*
 
+**Home.** Its own repository since 2026-10-09 (`~/src/address-theory`, `github.com/v2-io/address-theory`). It grew inside the udon repo, at `v2/paths/` (from 2026-08-07) and then `v2/references/` (from 2026-08-10); that history came along. It is used by udon (the 0.10.1 glossary; spec-lite, which cites it as `[[references/def:<slug>]]`) and by ai-risk-model (`addr:`, pinned to udon commit `90f4fb6`). Paths elsewhere that still say `udon/v2/references` or `v2/paths` mean this repository.
+
 ## Basic Layout
 **KEY**:
 *The `priority` column distinguishes the ones critical to be familiar with immediately.*

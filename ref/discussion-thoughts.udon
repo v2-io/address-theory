@@ -1,1 +1,885 @@
-../../theory/to-integrate/primary/DISCUSSION-THOUGHTS.udon
+; DISCUSSION-THOUGHTS — Joseph's continuing brainstorms from the 2026-07-28
+; big-picture session, plus Fable's assessment of each.
+;
+; Register (Joseph, 2026-07-28): these are "Joseph's continuing brainstorms,
+; pre-validation." They get recorded because if they are silently dropped he
+; wants to know exactly why, and because they embue his experience — but
+; recording "doesn't promote them beyond that. They aren't steers unless you
+; are convinced of the underlying principledness of them." Fiat decisions,
+; when he makes them, will be expressly marked as fiat by him. Nothing here
+; is a ruling; the IDs (O1..O7) survive from an earlier mis-routing into
+; DECISIONS.md so that same-day citations keep resolving.
+;
+; Each record: his words verbatim (in a quote block, never parsed), the
+; assessment of principledness, and what validation is still needed.
+; :status values — endorsed-with-caveats (Fable is convinced of the
+; underlying principle; caveats listed) / recorded-pre-validation (carried
+; faithfully; conviction not yet earned).
+
+|thought[O1].schema-debt-payment-time :date 2026-07-28 :by joseph :status endorsed-with-caveats
+  :context Response to the five-pattern synthesis; background is the relata/asf-terminology trade study (sqlite vs postgresql vs documents-in-a-directory, documents barely winning on agent affordance).
+  !:quote:
+    My experience has taught me that the best sql schemas are highly
+    adaptive-- mechanisms for adding or even propose removal (via
+    expansion-reduction) of fields as the schema evolves-- more
+    event-sourcing-style... A DB has its default affordance being
+    "current-state" with a temporal access bolted on when it's there. Git
+    does the temporal axis much better, but leaves everything fuzzy. One
+    important thing I've learned from years of experience though is the
+    truth of the adage: "the data will always want a schema-- you can use a
+    technology that forces a schema prematurely up front, before document
+    consumption, or you trade that check and end up doing all of the battle
+    of normalizing and consolidating in retrospect at read-time or
+    processing time." Hence older ways of looking at "schema vs schemaless"
+    stacks tend to obscure the real issues they both have.
+  |assessment
+    Convinced of the principle: it dissolves a false binary the way the
+    markdown host-question did, and the corpus independently exhibits all
+    three payment modes (agent cognition unrecorded; read-time by
+    declaration; processing-time as data loss). The schema seed adopted it
+    as its top framing (section 1.0).
+  |needs
+    The seed's refinement that "when" is four decoupled whens (authored /
+    checked / due / schema-changes) shows the adage under-specified as
+    stated; the who-holds-it refinement (recorded-vs-rederived may outweigh
+    early-vs-late) is unvalidated; probe 8 is the cheap test.
+
+|thought[O2].current-truth-and-safe-deletability :date 2026-07-28 :by joseph :status endorsed-with-caveats
+  :context Response to the lossless-witness pattern; describes the segment discipline already operated by hand in asf/vivarium.
+  !:quote:
+    What the core is is what a "normal" DB would afford from the
+    beginning-- a very honest "current-full-state" with history
+    discoverable. Breadcrumbs are severely discouraged. A "Current segment"
+    should be the current truth. Along with it (a sidecar, with various
+    implementations) are currently still-applicable working notes, and a
+    historical changelog. A spike or an audit result isn't considered
+    "integrated" unless it can be safely deleted-- meaning the core
+    segments don't say "look over at msc/.... for details" etc. There are
+    two objectives in tension when trying to honor truth: Don't remove it
+    so it must be rederived, and don't obscure it with low-signal noise
+    that essentially drowns it.
+  |assessment
+    Convinced: this is operative practice across asf/vivarium already
+    (X4/Gate-4 are its ratified fragments), and the two-objectives tension
+    is the honest statement of why sidecar layout is hard rather than
+    merely unbuilt. The safe-deletability test is mechanically checkable.
+  |needs
+    Whether safe-deletability generalizes as the contraction criterion at
+    other altitudes (the schema seed composes it with O4/O7 -- that
+    composition is the agent's, unchecked by anyone else yet).
+
+|thought[O3].reasonless-rulings-are-recheckable :date 2026-07-28 :by joseph :status endorsed-with-caveats
+  :context Correction of Fable's "supply side is settled" synthesis claim.
+  !:quote:
+    The supply side had tons of ideas that were way too tentative. I had
+    (have?) no confidence that they are driven by anything other than the
+    most convenient things to implement given the way the stack was already
+    being implemented. It was causing a lot of loose thinking and "foregone
+    authoritative-sounding conclusions" based on "already-law"
+    "already-ratified" notes that were just some earlier attempts in the
+    language at getting some core stuff working. They failed to capture the
+    reasoning so they could be rechecked most of the time.
+  |assessment
+    Convinced, and it is self-demonstrating: recording these very
+    brainstorms as ledger "marks" was the same laundering one level up. The
+    schema seed's section-4 sort (reasoned vs soft vs mid, per whether the
+    carrier prose states a motivation) operationalizes it and found R14 to
+    be the soft kind.
+  |needs
+    The sort run over the full DECISIONS CARRY table, not just schema's ten
+    rows; and a working rule for what a spike does on collision with a
+    reason-less ruling (surface, don't defer -- proposed, not ratified).
+
+|thought[O4].contraction-absence-is-tooling-failure :date 2026-07-28 :by joseph :status endorsed-with-caveats
+  :context Correction of the monotonic-debt framing; TST grounding claimed from first principles.
+  !:quote:
+    The estate's "finding" that contraction never happens is, I believe,
+    just an indication that there is no framework that makes it as easy as
+    it needs to be. TST is our grounding here, from first principles.
+    Refactoring names as the domain becomes more well-known is a high-level
+    empirically significant practice based on first principles. Changing
+    "site" to "company-primary-url" when the problem domain / project
+    ubiquitous shared vocabulary makes the more principled name is the
+    *right* thing to do that almost every project surveyed does very poorly
+    because there *is no expand-contract* mechanisms for the old name and
+    new-name to live together for a time until the old one can be safely
+    removed. The answer should be as simple as "|company-primary-url
+    \!{was: site}" or something to that effect.
+  |assessment
+    Convinced of the reinterpretation (measurement of tool-shaped behavior
+    was being cited as domain nature), and the schema agent strengthened it
+    with the estate's own directory-is-a-table thesis (dropping an
+    attribute across N documents is DROP COLUMN -- well-defined, merely
+    gateless). The sketch syntax is explicitly no-lean.
+    TST-grounding update (2026-07-28, theory/to-integrate/primary/tst-grounding.md): the
+    renaming half is evidenced in TST near-verbatim (a Realignment-as-
+    Feature corollary with an ROI threshold; its worked example
+    friends/posts -> teammates/documents is this thought's site ->
+    company-primary-url) -- but at discussion-grade tier, so "TST is our
+    grounding here, from first principles" overstates by roughly two
+    tiers. The contraction half is not in TST; the grounding report
+    offers a three-step derivation and names its own weakest link.
+  |needs
+    The honest residue stands: down-migration splits mechanical / lossy /
+    requires-judgment, and the judgment tier's per-item cost is genuinely
+    irreducible (its completability is O7's business, not O4's). The
+    was-mechanism has no owner in CORE's layer table (OPEN LINEAGE).
+
+|thought[O5].consumer-driven-schema-adjudicator :date 2026-07-28 :by joseph :status recorded-pre-validation
+  :context Same message as O4; his stated primary goal for any DB stack.
+  !:quote:
+    If it survives into udon-tooling landscape, it means there must be an
+    adjudication "thing" that cares about the evolution of the schema
+    directly and is the source of truth. I'm ok with that bottleneck,
+    especially if it can generally be pretty loose-- allowing fields to be
+    added as needed so that it is immediate-consumer-driven. (this is my
+    primary goal with any DB stack as well-- let the front-end say what it
+    needs to store / recover, and do the right inference for the local
+    object store, the API, the model object on the server, and the db
+    schema change in the db--- all based on what a privileged coding
+    session running says it needs instead of essentially writing the same
+    thing in 5 different languages when you're not even sure yet if you
+    want to keep it....)
+  |assessment
+    Partially convinced: the load-bearing half is derived (contraction
+    safety is decidable only within an adjudicator's observability, and
+    consumer declarations are what make the reader-half of "safe" knowable
+    at all -- schema seed, governed/wild derivation). The
+    acceptable-bottleneck half and the inference-cascade ideal are
+    preference plus vision, not yet demand-validated; rowan shipped the
+    embryo and its adoption stalled (the retrofit lesson cuts both ways).
+  |needs
+    Demand-side validation that consumers will actually declare (vs. drift
+    wild); the adjudicator's artifact shape; whether looseness and
+    source-of-truth-ness are compatible under multi-writer reality.
+
+|thought[O6].de-facto-schema-at-birth :date 2026-07-28 :by joseph :status endorsed-with-caveats
+  :context Delivered with the vivarium |decision specimen (see ../schema-ideation/specimen-vivarium-decision-2026-07-28.md, verified byte-identical to the primary).
+  !:quote:
+    Every time you or any agent, sometimes even with very, very little
+    exposure to udon, write's a new document as udon-- they are enjoying
+    the fact that the structure and the block prefix characters (the
+    noodles of the udon, so to speak) make the *structure* (i.e., implicit
+    schema-- the template vs instantiation) stand out without losing
+    readability. ... the author *is* declaring a *de-facto-schema* every
+    time a document is born, and is following one every time it is added to
+    or repeated. In almost every project, we could easily have a tool that,
+    given an udon document, could quickly tell us "de-facto-schema" ...
+    It might also pick up on other things, like early on me telling them to
+    put certain attributes first, and on same-line so that it was easy to
+    grep, and to separate out |impact prose from the others.
+  |assessment
+    Convinced of the observation (the specimen is near-experimental
+    evidence: conforming dense record from grep plus one exemplar), and of
+    the sharpening: UDON makes the schema's vocabulary explicit, reducing
+    inference to statistics over a known vocabulary -- two inference
+    problems reduced to one. The extractor tool is unbuilt.
+  |needs
+    Probe 8 (extraction over the live corpus: mechanicalness,
+    author-recognizability, drift-on-rerun, layout/region reporting).
+    Structural limit to carry: extraction yields only the open half of a
+    schema -- observation supplies vocabulary, intent supplies closure.
+    The filename.<namespace>.udon designator affordance stays genuinely
+    open needs-wise; extraction-convergence across same-designator files is
+    its proposed falsifier.
+
+|thought[O10].convention-driven-schema-evolution :date 2026-07-28 :by joseph :status endorsed-with-caveats
+  :context Explicitly framed by Joseph as "not a ruling/decision but a kind of hypothetical direction." The designator ladder + the memory-bearing adjudication dialogue.
+  !:quote:
+    filestem.udon   ->  freeform udon, pathable, 'schema'-extractable
+    filestem.newnamespace.udon -> where newnamespace isn't something the
+    engine/local-system/something knows about implies -> still freeform
+    but extracted schema more likely to land at some point as a
+    newnamespace.core-udon-schema.udon (which we could track already
+    invisibly if we wanted, and offer up "This uses a new kind of child
+    node |quote under |thought that hasn't been seen before-- (a) Add it
+    to the schema (b) Add specify an upsert for older ones (c) (default)
+    add it as an form suggestion and anomolous record" or something
+
+    filestem.namespace.udon -> known namespace.core-udon-schema.udon ->
+    depending on how strict the schema already has been, might reject or
+    upsert. If no schema has still been written, the very least we can
+    do is look at conformance across multiple **.that-namespace.udon
+    files....
+
+    This is a convention-driven-evolution that I really like. Especially
+    if it allows you to say "You just tried re-adding the |quote element.
+    The reason why we had this removed is because ---- kept happening and
+    so we decided that it was only appropriate to do .....   Do you want
+    to (a) accept the new record with |quote removed, (b) add anyway with
+    a reason the policy doesn't apply, acknowledging that the
+    frandibulator widget will probably bug out, (c) rethink your
+    approach..."
+  |assessment
+    Convinced of the shape's principledness, carried at his own register
+    (hypothetical direction). Four compositions make it more than a
+    convenience: (1) the three filename rungs are three governance states
+    -- wild / promissory / governed -- opt-in by naming, which answers
+    GOV-REGIME's "should regime membership be explicit" with machinery
+    that already half-exists (the designator convention). (2) The deepest
+    part: constraints that carry their REMOVAL-REASONS are the
+    carve-outs-carry-reasons discipline arriving inside the schema
+    artifact -- a schema without reasons can only be obeyed or defied;
+    with reasons it can be argued with, which is what option (b) is, and
+    is what makes an agent-facing schema different from a CI gate. Same
+    O3 lesson, third appearance. (3) The a/b/c menus are relata's
+    two-outcome membrane grown a third outcome plus dialogue, with the
+    default being keep-everything at the schema layer (anomalous record,
+    never silent rejection). (4) "The frandibulator widget will probably
+    bug out" is consequence-transparency, and it is only speakable
+    because consumers declared what they read -- O5's declarations put to
+    work on the reader half.
+  |needs
+    LINEAGE (who owns identity-over-time) and PRAGMA (binding surface)
+    both sit under this; the invisible shadow-tracking is buildable now
+    but its offer-up UX is hypothesis; the strictness gradient per rung
+    is undesigned; and the wild-consumer limit stands (a namespace's
+    census sees documents, not readers outside the declaration system).
+
+|practice-candidate[prefer-block-verbatim-for-embedded-grammars] :date 2026-07-28 :by joseph :status candidate
+  :context Named by Joseph after this file's own !:quote: usage; the first concrete entry for O8's emergent-practices register.
+  Embed foreign or verbatim material -- quotes, markdown-bearing text, code,
+  anything carrying live-looking syntax -- in geometric block verbatim
+  (!:label:) rather than backtick fences, unless byte-exactness is the
+  point. Why it works: geometric extent has no printed closer to collide
+  with, so there is nothing for embedded content to prematurely terminate.
+  Measured backing (fence-knot table, 2026-07-28): !:label: is immune to
+  every nesting case probed and holds three grammars deep, while the
+  three-backtick fence corrupts silently under markdown's
+  longer-fence escape (which UDON lacks); ~~~ is inert. Joseph: it
+  "disolves tension discovered in or rather being adjudicated in the
+  spikes on markdown<->udon interchange" -- the fence knot exists only
+  among delimited fences; route embeds through the geometric form and the
+  knot is mostly untied. Already half-committed in PEDAGOGY.md's one-way
+  list ("code blocks: teach !:lang:, not fences"); the probes upgraded it
+  from taste to measured, and this file is its live specimen.
+
+|thought[O11].deliberate-vs-incidental-legibility :date 2026-07-28 :by joseph :status endorsed-with-caveats
+  :context Closing the premature-rulings exchange; the TST-perspective generalization under the whole session.
+  !:quote:
+    Essentially unless we're extremely careful, future agents have no
+    good way of knowing what is deliberate vs incidental; and LLM's are
+    still trained currently to not really distinguish the two when
+    writing, by default.
+  |assessment
+    Convinced -- and it reads to me as a plausible common root under at
+    least four of the session's threads (my synthesis; each mapping
+    below is checkable). (1) The O6 imitation mechanism: an exemplar's
+    incidental choices get conformed-to exactly like its deliberate ones
+    (the vivarium agent copied everything; the tail of the file carries
+    no deliberateness bits). (2) The extractor's structural limit is the
+    same gap corpus-side: observation cannot distinguish required from
+    never-omitted -- "intent supplies closure" IS deliberateness-marking.
+    (3) TST already meets it in measurement (co-change cannot separate
+    deliberate coupling from convention-bundling; declared-vs-historical
+    divergence is its named diagnostic) and in vocabulary (the proposed
+    derived / convergent-choice / chosen register for its own notation
+    decisions -- a deliberateness axis, already wanted). (4) The estate's
+    entire hand-register discipline (status banners, "no lean," PINS
+    CURRENT PARSER, register-marked claims, steward-evident) is manual
+    compensation for exactly the training default he names: models emit
+    every choice with equal implied intentionality, so the discipline
+    must be re-applied per artifact or the distinction evaporates.
+    The UDON-shaped consequence: since training won't mark deliberateness
+    by default anytime soon, the format and tooling must make marking it
+    CHEAPER than not marking it -- the ease-gradient applied to intent
+    legibility. Suffix/trait/attribute seats make that mechanically
+    plausible in a way prose never is.
+  |needs
+    A cheap idiom (candidate territory for the practices register, not
+    designed here); whether the deliberateness axis joins the three-axis
+    epistemology alongside steward-evident; and the honest limit -- a
+    marking discipline is itself conformed-to incidentally once it
+    appears in exemplars, so the mark must carry its reason or it decays
+    into ornament (the carve-outs lesson, one level down).
+
+|practice-candidate[structured-quote-with-provenance] :date 2026-07-28 :by joseph :status candidate
+  :context Companion to prefer-block-verbatim-for-embedded-grammars; Joseph, same session.
+  !:quote:
+    I can also see a very common:
+
+    |quote :src Joseph
+      And so forth and so on...
+
+    with the occasional :date or :path etc. as needed.  I *never* know
+    how to do that in a principled way in markdown, where it's always
+    "view-oriented" instead of metadata-affordances with default
+    viewing....
+  The two quote forms are complementary jobs, and choosing between them
+  is itself the practice: |quote :src X :date Y when the quote should be
+  ADDRESSABLE and QUERYABLE (an element with edges -- who said it, when,
+  from where); !:quote: verbatim when the material must be PROTECTED
+  (live syntax, byte-faithful). They compose -- an attributed quote
+  carrying hazardous content is |quote with metadata whose body is a
+  block verbatim; this very file's |thought records are that composition
+  in embryo (:by/:date on the element, !:quote: body). Markdown's failure
+  here is structural, not stylistic: the blockquote's only slot is
+  styling, so every attribution is a display hack (an em-dash line, a
+  cite tag) invisible to query. Demand evidence is the estate itself:
+  the entire 01-ideation gathered corpus (~270 artifacts) is
+  quotes-with-provenance forced into YAML frontmatter workarounds, and
+  the annotation demand's "queryable by the same paths as content" is
+  exactly what :src/:date on a |quote element provides for free.
+
+|thought[O9].spontaneous-adoption-as-canary :date 2026-07-28 :by joseph :status endorsed-with-caveats
+  :context Follow-on to O8's fluency discussion; names both the current strongest validation and its inversion as an early-warning instrument.
+  !:quote:
+    The fact that cutting edge llm agents invariably want to *use* udon
+    for tactical things immediately after seeing it is the biggest
+    validation we have right now that things are on the right track--
+    and potentially a good thing to back up and recheck from time to
+    time as we add functionality and/or nuance to the language-- a
+    point when they start saying "this looks great, but too much
+    friction to get started 'the right way.' I just want to throw
+    together some udon and refine it later..."
+  |assessment
+    Convinced, on evidence already in hand: the vivarium day-verdict
+    ("friction-relief, by a wider margin than I'd have guessed"), the
+    specimen (fluent tactical use from grep plus one exemplar), and the
+    session's de-novo testimonies. Two sharpenings worth carrying.
+    First, the canary sentence is specific: the danger named is not the
+    core getting harder but the right-way superstructure (practices,
+    schema, governance) making correct entry feel heavy while
+    throw-together stays easy -- friction *differential*, not absolute
+    friction. Second, the O1-O7 architecture is exactly what can keep
+    the canary silent: judge-not-gate, pay-at-birth, redeem-later means
+    "throw together some udon and refine it later" IS the sanctioned
+    path, not defection -- if right-way ever requires up-front ceremony,
+    that architecture has been betrayed somewhere. The cautionary corpus
+    is named in the markdown seed: AsciiDoc and reStructuredText lost on
+    exactly this ("ceremony, learning cliff").
+  |needs
+    Institutionalize the measurement: the de-novo channel already
+    produces first-contact reactions as a byproduct; making it a
+    deliberate longitudinal series (n fresh agents per language version /
+    model generation, spontaneous-reach recorded, friction statements
+    verbatim) is cheap and fits the O8 harness re-run. The metric's
+    honest limit: agents eager to use it on sight validates first
+    contact, not sustained use at scale -- the vivarium-style day-report
+    and the relata pilot are the instruments for the latter.
+
+|thought[O8].expected-initial-best-practices :date 2026-07-28 :by joseph :status endorsed-with-caveats
+  :context Follow-on to the O6 extractor discussion; crosses into pedagogy and the agent-ux lane rather than schema proper.
+  !:quote:
+    There's another useful angle for us that might be a bit under-utilized:
+    expected initial best practices. Already there are some emergent ones,
+    like 'Prefer @element-kind[id] instead of just [id]' or 'keep primary
+    state/status / easily grepped attributes+values on sameline', and ones
+    that are due to recent language additions 'Use <2024-02-23> for dates
+    and timestamps (etc. etc.) instead of plain-text', and ones that have
+    always been part of udon but might be useful for the agents only
+    exposed to it vicariously by example ("All of your attributes before
+    mixed children." "These are just attributes with syntactic sugar..."
+    and "If confused about which thing the indented line is child of--
+    just pretend the same-line part has each of its parts on consecutive
+    new lines")... This is mixing into pedagogy, and into something we
+    have *not* run since many iterations of the language ago--
+    systemmatic testing to see exactly what subset or cheatsheet could be
+    given to which agents to make them "fluent" in udon. If all goes
+    well, of course, that would mostly be in a tool description....
+  |assessment
+    Convinced. Three distinct practice-sources are named and they have
+    different owners: emergent-from-usage (extraction territory -- the
+    closure/intent half taught forward), language-addition-driven
+    (migration territory -- each new affordance implies a practice), and
+    timeless-but-non-obvious mental models (pedagogy's committed models --
+    two of his three examples are already in PEDAGOGY.md / CORE Appendix A
+    almost verbatim, which is corroboration that the class is real). The
+    fluency-subset testing has a proven instrument sitting stale: the
+    Dec-2025 usability harness (rebuild already tracked in
+    ux/TODO-AGENT-UX.md) plus the estate's hallway-testing methodology
+    (k* learning cost, documentation-delta as the measure). And the
+    tool-description destination has shipped ecosystem precedent found
+    this very session: Ash's usage_rules -- machine-readable "what an
+    agent should know to use this correctly," synced into consuming
+    projects' AGENTS.md files.
+  |needs
+    The systematic re-run itself (cheatsheet-subset x agent-tier matrix,
+    scored against the compliance parser -- not run since many language
+    iterations ago); a decision about where practices live so the three
+    sources don't blur (extractor report vs migration note vs pedagogy
+    manual vs tool description); and the honest check that a practice
+    stated in a tool description actually changes behavior at the tiers
+    that need it most.
+
+|thought[O7].adjudication-point-migrations :date 2026-07-28 :by joseph :status endorsed-with-caveats
+  :context Follow-on to O4's expand/contract restatement.
+  !:quote:
+    An honest tool that falls out of your restatement of the
+    expand/contract is a purposeful contraction / schema mutation that is
+    *meant* to be an adjudication point--- saying "all of these need an LLM
+    to adjudicate how to make it conform to the new model-- and here's the
+    quick tool we have that tells us exactly how far along we are in doing
+    that (extracting to independent claims, for example, or correct date
+    formatting etc.)  Something that tracks the whole process holistically
+    instead of agents and human agents tracking it ad-hoc...
+  |assessment
+    Convinced: it gives the requires-judgment tier its honest affordance
+    (managed census and burn-down, not false automation), and both halves
+    ship in embryo on this machine (the core compliance gate's per-file
+    burn-down; relata's .needs-review queue). The four-way composition
+    (O4 declares, O7 censuses, O2 fires at zero, O5 sees readers) is the
+    schema agent's synthesis and is the single item here most in need of
+    an independent check.
+  |needs
+    The anti-gaming clause must travel with any census ("never by editing
+    fixture expectations toward parser output" -- port the clause, not
+    just the counter). SEG-SPLIT is the natural first customer and a
+    chance to run one migration censused instead of ad-hoc.
+
+|thought[O12].standard-core-schemas :date 2026-07-29 :by joseph :status endorsed-with-caveats
+  :context Dialects/schemas discussion during the working-synopsis session; expressly register-marked by Joseph as "joseph's thoughts at best-- pre notes more likely as we discuss... a little bit scattershot since it's an area that has been asked for (my experiential feedback)."
+  !:quote:
+    With dialects, it already occurs to me that... well, maybe with
+    schemas... there will likely *want* to be a small handful of udon-core
+    schemas that at least we use across a variety of projects-- such as
+    udon that replaces some of your agentic tooling xml constructs, or
+    properly formats udonic-tool inputs/parameters etc., or that is a
+    "more concrete udon version of markdown" or that exposes various
+    epistemological labels or agent interior thinking traces that are
+    meant to not survive any translation/publication pipeline etc.
+  |assessment
+    Convinced the class is real -- each of the four named members has
+    shipped or ruled precedent rather than resting on the naming:
+    (1) harness/context constructs: prompt assembly is already a
+    first-class formal object in the theory (the prompt() function,
+    def-coupled-update-dynamics), and current harness practice is
+    unschema'd XML-ish injection -- this is that surface given a schema.
+    (2) tool inputs/parameters: rowan ships resource->tool projection
+    (to_tool_definitions); the tool-definition anatomy chapter shows the
+    converged name+schema+description shape; minimax's reverse export
+    proves the direction can invert.
+    (3) concrete-markdown: already named as the doc schema (markdown
+    four-layers Layer 2 / thoughts-on-scope A4), Pandoc's AST as the
+    battle-tested element set -- this row is DEMAND for it; the MD/S16
+    carve-out stays open and must not be closed by recording this.
+    (4) epistemic labels + interior traces with publication-stripping:
+    the estate re-implements this by hand everywhere -- the three-axis
+    epistemology, the ennaos INSTINCTS register (prove/know/don't-know/
+    believe), O11 deliberateness marking, ASF Working Notes stripped at
+    build by rindex. "Meant to not survive any translation/publication
+    pipeline" is per-part disposition from the cluster-record question
+    (doc-store report 12.4) stated as a schema property -- declared
+    projection semantics instead of a recovered boundary.
+    Cross-cutting: this is the standard-library move, and it gives
+    GOV-REGIME's governed rungs their first concrete citizens -- a
+    corpus adopting a core schema is opting into a named regime.
+  |needs
+    Which member goes first (my lean: the epistemic-register schema --
+    it is the one every project already pays for by hand and the one O11
+    needs; also the one where UDON is most differentiated). Whether these
+    are schemas or schema+dialect pairs (the register one wants vocabulary
+    AND stripping semantics). The O9 friction test before any of them
+    becomes "the right way" -- a standard schema is exactly where
+    right-way ceremony could creep. And (3) must route its enumeration
+    through the MD carve-out's own closing condition, not around it.
+
+|thought[O13].path-decomposition-perspective-file-stem-selection :date 2026-07-29 :by joseph :status recorded-pre-validation
+  :context Reaction to the working-synopsis path examples; restructures the proposal into his own decomposition and questions the example scaffolding ("not sure what your |when |edit |resolver-conf is or what the inner 'path' syntax is accomplishing per se").
+  !:quote:
+    we have the following concerns:
+    - perspective: file-location-reference/fixed-point, commonly:
+      - possibly user@host:port for other machine altogether
+      - possibly https:// or ssh:// etc. for other machine / protocol
+      - relative to udon document
+      - relative to caller's cwd
+      - relative to a "database" or repository root (doc/db steward decides)
+      - relative to the project root (defined probably by .git references.
+        Not always well-specified. [same with most others sometimes])
+      - relative to current system's file root (absolute paths '/' or '//')
+    - file path: often directly matches directory path, allows * and **,
+      ., .., etc.
+    - file stem: on one hand, the most immediate concrete candidate; on
+      the other hand, in more sophisticated setups, gets really fuzzy what
+      it is. For now though, simply gathers the files, files == documents
+      / document snippets / document-streams
+       - record-[UUID]...(.schema.udon)
+       - all-records(.schema.udon)
+       - some*selections* ; that doesn't even care about schemas etc.
+    - (provisionally) aspirational schema (and maybe version?)
+      asdf.decisions-v8.2.udon
+    - filetype suffix .udon -> expected implicit return type /
+      stored-as type
+    Then we have inner selection (possibly separated from the former by
+    '#' ala URIs)
+    - @[key] ; relies on key being unique for that dataset's kinds of
+      elements
+    - @element[key] ; element-differentiated key, preferred syntax
+    - @element[key] @other-element ; child element?
+    - @element[key]:attribute ; gives back just that attribute's value?
+  |assessment
+    Cleaner than the synopsis's three-separations cut at the outer
+    altitudes -- it decomposes the "to" half into perspective / file-path
+    / stem / designator / suffix where the synopsis had one "anchor
+    registry" bucket. Genuine additions over anything in the corpus:
+    (1) host/protocol as a perspective rung (user@host:port, ssh://) --
+    the grok testimony's host-scoped-paths demand, promoted into the
+    address model rather than left as a caution; (2) globs sanctioned at
+    the FILE altitude where they are proven convention (the seed's no-glob
+    lean was about in-document syntax -- the two positions are compatible
+    and should be stated as one two-altitude rule); (3) the stem-fuzziness
+    observation is directory-as-table restated in filename terms (stem
+    gathers files; file-per-record / one-file-many-records / pattern-case
+    as the three stem shapes); (4) "aspirational schema" names the
+    designator's promissory register exactly (A.4's naming-the-debt);
+    (5) suffix as expected-return-type is position-typing at the file
+    altitude -- the F4 argument one level up. Inner selection: reusing @
+    as the fragment language is mirror-the-document purity, and it is
+    MECHANICALLY FINE where paths actually live -- after '#' inside a
+    fused bare token, @ [ ] : are ordinary content; leading-@ shatter
+    (D-a) bites only at value start. One constraint to carry: SPACE
+    terminates bare tokens, so juxtaposition chaining ("@element[key]
+    \@other-element") works in quoted/envelope spellings but breaks the
+    bare fused form -- the bare form needs a joiner or no chaining.
+    \@element[key]:attribute lands on the stacked-value question (D4:
+    at over a stack -> which?).
+  |needs
+    Whether perspective is declared per-document, per-repo, or per-call
+    (the registry question); whether the fragment language is exactly
+    ref-syntax-plus-chaining-plus-projection or grows filters; the
+    stacked-attribute answer for :attribute projection; and the joiner
+    (or its absence) for bare-form chaining.
+
+|thought[O14].grammar-decisions-must-not-swing-syntax :date 2026-07-29 :by joseph :status endorsed-with-caveats
+  :context The glob recheck: the paths seed's "leaning: no / Never?" on globs traced to the flag-suffix spelling collision plus a one-day absence claim.
+  !:quote:
+    ugh. so it's an irrelevant old grammar decision swinging our more
+    important syntax decision-- when adding those syntactical sugars was
+    exactly *for* this sort of thing. Ditch the "Never" at the *very
+    least*.
+  |assessment
+    Convinced, and it is checkable against CORE's own text: 5.4 glosses
+    the suffix characters as "a grammar might read ? 0-or-1, * 0-or-more,
+    + 1-or-more" -- the Kleene readings were the DESIGN INTENT of choosing
+    those characters, so treating the definition-desugar ($* = true) as a
+    collision that forecloses selector-Kleene inverts the sugar's purpose.
+    The general principle is O3 one level deeper: not just that reasonless
+    rulings are recheckable, but that a decision made at one layer
+    (definition-desugar grammar) silently governing a different layer's
+    design space (selector syntax) is a category of constriction to sweep
+    for. The seed's globs row is retracted to open with three candidate
+    selector readings named (cardinality / match-by-flag / name-glob);
+    done 2026-07-29.
+  |needs
+    The three-reading adjudication belongs to the paths spike with the
+    demand map, not here. A sweep for OTHER instances of the category
+    (definition-layer decisions quietly constraining selector/tool-layer
+    space) -- the ? flag-key rule vs :at? arose the same day and is the
+    same shape. CORRECTION (2026-07-29, Joseph): an earlier form of this
+    note said that case was "resolved the other direction (flag idiom
+    kept)" -- it was not resolved; Joseph had only reported the current
+    parser's reading (at? == true, path as text child), and ? on an
+    attribute key is a different mechanism from ? on an element besides.
+    Both the :at? spelling and the glob readings are OPEN; the pair still
+    shows the category needs case-by-case adjudication, with the
+    current grammar's behavior admitted as a fact and never as the
+    verdict.
+
+|thought[O15].operation-arity-plus-expectation-arity :date 2026-07-29 :by joseph :status endorsed-with-caveats
+  :context Extending the declared-arity-bounds axis ({1,1}/{0,1}/{0,N}/{1,N}) during the paths discussion.
+  !:quote:
+    For certain tasks, we could even expand it to essentially indicate
+    "what to expect" vs "what to change."  e.g., I want to change the
+    first occurance (maybe something like) "...{1,N}" but I *expect*
+    there to be no more than 2 or three, or else I've grossly
+    misunderstood the data: "...{1,N}{1,3}" -- for an edit/mutate
+    command, this could give a "this record is missing _____, add one?"
+    or "several of these records have more than 3-- for example...
+    Proceed anyway?" etc. etc.  Whereas {0,N}{0,1} would be a more
+    traditional-- if it has it, there should be just one, and that's
+    the one I'm going to modify...
+  |assessment
+    Convinced of the underlying move: TWO bounds with different jobs --
+    one OPERATIONAL (what the command will select/touch) and one
+    EPISTEMIC (what I believe the data holds, such that divergence means
+    "I've grossly misunderstood") -- with the gap between observed count
+    and the epistemic bound triggering GRADUATED DIALOGUE rather than
+    binary failure. Why it lands, in the corpus's own terms: (1) it is
+    the intent-as-parameter demand in checkable form -- the 2025
+    quick-tooling protocol already carried expected_outcome and
+    will_succeed slots; a count bound is the crisp, mechanically
+    comparable slice of that intent, and the mismatch message writes
+    itself ("several have more than 3 -- proceed anyway?"). (2) It is an
+    A->0 move on the edit channel: "does this data match my model?"
+    becomes count-vs-bounds, pass/fail, BEFORE mutation -- a
+    mutation-free channel for discovering your world-model is stale,
+    which is the errors-that-teach shape applied to the agent's own
+    beliefs rather than the tool's laws. (3) It guards the propose
+    hazard: hallucinated-layout writes trip expectation bounds
+    immediately ("missing ____, add one?" surfaces the fabrication
+    instead of silently instantiating it). (4) The dialogue tiers are
+    the relata two-outcome membrane + resolution ladder arriving at the
+    edit surface: expectation-violation is not submitter-error and not
+    success -- it is the needs-review speech act, with Proceed-anyway as
+    the interactive tier and JSON-choices for machine callers. (5) A
+    sibling unification: the content-hash pin (:as-of) is the SAME move
+    for content that the epistemic bound is for count -- one family,
+    "expectation claims attached to operations" (count / content /
+    possibly shape), each checkable, each a dialogue trigger on
+    divergence. (6) Byproduct worth naming: accumulated per-call
+    expectation bounds are calibration data -- what agents believed
+    about the corpus, recorded at call sites, comparable against
+    reality over time (relata section-17's predicted-vs-actual loop, fed
+    for free).
+  |needs
+    Slot order / notation (which bound reads first; whether expectation
+    is a second {m,n} or a named param); the severity mapping (which
+    divergences block, ask, or merely annotate -- likely the casual/
+    careful/critical profiles); whether expectation bounds are ephemeral
+    (call-only) or recordable (feeding O6 extraction and calibration);
+    and the interaction with {m,n} in schemas -- a durable schema
+    cardinality and a per-call expectation can disagree, and that
+    disagreement is itself information (stale schema or stale agent).
+
+|thought[O16].breadcrumbs-are-homeless-provenance :date 2026-07-29 :by joseph :status endorsed-with-caveats
+  :context Late in the tribunal/decision-record discussion; prompted by the estate-wide agent habit of inline change-marks.
+  !:quote:
+    One thing that is a bit annoying but which indicates to me good
+    instincts-- agents' current proclivity for leaving breadcrumbs all
+    over the place-- "*(changed 7/29 per Joseph)* *(was P3, other file
+    sent to archive)*" type stuff *all over*. To me this is another
+    latent indicator of an instinct that has no proper tool -- they
+    *feel* that the task isn't quite done until there is the record of
+    it having been done, and the correction is usually "let git do
+    that" or pull that stuff out into a changelog or something. I'm
+    realizing in this discussion that we have a much more principled
+    "home" for those feelings to feel resolved, without it seeming like
+    vanity, without it cluttering the "current true state snapshot"
+    without it seeming like busy-work-act-busy type work-creation, but
+    really answering the need that doesn't get satisfied by "look at
+    the git history".
+  |assessment
+    Convinced, and the day's threads say exactly why both halves are
+    right -- the instinct AND its current homelessness. (1) The instinct
+    is the reinjection-channel behavior (persistence is imported): the
+    agent externalizes the change's provenance because the conversation
+    that holds it evaporates -- the durability test ("would future-me
+    find this?") answered with the only surface at hand. (2) "Let git
+    do that" fails for the reason the letter's temporal addendum names:
+    git's history verbs are serving-indexed while the crumb is a
+    bowl-indexed utterance -- it belongs to the RECORD, and the agent
+    knows the future reader won't excavate it from line-history (they
+    have been that reader). The crumb is the same demand as the
+    <slug> WN: commit-subject convention: provenance carving itself
+    into whatever surface exists. (3) The harm is also now named, not
+    just felt: breadcrumbs in the body are (C2) contamination of the
+    collision surface -- history-voice leaking into present-truth,
+    which degrades exactly the staleness-detection the body exists to
+    provide. So suppression-rules (the vanity-changelog exclusions)
+    police a symptom whose organ is missing. (4) The organ is
+    half-shipped, twice: terminology's decision-events (typed,
+    per-record, append-only, collision-free filenames) are the landing
+    shape, and rowan's annotation-as-message channel (write the mark
+    inline where you are; a watcher harvests it, promotes it to the
+    durable log, strips it from the source) is the routing shape.
+    Compose them and the feeling resolves at zero navigation cost while
+    the body stays clean: the crumb is written at the change site --
+    where the energy already exists -- and LANDS as an addressable
+    event on the record's identity. Capture by design, again: the
+    breadcrumb urge is pre-paid capture energy, currently mis-routed.
+    This also resolves O2's stated tension per-record (don't force
+    rederivation / don't drown the signal): the crumb is neither
+    deleted nor left -- it is routed.
+  |needs
+    The routing tool (inline mark -> record event sidecar, strip on
+    harvest) is unbuilt; the grain question (which crumbs are events
+    worth keeping vs noise the harvest drops) is undesigned; and the
+    load-bearing psychological premise -- that the feeling is satisfied
+    by routed-and-addressable rather than by visibly-in-place -- is
+    plausible (the tribunal discussion suggests record-existence is
+    the need, not record-location) but untested. Cheap test: run the
+    harvest convention manually for a week in one corpus and watch
+    whether the inline crumbs stop accumulating.
+
+|thought[O17].decision-authority-flows-demand-to-grammar :date 2026-07-29 :by joseph :status endorsed-with-caveats
+  :context The type-algebra spike's N6 correction cycle; after the spike (and the coordinating agent) treated the core flag rule as constraining the schema dialect's optionality spelling, at zero consumers.
+  !:quote:
+    You have to see it from my perspective, or the project as a whole---
+    ? semantics were a forward-looking best guess that was the least
+    complicated for the language. Forward looking to what? This. If the
+    guess was wrong a little bit, great! As I said, such decisions I
+    *now* want to be making from the demand and theory and principled
+    side, not from the "what can we do easily with the grammar before
+    knowing what we actually need."
+  |assessment
+    Convinced -- this is O14 sharpened into a directional principle:
+    not merely "present grammar is a fact to price, never the verdict"
+    but "0.9-era spelling decisions were forward-looking guesses whose
+    correction authority belongs to the demand/theory side; decisions
+    flow demand-to-grammar, never grammar-to-demand." It reweights the
+    type-algebra spike's N6 election: the three options (spell around /
+    move the core rule / absorb the cost) are not peers -- the incumbent
+    is a placeholder built to be corrected by exactly the work now
+    arriving, so its continued existence carries no tie-breaking weight.
+    C8's semi-frozen/spec-only posture is the standing implementation of
+    this principle. The same spike carries the paired outcome that makes
+    the policy legible: the ?!*+ element-suffix guess landed whole (the
+    section-5.4 Kleene readings fit the arity algebra with zero grammar
+    change) while its sibling flag-rule guess may be revised by the same
+    arriving demand -- both were "forward-looking to this," and either
+    outcome is the system working. Mechanism note from the same cycle
+    (type-algebra N6): the reflex that inverts this flow survives
+    explicit counter-instruction by re-entering through the evidence
+    channel -- a crisp parser measurement lends its authority to the
+    incumbent frame -- so the guard is the register discipline applied
+    to design reasoning, not resolve.
+  |addendum :by joseph :date 2026-07-29
+    !:quote:
+      0.9.1 is specifically *not* fully frozen for exactly this class
+      of allowance, should this become important and useful enough.
+    Confirms and sharpens the C8 reading above: the semi-freeze is not
+    merely staging for future versions -- 0.9.1 itself remains open to
+    absorb this class of demand-driven correction, which is precisely
+    the "critical parser-grammar-facing nuance" clause of C8 doing its
+    intended job.
+  |needs
+    Nothing to validate in the principle itself (it is a steward
+    statement of decision authority, not an empirical claim); the open
+    work is applying it -- the ? election waits with the schema/dialect
+    demand map (and may land in 0.9.1 itself per the addendum, if it
+    earns it), and the evidence-channel guard wants a phrasing cheap
+    enough to ride in spike briefs.
+
+|thought[O18].invasive-change-window-is-now :date 2026-07-29 :by joseph :status endorsed-with-caveats
+  :context Immediately following O17, continuing to beat the point; the ? election as the live instance.
+  !:quote:
+    This is our least expensive time to make a principled *invasive*
+    change to udon. It litterally just requires enough proof that it's
+    principled and coherent and requires it not drowning in the noise
+    in the meantime. The final cost-- a few lines to the 0.9.1 spec.
+    and a few minute's of Sonnet's time rewriting some fixtures
+    differently than it expected in the future. At no future point
+    will it be easy to be "correct" like it is right now. (to continue
+    to beat the point)
+  |assessment
+    Endorsed -- the economics are self-evident and even steeper than
+    stated, because deferral compounds on three curves at once:
+    consumers accrue (each future consumer multiplies a change into a
+    migration), corpora accrete (each document written under the wrong
+    spelling becomes retrofit surface -- the doc-store report's hardest
+    lesson), and imitation propagates (O6/O11 -- exemplars teach every
+    reader the deferred-wrong pattern with deliberateness unmarked).
+    TST states the same asymmetry as the turnover multiplier: corrected
+    now, paid once; deferred, paid per future reader. The disposition
+    consequence, paired with O17: when territory work produces a
+    principled, coherent answer that wants a core change, the change
+    lands in 0.9.1 now (C8's clause) -- not staged for 0.10, not routed
+    around, not held for demand volume. The bar is proof of
+    principledness and coherence, nothing else. Caveat carried: this is
+    not license for the reflex O17 corrects (grammar-convenience
+    reasoning, or my earlier nail-down-the-steward-calls push) -- the
+    bar is a demand/theory-side proof, and the noise-drowning guard is
+    a recorded candidate with its proof, register, and revisit trigger
+    attached (the tribunal shape), not a hasty ruling.
+  |needs
+    A home discipline so candidates do not drown: likely FOR-JOSEPH
+    entries carrying class invasive-change with the principled proof
+    attached, or a short section in OPEN -- whichever surface Joseph
+    actually re-reads; deciding that is itself a one-line steward call.
+    First live candidate: the ? election, when the schema/dialect
+    design produces its proof.
+
+|addendum[O18a] :to O18 :by joseph :date 2026-07-29
+  !:quote:
+    I've been very purposefully driving the sessions and work right *at*
+    these points-- the canaries that I mentioned at the beginning of
+    this session that need to fall out of principles instead of fiat
+    via grammar affordances. My whole work has been trying to find out
+    where early decisions weren't as principled as they tried to be and
+    to truthify them, so I get very frustrated when agents continue to
+    assert the past as an authority, no matter how "accurate" they are.
+  Names what O17/O18 are instances of: the set-aside questions are
+  steered-at deliberately, and their falling-out-of-principles is the
+  canary that the territory work is working -- closing them by fiat or
+  by incumbency trips the gauge by hand. The sharpest clause is "no
+  matter how accurate": a correct measurement of the past confers no
+  normative standing on it, which is the evidence-channel guard (O17
+  assessment, type-algebra N6) stated in steward words. Truthification
+  of under-principled early decisions is the work itself; the past is
+  its material, never its judge.
+
+|thought[O19].udon-explicitness-cues-deliberate-writing :date 2026-07-29 :by joseph :status recorded-pre-validation
+  :context Response to the finding that fmt-md cannot safely format .udon (no canonicalizer exists, and the mitigation is a stated rule in FORMAT.md rather than a tool). Recorded on truth grounds, expressly not as justification -- see the addendum.
+  !:quote:
+    we're only a few sessions away from a proper minimal udon utility
+    suite again anyway, so I think we can survive it being part of the
+    instructions for now. The agents are already cued to "write it
+    correctly" because it's udon instead of instinctive markdown with
+    per-llm-flavor-of-the-month-- there will be few lapses I'll bet, and
+    all of them quickly corrected by the second pass.
+  |assessment
+    Two claims with different registers, and separating them is the
+    useful move. The principled half I find convincing: UDON's markers
+    make structure explicit rather than instinctive, so writing it
+    engages deliberate choice where markdown engages a trained default
+    -- which is O11's deliberate-versus-incidental axis appearing on the
+    authoring side rather than the reading side, and it predicts that
+    the lapses which do occur will be *structural* (an attribute in the
+    wrong phase) rather than *stylistic* (wrap width, list glyph),
+    because the stylistic layer is where per-substrate defaults live and
+    UDON has no opinion there to violate.
+    The empirical half -- that lapses will be few, and second-pass
+    caught -- is a bet with partial support already in the corpus and no
+    direct measurement: O6's vivarium specimen (a conforming dense
+    record from grep plus one exemplar, near-zero exposure) and O9's
+    spontaneous-reach observation both point the same way, while the
+    counter-instance is on record too and cuts against optimism -- an
+    agent that had read the whole 0.9.1 suite the same day still emitted
+    non-canonical constructs (envelope-as-body, phase violations). So
+    the honest prior is "few relative to markdown-flavor drift", not
+    "few absolutely".
+  |needs
+    The instrument already exists at no cost: the lapse count on the
+    first batch of .udon segments written under theory/FORMAT.md, sorted
+    structural versus stylistic. Recording the prediction before the
+    batch exists is what makes it a prediction rather than a
+    retrodiction, which is the whole reason this entry is here.
+
+|addendum[O19a] :to O19 :by joseph :date 2026-07-29
+  !:quote:
+    I don't think it would change the decision since the principled
+    solution is the same distance from us and not conditioned on that
+    premise, but that's a great idea for the sake of truth!
+  Draws a distinction the registers here have not made explicit:
+  decision-relevance and truth-relevance can come apart, and a claim
+  worth recording on the second ground alone is worth recording. It also
+  pre-empts a specific misreading -- since the utility-suite timeline is
+  not conditioned on the lapse-rate premise, a later reader must not
+  find this prediction beside that decision and infer the prediction
+  justified it. Nothing was decided on this basis; the entry exists so
+  the bet can be scored.
+
+|addendum[O13a] :to O13 :by joseph :date 2026-07-29 :status recorded-pre-validation
+  :context Adds a rung O13's perspective decomposition had neglected. Raised while discussing what a principled path syntax would need, deliberately ahead of the paths spike.
+  !:quote:
+    in addition to the noted "project-root" glyph, we'll want a
+    "within-the-project" glyph... basically a shorthand for
+    "prjroot://**/<stem>.{md,udon}" or something.
+    ...
+    already, for example highly implicit in many data-document-stores, and
+    all of obsidian wikilinks, and wikilinks in general
+  |assessment
+    Recorded as the entry he asked for; the analysis below is mine and
+    decides nothing.
+    The rung is real and the prior art is broader than the seed's list
+    suggested -- every wiki link, every Obsidian link, and the resolution
+    layer of most document stores are this operation, which makes it the
+    most widely shipped addressing form in the corpus's whole survey and
+    the one the paths seed never named.
+    One structural note worth carrying to the spike: this may be a
+    distinct dimension rather than a perspective entry. O13's other rungs
+    all answer "where does resolution START"; this one answers "does
+    resolution WALK or MATCH" -- a descent versus a search over a scope.
+    On that reading a wikilink decomposes as perspective=project-root,
+    traversal=match-by-stem, arity={1,1}, and its familiar pathology
+    follows: two files sharing a stem is not a wiki quirk but an
+    unstated-arity violation, which this estate already has a name for
+    (PathNotUnique, loud). Naming the anchor and the bound is what turns
+    the most-used addressing form in the world from a convention into a
+    typed address.
+  |needs
+    Whether match-vs-walk is a second dimension or an entry on the first;
+    the default arity and what a collision does; whether the form earns a
+    glyph on frequency grounds (his own project-root evidence suggests the
+    test is usage, not elegance); and what the scope is when a project has
+    nested roots. All of it belongs to the paths spike, not here.

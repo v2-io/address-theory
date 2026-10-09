@@ -2,6 +2,12 @@
 
 *Append-only, informal. Present truth lives in def/, src/, and the outline; decisions in DECISIONS.ud; process in sop/. This file is archaeological source, not active work.*
 
+## 2026-10-09 — moved out of udon into its own repository
+
+- Extracted from udon's `v2/references/` (and its earlier name `v2/paths/`) with `git filter-repo`, history intact: 60 commits, 2026-08-07 → 2026-08-27; the tree at the last of them is identical to udon's `v2/references/` at `4fbe741`. The 2026-08-10 `paths/` → `references/` rename became a no-op and dropped out.
+- `ref/`: the five symlinks into udon became byte-identical copies, with their sources recorded in `ref/README.md`; the 0.9.1 spec suite is pointed to rather than copied. In-repo paths that assumed udon were corrected (ORIENT's primer path, its 0.9.1-suite row and `design/udon-paths.md` hazard; def-generator's provenance note). `CLAUDE.md` gained a *Home* paragraph. `.gitignore` added for `.ruby-lsp/`.
+- Steward call, 2026-10-09: its own repository rather than `arch/msc/address-theory/`; possibly an arch submodule later.
+
 ## 2026-10-09 — solidification pass landed in INFLUX (no canon touched)
 
 - `INFLUX/SOLIDIFICATION-PASS-2026-10-09.md`, at the steward's request: a read of the whole instance, the `ref/` markdowns whole, and ai-risk-model's use of `def/` (pinned there at `90f4fb6`). It records five definitional defects with the literature's fixes, the open questions the papers sharpen (what a resolution result is; splitting the moment; resolution status via critical edges; accessibility's factoring), stale navigation (ORIENT's cadence bullet, empty LEXICON.md, PRACTICA, broken `ref/` links), and suggested next steps. `def/`, `src/`, the outline, and DECISIONS unchanged. The ai-risk-model feedback that had been dropped at the instance root on 2026-10-08 (untracked) is filed as `INFLUX/ai-risk-model-feedback-2026-10-08.md`, unchanged.

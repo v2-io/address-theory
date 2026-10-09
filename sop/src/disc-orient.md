@@ -22,7 +22,7 @@ Read, in this order, *before* substantive work:
 3. `LEXICON.md` — generated from `def/`; the vocabulary everything else speaks. While `def/` is young, `defs.source.ud` is the interim carrier (see Praxes below).
 4. `ADDRESSING-THEORY.outline.md` whole, Working Notes included — the canon view over `src/`.
 5. The `def/` segments, then the `src/` segments the outline marks drafted. Experiential reading is the recommended mode: predict → read → diff → wander.
-6. `../udon-0.9.1-primer.md` — the standing rule for all udon work: read it *"for the lay of the land, not as a gate/check on any ideation that might conflict with it."* Without it you will reconstruct "a markup language" from training priors, confidently and wrongly.
+6. `ref/udon-0.9.1-primer.md` — the standing rule for all udon work: read it *"for the lay of the land, not as a gate/check on any ideation that might conflict with it."* Without it you will reconstruct "a markup language" from training priors, confidently and wrongly.
 7. `PRACTICA.ud` — where work stands now.
 
 **Contextual primaries** (read at the moment of use, whole, never from a synthesis — `ref/` holds the stable pointers):
@@ -33,10 +33,10 @@ Read, in this order, *before* substantive work:
 | `addressing-exploration` (D1–D9) | cases/usecase drafting — usecases come from measured demand, not invention |
 | `type-algebra` | anything typing/schema/arity-adjacent; its N6 is also the estate's best specimen of the evidence-channel infection |
 | `terminator-table` | any spelling claim — parser behavior is never language behavior (`[L]`/`[P]` register binds) |
-| `current-0.9.1-spec/` | anything recognition-adjacent — re-open the actual section at the point of use; the only recognition oracle |
+| the 0.9.1 suite (in udon; see `ref/README.md`) | anything recognition-adjacent — re-open the actual section at the point of use; the only recognition oracle |
 | `esop15` (scope graphs) | resolution-machinery formalization — the closest pre-existing formalization of the central object |
 
-**Hazards, named so nobody re-learns them:** the 0.8-lineage reference parser is never an oracle (known non-conformant); `design/udon-paths.md` at the repo root is stale archaeology (the positional-integer trap); syntheses read before their primaries manufacture confident false frames — where a primary exists, a synthesis is a locator, not a source; and `.archive/` here is *material under claw-back review*, not a library (see Praxes).
+**Hazards, named so nobody re-learns them:** the 0.8-lineage reference parser is never an oracle (known non-conformant); `design/udon-paths.md` at the udon repo's root is stale archaeology (the positional-integer trap); syntheses read before their primaries manufacture confident false frames — where a primary exists, a synthesis is a locator, not a source; and `.archive/` here is *material under claw-back review*, not a library (see Praxes).
 
 ## 2. Praxes — how work happens here
 
