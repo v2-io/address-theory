@@ -2,6 +2,10 @@
 
 *Append-only, informal. Present truth lives in def/, src/, and the outline; decisions in DECISIONS.ud; process in sop/. This file is archaeological source, not active work.*
 
+## 2026-10-09 — solidification pass landed in INFLUX (no canon touched)
+
+- `INFLUX/SOLIDIFICATION-PASS-2026-10-09.md`, at the steward's request: a read of the whole instance, the `ref/` markdowns whole, and ai-risk-model's use of `def/` (pinned there at `90f4fb6`). It records five definitional defects with the literature's fixes, the open questions the papers sharpen (what a resolution result is; splitting the moment; resolution status via critical edges; accessibility's factoring), stale navigation (ORIENT's cadence bullet, empty LEXICON.md, PRACTICA, broken `ref/` links), and suggested next steps. `def/`, `src/`, the outline, and DECISIONS unchanged. The ai-risk-model feedback that had been dropped at the instance root on 2026-10-08 (untracked) is filed as `INFLUX/ai-risk-model-feedback-2026-10-08.md`, unchanged.
+
 ## 2026-08-27 — def-generator drafted; the deferral genus named in def-reference
 
 - Out of the lexical-forms-redux session (`../theory/to-integrate/lexical-forms-redux.md` — a from-scratch problem-space carve of the udon surface, derived deliberately *without* reading this instance first, then reconciled to its vocabulary): the steward's ratifying formulation *"Directives are deferred generators of the atomic parts, often using resolved referents as their primary prerequisite"* landed as `def/def-generator.ud` (proposed) — the reference's sibling species under the *deferred* genus, with `evaluate` as the produce-side act. The genus word is adopted from def-reference's own invariants ("this allows deferral"; "determination is deferred"), not coined.
