@@ -25,6 +25,7 @@
 #   bin/compose-defs -            write stdout
 
 require "dry/inflector"
+require_relative "lib/def_terms"
 
 root        = File.expand_path("..", __dir__)
 outline     = File.join(root, "ADDRESSING-THEORY.outline.md")
@@ -33,107 +34,16 @@ inflector   = Dry::Inflector.new
 
 abort "no outline at #{outline}" unless File.exist?(outline)
 
-slugs = File.read(outline).scan(/\[\[(def-[a-z-]+)\.ud\]\]/).flatten.uniq
+slugs = DefTerms.outline_slugs(outline)
 abort "no [[def-*.ud]] links found in outline" if slugs.empty?
 
 # ── helpers ──────────────────────────────────────────────────────────
+#
+# The term-linking conventions live in bin/lib/def_terms.rb (required at the
+# top), shared with bin/compose-lexicon (LEXICON.md) so the two views link
+# terms identically.
 
-def title_case_first(s)
-  return s if s.empty?
-  s[0].upcase + s[1..]
-end
-
-# Hyphen-segment title case: intended-cardinality → Intended-Cardinality
-def title_case_term(s)
-  s.split("-").map { |w| w.empty? ? w : w[0].upcase + w[1..] }.join("-")
-end
-
-# Position is a sentence start if nothing precedes it, or the nearest
-# non-whitespace character before it is . ? or !
-def at_sentence_start(text, pos)
-  return true if pos <= 0
-  i = pos - 1
-  i -= 1 while i >= 0 && text[i] =~ /\s/
-  return true if i < 0
-  ".?!".include?(text[i])
-end
-
-# Register a term slug and its singular/plural variants under one def file.
-# Canonical entries come from |term-group|; inflection fills the rest so
-# authors can write whichever surface the sentence wants.
-def register_term!(term_map, inflector, term, def_file)
-  surfaces = [term, inflector.singularize(term), inflector.pluralize(term)]
-  # Also: if the entry is already plural, singularize then re-pluralize
-  # covers irregular pairs dry-inflector knows (and is a no-op otherwise).
-  surfaces << inflector.pluralize(inflector.singularize(term))
-  surfaces << inflector.singularize(inflector.pluralize(term))
-  surfaces.map { |s| s.downcase }.uniq.each do |surface|
-    existing = term_map[surface]
-    if existing && existing != def_file
-      warn "compose-defs: surface #{surface.inspect} claimed by both " \
-           "#{existing} and #{def_file} (keeping #{existing})"
-      next
-    end
-    term_map[surface] = def_file
-  end
-end
-
-def resolve_def(term_map, slug)
-  term_map[slug.downcase]
-end
-
-# Rewrite @{term} and **TERM** (optional trailing s outside the bold) using
-# the live term→def map. +home_def+ is this section's own def file: same-file
-# @{…} becomes emphasis only; cross-file becomes a wikilink. Unmapped tokens
-# are left alone; listed in +unmapped+.
-def rewrite_terms(text, term_map, home_def, unmapped)
-  out = +""
-  i = 0
-  while i < text.length
-    rest = text[i..]
-    if (m = rest.match(/\A@\{([a-z][a-z0-9-]*)\}/i))
-      # Surface as written (authors write @{scopes}/@{references}/…);
-      # lookup is case-insensitive.
-      surface = m[1]
-      slug = surface.downcase
-      def_file = resolve_def(term_map, slug)
-      if def_file
-        display = at_sentence_start(text, i) ? title_case_first(slug) : slug
-        if def_file == home_def
-          # Same group/file: Obsidian highlight + emphasis; no self-wikilink.
-          out << "==*#{display}*=="
-        else
-          out << "*[[#{def_file}|#{display}]]*"
-        end
-      else
-        unmapped << "@{#{surface}}"
-        out << m[0]
-      end
-      i += m[0].length
-    elsif (m = rest.match(/\A\*\*([A-Z][A-Z0-9-]*)\*\*(s)?/))
-      caps = m[1]
-      trailing_s = m[2] # "s" or nil — plural marker outside the bold in source
-      slug = caps.downcase
-      # Fold trailing s into the CAPS display so bold wraps a complete
-      # wikilink — '**[[…|REFERENT]]**s' breaks bold close in Obsidian;
-      # '**[[…|REFERENTS]]**' does not. Lookup uses the lowercased surface.
-      surface_lower = trailing_s ? slug + trailing_s : slug
-      display_caps  = trailing_s ? caps + trailing_s.upcase : caps
-      def_file = resolve_def(term_map, surface_lower) || resolve_def(term_map, slug)
-      if def_file
-        out << "'**[[#{def_file}|#{display_caps}]]**'"
-      else
-        unmapped << "**#{caps}**#{trailing_s}"
-        out << m[0]
-      end
-      i += m[0].length
-    else
-      out << text[i]
-      i += 1
-    end
-  end
-  out
-end
+include DefTerms
 
 # ── extract (+ build live term map) ──────────────────────────────────
 
