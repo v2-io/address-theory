@@ -15,7 +15,7 @@
 | Priority | File / Directory             | Modify | description                           |
 |----------|------------------------------|--------|---------------------------------------|
 | 1 | ORIENT.md -> sop/src/disc-orient.md | rare   | Orientation- loaded automatically for claude. *doctrina*, *praxes*, and *professio* aspects. Critical reading. |
-| 2 | LEXICON.md                          | never  | Full term lexicon, assembled from def/ entries (assembler still pending) — critical definitions needed to understand anything and talk about it. |
+| 2 | LEXICON.md                          | never  | Full term lexicon, generated from def/ by `bin/compose-lexicon`: every term group whole, in outline order, with the assembler's notes on the sources at the end — critical definitions needed to understand anything and talk about it. |
 | 2 | LEXICON-overview.md                 | never  | Generated continuous reading pass over def/ leading prose (`bin/compose-defs`); not a second definition source. |
 | 3 | PRACTICA.ud                         | sess   | Current main efforts -- constitutes the "handoff" most of the time, or fresh entry. Keep up-to-date. |
 | 4 | ADDRESSING-THEORY.outline.md        | often  | Central outline for this sub-project. This is the main entrypoint for understanding the domain. |
@@ -32,6 +32,7 @@
 | ~ | CHANGELOG.md                        | sess   | Append only *very open-ended / informal* format. Append to throughout your session. As archeological src, not active work. |
 | ~ | sop/inf/                            | rare   | In particular, a place to put feedback etc. *at any time* about the process or SOPs themselves, including praxes. |
 | ~ | bin/compose-defs                    | rare   | Regenerates LEXICON-overview.md from def/ leading prose in outline order. |
+| ~ | bin/compose-lexicon                 | rare   | Regenerates LEXICON.md from def/ (whole groups, outline order); `--check` exits 1 if LEXICON.md is stale. Term-link conventions shared with compose-defs in `bin/lib/def_terms.rb`. |
 |   |                                     |        |      |
 | ~ | CLAUDE.md                           | rare   | This file-- add to it, carefully, as appropriate. Don't be redundant with proper tracking files & SOPs please |
 | ∅ | AGENTS.md -> CLAUDE.md              |        | AGENTS right now is symliked to this file |

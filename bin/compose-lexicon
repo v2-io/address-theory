@@ -1,0 +1,699 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# compose-lexicon — assembles LEXICON.md: every def/ term group, whole.
+#
+# def/*.ud are the definitions (ORIENT: "def/ has primacy"); LEXICON.md is a
+# rendering of them, never a second source, and never edited by hand. Groups
+# come in outline order (the [[def-….ud]] rows of ADDRESSING-THEORY.outline.md
+# — dependency order); inside a group, everything comes in file order: the
+# group's leading prose, each |term with its attributes and blocks, then the
+# group's own blocks (|discussion, |examples, |working-notes, …).
+#
+# Faithfulness is the design constraint. Nothing is paraphrased or reordered,
+# and nothing is dropped: an element or attribute this script has no special
+# treatment for is rendered generically under a label made from its name, and
+# after rendering every non-blank source line is checked off against what was
+# rendered — a line that never made it out is reported (and fails --check).
+# Udon comments (`; …`) carry content in these files, so they are rendered too,
+# set apart in italics.
+#
+# Term links follow the conventions settled for LEXICON-overview.md (shared
+# code: bin/lib/def_terms.rb). What the links paper over is reported, not
+# hidden: an @{…} that names no term is left as written, one that reaches a
+# term only through a singular/plural form is linked — and both are listed,
+# with file:line, in the "Assembler notes" at the end of LEXICON.md and on
+# stderr, along with other irregularities found while reading (padded ids,
+# a group header that disagrees with its terms, a non-item line in a list).
+#
+# The reader is a line-based reader for the udon these files are written in
+# (elements, stacked [ids], sameline text, :attributes with ; comments,
+# indentation ownership, markdown text); it is not a conformant udon parser,
+# and what it does is a fact about this script, never about the language.
+#
+# Usage:
+#   bin/compose-lexicon              write LEXICON.md at the instance root
+#   bin/compose-lexicon -o PATH      write PATH
+#   bin/compose-lexicon -            write stdout
+#   bin/compose-lexicon --check      write nothing; exit 1 if LEXICON.md is
+#                                    stale or a source line went unrendered
+#   options: -q (no notes on stderr), --force (overwrite a file that lacks
+#            the GENERATED VIEW marker)
+#
+# Exit: 0 ok · 1 --check found LEXICON.md stale / lines unrendered · 2 refused
+
+require "optparse"
+require "dry/inflector"
+require_relative "lib/def_terms"
+
+ROOT    = File.expand_path("..", __dir__)
+OUTLINE = File.join(ROOT, "ADDRESSING-THEORY.outline.md")
+DEF_DIR = File.join(ROOT, "def")
+MARKER  = "GENERATED VIEW"
+
+opts = { out: File.join(ROOT, "LEXICON.md"), check: false, quiet: false, force: false }
+OptionParser.new do |o|
+  o.banner = "usage: bin/compose-lexicon [-o PATH | -] [--check] [-q] [--force]"
+  o.on("-o PATH", "write PATH instead of LEXICON.md") { |v| opts[:out] = File.expand_path(v) }
+  o.on("--check", "write nothing; exit 1 if LEXICON.md is stale or a line went unrendered") { opts[:check] = true }
+  o.on("-q", "--quiet", "do not list the assembler notes on stderr") { opts[:quiet] = true }
+  o.on("--force", "overwrite an output file that lacks the #{MARKER} marker") { opts[:force] = true }
+end.parse!
+opts[:out] = nil if ARGV.delete("-")
+abort "compose-lexicon: unexpected argument(s): #{ARGV.join(' ')}" unless ARGV.empty?
+
+# ── reader ───────────────────────────────────────────────────────────
+
+Text    = Struct.new(:line, :indent, :text, :raw, keyword_init: true)   # a markdown text line
+Comment = Struct.new(:line, :indent, :lines, keyword_init: true)        # ; comment + the deeper lines it owns
+Attr    = Struct.new(:key, :value, :comment, :line, :body, keyword_init: true)
+Node    = Struct.new(:name, :ids, :raw_ids, :traits, :text, :comment, :attrs, :content,
+                     :indent, :line, :text_base, :kind, keyword_init: true) do
+  def children = content.grep(Node)
+  def attr(key) = attrs.find { |a| a.key == key }
+end
+Note = Struct.new(:file, :line, :kind, :msg, :sites, keyword_init: true) do
+  # "def-reference.ud:4, 10, 11; def-binding.ud:4" — every site, file by file.
+  def self.fmt_sites(sites)
+    sites.group_by(&:first).map { |f, ss| "#{f}:#{ss.map(&:last).uniq.join(', ')}" }.join("; ")
+  end
+
+  def to_s
+    return "#{msg} (#{Note.fmt_sites(sites)})" if sites
+    "#{file}#{line.positive? ? ":#{line}" : ''}: #{msg}"
+  end
+
+  def to_md
+    return "#{msg} — #{Note.fmt_sites(sites)}" if sites
+    "`#{file}#{line.positive? ? ":#{line}" : ''}` #{msg}"
+  end
+end
+
+class Reader
+  NAME = /[A-Za-z][\w\-\/]*/
+
+  def initialize(source, file, notes)
+    @source = source
+    @file = file
+    @notes = notes
+  end
+
+  def parse
+    @root = new_node(nil, -1, 0, :root)
+    @stack = [@root]
+    fence = nil
+    tab_noted = false
+    @source.each_line.with_index(1) do |raw, n|
+      line = raw.chomp
+      if fence
+        fence.content << Text.new(line: n, indent: 0, text: line, raw: true)
+        fence = nil if line.strip.start_with?("```")
+        next
+      end
+      if line.include?("\t")
+        note(n, :tab, "tab in a line; read as two spaces") unless tab_noted
+        tab_noted = true
+        line = line.gsub("\t", "  ")
+      end
+      body = line.strip
+      if body.empty?
+        @stack.last.content << Text.new(line: n, indent: nil, text: "") if @stack.last.is_a?(Node)
+        next
+      end
+      indent = line[/\A */].size
+      @stack.pop while @stack.size > 1 && @stack.last.indent >= indent
+      top = @stack.last
+
+      if top.is_a?(Comment)
+        top.lines << [n, body]
+      elsif top.text_base && indent > top.text_base
+        text_line(top, line, indent, n) # deeper than the element's text: text, whatever it starts with
+      elsif body.start_with?("```")
+        top.content << Text.new(line: n, indent: indent, text: line, raw: true)
+        fence = top
+      elsif body.start_with?("\\")
+        rest = body[1..].to_s
+        text_line(top, (" " * indent) + (rest.start_with?(" ") ? rest[1..] : rest), indent, n)
+      elsif body.start_with?(";")
+        c = Comment.new(line: n, indent: indent, lines: [[n, body.sub(/\A;\s?/, "")]])
+        top.content << c
+        @stack << c
+      elsif element_line?(body)
+        element(body, indent, top, n)
+      elsif body =~ /\A:\S/ && top.kind != :root
+        scan(body, indent, top, n, element_line: false)
+      else
+        note(n, :top_text, "text outside any element") if top.kind == :root
+        text_line(top, line, indent, n)
+      end
+    end
+    note(@stack.last.is_a?(Node) ? @stack.last.line : 0, :fence, "a ``` fence is never closed") if fence
+    @root
+  end
+
+  private
+
+  def note(n, kind, msg) = @notes << Note.new(file: @file, line: n, kind: kind, msg: msg)
+
+  def new_node(name, indent, line, kind)
+    Node.new(name: name, ids: [], raw_ids: [], traits: [], attrs: [], content: [],
+             indent: indent, line: line, kind: kind)
+  end
+
+  def text_line(node, line, indent, n)
+    node.content << Text.new(line: n, indent: indent, text: line)
+    node.text_base = indent if node.text_base.nil? || indent < node.text_base
+  end
+
+  # "|name…" opens an element — unless the line is a markdown table row.
+  def element_line?(body)
+    return false unless body =~ /\A\|#{NAME}/o
+    !(body.end_with?("|") && body.count("|") >= 2)
+  end
+
+  def element(str, col, parent, n)
+    m = str.match(/\A\|(#{NAME})/o)
+    node = new_node(m[1], col, n, :element)
+    i = m.end(0)
+    while str[i] == "["
+      j = str.index("]", i)
+      unless j
+        note(n, :id, "unclosed [ in an id; kept as written")
+        j = str.size
+      end
+      raw = str[(i + 1)...j]
+      node.raw_ids << raw
+      node.ids << raw.strip
+      i = j + 1
+    end
+    while str[i] == "." && (t = str[i..].match(/\A\.(#{NAME})/o))
+      node.traits << t[1]
+      i += t[0].size
+    end
+    parent.content << node
+    @stack << node
+    rest = str[i..].to_s
+    if !rest.empty? && !rest.start_with?(" ")
+      note(n, :head, "|#{node.name} is followed by #{rest[0].inspect}, not a space; the rest is read as its text")
+      node.text = rest
+      return
+    end
+    scan(rest, col + i, node, n, element_line: true)
+  end
+
+  # The material after an element head, or an attribute line: :key value
+  # pairs, a framed ` ; ` comment, sameline text, or a child |element.
+  def scan(str, col, node, n, element_line:)
+    i = 0
+    last = nil
+    len = str.size
+    while i < len
+      i += 1 while i < len && str[i] == " "
+      break if i >= len
+      c = str[i]
+      if c == ";" && (i.zero? || str[i - 1] == " ") && (i + 1 >= len || str[i + 1] == " ")
+        text = str[(i + 1)..].strip
+        if last then last.comment = [last.comment, text].compact.join(" ")
+        else node.comment = [node.comment, text].compact.join(" ")
+        end
+        break
+      elsif c == ":" && str[i + 1] =~ /\S/
+        j = i + 1
+        j += 1 while j < len && str[j] != " "
+        key = str[(i + 1)...j]
+        i = j
+        i += 1 while i < len && str[i] == " "
+        value, i = read_value(str, i)
+        last = Attr.new(key: key, value: value, line: n)
+        node.attrs << last
+        if value.empty? && str[i..].to_s.strip.empty?
+          # nothing after the label: the deeper lines are its value
+          # (owned by the line the label is on: the element's, or this attribute line's)
+          holder = new_node(nil, element_line ? node.indent : col, n, :attr_body)
+          last.body = holder
+          @stack << holder
+        end
+      elsif c == "|" && element_line && str[i + 1] =~ /[A-Za-z]/
+        element(str[i..], col + i, node, n)
+        break
+      else
+        value, i = read_value(str, i)
+        if last && !element_line
+          note(n, :stacked, ":#{last.key} has more material after its value; joined")
+          last.value = [last.value, value].reject(&:empty?).join(" ")
+        else
+          node.text = [node.text, value].compact.reject(&:empty?).join(" ")
+        end
+      end
+    end
+  end
+
+  CLOSERS = { "[" => "]", "{" => "}", "(" => ")" }.freeze
+
+  # A value runs to the next framed ` ;`, ` :label`, or ` |name`, outside
+  # quotes and brackets.
+  def read_value(str, i)
+    start = i
+    stack = []
+    quote = false
+    len = str.size
+    while i < len
+      c = str[i]
+      if quote
+        quote = false if c == '"'
+      elsif c == '"' && (i == start || str[i - 1] =~ /[\s\[({]/) && str.index('"', i + 1)
+        quote = true
+      elsif CLOSERS.key?(c)
+        stack << CLOSERS[c]
+      elsif c == stack.last
+        stack.pop
+      elsif c == " " && stack.empty?
+        k = i
+        k += 1 while k < len && str[k] == " "
+        break if k >= len
+        t = str[k]
+        nxt = str[k + 1]
+        break if t == ";" && (nxt.nil? || nxt == " ")
+        break if t == ":" && nxt && nxt =~ /\S/
+        break if t == "|" && nxt =~ /[A-Za-z]/
+      end
+      i += 1
+    end
+    [str[start...i].strip, i]
+  end
+end
+
+# ── read def/ ────────────────────────────────────────────────────────
+
+notes = []
+abort "compose-lexicon: no outline at #{OUTLINE}" unless File.exist?(OUTLINE)
+order = DefTerms.outline_slugs(OUTLINE)
+present = Dir.glob(File.join(DEF_DIR, "*.ud")).map { |f| File.basename(f, ".ud") }.sort
+(present - order).each do |slug|
+  notes << Note.new(file: "#{slug}.ud", line: 0, kind: :unlisted,
+                    msg: "not linked from ADDRESSING-THEORY.outline.md; rendered after the outline's groups")
+end
+slugs = order + (present - order)
+
+files = slugs.map do |slug|
+  path = File.join(DEF_DIR, "#{slug}.ud")
+  unless File.exist?(path)
+    notes << Note.new(file: "#{slug}.ud", line: 0, kind: :missing,
+                      msg: "linked from the outline but not present in def/")
+    next { slug: slug, missing: true }
+  end
+  src = File.read(path, encoding: "UTF-8")
+  root = Reader.new(src, "#{slug}.ud", notes).parse
+  lines = src.each_line.with_index(1).reject { |l, _| l.strip.empty? }.map(&:last)
+  { slug: slug, file: "#{slug}.ud", root: root, lines: lines }
+end
+
+# ── term map (shared conventions) ────────────────────────────────────
+
+inflector = Dry::Inflector.new
+term_map = {}
+ids = {} # canonical id → def file
+groups_of = ->(f) { f[:root].children.select { |c| c.name == "term-group" } }
+files.reject { |f| f[:missing] }.each do |f|
+  groups_of.(f).each do |g|
+    held = g.children.select { |c| c.name == "term" }.flat_map(&:ids)
+    (g.ids + (held - g.ids)).each do |id|
+      ids[id.downcase] ||= f[:file]
+      DefTerms.register_term!(term_map, inflector, id, f[:file], warn_prefix: "compose-lexicon")
+    end
+  end
+end
+
+# ── render ───────────────────────────────────────────────────────────
+
+class Renderer
+  LABELS = { "rels" => "Relations", "working-notes" => "Working notes" }.freeze
+
+  attr_reader :used, :refs, :bold_unmapped
+
+  def initialize(term_map, ids, notes)
+    @term_map = term_map
+    @ids = ids
+    @notes = notes
+    @used = Hash.new { |h, k| h[k] = {} }
+    @refs = []          # [surface, def_file_or_nil, file, line]
+    @bold_unmapped = [] # [surface, file, line]
+  end
+
+  def label(name) = LABELS[name] || DefTerms.title_case_first(name.to_s.tr("-", " "))
+
+  def use(file, *lines) = lines.flatten.compact.each { |n| @used[file][n] = true }
+
+  # Term links on one rendered line of markdown, accounting for every @{…}.
+  def link(text, file, line, home, table: false)
+    unmapped = []
+    out = DefTerms.rewrite_terms(text, @term_map, home, unmapped, pipe: table ? "\\|" : "|",
+                                 on_ref: ->(surface, df) { @refs << [surface, df, file, line] })
+    unmapped.each { |u| @bold_unmapped << [u, file, line] if u.start_with?("**") }
+    out
+  end
+
+  # A udon comment, set apart: one italic span starting with ";". Comments
+  # carry content in these files, so their @{…} are linked like any text.
+  def comment_md(text, file, line, home) = "_; #{link(text.strip, file, line, home)}_"
+
+  # An attribute's value after +lead+ (its rendered label), linked as one line
+  # so a value is never mistaken for a sentence start.
+  def value_md(attr, file, home, lead)
+    v = attr.value.to_s
+    shown =
+      if v =~ /\A\[(.*)\]\z/m
+        Regexp.last_match(1).scan(/"((?:[^"\\]|\\.)*)"|(\S+)/).map { |q, w| q || w }.join(", ")
+      elsif v =~ /\A"(.*)"\z/m then Regexp.last_match(1)
+      else v.gsub(/\s+/, " ")
+      end
+    shown = link("#{lead}#{shown}", file, attr.line, home)
+    shown += " — #{comment_md(attr.comment, file, attr.line, home)}" if attr.comment
+    shown
+  end
+
+  # An attribute as its own paragraph: **Label:** value — *; comment*
+  def attr_para(attr, file, home)
+    use(file, attr.line)
+    body = attr.body ? "\n\n" + markdown_of(attr.body, file, home) : ""
+    "#{value_md(attr, file, home, "**#{label(attr.key)}:**#{attr.value.to_s.empty? ? '' : ' '}")}#{body}"
+  end
+
+  def comment_para(c, file, home)
+    use(file, c.lines.map(&:first))
+    c.lines.map { |n, t| comment_md(t, file, n, home) }.join("\n\n")
+  end
+
+  # Prose under a term-group or a term: the def/ convention (as in
+  # compose-defs) is one source line per paragraph.
+  def prose(texts, file, home)
+    texts.reject { |t| t.text.strip.empty? }.map do |t|
+      use(file, t.line)
+      link(t.text.strip, file, t.line, home)
+    end
+  end
+
+  # Block text (|invariants, |discussion, …): markdown as written, dedented.
+  def markdown_lines(texts, file, home)
+    body = texts.dup
+    body.shift while body.first && body.first.text.strip.empty?
+    body.pop while body.last && body.last.text.strip.empty?
+    return [] if body.empty?
+    cut = body.reject { |t| t.raw || t.text.strip.empty? }.map(&:indent).min || 0
+    body.map do |t|
+      next "" if t.text.strip.empty? && !t.raw
+      use(file, t.line)
+      lead = t.text[/\A */].size
+      s = t.text[[cut, lead].min..].rstrip
+      table = s =~ /\A\s*\|.*\|\s*\z/ ? true : false
+      [t, link(s, file, t.line, home, table: table)]
+    end.map { |x| x.is_a?(Array) ? x[1] : x }
+  end
+
+  def markdown_of(node, file, home)
+    out = []
+    node.content.chunk_while { |a, b| a.is_a?(Text) && b.is_a?(Text) }.each do |run|
+      if run.first.is_a?(Text)
+        md = markdown_lines(run, file, home).join("\n")
+        out << md unless md.empty?
+      elsif run.first.is_a?(Comment)
+        out << comment_para(run.first, file, home)
+      else
+        out << block(run.first, file, home)
+      end
+    end
+    out.join("\n\n")
+  end
+
+  # Flag a line that breaks a list: in a block whose top-level lines are list
+  # items, a top-level line that is not one renders as a paragraph instead.
+  def check_list(node, file)
+    texts = node.content.grep(Text).reject { |t| t.raw || t.text.strip.empty? }
+    return if texts.empty?
+    base = texts.map(&:indent).min
+    top = texts.select { |t| t.indent == base }
+    items = top.select { |t| t.text.strip =~ /\A[-*+] / }
+    return if items.empty? || items.size == top.size
+    (top - items).reject { |t| t.text.strip.start_with?("|") }.each do |t|
+      @notes << Note.new(file: file, line: t.line, kind: :list,
+                         msg: "a `|#{node.name}` line begins #{t.text.strip[0].inspect} where its other lines begin \"- \"; " \
+                              "it renders as a paragraph, not a list item")
+    end
+  end
+
+  # A block inside a term (or any element without its own treatment): its
+  # label, then its sameline text, attributes, and content in order. The
+  # label is bold inside a term; +heading+ ("### ", "## ") makes it a heading.
+  def block(node, file, home, heading: nil)
+    use(file, node.line)
+    return rels(node, file, home) if node.name == "rels" && heading.nil?
+    check_list(node, file)
+    name = label(node.name)
+    head = heading ? "#{heading}#{name}" : "**#{name}**"
+    head += " `[#{node.ids.join('][')}]`" unless node.ids.empty?
+    head += node.traits.map { |t| " `.#{t}`" }.join
+    parts = [head]
+    parts << link(node.text, file, node.line, home) if node.text
+    parts << comment_md(node.comment, file, node.line, home) if node.comment
+    node.attrs.each { |a| parts << attr_para(a, file, home) }
+    md = markdown_of(node, file, home)
+    parts << md unless md.empty?
+    parts.join("\n\n")
+  end
+
+  # |rels: one list item per relation, comments kept where they were written.
+  def rels(node, file, home)
+    rows = node.attrs.map do |a|
+      use(file, a.line)
+      [a.line, "- #{value_md(a, file, home, "**#{a.key}** ")}"]
+    end
+    node.content.grep(Comment).each { |c| rows << [c.line, "- #{comment_para(c, file, home)}"] }
+    parts = ["**#{label('rels')}**", rows.sort_by(&:first).map(&:last).join("\n")]
+    rest = node.content.reject { |c| c.is_a?(Comment) }
+    unless rest.all? { |c| c.is_a?(Text) && c.text.strip.empty? }
+      extra = markdown_of(Node.new(content: rest, attrs: []), file, home)
+      parts << extra unless extra.empty?
+    end
+    parts << comment_md(node.comment, file, node.line, home) if node.comment
+    parts.join("\n\n")
+  end
+
+  # Content of a term-group or term: prose runs one line per paragraph,
+  # children rendered by +child+.
+  def body(node, file, home, &child)
+    out = []
+    node.content.chunk_while { |a, b| a.is_a?(Text) && b.is_a?(Text) }.each do |run|
+      if run.first.is_a?(Text) then out.concat(prose(run, file, home))
+      elsif run.first.is_a?(Comment) then out << comment_para(run.first, file, home)
+      else out << child.call(run.first)
+      end
+    end
+    out
+  end
+
+  def term(node, file, home)
+    use(file, node.line)
+    node.raw_ids.each_with_index do |raw, k|
+      next if raw == node.ids[k]
+      @notes << Note.new(file: file, line: node.line, kind: :padded,
+                         msg: "|term[#{raw}] — id written with surrounding spaces; read as `#{node.ids[k]}`")
+    end
+    head = "### #{node.ids.empty? ? '(term without an id)' : node.ids.join(' · ')}"
+    head += node.traits.map { |t| " .#{t}" }.join
+    parts = [head]
+    parts << link(node.text, file, node.line, home) if node.text
+    parts << comment_md(node.comment, file, node.line, home) if node.comment
+    node.attrs.each { |a| parts << attr_para(a, file, home) }
+    parts.concat(body(node, file, home) { |c| block(c, file, home) })
+    parts.join("\n\n")
+  end
+
+  def group(node, file, slug, home)
+    use(file, node.line)
+    held = node.children.select { |c| c.name == "term" }.flat_map(&:ids)
+    missing = node.ids - held
+    undeclared = held - node.ids
+    unless missing.empty?
+      @notes << Note.new(file: file, line: node.line, kind: :group_ids,
+                         msg: "group header names #{missing.join(', ')}, which no `|term` in the group defines")
+    end
+    unless undeclared.empty?
+      @notes << Note.new(file: file, line: node.line, kind: :group_ids,
+                         msg: "group defines #{undeclared.join(', ')}, which its header does not name")
+    end
+    status = node.attr("status")
+    title = DefTerms.title_case_term(node.ids.first || slug.sub(/\Adef-/, ""))
+    meta = ["[[#{slug}.ud]]"]
+    if status
+      use(file, status.line)
+      meta << "status: #{status.value}#{status.comment ? " (; #{link(status.comment, file, status.line, home)})" : ''}"
+    end
+    meta << "terms: #{node.ids.join(' · ')}" unless node.ids.empty?
+    parts = ["## #{title}", "*#{meta.join(' · ')}*"]
+    parts << comment_md(node.comment, file, node.line, home) if node.comment
+    parts << link(node.text, file, node.line, home) if node.text
+    node.attrs.reject { |a| a.key == "status" }.each { |a| parts << attr_para(a, file, home) }
+    parts.concat(body(node, file, home) do |c|
+      if c.name == "term" then term(c, file, home)
+      elsif c.name == "term-group" then group(c, file, slug, home).sub(/\A## /, "### ")
+      else block(c, file, home, heading: "### ")
+      end
+    end)
+    parts.join("\n\n")
+  end
+
+  # A file's top level: term-groups (and anything else, generically).
+  # Comments and text above an element (a file header, a section note) are
+  # shown under that element's heading, where a reader meets them with it.
+  def file_section(f)
+    file = f[:file]
+    home = file
+    out = []
+    lead = []
+    f[:root].content.chunk_while { |a, b| a.is_a?(Text) && b.is_a?(Text) }.each do |run|
+      if run.first.is_a?(Text) then lead.concat(prose(run, file, home))
+      elsif run.first.is_a?(Comment) then lead << comment_para(run.first, file, home)
+      else
+        n = run.first
+        md = if n.name == "term-group" then group(n, file, f[:slug], home)
+             else block(n, file, home, heading: "## ").sub(/\n\n|\z/) { "\n\n*[[#{f[:slug]}.ud]]*#{$&}" }
+             end
+        head, rest = md.split("\n\n", 2)
+        if n.name == "term-group" # after the heading and its meta line
+          meta, rest = rest.to_s.split("\n\n", 2)
+          head = "#{head}\n\n#{meta}"
+        end
+        out << [head, *lead, rest].compact.reject(&:empty?).join("\n\n")
+        lead = []
+      end
+    end
+    out << lead.join("\n\n") unless lead.empty?
+    out.join("\n\n")
+  end
+end
+
+r = Renderer.new(term_map, ids, notes)
+sections = files.map do |f|
+  if f[:missing]
+    "## #{f[:slug]}\n\n> **Missing:** `#{f[:slug]}.ud` is linked from the outline but not present in `def/`."
+  else
+    r.file_section(f)
+  end
+end
+
+# Every non-blank source line must have made it into the rendering.
+unrendered = []
+files.reject { |f| f[:missing] }.each do |f|
+  (f[:lines] - r.used[f[:file]].keys).each do |n|
+    unrendered << [f[:file], n]
+    notes << Note.new(file: f[:file], line: n, kind: :unrendered,
+                      msg: "this line was not rendered (an assembler gap — please report it)")
+  end
+end
+
+# References: what names no term, and what reaches one only by its form.
+# Each is one note, with every site it occurs at.
+r.refs.select { |_, df, _, _| df.nil? }.group_by(&:first).each do |surface, uses|
+  sites = uses.map { |_, _, fl, ln| [fl, ln] }
+  notes << Note.new(file: sites[0][0], line: sites[0][1], kind: :unresolved, sites: sites,
+                    msg: "`@{#{surface}}` names no term defined in def/; left as written")
+end
+r.refs.select { |s, df, _, _| df && !ids.key?(s.downcase) }.group_by(&:first).each do |surface, uses|
+  df = uses.first[1]
+  target = ids.keys.find do |id|
+    ids[id] == df && [id, inflector.singularize(id), inflector.pluralize(id)].map(&:downcase).include?(surface.downcase)
+  end || ids.keys.find { |id| ids[id] == df && term_map[surface.downcase] == df && inflector.singularize(id) == inflector.singularize(surface.downcase) } || df
+  sites = uses.map { |_, _, fl, ln| [fl, ln] }
+  notes << Note.new(file: sites[0][0], line: sites[0][1], kind: :inflected, sites: sites,
+                    msg: "`@{#{surface}}` is not a term id; linked to `#{target}` by its singular/plural form, " \
+                         "#{uses.size} use#{uses.size == 1 ? '' : 's'}")
+end
+r.bold_unmapped.group_by(&:first).each do |surface, uses|
+  sites = uses.map { |_, fl, ln| [fl, ln] }
+  notes << Note.new(file: sites[0][0], line: sites[0][1], kind: :unresolved, sites: sites,
+                    msg: "`#{surface}` matches no term; left as written")
+end
+
+# ── assemble ─────────────────────────────────────────────────────────
+
+term_count = files.reject { |f| f[:missing] }.sum { |f| groups_of.(f).sum { |g| g.children.count { |c| c.name == "term" } } }
+group_count = files.reject { |f| f[:missing] }.sum { |f| groups_of.(f).size }
+
+md = +<<~HEADER
+  <!-- #{MARKER} — do not edit by hand; regenerate with `bin/compose-lexicon`
+
+  Every term group in def/, whole, in outline (dependency) order: each group's
+  leading prose, then its |term entries and blocks as they stand in the file.
+  def/*.ud are the definitions; this file is a rendering of them, not a second
+  source. Udon comments (; …) are shown in italics, starting with `;`. Term links follow
+  the LEXICON-overview.md conventions (bin/lib/def_terms.rb). What the assembler
+  noticed about the sources while reading is listed at the end.
+  -->
+
+  # LEXICON
+
+HEADER
+
+md << "**Contents** — #{term_count} terms in #{group_count} groups\n\n"
+files.each do |f|
+  next md << "- **#{f[:slug]}** — *(missing)*\n" if f[:missing]
+  groups_of.(f).each do |g|
+    t = g.children.select { |c| c.name == "term" }.flat_map(&:ids)
+    md << "- **#{DefTerms.title_case_term(g.ids.first || f[:slug])}** — #{t.join(' · ')}\n"
+  end
+end
+md << "\n"
+md << sections.reject(&:empty?).join("\n\n") << "\n"
+
+order_key = { unrendered: 0, missing: 1, unlisted: 2, unresolved: 3, inflected: 4, group_ids: 5, padded: 6, list: 7 }
+shown_notes = notes.sort_by { |n| [order_key.fetch(n.kind, 9), slugs.index(n.file.sub(/\.ud\z/, "")) || 99, n.line] }
+# Padded ids: one note per file, not one per term.
+padded, other = shown_notes.partition { |n| n.kind == :padded }
+padded.group_by(&:file).each do |file, ns|
+  other << Note.new(file: file, line: ns.first.line, kind: :padded, sites: ns.map { |n| [n.file, n.line] },
+                    msg: "#{ns.size} `|term` id#{ns.size == 1 ? '' : 's'} written with spaces inside the brackets; " \
+                         "read as #{ns.map { |n| n.msg[/read as `([^`]+)`/, 1] }.map { |x| "`#{x}`" }.join(', ')}")
+end
+shown_notes = other.sort_by { |n| [order_key.fetch(n.kind, 9), slugs.index(n.file.sub(/\.ud\z/, "")) || 99, n.line] }
+
+unless shown_notes.empty?
+  md << "\n## Assembler notes\n\n"
+  md << "*What `bin/compose-lexicon` noticed about the sources while reading them. These are about def/, not part of it; " \
+        "the text above is rendered as written either way.*\n\n"
+  shown_notes.each { |n| md << "- #{n.to_md}\n" }
+end
+
+# ── report + write ───────────────────────────────────────────────────
+
+unless opts[:quiet]
+  warn "compose-lexicon: #{term_count} terms in #{group_count} groups from #{files.count { |f| !f[:missing] }} files; " \
+       "#{shown_notes.size} assembler note#{shown_notes.size == 1 ? '' : 's'}"
+  shown_notes.each { |n| warn "  #{n}" }
+end
+
+if opts[:check]
+  target = File.join(ROOT, "LEXICON.md")
+  stale = !File.exist?(target) || File.read(target, encoding: "UTF-8") != md
+  warn "compose-lexicon: LEXICON.md is #{stale ? 'stale — run bin/compose-lexicon' : 'current'}"
+  warn "compose-lexicon: #{unrendered.size} source line(s) unrendered" unless unrendered.empty?
+  exit(stale || !unrendered.empty? ? 1 : 0)
+end
+
+if opts[:out].nil?
+  print md
+  exit 0
+end
+
+out = opts[:out]
+if File.exist?(out) && !File.zero?(out) && !File.read(out, encoding: "UTF-8").include?(MARKER) && !opts[:force]
+  warn "compose-lexicon: #{out} exists without the #{MARKER} marker — refusing to overwrite a hand-written file (--force overrides)"
+  exit 2
+end
+if File.exist?(out) && File.read(out, encoding: "UTF-8") == md
+  warn "compose-lexicon: #{File.basename(out)} already current" unless opts[:quiet]
+else
+  tmp = "#{out}.tmp-#{Process.pid}"
+  File.write(tmp, md)
+  File.rename(tmp, out) # atomic within a filesystem
+  warn "compose-lexicon: wrote #{out}" unless opts[:quiet]
+end
