@@ -20,3 +20,30 @@
   :decided-by steward
   :date <2026-08-08>
   :cite Second edition D1 (in .archive/second-theory-iteration-2026-08-08/DECISIONS.md), carried at reset.
+
+|decision[declared-inflections]
+  :holds Each |term is named by its singular (base) form and declares its own
+         morphology: :pos (noun, verb, or both, stacked) and, for count nouns,
+         :pl (a suffix such as -s or -es, or the whole irregular plural). Tools
+         derive every surface form from these declarations; they do not guess.
+  :why Writers use a term in whatever form the sentence wants; the term should
+       say what its forms are, so links resolve exactly and anything else is
+       reported.
+  :decided-by steward
+  :date <2026-10-09>
+  :cite In-session: "Can we just fix the terms a little bit and automatically
+        take care of inflections as per however they are used in context?",
+        with |term[referent] … :pos noun :pl -s as the example. Applied in
+        def/ the same day (referents -> referent).
+
+|decision[regular-verbs-by-rule]
+  :holds A term whose :pos includes verb declares nothing more when it is
+         regular; the tools conjugate it (3rd person -s/-es, past -ed/-d,
+         -ing with a final e dropped). Explicit attributes only for an
+         irregular verb.
+  :why Extends declared-inflections to verbs without making every entry
+       spell out its conjugation.
+  :decided-by proposed
+  :date <2026-10-09>
+  :cite Agent's extension of the steward's noun pattern (Claude, same
+        session); awaiting the steward's word.
