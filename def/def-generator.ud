@@ -4,6 +4,8 @@
   A **GENERATOR** is the second species of *deferred* recorded material — the first is the @{reference}, and the genus (determination at use, not at writing; the gap constitutive) is named in def-reference's own invariants. Where a @{reference} stands as proxy for @{referents} that exist or may yet, a @{generator} *produces* material that does not exist until the generator is used. To **EVALUATE** a @{generator} is to perform that production — always from an origin, as of a moment, exactly as @{resolution} is origin-relative and moment-indexed — most often after dereferencing the @{references} it consumes as inputs. A @{generator} is not a @{reference}: it operates *on* @{referents} without standing for any.
 
   |term[generator] Deferred recorded material that produces material rather than standing for it.
+    :pos noun
+    :pl  -s
     :avoid [directive template macro] ; each names a surface construct or artifact family hosting generators, not the kind itself
     |rels :inputs   @{reference} {0,N}   ; usually — the steward's formulation below
           :produces material    {0,N}   ; "material" is not yet a lexicon term: things, facts, text — or further deferred items
@@ -13,6 +15,7 @@
       - No referents stand behind it, so the miss vocabulary (count-against-intended-cardinality) does not apply to it; what failure means for an evaluation is its own question, currently open
 
   |term[evaluate ] To perform a generator's production, from an origin, as of a moment — the produce-side counterpart of @{resolve}.
+    :pos verb
     |invariants
       - There is no untimed evaluating, for the same reason there is no untimed resolving
 

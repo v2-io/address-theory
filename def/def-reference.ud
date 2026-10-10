@@ -1,11 +1,15 @@
-|term-group[reference][referents][intended-cardinality][resolve][dereference]
+|term-group[reference][referent][intended-cardinality][resolve][dereference]
   :status   proposed
 
   A **REFERENCE** is recorded material that is used as a proxy or to stand in for its **REFERENT**s, often when the @{referents} are not at hand or can't be known yet. The two terms are only well-defined in relation to each other. A @{reference} has an *intent* when it is created— and we specifically define the recorded **INTENDED-CARDINALITY** of a @{reference}: Whether it intends to stand in for a single @{referent} {1,1}, at most one{0,1}, or, for example, as many as there might be {0,N}. To **RESOLVE** a @{reference} is to determine what it reaches — always *as of a moment*; to **DEREFERENCE** it is to @{resolve} and take hold of the @{referents} as they then stand.
 
-  |term[referents] The things that a reference is proxy for.
+  |term[referent] A thing that a reference is proxy for.
+    :pos noun
+    :pl  -s
 
   |term[reference] The recorded material used as a proxy for an intended-cardinality of referents.
+    :pos noun
+    :pl  -s
     :avoid [address] ; An address is a reference, but it is given its own narrower definition later
     |rels :dual      @{referent}
           :referents @{referent} {0,N}
@@ -17,6 +21,8 @@
       - Determination is deferred and the world may change in the meantime; that gap is constitutive, not incidental.
 
   |term[intended-cardinality] The range of the number of referents a reference stands in for, with a minimum and a maximum {min,max}.
+    :pos noun
+    :pl  intended-cardinalities
     |invariants
       - It belongs to the reference (declared at writing), *not* to whatever later processes it.
       - It is what gives a miss its meaning, e.g.:
@@ -25,8 +31,10 @@
         - Zero  against {0,N} = simply the current answer
 
   |term[resolve    ] To determine what a reference reaches — as of now. There is no untimed resolving: an "untimed" answer is either a fiction or an unstated claim that the world has held still.
+    :pos verb
 
   |term[dereference] To resolve a reference *and take hold of* its referents. What is obtained is referent-state as of that moment, never the referent timelessly.
+    :pos verb
 
   |discussion
     — The purpose of a reference can be any number of things (referent-absence, convenience, compactness, machine-readability, stable indirection, etc.)

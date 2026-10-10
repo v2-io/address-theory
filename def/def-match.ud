@@ -4,12 +4,18 @@
   A **MATCH** is the second mechanism by which a @{reference} reaches its @{referents}: instead of consulting a maintained @{binding}, a test is run at the moment of use. With @{binding} it forms the two connection mechanisms, and the classic vocabulary — **DESIGNATOR** and **DESCRIPTION** — derives from which mechanism a @{reference}'s connection actually uses, never from how it is spelled.
 
   |term[match      ] A connection from a reference to referents established by running a test at the moment of use: the referents are whatever, in the world's current population, passes the criteria the reference supplies.
+    :pos noun
+    :pl  -es
     :avoid [search query] ; each names an activity or artifact, not the connection established
     |invariants
       - Nothing is minted and nothing is maintained; the answer may differ whenever the population differs
       - Fails through the world's motion: the same criteria, run later, quietly pick out something else — detectable only if the reference carries something to check against
   |term[designator ] A reference (or component of one) that reaches its referent through a @{binding} on its name.
+    :pos noun
+    :pl  -s
   |term[description] A reference (or component of one) that reaches its referents by match.
+    :pos noun
+    :pl  -s
 
   |discussion
     - Designator/description follows the connection, never the spelling: one written form is a designator where maintainers police the binding, and a description over a population nobody polices. Kind follows maintenance.

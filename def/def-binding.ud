@@ -5,11 +5,24 @@
   The @{name} can be considered a new {1,1} @{reference} to a @{referent} that is more direct. The uniqueness of @{names} is a *norm* a @{maintainer} may police (cheapest at mint time) in order to avoid collision failures, instead of an invariant.
 
   |term[name      ] A repeatable token (e.g., a word, string, or number) that is recognizable wherever it is used.
+    :pos noun
+    :pl  -s
   |term[mint      ] The creation of a binding, at a moment, by its first maintainer.
+    :pos noun
+    :pos verb
+    :pl  -s
   |term[maintainer] Whoever minted a binding or inherits its upkeep (e.g., a system, person, family, filesystem, registry, community, ...).
+    :pos noun
+    :pl  -s
   |term[dangle    ] The failure where a binding no longer reaches a referent — its upkeep has lapsed, or its referent has ceased (or moved) without the binding being updated.
+    :pos noun
+    :pos verb
+    :pl  -s
   |term[collide   ] The failure where one maintainer holds more than one mint of the same name.
+    :pos verb
   |term[binding   ] A deliberate, maintained association from a name to a referent.
+    :pos noun
+    :pl  -s
     :synonyms [declaration] ; the scope-graphs literature's word
     |rels :binds   @{name}       {1,1}
           :to      @{referent}   {1,1}

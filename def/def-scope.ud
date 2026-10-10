@@ -4,6 +4,8 @@
   A **SCOPE** makes @{binding}'s informal "jurisdiction" precise: it is the unit within which @{bindings} are kept and collisions counted. @{scopes} connect to one another by labeled **EDGES**; the universal edge label is **CONTAINMENT** — pointing from a @{scope} to the @{scope} enclosing it — and a @{scope} with no outward containment edge is a **ROOT-SCOPE**. This arrangement is the economics the whole theory rides on: a @{binding} need only be unambiguous *locally*, within its @{scope}, and locally-cheap @{bindings} compose across @{edges} into global reach. No @{maintainer} ever needs a globally unique @{name}.
 
   |term[scope] The unit of resolution locality: the jurisdiction within which a maintainer's bindings are kept and collisions counted.
+    :pos noun
+    :pl  -s
     :synonyms [jurisdiction namespace]
     :avoid [context region] ; both too loose to carry the locality claim
     |rels :holds     @{binding} {0,N}
@@ -13,6 +15,8 @@
       - Collision is counted within one scope; two mints of one name in different scopes are simply two bindings
 
   |term[edge] A labeled, directed connection from one scope to another, traversable when resolving.
+    :pos noun
+    :pl  -s
     |rels :from  @{scope} {1,1}
           :to    @{scope} {1,1}
           :label @{name}  {1,1}
@@ -20,8 +24,11 @@
       - Labels beyond containment are an open extension point; what an edge's label means is priced by resolution policy, not fixed here
 
   |term[containment] The universal edge label: the edge from a scope to the scope enclosing it.
+    :pos noun
 
   |term[root-scope] A scope with no containment edge outward.
+    :pos noun
+    :pl  -s
     |invariants
       - Every scope reaches at least one root-scope through containment
 

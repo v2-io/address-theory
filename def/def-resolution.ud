@@ -4,10 +4,14 @@
   **RESOLUTION** is where everything above comes together: a @{reference}, resolved from an **ORIGIN** @{scope}, is worked back to the @{referents} it reaches as of that moment. Each result carries its **RESOLUTION-PATH** — the route that justifies it, made of **WALK-STEPS** (traversals of standing @{edges}) and **MEDIATED-STEPS** (@{edges} that exist only through a sub-@{resolution}). The answer is shaped by declared policy — **ADMISSIBILITY** (which path shapes count at all) and **PREFERENCE** (which admissible results win) — and every outcome has standing, including none and too-many (**AMBIGUITY**).
 
   |term[origin] The @{scope} a reference is used from.
+    :pos noun
+    :pl  -s
     |invariants
       - Constitutive, not optional: the same reference yields different referents from different origins, legitimately
 
   |term[resolution] The outcome of resolving a reference: the set of referents it reaches, from an origin, as of a moment — each carried with its resolution-path.
+    :pos noun
+    :pl  -s
     :synonyms [lookup]
     :avoid [fetch] ; resolution determines referents as of the moment; taking hold of them is @{dereference}'s further step
     |rels :of      @{reference} {1,1}
@@ -19,23 +23,34 @@
       - Zero, one, and many are all outcomes; the reference's intended cardinality gives each its meaning
 
   |term[resolution-path] The sequence of edge traversals and connection events (bindings consulted, matches run) that justifies one resolution result.
+    :pos noun
+    :pl  -s
     |rels :steps (@{walk-step} | @{mediated-step}) {1,N}
     |invariants
       - The path is the evidence; reducing a result to its bare referent discards exactly the justification — a choice, never a default
 
   |term[walk-step] A path step that traverses a standing @{edge}; no resolution is needed to take it.
+    :pos noun
+    :pl  -s
 
   |term[mediated-step] A path step whose edge exists only through a sub-resolution: a name must first be resolved to obtain the edge — an import, a symlink, a forwarding address, a delegation.
+    :pos noun
+    :pl  -s
     |invariants
       - A mediated step's sub-resolution may not use the step it enables
 
   |term[admissibility] The declared half of a resolution policy that says which path shapes count at all — a constraint over edge-label sequences.
+    :pos noun
 
   |term[preference] The declared half of a resolution policy that orders admissible results — shadowing ("nearer beats farther", "local beats imported") made inspectable.
+    :pos noun
+    :pl  -s
     |invariants
       - A selection under declared preference is disclosed by construction; a selection without one is a silent guess
 
   |term[ambiguity] More than one maximally-preferred result.
+    :pos noun
+    :pl  ambiguities
     |invariants
       - An outcome, not an error — it is what insufficient narrowing is — and it surfaces with its candidate set
 
