@@ -2,6 +2,13 @@
 
 *Append-only, informal. Present truth lives in def/, src/, and the outline; decisions in DECISIONS.ud; process in sop/. This file is archaeological source, not active work.*
 
+## 2026-10-09 — term forms come from each term's own declarations (`:pos` / `:pl`)
+
+- Steward's call, after the LEXICON.md assembler notes: *"Can we just fix the terms a little bit and automatically take care of inflections as per however they are used in context?"* — each `|term` now carries `:pos noun` / `:pos verb` (stacked for both) and, for nouns, `:pl` (`-s` / `-es` appended, or the whole plural word; none = no plural). def/ edits were the coordinator's (committed separately); this entry is the tooling.
+- `bin/lib/def_terms.rb`: surfaces are built from the declarations — nouns get their declared plural; verbs get regular 3sg / past / past participle / -ing, made by the tool, overridable per form with `:3sg`, `:past`, `:pp`, `:ing` (each `-suffix` or a whole word, as `:pl` is; none used yet). `@{…}` and `**TERM**` / `**TERM**s` (any letters after the bold) resolve only through declared forms. A form no term declares is left as written and reported, with the nearest term as a hint; a term with no `:pos` (or an id named only in a group header) falls back to the old dry-inflector guesses, reported as such, for files copied into repos that haven't adopted the declarations. A form two terms both produce is reported, and links to the first.
+- `bin/compose-defs` builds its map from the declarations (a light line scan); overview body unchanged, blurb updated. `bin/compose-lexicon` reads them with its own reader, checks that both readings agree, and shows them as one italic line under each headword (`*noun · pl. referents*`, `*noun, verb · pl. mints*`, `*verb*`) instead of as attributes.
+- LEXICON.md regenerated: the eleven singular/plural-form notes are gone (every form used is declared); the five references to undefined terms (`moment`, `ADDRESS`, `DIRECTIONS`, `TARGET-SET`, `WORLD`), the padded ids and the em-dash line remain.
+
 ## 2026-10-09 — housekeeping after the move; the next step laid out for the steward
 
 - `INFLUX/` → `inf/` and `sop/INFLUX/` → `sop/inf/` (steward's request, for looks). Present-truth surfaces updated; history layers keep the old name.

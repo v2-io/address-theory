@@ -3,8 +3,8 @@
 The foundation term-groups' narrative intros, in outline (dependency) order —
 one continuous reading pass over what the formal |term[ entries then pin down.
 Source: leading prose of each def/*.ud linked from ADDRESSING-THEORY.outline.md.
-Term links derived each run from live |term-group[…] headers; singular/plural
-surfaces expanded via dry-inflector.
+Term links derived each run from the live def/ files; each term's forms come
+from its own :pos / :pl declarations.
 -->
 
 # LEXICON overview

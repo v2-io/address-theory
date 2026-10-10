@@ -19,12 +19,15 @@
 # set apart in italics.
 #
 # Term links follow the conventions settled for LEXICON-overview.md (shared
-# code: bin/lib/def_terms.rb). What the links paper over is reported, not
-# hidden: an @{…} that names no term is left as written, one that reaches a
-# term only through a singular/plural form is linked — and both are listed,
-# with file:line, in the "Assembler notes" at the end of LEXICON.md and on
-# stderr, along with other irregularities found while reading (padded ids,
-# a group header that disagrees with its terms, a non-item line in a list).
+# code: bin/lib/def_terms.rb). Each |term declares its own word forms
+# (:pos noun / verb, :pl …); @{…} and **TERM** forms link through those
+# declarations only, and the declarations show as one quiet italic line under
+# the headword. Nothing is guessed silently: a form no term declares is left
+# as written, a term with no :pos falls back to the old dry-inflector guesses
+# — and both are listed, with file:line, in the "Assembler notes" at the end
+# of LEXICON.md and on stderr, along with other irregularities found while
+# reading (padded ids, a group header that disagrees with its terms, a
+# non-item line in a list).
 #
 # The reader is a line-based reader for the udon these files are written in
 # (elements, stacked [ids], sameline text, :attributes with ; comments,
@@ -308,21 +311,42 @@ files = slugs.map do |slug|
   { slug: slug, file: "#{slug}.ud", root: root, lines: lines }
 end
 
-# ── term map (shared conventions) ────────────────────────────────────
+# ── term map: from each |term's declared forms (shared conventions) ──
+#
+# Declarations come from this script's reader; bin/compose-defs reads them
+# with DefTerms.scan_decls, so the two readings are compared here and any
+# difference is reported (the two views must link a term the same way).
 
 inflector = Dry::Inflector.new
-term_map = {}
-ids = {} # canonical id → def file
 groups_of = ->(f) { f[:root].children.select { |c| c.name == "term-group" } }
+decls = []
+header_only = []
 files.reject { |f| f[:missing] }.each do |f|
+  mine = []
   groups_of.(f).each do |g|
-    held = g.children.select { |c| c.name == "term" }.flat_map(&:ids)
-    (g.ids + (held - g.ids)).each do |id|
-      ids[id.downcase] ||= f[:file]
-      DefTerms.register_term!(term_map, inflector, id, f[:file], warn_prefix: "compose-lexicon")
+    terms = g.children.select { |c| c.name == "term" }
+    terms.each do |t|
+      next if t.ids.empty?
+      d = DefTerms::Decl.new(id: t.ids.first, aliases: t.ids.drop(1), file: f[:file], line: t.line, pos: [], forms: {})
+      t.attrs.select { |a| DefTerms::MORPH_KEYS.include?(a.key) }.each { |a| DefTerms.add_decl_value(d, a.key, a.value) }
+      mine << d
+    end
+    (g.ids - terms.flat_map(&:ids)).each do |id|
+      header_only << DefTerms::Decl.new(id: id, aliases: [], file: f[:file], line: nil, pos: [], forms: {})
     end
   end
+  theirs = DefTerms.scan_decls(File.join(DEF_DIR, f[:file]), f[:file])
+  key = ->(d) { [d.id, d.aliases, d.pos.sort, d.forms.sort] }
+  (mine.map(&key) - theirs.map(&key)).each do |k|
+    d = mine.find { |x| key.(x) == k }
+    notes << Note.new(file: f[:file], line: d.line, kind: :reader_split,
+                      msg: "`#{d.id}`'s forms read differently by compose-defs' line scan; the two views may link it differently")
+  end
+  decls.concat(mine)
 end
+map_notes = []
+term_map, term_info = DefTerms.build_term_map(decls, header_only, inflector, map_notes)
+map_notes.each { |n| notes << Note.new(file: n[:file], line: n[:line] || 0, kind: n[:kind], msg: n[:msg]) }
 
 # ── render ───────────────────────────────────────────────────────────
 
@@ -331,12 +355,12 @@ class Renderer
 
   attr_reader :used, :refs, :bold_unmapped
 
-  def initialize(term_map, ids, notes)
+  def initialize(term_map, decls, notes)
     @term_map = term_map
-    @ids = ids
+    @decls = decls
     @notes = notes
     @used = Hash.new { |h, k| h[k] = {} }
-    @refs = []          # [surface, def_file_or_nil, file, line]
+    @refs = []          # [surface, def_file_or_nil, file, line, kind]
     @bold_unmapped = [] # [surface, file, line]
   end
 
@@ -348,7 +372,7 @@ class Renderer
   def link(text, file, line, home, table: false)
     unmapped = []
     out = DefTerms.rewrite_terms(text, @term_map, home, unmapped, pipe: table ? "\\|" : "|",
-                                 on_ref: ->(surface, df) { @refs << [surface, df, file, line] })
+                                 on_ref: ->(surface, df, kind) { @refs << [surface, df, file, line, kind] })
     unmapped.each { |u| @bold_unmapped << [u, file, line] if u.start_with?("**") }
     out
   end
@@ -491,6 +515,23 @@ class Renderer
     out
   end
 
+  # :pos / :pl / … are the term's word forms, for the tools; shown as one
+  # quiet line under the headword: *noun · pl. referents*, *noun, verb · pl. mints*.
+  # Declared override forms are shown; regular verb forms are not (they are
+  # derived, see bin/lib/def_terms.rb).
+  def forms_line(node, morph, file, home)
+    use(file, morph.map(&:line))
+    d = @decls.find { |x| x.file == file && x.line == node.line }
+    bits = [d.pos.join(", ")]
+    bits << "pl. #{DefTerms.apply_form(d.id, d.forms['pl'])}" if d.forms["pl"]
+    { "3sg" => "3sg.", "past" => "past", "pp" => "p.p.", "ing" => "-ing" }.each do |k, lab|
+      bits << "#{lab} #{DefTerms.apply_form(d.id, d.forms[k])}" if d.forms[k]
+    end
+    line = "*#{bits.reject(&:empty?).join(' · ')}*"
+    morph.select(&:comment).each { |a| line += " #{comment_md(a.comment, file, a.line, home)}" }
+    line
+  end
+
   def term(node, file, home)
     use(file, node.line)
     node.raw_ids.each_with_index do |raw, k|
@@ -501,9 +542,11 @@ class Renderer
     head = "### #{node.ids.empty? ? '(term without an id)' : node.ids.join(' · ')}"
     head += node.traits.map { |t| " .#{t}" }.join
     parts = [head]
+    morph, attrs = node.attrs.partition { |a| DefTerms::MORPH_KEYS.include?(a.key) }
+    parts << forms_line(node, morph, file, home) unless morph.empty?
     parts << link(node.text, file, node.line, home) if node.text
     parts << comment_md(node.comment, file, node.line, home) if node.comment
-    node.attrs.each { |a| parts << attr_para(a, file, home) }
+    attrs.each { |a| parts << attr_para(a, file, home) }
     parts.concat(body(node, file, home) { |c| block(c, file, home) })
     parts.join("\n\n")
   end
@@ -572,7 +615,7 @@ class Renderer
   end
 end
 
-r = Renderer.new(term_map, ids, notes)
+r = Renderer.new(term_map, decls, notes)
 sections = files.map do |f|
   if f[:missing]
     "## #{f[:slug]}\n\n> **Missing:** `#{f[:slug]}.ud` is linked from the outline but not present in `def/`."
@@ -591,27 +634,34 @@ files.reject { |f| f[:missing] }.each do |f|
   end
 end
 
-# References: what names no term, and what reaches one only by its form.
-# Each is one note, with every site it occurs at.
-r.refs.select { |_, df, _, _| df.nil? }.group_by(&:first).each do |surface, uses|
-  sites = uses.map { |_, _, fl, ln| [fl, ln] }
-  notes << Note.new(file: sites[0][0], line: sites[0][1], kind: :unresolved, sites: sites,
-                    msg: "`@{#{surface}}` names no term defined in def/; left as written")
+# References: a form no term declares (left as written, never guessed), and
+# a form reached only through a guessed (undeclared) term. Each is one note,
+# with every site it occurs at.
+site_list = ->(uses) { uses.map { |u| [u[2], u[3]] } }
+hint = lambda do |surface|
+  t = DefTerms.nearest_term(surface, term_info, inflector)
+  t ? " (nearest term: `#{t}`)" : ""
 end
-r.refs.select { |s, df, _, _| df && !ids.key?(s.downcase) }.group_by(&:first).each do |surface, uses|
-  df = uses.first[1]
-  target = ids.keys.find do |id|
-    ids[id] == df && [id, inflector.singularize(id), inflector.pluralize(id)].map(&:downcase).include?(surface.downcase)
-  end || ids.keys.find { |id| ids[id] == df && term_map[surface.downcase] == df && inflector.singularize(id) == inflector.singularize(surface.downcase) } || df
-  sites = uses.map { |_, _, fl, ln| [fl, ln] }
+r.refs.select { |_, df, _, _, kind| df.nil? && kind == :ref }.group_by(&:first).each do |surface, uses|
+  sites = site_list.(uses)
+  notes << Note.new(file: sites[0][0], line: sites[0][1], kind: :unresolved, sites: sites,
+                    msg: "`@{#{surface}}` is no declared form of any term; left as written#{hint.(surface)}")
+end
+r.refs.select { |_, df, _, _, kind| df.nil? && kind == :bold }.group_by(&:first).each do |surface, uses|
+  sites = site_list.(uses)
+  notes << Note.new(file: sites[0][0], line: sites[0][1], kind: :unresolved, sites: sites,
+                    msg: "bold `#{surface.upcase}` is no declared form of any term; left as written#{hint.(surface)}")
+end
+r.refs.select { |_, _, _, _, kind| kind == :bold_suffix }.group_by(&:first).each do |surface, uses|
+  sites = site_list.(uses)
+  notes << Note.new(file: sites[0][0], line: sites[0][1], kind: :unresolved, sites: sites,
+                    msg: "bold term + letters `#{surface}` is no declared form; the term is linked and the letters left after it")
+end
+r.refs.select { |s, df, _, _, _| df && term_info[s.downcase] && term_info[s.downcase][:guessed] }.group_by(&:first).each do |surface, uses|
+  sites = site_list.(uses)
   notes << Note.new(file: sites[0][0], line: sites[0][1], kind: :inflected, sites: sites,
-                    msg: "`@{#{surface}}` is not a term id; linked to `#{target}` by its singular/plural form, " \
-                         "#{uses.size} use#{uses.size == 1 ? '' : 's'}")
-end
-r.bold_unmapped.group_by(&:first).each do |surface, uses|
-  sites = uses.map { |_, fl, ln| [fl, ln] }
-  notes << Note.new(file: sites[0][0], line: sites[0][1], kind: :unresolved, sites: sites,
-                    msg: "`#{surface}` matches no term; left as written")
+                    msg: "`#{surface}` reaches `#{term_info[surface.downcase][:id]}` only through a guessed form " \
+                         "(that term declares no `:pos`)")
 end
 
 # ── assemble ─────────────────────────────────────────────────────────
@@ -625,9 +675,11 @@ md = +<<~HEADER
   Every term group in def/, whole, in outline (dependency) order: each group's
   leading prose, then its |term entries and blocks as they stand in the file.
   def/*.ud are the definitions; this file is a rendering of them, not a second
-  source. Udon comments (; …) are shown in italics, starting with `;`. Term links follow
-  the LEXICON-overview.md conventions (bin/lib/def_terms.rb). What the assembler
-  noticed about the sources while reading is listed at the end.
+  source. Udon comments (; …) are shown in italics, starting with `;`. Each
+  term's :pos / :pl declarations show as one italic line under its headword;
+  @{…} and **TERM** link through those declared forms only (bin/lib/def_terms.rb,
+  shared with LEXICON-overview.md). What the assembler noticed about the
+  sources while reading is listed at the end.
   -->
 
   # LEXICON
@@ -645,7 +697,8 @@ end
 md << "\n"
 md << sections.reject(&:empty?).join("\n\n") << "\n"
 
-order_key = { unrendered: 0, missing: 1, unlisted: 2, unresolved: 3, inflected: 4, group_ids: 5, padded: 6, list: 7 }
+order_key = { unrendered: 0, reader_split: 1, missing: 2, unlisted: 3, unresolved: 4, form_clash: 5, undeclared: 6,
+              inflected: 7, pos: 8, group_ids: 9, padded: 10, list: 11 }
 shown_notes = notes.sort_by { |n| [order_key.fetch(n.kind, 9), slugs.index(n.file.sub(/\.ud\z/, "")) || 99, n.line] }
 # Padded ids: one note per file, not one per term.
 padded, other = shown_notes.partition { |n| n.kind == :padded }

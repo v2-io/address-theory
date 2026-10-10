@@ -6,10 +6,11 @@
 # intros read as one continuous pass. Relies on the convention that every
 # group's terms are all discussed in its leading prose.
 #
-# Term map: derived each run from live |term-group[…] headers (no hardcoded
-# list). Singular/plural surface forms expanded via dry-inflector so
-# @{reference}/@{references}/@{referent}/@{referents} all resolve to the same
-# def file; the written surface form is what appears in the link text.
+# Term map: derived each run from the live def/ files (no hardcoded list).
+# Each |term declares its own forms (:pos noun/verb, :pl …; see
+# bin/lib/def_terms.rb), so @{referent}/@{referents} or @{resolve}/@{resolved}
+# reach the same def file; a form no term declares is left as written and
+# reported on stderr. The written surface is what appears in the link text.
 #
 # Surface forms in the overview:
 #   @{term}        → *[[def-….ud|term]]*   when the term lives in another def file
@@ -45,9 +46,33 @@ abort "no [[def-*.ud]] links found in outline" if slugs.empty?
 
 include DefTerms
 
-# ── extract (+ build live term map) ──────────────────────────────────
+# ── term map: from each |term's declared forms (:pos / :pl …) ────────
+#
+# Built before any prose is rewritten, so a term defined later in reading
+# order still links. A term with no :pos falls back to dry-inflector guesses
+# (and says so on stderr); so does an id named only in a group header.
 
-term_map = {} # surface-slug → "def-….ud"
+decls = []
+header_only = []
+slugs.each do |slug|
+  path = File.join(root, "def", "#{slug}.ud")
+  next unless File.exist?(path)
+  file_decls = DefTerms.scan_decls(path, "#{slug}.ud")
+  decls.concat(file_decls)
+  File.foreach(path) do |line|
+    next unless line =~ /^\s*\|term-group((?:\[[^\]]+\])+)/
+    line.scan(/\[([^\]]+)\]/).flatten.map(&:strip).each do |id|
+      next if file_decls.any? { |d| ([d.id] + d.aliases).include?(id) }
+      header_only << DefTerms::Decl.new(id: id, aliases: [], file: "#{slug}.ud", line: nil, pos: [], forms: {})
+    end
+  end
+end
+map_notes = []
+term_map, term_info = DefTerms.build_term_map(decls, header_only, inflector, map_notes)
+map_notes.each { |n| warn "compose-defs: #{n[:file]}#{n[:line] ? ":#{n[:line]}" : ''}: #{n[:msg].delete('`')}" }
+
+# ── extract ──────────────────────────────────────────────────────────
+
 sections = []
 
 slugs.each do |slug|
@@ -73,7 +98,6 @@ slugs.each do |slug|
     if line =~ /^\s*\|term-group((?:\[[^\]]+\])+)/
       terms = line.scan(/\[([^\]]+)\]/).flatten
       primary = terms.first
-      terms.each { |t| register_term!(term_map, inflector, t, def_file) }
       next
     end
     if (m = line.match(/^\s*:status\s+(\S+)/))
@@ -95,10 +119,12 @@ slugs.each do |slug|
 
   title = title_case_term(primary || slug.sub(/\Adef-/, ""))
 
-  # Subtitle roster: concept form (singularized), title-cased, middle-dot joined.
-  # referents → Referent; intended-cardinality → Intended-Cardinality.
+  # Subtitle roster: each term's base form (its id), title-cased, middle-dot
+  # joined; intended-cardinality → Intended-Cardinality. A term with no :pos
+  # (no declared base) is singularized, as before :pos existed.
   term_roster = terms.map { |t|
-    title_case_term(inflector.singularize(t))
+    declared = decls.any? { |d| d.id == t && d.pos.any? }
+    title_case_term(declared ? t : inflector.singularize(t))
   }.uniq
 
   sections << {
@@ -114,6 +140,7 @@ end
 # ── rewrite + render ─────────────────────────────────────────────────
 
 unmapped = []
+undeclared_suffix = [] # **TERM**x where TERMx is no declared form
 
 md = +""
 md << <<~HEADER
@@ -122,8 +149,8 @@ md << <<~HEADER
   The foundation term-groups' narrative intros, in outline (dependency) order —
   one continuous reading pass over what the formal |term[ entries then pin down.
   Source: leading prose of each def/*.ud linked from ADDRESSING-THEORY.outline.md.
-  Term links derived each run from live |term-group[…] headers; singular/plural
-  surfaces expanded via dry-inflector.
+  Term links derived each run from the live def/ files; each term's forms come
+  from its own :pos / :pl declarations.
   -->
 
 HEADER
@@ -140,7 +167,8 @@ sections.each do |s|
 
   home_def = "#{s[:slug]}.ud"
   rewritten = s[:prose].map { |para|
-    rewrite_terms(para, term_map, home_def, unmapped)
+    rewrite_terms(para, term_map, home_def, unmapped,
+                  on_ref: ->(surface, _df, kind) { undeclared_suffix << surface if kind == :bold_suffix })
   }
   md << "## #{s[:title]}\n"
   unless s[:term_roster].empty?
@@ -153,6 +181,10 @@ end
 unless unmapped.empty?
   warn "compose-defs: unmapped term surface(s) left as-is:"
   unmapped.uniq.each { |t| warn "  #{t}" }
+end
+unless undeclared_suffix.empty?
+  warn "compose-defs: bold term + letters that make no declared form (the term linked, the letters left after it):"
+  undeclared_suffix.uniq.each { |t| warn "  #{t}" }
 end
 
 # ── write ────────────────────────────────────────────────────────────

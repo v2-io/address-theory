@@ -3,16 +3,18 @@
 Every term group in def/, whole, in outline (dependency) order: each group's
 leading prose, then its |term entries and blocks as they stand in the file.
 def/*.ud are the definitions; this file is a rendering of them, not a second
-source. Udon comments (; …) are shown in italics, starting with `;`. Term links follow
-the LEXICON-overview.md conventions (bin/lib/def_terms.rb). What the assembler
-noticed about the sources while reading is listed at the end.
+source. Udon comments (; …) are shown in italics, starting with `;`. Each
+term's :pos / :pl declarations show as one italic line under its headword;
+@{…} and **TERM** link through those declared forms only (bin/lib/def_terms.rb,
+shared with LEXICON-overview.md). What the assembler noticed about the
+sources while reading is listed at the end.
 -->
 
 # LEXICON
 
 **Contents** — 29 terms in 7 groups
 
-- **Reference** — referents · reference · intended-cardinality · resolve · dereference
+- **Reference** — referent · reference · intended-cardinality · resolve · dereference
 - **Binding** — name · mint · maintainer · dangle · collide · binding
 - **Match** — match · designator · description
 - **Scope** — scope · edge · containment · root-scope
@@ -22,15 +24,19 @@ noticed about the sources while reading is listed at the end.
 
 ## Reference
 
-*[[def-reference.ud]] · status: proposed · terms: reference · referents · intended-cardinality · resolve · dereference*
+*[[def-reference.ud]] · status: proposed · terms: reference · referent · intended-cardinality · resolve · dereference*
 
 A '**[[def-reference.ud|REFERENCE]]**' is recorded material that is used as a proxy or to stand in for its '**[[def-reference.ud|REFERENTS]]**', often when the ==*referents*== are not at hand or can't be known yet. The two terms are only well-defined in relation to each other. A ==*reference*== has an *intent* when it is created— and we specifically define the recorded '**[[def-reference.ud|INTENDED-CARDINALITY]]**' of a ==*reference*==: Whether it intends to stand in for a single ==*referent*== {1,1}, at most one{0,1}, or, for example, as many as there might be {0,N}. To '**[[def-reference.ud|RESOLVE]]**' a ==*reference*== is to determine what it reaches — always *as of a moment*; to '**[[def-reference.ud|DEREFERENCE]]**' it is to ==*resolve*== and take hold of the ==*referents*== as they then stand.
 
-### referents
+### referent
 
-The things that a reference is proxy for.
+*noun · pl. referents*
+
+A thing that a reference is proxy for.
 
 ### reference
+
+*noun · pl. references*
 
 The recorded material used as a proxy for an intended-cardinality of referents.
 
@@ -51,6 +57,8 @@ The recorded material used as a proxy for an intended-cardinality of referents.
 
 ### intended-cardinality
 
+*noun · pl. intended-cardinalities*
+
 The range of the number of referents a reference stands in for, with a minimum and a maximum {min,max}.
 
 **Invariants**
@@ -63,9 +71,13 @@ The range of the number of referents a reference stands in for, with a minimum a
 
 ### resolve
 
+*verb*
+
 To determine what a reference reaches — as of now. There is no untimed resolving: an "untimed" answer is either a fiction or an unstated claim that the world has held still.
 
 ### dereference
+
+*verb*
 
 To resolve a reference *and take hold of* its referents. What is obtained is referent-state as of that moment, never the referent timelessly.
 
@@ -100,25 +112,37 @@ The ==*name*== can be considered a new {1,1} *[[def-reference.ud|reference]]* to
 
 ### name
 
+*noun · pl. names*
+
 A repeatable token (e.g., a word, string, or number) that is recognizable wherever it is used.
 
 ### mint
+
+*noun, verb · pl. mints*
 
 The creation of a binding, at a moment, by its first maintainer.
 
 ### maintainer
 
+*noun · pl. maintainers*
+
 Whoever minted a binding or inherits its upkeep (e.g., a system, person, family, filesystem, registry, community, ...).
 
 ### dangle
+
+*noun, verb · pl. dangles*
 
 The failure where a binding no longer reaches a referent — its upkeep has lapsed, or its referent has ceased (or moved) without the binding being updated.
 
 ### collide
 
+*verb*
+
 The failure where one maintainer holds more than one mint of the same name.
 
 ### binding
+
+*noun · pl. bindings*
 
 A deliberate, maintained association from a name to a referent.
 
@@ -164,6 +188,8 @@ A '**[[def-match.ud|MATCH]]**' is the second mechanism by which a *[[def-referen
 
 ### match
 
+*noun · pl. matches*
+
 A connection from a reference to referents established by running a test at the moment of use: the referents are whatever, in the world's current population, passes the criteria the reference supplies.
 
 **Avoid:** search, query — _; each names an activity or artifact, not the connection established_
@@ -175,9 +201,13 @@ A connection from a reference to referents established by running a test at the 
 
 ### designator
 
+*noun · pl. designators*
+
 A reference (or component of one) that reaches its referent through a *[[def-binding.ud|binding]]* on its name.
 
 ### description
+
+*noun · pl. descriptions*
 
 A reference (or component of one) that reaches its referents by match.
 
@@ -210,6 +240,8 @@ A '**[[def-scope.ud|SCOPE]]**' makes *[[def-binding.ud|binding]]*'s informal "ju
 
 ### scope
 
+*noun · pl. scopes*
+
 The unit of resolution locality: the jurisdiction within which a maintainer's bindings are kept and collisions counted.
 
 **Synonyms:** jurisdiction, namespace
@@ -228,6 +260,8 @@ The unit of resolution locality: the jurisdiction within which a maintainer's bi
 
 ### edge
 
+*noun · pl. edges*
+
 A labeled, directed connection from one scope to another, traversable when resolving.
 
 **Relations**
@@ -242,9 +276,13 @@ A labeled, directed connection from one scope to another, traversable when resol
 
 ### containment
 
+*noun*
+
 The universal edge label: the edge from a scope to the scope enclosing it.
 
 ### root-scope
+
+*noun · pl. root-scopes*
 
 A scope with no containment edge outward.
 
@@ -273,6 +311,8 @@ A scope with no containment edge outward.
 A '**[[def-location.ud|LOCATION]]**' is what you get when a *[[def-scope.ud|scope]]* is itself the *[[def-reference.ud|referent]]* of a *[[def-binding.ud|binding]]* — a named *[[def-scope.ud|scope]]*. Location-ness is a role a *[[def-scope.ud|scope]]* plays when some enclosing jurisdiction keeps a *[[def-binding.ud|name]]* for it, not a new kind of thing.
 
 ### location
+
+*noun · pl. locations*
 
 A scope that is itself the referent of a binding — a named scope.
 
@@ -312,6 +352,8 @@ A scope that is itself the referent of a binding — a named scope.
 
 ### origin
 
+*noun · pl. origins*
+
 The *[[def-scope.ud|scope]]* a reference is used from.
 
 **Invariants**
@@ -319,6 +361,8 @@ The *[[def-scope.ud|scope]]* a reference is used from.
 - Constitutive, not optional: the same reference yields different referents from different origins, legitimately
 
 ### resolution
+
+*noun · pl. resolutions*
 
 The outcome of resolving a reference: the set of referents it reaches, from an origin, as of a moment — each carried with its resolution-path.
 
@@ -340,6 +384,8 @@ The outcome of resolving a reference: the set of referents it reaches, from an o
 
 ### resolution-path
 
+*noun · pl. resolution-paths*
+
 The sequence of edge traversals and connection events (bindings consulted, matches run) that justifies one resolution result.
 
 **Relations**
@@ -352,9 +398,13 @@ The sequence of edge traversals and connection events (bindings consulted, match
 
 ### walk-step
 
+*noun · pl. walk-steps*
+
 A path step that traverses a standing *[[def-scope.ud|edge]]*; no resolution is needed to take it.
 
 ### mediated-step
+
+*noun · pl. mediated-steps*
 
 A path step whose edge exists only through a sub-resolution: a name must first be resolved to obtain the edge — an import, a symlink, a forwarding address, a delegation.
 
@@ -364,9 +414,13 @@ A path step whose edge exists only through a sub-resolution: a name must first b
 
 ### admissibility
 
+*noun*
+
 The declared half of a resolution policy that says which path shapes count at all — a constraint over edge-label sequences.
 
 ### preference
+
+*noun · pl. preferences*
 
 The declared half of a resolution policy that orders admissible results — shadowing ("nearer beats farther", "local beats imported") made inspectable.
 
@@ -375,6 +429,8 @@ The declared half of a resolution policy that orders admissible results — shad
 - A selection under declared preference is disclosed by construction; a selection without one is a silent guess
 
 ### ambiguity
+
+*noun · pl. ambiguities*
 
 More than one maximally-preferred result.
 
@@ -407,6 +463,8 @@ A '**[[def-generator.ud|GENERATOR]]**' is the second species of *deferred* recor
 
 ### generator
 
+*noun · pl. generators*
+
 Deferred recorded material that produces material rather than standing for it.
 
 **Avoid:** directive, template, macro — _; each names a surface construct or artifact family hosting generators, not the kind itself_
@@ -423,6 +481,8 @@ Deferred recorded material that produces material rather than standing for it.
 - No referents stand behind it, so the miss vocabulary (count-against-intended-cardinality) does not apply to it; what failure means for an evaluation is its own question, currently open
 
 ### evaluate
+
+*verb*
 
 To perform a generator's production, from an origin, as of a moment — the produce-side counterpart of *[[def-reference.ud|resolve]]*.
 
@@ -460,19 +520,13 @@ To perform a generator's production, from an origin, as of a moment — the prod
 
 *What `bin/compose-lexicon` noticed about the sources while reading them. These are about def/, not part of it; the text above is rendered as written either way.*
 
-- `@{TARGET-SET}` names no term defined in def/; left as written — def-reference.ud:45
-- `@{WORLD}` names no term defined in def/; left as written — def-scope.ud:35
-- `@{ADDRESS}` names no term defined in def/; left as written — def-location.ud:15; def-resolution.ud:51
-- `@{moment}` names no term defined in def/; left as written — def-resolution.ud:15, 45, 51
-- `@{DIRECTIONS}` names no term defined in def/; left as written — def-resolution.ud:51
-- `@{referent}` is not a term id; linked to `referents` by its singular/plural form, 10 uses — def-reference.ud:4, 10, 11; def-binding.ud:4, 5, 15; def-location.ud:4; def-resolution.ud:16
-- `@{names}` is not a term id; linked to `name` by its singular/plural form, 1 use — def-binding.ud:5
-- `@{bindings}` is not a term id; linked to `binding` by its singular/plural form, 2 uses — def-scope.ud:4
-- `@{edges}` is not a term id; linked to `edge` by its singular/plural form, 3 uses — def-scope.ud:4; def-resolution.ud:4
-- `@{scopes}` is not a term id; linked to `scope` by its singular/plural form, 1 use — def-scope.ud:4
-- `@{references}` is not a term id; linked to `reference` by its singular/plural form, 1 use — def-generator.ud:4
-- 1 `|term` id written with spaces inside the brackets; read as `resolve` — def-reference.ud:27
-- 5 `|term` ids written with spaces inside the brackets; read as `name`, `mint`, `dangle`, `collide`, `binding` — def-binding.ud:7, 8, 10, 11, 12
-- 2 `|term` ids written with spaces inside the brackets; read as `match`, `designator` — def-match.ud:6, 11
-- 1 `|term` id written with spaces inside the brackets; read as `evaluate` — def-generator.ud:15
-- `def-reference.ud:32` a `|discussion` line begins "—" where its other lines begin "- "; it renders as a paragraph, not a list item
+- `@{TARGET-SET}` is no declared form of any term; left as written — def-reference.ud:53
+- `@{WORLD}` is no declared form of any term; left as written — def-scope.ud:42
+- `@{ADDRESS}` is no declared form of any term; left as written — def-location.ud:17; def-resolution.ud:66
+- `@{moment}` is no declared form of any term; left as written — def-resolution.ud:19, 60, 66
+- `@{DIRECTIONS}` is no declared form of any term; left as written — def-resolution.ud:66
+- 1 `|term` id written with spaces inside the brackets; read as `resolve` — def-reference.ud:33
+- 5 `|term` ids written with spaces inside the brackets; read as `name`, `mint`, `dangle`, `collide`, `binding` — def-binding.ud:7, 10, 17, 21, 23
+- 2 `|term` ids written with spaces inside the brackets; read as `match`, `designator` — def-match.ud:6, 13
+- 1 `|term` id written with spaces inside the brackets; read as `evaluate` — def-generator.ud:17
+- `def-reference.ud:40` a `|discussion` line begins "—" where its other lines begin "- "; it renders as a paragraph, not a list item
