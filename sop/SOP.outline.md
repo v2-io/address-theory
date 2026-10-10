@@ -1,6 +1,6 @@
 # *Volume* SOP — Standard Operating Procedures (this instance)
 
-**Canon view** over `sop/src/`. This store is a verisectorium one level deep, terminating at self-governance via its own influx (`sop/INFLUX/`). It carries two aspects: **praxes** (meta — how work happens here) and **doctrina** (domain — what must be known to work here); both currently live in the single founding segment and atomize as content earns it. Feedback is the only amendment channel; verisectorium-general upgrades arrive through `sop/INFLUX/` and are adopted / adapted / declined-with-record locally.
+**Canon view** over `sop/src/`. This store is a verisectorium one level deep, terminating at self-governance via its own influx (`sop/inf/`). It carries two aspects: **praxes** (meta — how work happens here) and **doctrina** (domain — what must be known to work here); both currently live in the single founding segment and atomize as content earns it. Feedback is the only amendment channel; verisectorium-general upgrades arrive through `sop/inf/` and are adopted / adapted / declined-with-record locally.
 
 | Expected<br>Type | Tag | Claim | Max | State |
 |---|---|---|---|---|

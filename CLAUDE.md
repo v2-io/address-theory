@@ -26,11 +26,11 @@
 | ~ | ref/                                | rare   | Citable primaries: symlinks to live estate sources (copies only when the source is archived/external). See ref/README.md. |
 | ~ | sop/SOP.outline.md                  | rare   | (Eventually rare, that is). Standard Operating Procedures. Will have *praxes* (meta) and *doctrina* (domain). |
 | ~ | .archive/                           | some   | At the time of this writing, it holds, in particular, second-theory-iteration-2026-08-08/ which we are replacing. |
-| ~ | INFLUX/                             | often  | Stuff that is probably critical to integrate into ADDRESSING-THEORY but hasn't yet (see praxes). |
+| ~ | inf/                                | often  | Stuff that is probably critical to integrate into ADDRESSING-THEORY but hasn't yet (see praxes). |
 |   |                                     |        |      |
 | ~ | DECISIONS.ud                        | often  | Decision log, with provenance and authority. Append-only (mostly)-- lower items supersede earlier. |
 | ~ | CHANGELOG.md                        | sess   | Append only *very open-ended / informal* format. Append to throughout your session. As archeological src, not active work. |
-| ~ | sop/INFLUX/                         | rare   | In particular, a place to put feedback etc. *at any time* about the process or SOPs themselves, including praxes. |
+| ~ | sop/inf/                            | rare   | In particular, a place to put feedback etc. *at any time* about the process or SOPs themselves, including praxes. |
 | ~ | bin/compose-defs                    | rare   | Regenerates LEXICON-overview.md from def/ leading prose in outline order. |
 |   |                                     |        |      |
 | ~ | CLAUDE.md                           | rare   | This file-- add to it, carefully, as appropriate. Don't be redundant with proper tracking files & SOPs please |

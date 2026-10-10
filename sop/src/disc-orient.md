@@ -9,7 +9,7 @@ depends: []
 
 # ORIENT — how a mind meets this corpus
 
-This is the founding seed of this instance's **SOP store** — copied and adapted from the verisectorium theory instance's ORIENT (2026-08-08), per the rule that instance praxes are *copies with local deltas*, maintained here; verisectorium detects and proposes upgrades when the general SOPs change, through `sop/INFLUX/`. It is one segment now; it atomizes into `sop/src/` siblings as content earns it (`sop/SOP.outline.md` is the view over them).
+This is the founding seed of this instance's **SOP store** — copied and adapted from the verisectorium theory instance's ORIENT (2026-08-08), per the rule that instance praxes are *copies with local deltas*, maintained here; verisectorium detects and proposes upgrades when the general SOPs change, through `sop/inf/`. It is one segment now; it atomizes into `sop/src/` siblings as content earns it (`sop/SOP.outline.md` is the view over them).
 
 **Orientation is three things, in order.** Do not substitute fluency for the first one — the ability to imitate this corpus's forms arrives long before knowledge of what it has already settled, and that gap is how earlier editions of this very theory went wrong (see `.archive/`).
 
@@ -58,6 +58,6 @@ Before substantive work, having done 1 and 2, write a few sentences — in your 
 
 ## Feedback channel (this store's influx)
 
-Participant feedback is the only amendment channel for this store. If anything here confused you, fought the reality in front of you, or proved wrong: record it in `sop/INFLUX/`, and if urgent, surface it to the steward. Feedback that concerns the *general* verisectorium conventions (not this instance's content) also gets a copy routed to the verisectorium theory instance's `sop/INFLUX/` — that is its upgrade-detection channel. Front-line confusion is the re-truthification signal, not noise.
+Participant feedback is the only amendment channel for this store. If anything here confused you, fought the reality in front of you, or proved wrong: record it in `sop/inf/`, and if urgent, surface it to the steward. Feedback that concerns the *general* verisectorium conventions (not this instance's content) also gets a copy routed to the verisectorium theory instance's `sop/INFLUX/` — that is its upgrade-detection channel. Front-line confusion is the re-truthification signal, not noise.
 
 *(none yet)*
