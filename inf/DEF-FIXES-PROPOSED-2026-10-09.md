@@ -26,6 +26,14 @@ Proposed:
 
 The leading prose (`**REFERENT**s`) and the plural `@{referents}` in prose stay as they are, under A2.
 
+```udon
+|term[referent] A thing that a reference is proxy for.
+  :pos noun
+  :pl  -s
+```
+
+
+
 ### A2. State the plural convention
 
 Five references use a plural (`@{bindings}`, `@{edges}`, `@{names}`, `@{references}`, `@{scopes}`). Both renderers already resolve them (`bin/compose-defs` via dry-inflector; ai-risk-model's builder). Proposed: one sentence in ORIENT's def/ bullet, after the format description:
